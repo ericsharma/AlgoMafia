@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2.0.17
+_src_path: gh:algorandfoundation/algokit-fullstack-template
+author_email: 83883690+HashMapsData2Value@users.noreply.github.com
+author_name: HashMapsData2Value
+cloud_provider: vercel
+contract_name: TownHall
+preset_name: production
+project_name: mafia
+
