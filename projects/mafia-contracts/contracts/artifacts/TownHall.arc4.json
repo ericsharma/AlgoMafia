@@ -1,0 +1,82 @@
+{
+  "name": "TownHall",
+  "desc": "",
+  "methods": [
+    {
+      "name": "createApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "dummyOpUp",
+      "desc": "Dummy Op Up\nDummy operation to get more opcode budget\n - The number to return, necssary to deduplicate the name",
+      "args": [
+        {
+          "name": "i",
+          "type": "uint64"
+        }
+      ],
+      "returns": {
+        "type": "uint64",
+        "desc": "the number (but we do nothing with it)"
+      }
+    },
+    {
+      "name": "dlog",
+      "args": [
+        {
+          "name": "g",
+          "type": "byte[]"
+        },
+        {
+          "name": "x",
+          "type": "byte[]"
+        },
+        {
+          "name": "v",
+          "type": "byte[]"
+        },
+        {
+          "name": "z",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "bool"
+      }
+    },
+    {
+      "name": "hashPointToPoint",
+      "args": [
+        {
+          "name": "point",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "byte[]"
+      }
+    },
+    {
+      "name": "getGameState",
+      "args": [],
+      "returns": {
+        "type": "uint64"
+      }
+    },
+    {
+      "name": "joinGameLobby",
+      "args": [
+        {
+          "name": "NIZK_DLOG",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "bool"
+      }
+    }
+  ]
+}
