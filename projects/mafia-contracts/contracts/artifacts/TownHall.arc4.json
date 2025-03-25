@@ -77,6 +77,34 @@
       "returns": {
         "type": "bool"
       }
+    },
+    {
+      "name": "assignRole",
+      "args": [
+        {
+          "name": "msg",
+          "type": "byte[]"
+        },
+        {
+          "name": "pkAll",
+          "type": "byte[]"
+        },
+        {
+          "name": "keyImage",
+          "type": "byte[]"
+        },
+        {
+          "name": "sig",
+          "type": "byte[]"
+        },
+        {
+          "name": "challenges",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "bool"
+      }
     }
   ]
 }

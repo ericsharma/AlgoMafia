@@ -200,46 +200,31 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
       return false;
     }
 
+    this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
+    this.playersJoined.value += 1;
+
     if (this.player1AlgoAddr.value === globals.zeroAddress) {
       this.player1AlgoAddr.value = this.txn.sender;
-      // this.player1RingPK.value = RingPK;
-      this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
-      this.playersJoined.value += 1;
       return true;
     }
     if (this.player2AlgoAddr.value === globals.zeroAddress) {
       this.player2AlgoAddr.value = this.txn.sender;
-      // this.player2RingPK.value = RingPK;
-      this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
-      this.playersJoined.value += 1;
       return true;
     }
     if (this.player3AlgoAddr.value === globals.zeroAddress) {
       this.player3AlgoAddr.value = this.txn.sender;
-      // this.player3RingPK.value = RingPK;
-      this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
-      this.playersJoined.value += 1;
       return true;
     }
     if (this.player4AlgoAddr.value === globals.zeroAddress) {
       this.player4AlgoAddr.value = this.txn.sender;
-      // this.player4RingPK.value = RingPK;
-      this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
-      this.playersJoined.value += 1;
       return true;
     }
     if (this.player5AlgoAddr.value === globals.zeroAddress) {
       this.player5AlgoAddr.value = this.txn.sender;
-      // this.player5RingPK.value = RingPK;
-      this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
-      this.playersJoined.value += 1;
       return true;
     }
     if (this.player6AlgoAddr.value === globals.zeroAddress) {
       this.player6AlgoAddr.value = this.txn.sender;
-      // this.player6RingPK.value = RingPK;
-      this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
-      this.playersJoined.value += 1;
       this.gameState.value = 1; // Go to assign roles
       return true;
     }
@@ -247,87 +232,90 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
     return false; // Error state
   }
 
-  // assignRole(
-  //   msg: bytes,
-  //   pkAll: bytes,
-  //   keyImage: bytes,
-  //   sig: bytes,
-  //   challenges: bytes,
-  //   // pkindex0: uint64,
-  //   // pkindex1: uint64,
-  //   // pkindex2: uint64,
-  //   // pkindex3: uint64,
-  //   // pkindex4: uint64,
-  //   // pkindex5: uint64,
-  //   lsigTxn0: PayTxn,
-  //   lsigTxn1: PayTxn,
-  //   lsigTxn2: PayTxn,
-  //   lsigTxn3: PayTxn,
-  //   lsigTxn4: PayTxn,
-  //   lsigTxn5: PayTxn,
-  //   lsigTxn6: PayTxn
-  // ): boolean {
-  //   if (this.gameState.value !== 1) {
-  //     return false;
-  //   }
-  //   // To verify a RingSig you need:
-  //   // 1. The key image of the signer in question, to prevent duplicate calling/"double spending"
-  //   // 2. The message that was signed
-  //   // 3. The public keys of the n participants
-  //   // 4. Can check that sig and challenges share 0:th value
-  //   // 5. The signature itself
+  assignRole(
+    msg: bytes,
+    pkAll: bytes,
+    keyImage: bytes,
+    sig: bytes,
+    challenges: bytes
+    // pkindex0: uint64,
+    // pkindex1: uint64,
+    // pkindex2: uint64,
+    // pkindex3: uint64,
+    // pkindex4: uint64,
+    // pkindex5: uint64,
+    // lsigTxn0: PayTxn,
+    // lsigTxn1: PayTxn,
+    // lsigTxn2: PayTxn,
+    // lsigTxn3: PayTxn,
+    // lsigTxn4: PayTxn,
+    // lsigTxn5: PayTxn,
+    // lsigTxn6: PayTxn
+  ): boolean {
+    if (this.gameState.value !== 1) {
+      return false;
+    }
+    // To verify a RingSig you need:
+    // 1. The key image of the signer in question, to prevent duplicate calling/"double spending"
+    // 2. The message that was signed
+    // 3. The public keys of the n participants
+    // 4. Can check that sig and challenges share 0:th value
+    // 5. The signature itself
 
-  //   // Regarding 1:
-  //   assert(!this.hashFilter(rawBytes(sha256(keyImage))).exists); // Has Key Image been used before?
-  //   this.hashFilter(rawBytes(sha256(keyImage))).create(0); // This Key Image can no longer be used
+    // Regarding 1:
+    // TODO:
+    assert(!this.hashFilter(rawBytes(sha256(keyImage))).exists); // Has Key Image been used before?
+    this.hashFilter(rawBytes(sha256(keyImage))).create(0); // This Key Image can no longer be used
 
-  //   // Regarding 2: The message is a concatenation of the calling address and this contract's address
-  //   assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address.authAddr)));
+    // Regarding 2: The message is a concatenation of the calling address and this contract's address
+    // TODO: Fix msg
+    // assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address.authAddr)));
+    assert(msg === 'Hello World');
 
-  //   // Regarding 3: Verify PKs are correct:
-  //   assert(this.quickAccessPKBoxes(0).extract(0, 6 * BLS12381G1_LENGTH) === pkAll);
+    // Regarding 3: Verify PKs are correct:
+    assert(this.quickAccessPKBoxes(0).extract(0, 6 * BLS12381G1_LENGTH) === pkAll);
 
-  //   // Regarding 4: Verify Sig and Challenges share 0:th value
-  //   assert(extract3(sig, 0, RING_SIG_NONCE_LENGTH) === extract3(challenges, 0, RING_SIG_CHALL_LENGTH));
+    // Regarding 4: Verify Sig and Challenges share 0:th value
+    assert(extract3(sig, 0, RING_SIG_NONCE_LENGTH) === extract3(challenges, 0, RING_SIG_CHALL_LENGTH));
 
-  //   // Regarding 5: Verify Correct RingSig Links Calculation
+    // Regarding 5: Verify Correct RingSig Links Calculation
 
-  //   verifyTxn(lsigTxn0, { sender: Address.fromBytes(RingLinkLSig0.address()) });
-  //   verifyTxn(lsigTxn1, { sender: Address.fromBytes(RingLinkLSig1.address()) });
-  //   verifyTxn(lsigTxn2, { sender: Address.fromBytes(RingLinkLSig2.address()) });
-  //   verifyTxn(lsigTxn3, { sender: Address.fromBytes(RingLinkLSig3.address()) });
-  //   verifyTxn(lsigTxn4, { sender: Address.fromBytes(RingLinkLSig4.address()) });
-  //   verifyTxn(lsigTxn5, { sender: Address.fromBytes(RingLinkLSig5.address()) });
-  //   verifyTxn(lsigTxn6, { sender: Address.fromBytes(RingLinkLSig6.address()) });
+    // verifyTxn(lsigTxn0, { sender: Address.fromBytes(RingLinkLSig0.address()) });
+    // verifyTxn(lsigTxn1, { sender: Address.fromBytes(RingLinkLSig1.address()) });
+    // verifyTxn(lsigTxn2, { sender: Address.fromBytes(RingLinkLSig2.address()) });
+    // verifyTxn(lsigTxn3, { sender: Address.fromBytes(RingLinkLSig3.address()) });
+    // verifyTxn(lsigTxn4, { sender: Address.fromBytes(RingLinkLSig4.address()) });
+    // verifyTxn(lsigTxn5, { sender: Address.fromBytes(RingLinkLSig5.address()) });
+    // verifyTxn(lsigTxn6, { sender: Address.fromBytes(RingLinkLSig6.address()) });
 
-  //   if (this.maffia.value === globals.zeroAddress) {
-  //     this.maffia.value = this.txn.sender.authAddr;
-  //     return true;
-  //   }
-  //   if (this.doctor.value === globals.zeroAddress) {
-  //     this.doctor.value = this.txn.sender.authAddr;
-  //     return true;
-  //   }
-  //   if (this.farmer.value === globals.zeroAddress) {
-  //     this.farmer.value = this.txn.sender.authAddr;
-  //     return true;
-  //   }
-  //   if (this.butcher.value === globals.zeroAddress) {
-  //     this.butcher.value = this.txn.sender.authAddr;
-  //     return true;
-  //   }
-  //   if (this.innkeep.value === globals.zeroAddress) {
-  //     this.innkeep.value = this.txn.sender.authAddr;
-  //     return true;
-  //   }
-  //   if (this.grocer.value === globals.zeroAddress) {
-  //     this.grocer.value = this.txn.sender.authAddr;
-  //     this.gameState.value = 2; // Go to day
-  //     return true;
-  //   }
+    // if (this.maffia.value === globals.zeroAddress) {
+    //   this.maffia.value = this.txn.sender.authAddr;
+    //   return true;
+    // }
+    // if (this.doctor.value === globals.zeroAddress) {
+    //   this.doctor.value = this.txn.sender.authAddr;
+    //   return true;
+    // }
+    // if (this.farmer.value === globals.zeroAddress) {
+    //   this.farmer.value = this.txn.sender.authAddr;
+    //   return true;
+    // }
+    // if (this.butcher.value === globals.zeroAddress) {
+    //   this.butcher.value = this.txn.sender.authAddr;
+    //   return true;
+    // }
+    // if (this.innkeep.value === globals.zeroAddress) {
+    //   this.innkeep.value = this.txn.sender.authAddr;
+    //   return true;
+    // }
+    // if (this.grocer.value === globals.zeroAddress) {
+    //   this.grocer.value = this.txn.sender.authAddr;
+    //   this.gameState.value = 2; // Go to day
+    //   return true;
+    // }
 
-  //   return false; // Error state
-  // }
+    return false; // Error state
+  }
 
   /*
 

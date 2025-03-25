@@ -25,11 +25,20 @@ class Player {
 
   bls_public_key: Uint8Array;
 
+  client: TownHallClient;
+
   constructor() {
     this.bls_private_key = algoring.generate_fe();
     this.bls_public_key = algoring.generate_ge(this.bls_private_key);
     this.day_algo_address = AlgorandClient.defaultLocalNet().account.random();
     this.night_algo_address = AlgorandClient.defaultLocalNet().account.random();
+    this.client = AlgorandClient.defaultLocalNet()
+      .setDefaultSigner(this.day_algo_address.signer)
+      .client.getTypedAppClientById(TownHallClient, {
+        appId: appClient.appId,
+        defaultSender: this.day_algo_address.addr,
+        defaultSigner: this.day_algo_address.signer,
+      }); // Client set with their signers, so we can have the player can sign
   }
 }
 
@@ -152,13 +161,6 @@ describe('TownHall', () => {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const player of players) {
-      const ac = AlgorandClient.defaultLocalNet().setDefaultSigner(player.day_algo_address.signer);
-      const client = ac.client.getTypedAppClientById(TownHallClient, {
-        appId: appClient.appId,
-        defaultSender: player.day_algo_address.addr,
-        defaultSigner: player.day_algo_address.signer,
-      });
-
       const proof = algoring.NIZK_DLOG_generate_proof(player.bls_private_key);
 
       // Concatenate the proof into a single byte array
@@ -169,7 +171,7 @@ describe('TownHall', () => {
       NIZK_DLOG.set(proof[3], 96 + 96 + 96);
 
       // eslint-disable-next-line no-await-in-loop
-      const result = client
+      const result = await player.client
         .newGroup()
         .joinGameLobby({
           args: {
@@ -205,7 +207,7 @@ describe('TownHall', () => {
         })
         .send();
       // eslint-disable-next-line no-await-in-loop
-      expect((await result).returns[0]).toBe(true);
+      expect((result).returns[0]).toBe(true);
     }
 
     expect(await appClient.state.global.player1AlgoAddr()).toBe(players[0].day_algo_address.addr);
@@ -214,6 +216,7 @@ describe('TownHall', () => {
     expect(await appClient.state.global.player4AlgoAddr()).toBe(players[3].day_algo_address.addr);
     expect(await appClient.state.global.player5AlgoAddr()).toBe(players[4].day_algo_address.addr);
     expect(await appClient.state.global.player6AlgoAddr()).toBe(players[5].day_algo_address.addr);
+
     const ring = await appClient.state.box.quickAccessPkBoxes.value(0);
     if (!ring) {
       throw new Error('ring is undefined');
@@ -225,12 +228,54 @@ describe('TownHall', () => {
     expect(Number(state.return)).toEqual(1); // Advanced to the AssignRoles stage
     /// <----------- ENTERED AssignRole Stage ----------->
 
-    console.log(ring?.slice(0, 96));
-    // const msg = new TextEncoder().encode('Hello, world!');
+    const p = players[1];
+
+    // const msg = new TextEncoder().encode(p.day_algo_address.addr + p.client.appClient.appAddress);
+    const msg = new TextEncoder().encode('Hello World');
     // console.log(msg);
+
+    // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
+
+    // For some reason, the 0th element will be different from the actual value it is suppsoed to be.
+    const ringOfPKs = [
+      algoring.from_pxpy(ring.slice(0 * BLS12381G1_LENGTH, 1 * BLS12381G1_LENGTH)),
+      algoring.from_pxpy(ring.slice(1 * BLS12381G1_LENGTH, 2 * BLS12381G1_LENGTH)),
+      algoring.from_pxpy(ring.slice(2 * BLS12381G1_LENGTH, 3 * BLS12381G1_LENGTH)),
+      algoring.from_pxpy(ring.slice(3 * BLS12381G1_LENGTH, 4 * BLS12381G1_LENGTH)),
+      algoring.from_pxpy(ring.slice(4 * BLS12381G1_LENGTH, 5 * BLS12381G1_LENGTH)),
+      algoring.from_pxpy(ring.slice(5 * BLS12381G1_LENGTH, 6 * BLS12381G1_LENGTH)),
+    ];
+
+    const keyImage = algoring.genKeyImage(p.bls_private_key, p.bls_public_key);
+
+    // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
+    const { signature } = algoring.generate_ring_signature(msg, p.bls_private_key, ringOfPKs, keyImage);
+
+    // TODO: remove msg return
+    const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
+      msg,
+      signature,
+      ringOfPKs,
+      keyImage
+    );
+
+    const res = await p.client
+      .newGroup()
+      .assignRole({
+        args: {
+          msg,
+          pkAll: ring,
+          keyImage: algoring.to_pxpy(keyImage),
+          sig: signatureConcat,
+          challenges: intermediateValues,
+        },
+      })
+      .send();
+
+    console.log("returned:", res.returns[0]);
+
   });
 });
-
 /**
 
 
