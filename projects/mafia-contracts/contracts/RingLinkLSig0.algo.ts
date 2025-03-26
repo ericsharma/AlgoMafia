@@ -22,10 +22,11 @@ export class RingLinkLSig0 extends LogicSig {
    * @param sig - The ring sig nonces, in 1 large byte array. The core of the ring sig itself.
    * @param challenges - The challenges, in 1 large byte array. Intermediate values. We check if what's provided into the contract is the same as what is calculated.
    */
-  logic(msg: Address, pkAll: bytes, pkIndex: uint64, keyImage: bytes, sig: bytes, challenges: bytes): void {
-    const nonce = extract3(sig, iter * RING_SIG_NONCE_LENGTH, (iter + 1) * RING_SIG_NONCE_LENGTH);
-    const cPrev = extract3(challenges, iter * RING_SIG_CHALL_LENGTH, (iter + 1) * RING_SIG_CHALL_LENGTH);
-    const pk = extract3(pkAll, pkIndex * BLS12381G1_LENGTH, (pkIndex + 1) * BLS12381G1_LENGTH);
+  logic(msg: bytes, pkAll: bytes, pkIndex: uint64, keyImage: bytes, sig: bytes, cPrev: bytes, cExpected: bytes): void {
+    // challenges: bytes): void {
+    const nonce = sig; // extract3(sig, iter * RING_SIG_NONCE_LENGTH, (iter + 1) * RING_SIG_NONCE_LENGTH);
+    // const cPrev = challenges; // extract3(challenges, iter * RING_SIG_CHALL_LENGTH, (iter + 1) * RING_SIG_CHALL_LENGTH);
+    const pk = pkAll; // extract3(pkAll, pkIndex * BLS12381G1_LENGTH, (pkIndex + 1) * BLS12381G1_LENGTH);
 
     /* CALCULATE LEFT-HAND SIDE OF EQUATION (AFTER MSG BYTES)
      ** r_{i} * G + c_{i} * K_{i}
@@ -34,7 +35,7 @@ export class RingLinkLSig0 extends LogicSig {
     const left = ecAdd(
       'BLS12_381g1',
       ecScalarMul('BLS12_381g1', hex(BLS12381G1_BASEPOINT_BYTES), nonce),
-      ecScalarMul('BLS12_381g1', cPrev, pk)
+      ecScalarMul('BLS12_381g1', pk, cPrev)
     );
 
     // Added because the hashPointToPoint function could not be imported
@@ -51,8 +52,8 @@ export class RingLinkLSig0 extends LogicSig {
      */
     const right = ecAdd(
       'BLS12_381g1',
-      ecScalarMul('BLS12_381g1', nonce, hp2p),
-      ecScalarMul('BLS12_381g1', cPrev, keyImage)
+      ecScalarMul('BLS12_381g1', hp2p, nonce),
+      ecScalarMul('BLS12_381g1', keyImage, cPrev)
     );
 
     /* COMBINE MSG BYTES WITH LEFT AND RIGHT BYTES
@@ -64,17 +65,17 @@ export class RingLinkLSig0 extends LogicSig {
     );
 
     assert(
-      h === extract3(challenges, ((iter + 1) % 7) * RING_SIG_CHALL_LENGTH, ((iter + 2) % 7) * RING_SIG_CHALL_LENGTH)
+      h === cExpected // extract3(challenges, ((iter + 1) % 7) * RING_SIG_CHALL_LENGTH, ((iter + 2) % 7) * RING_SIG_CHALL_LENGTH)
     );
 
-    verifyAppCallTxn(this.txnGroup[0], {
-      applicationArgs: {
-        0: rawBytes(msg),
-        1: rawBytes(pkAll),
-        2: rawBytes(keyImage),
-        3: rawBytes(sig),
-        4: rawBytes(challenges),
-      },
-    });
+    // verifyAppCallTxn(this.txnGroup[0], {
+    //   applicationArgs: {
+    //     0: rawBytes(msg),
+    //     1: rawBytes(pkAll),
+    //     2: rawBytes(keyImage),
+    //     3: rawBytes(sig),
+    //     4: rawBytes(challenges),
+    //   },
+    // });
   }
 }

@@ -36,6 +36,41 @@
       }
     },
     {
+      "name": "testt",
+      "desc": "TEST",
+      "args": [
+        {
+          "name": "msg",
+          "type": "byte[]"
+        },
+        {
+          "name": "pk",
+          "type": "byte[]"
+        },
+        {
+          "name": "keyImage",
+          "type": "byte[]"
+        },
+        {
+          "name": "nonce",
+          "type": "byte[]"
+        },
+        {
+          "name": "c",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "byte[]"
+      },
+      "actions": {
+        "create": [],
+        "call": [
+          "NoOp"
+        ]
+      }
+    },
+    {
       "name": "dlog",
       "args": [
         {
@@ -136,6 +171,10 @@
         {
           "name": "challenges",
           "type": "byte[]"
+        },
+        {
+          "name": "lsigTxn0",
+          "type": "pay"
         }
       ],
       "returns": {
@@ -295,14 +334,14 @@
       "sourceInfo": [
         {
           "teal": 1,
-          "source": "contracts/TownHall.algo.ts:17",
+          "source": "contracts/TownHall.algo.ts:18",
           "pc": [
             0
           ]
         },
         {
           "teal": 2,
-          "source": "contracts/TownHall.algo.ts:17",
+          "source": "contracts/TownHall.algo.ts:18",
           "pc": [
             1,
             2,
@@ -314,7 +353,7 @@
         },
         {
           "teal": 3,
-          "source": "contracts/TownHall.algo.ts:17",
+          "source": "contracts/TownHall.algo.ts:18",
           "pc": [
             7,
             8,
@@ -454,57 +493,15 @@
             142,
             143,
             144,
-            145
-          ]
-        },
-        {
-          "teal": 15,
-          "source": "contracts/TownHall.algo.ts:17",
-          "pc": [
+            145,
             146,
-            147
-          ]
-        },
-        {
-          "teal": 16,
-          "source": "contracts/TownHall.algo.ts:17",
-          "pc": [
-            148
-          ]
-        },
-        {
-          "teal": 17,
-          "source": "contracts/TownHall.algo.ts:17",
-          "pc": [
-            149
-          ]
-        },
-        {
-          "teal": 18,
-          "source": "contracts/TownHall.algo.ts:17",
-          "pc": [
-            150
-          ]
-        },
-        {
-          "teal": 19,
-          "source": "contracts/TownHall.algo.ts:17",
-          "pc": [
+            147,
+            148,
+            149,
+            150,
             151,
-            152
-          ]
-        },
-        {
-          "teal": 20,
-          "source": "contracts/TownHall.algo.ts:17",
-          "pc": [
-            153
-          ]
-        },
-        {
-          "teal": 21,
-          "source": "contracts/TownHall.algo.ts:17",
-          "pc": [
+            152,
+            153,
             154,
             155,
             156,
@@ -530,191 +527,46 @@
             176,
             177,
             178,
-            179
-          ]
-        },
-        {
-          "teal": 25,
-          "source": "contracts/TownHall.algo.ts:17",
-          "errorMessage": "The requested action is not implemented in this contract. Are you using the correct OnComplete? Did you set your app ID?",
-          "pc": [
-            180
-          ]
-        },
-        {
-          "teal": 30,
-          "source": "contracts/TownHall.algo.ts:81",
-          "pc": [
+            179,
+            180,
             181,
             182,
-            183
-          ]
-        },
-        {
-          "teal": 31,
-          "source": "contracts/TownHall.algo.ts:81",
-          "pc": [
-            184
-          ]
-        },
-        {
-          "teal": 32,
-          "source": "contracts/TownHall.algo.ts:81",
-          "pc": [
-            185
-          ]
-        },
-        {
-          "teal": 36,
-          "source": "contracts/TownHall.algo.ts:81",
-          "pc": [
+            183,
+            184,
+            185,
             186,
             187,
-            188
-          ]
-        },
-        {
-          "teal": 40,
-          "source": "contracts/TownHall.algo.ts:82",
-          "pc": [
+            188,
             189,
-            190
-          ]
-        },
-        {
-          "teal": 41,
-          "source": "contracts/TownHall.algo.ts:82",
-          "pc": [
+            190,
             191,
-            192
-          ]
-        },
-        {
-          "teal": 42,
-          "source": "contracts/TownHall.algo.ts:82",
-          "pc": [
-            193
-          ]
-        },
-        {
-          "teal": 46,
-          "source": "contracts/TownHall.algo.ts:83",
-          "pc": [
+            192,
+            193,
             194,
-            195
-          ]
-        },
-        {
-          "teal": 47,
-          "source": "contracts/TownHall.algo.ts:83",
-          "pc": [
+            195,
             196,
-            197
-          ]
-        },
-        {
-          "teal": 48,
-          "source": "contracts/TownHall.algo.ts:83",
-          "pc": [
-            198
-          ]
-        },
-        {
-          "teal": 52,
-          "source": "contracts/TownHall.algo.ts:84",
-          "pc": [
+            197,
+            198,
             199,
-            200
-          ]
-        },
-        {
-          "teal": 53,
-          "source": "contracts/TownHall.algo.ts:84",
-          "pc": [
+            200,
             201,
-            202
-          ]
-        },
-        {
-          "teal": 54,
-          "source": "contracts/TownHall.algo.ts:84",
-          "pc": [
-            203
-          ]
-        },
-        {
-          "teal": 58,
-          "source": "contracts/TownHall.algo.ts:85",
-          "pc": [
+            202,
+            203,
             204,
-            205
-          ]
-        },
-        {
-          "teal": 59,
-          "source": "contracts/TownHall.algo.ts:85",
-          "pc": [
+            205,
             206,
-            207
-          ]
-        },
-        {
-          "teal": 60,
-          "source": "contracts/TownHall.algo.ts:85",
-          "pc": [
-            208
-          ]
-        },
-        {
-          "teal": 64,
-          "source": "contracts/TownHall.algo.ts:86",
-          "pc": [
+            207,
+            208,
             209,
-            210
-          ]
-        },
-        {
-          "teal": 65,
-          "source": "contracts/TownHall.algo.ts:86",
-          "pc": [
+            210,
             211,
-            212
-          ]
-        },
-        {
-          "teal": 66,
-          "source": "contracts/TownHall.algo.ts:86",
-          "pc": [
-            213
-          ]
-        },
-        {
-          "teal": 70,
-          "source": "contracts/TownHall.algo.ts:87",
-          "pc": [
+            212,
+            213,
             214,
-            215
-          ]
-        },
-        {
-          "teal": 71,
-          "source": "contracts/TownHall.algo.ts:87",
-          "pc": [
+            215,
             216,
-            217
-          ]
-        },
-        {
-          "teal": 72,
-          "source": "contracts/TownHall.algo.ts:87",
-          "pc": [
-            218
-          ]
-        },
-        {
-          "teal": 76,
-          "source": "contracts/TownHall.algo.ts:89",
-          "pc": [
+            217,
+            218,
             219,
             220,
             221,
@@ -722,57 +574,63 @@
             223,
             224,
             225,
-            226
+            226,
+            227
           ]
         },
         {
-          "teal": 77,
-          "source": "contracts/TownHall.algo.ts:89",
+          "teal": 15,
+          "source": "contracts/TownHall.algo.ts:18",
           "pc": [
-            227,
-            228
-          ]
-        },
-        {
-          "teal": 78,
-          "source": "contracts/TownHall.algo.ts:89",
-          "pc": [
+            228,
             229
           ]
         },
         {
-          "teal": 82,
-          "source": "contracts/TownHall.algo.ts:90",
+          "teal": 16,
+          "source": "contracts/TownHall.algo.ts:18",
           "pc": [
-            230,
-            231,
-            232,
+            230
+          ]
+        },
+        {
+          "teal": 17,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            231
+          ]
+        },
+        {
+          "teal": 18,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            232
+          ]
+        },
+        {
+          "teal": 19,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
             233,
-            234,
-            235,
+            234
+          ]
+        },
+        {
+          "teal": 20,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            235
+          ]
+        },
+        {
+          "teal": 21,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
             236,
-            237
-          ]
-        },
-        {
-          "teal": 83,
-          "source": "contracts/TownHall.algo.ts:90",
-          "pc": [
+            237,
             238,
-            239
-          ]
-        },
-        {
-          "teal": 84,
-          "source": "contracts/TownHall.algo.ts:90",
-          "pc": [
-            240
-          ]
-        },
-        {
-          "teal": 88,
-          "source": "contracts/TownHall.algo.ts:91",
-          "pc": [
+            239,
+            240,
             241,
             242,
             243,
@@ -780,28 +638,10 @@
             245,
             246,
             247,
-            248
-          ]
-        },
-        {
-          "teal": 89,
-          "source": "contracts/TownHall.algo.ts:91",
-          "pc": [
+            248,
             249,
-            250
-          ]
-        },
-        {
-          "teal": 90,
-          "source": "contracts/TownHall.algo.ts:91",
-          "pc": [
-            251
-          ]
-        },
-        {
-          "teal": 94,
-          "source": "contracts/TownHall.algo.ts:92",
-          "pc": [
+            250,
+            251,
             252,
             253,
             254,
@@ -810,622 +650,635 @@
             257,
             258,
             259,
-            260
+            260,
+            261
           ]
         },
         {
-          "teal": 95,
-          "source": "contracts/TownHall.algo.ts:92",
+          "teal": 25,
+          "source": "contracts/TownHall.algo.ts:18",
+          "errorMessage": "The requested action is not implemented in this contract. Are you using the correct OnComplete? Did you set your app ID?",
           "pc": [
-            261,
             262
           ]
         },
         {
-          "teal": 96,
-          "source": "contracts/TownHall.algo.ts:92",
+          "teal": 30,
+          "source": "contracts/TownHall.algo.ts:82",
           "pc": [
-            263
+            263,
+            264,
+            265
           ]
         },
         {
-          "teal": 100,
-          "source": "contracts/TownHall.algo.ts:93",
+          "teal": 31,
+          "source": "contracts/TownHall.algo.ts:82",
           "pc": [
-            264,
-            265,
-            266,
-            267,
+            266
+          ]
+        },
+        {
+          "teal": 32,
+          "source": "contracts/TownHall.algo.ts:82",
+          "pc": [
+            267
+          ]
+        },
+        {
+          "teal": 36,
+          "source": "contracts/TownHall.algo.ts:82",
+          "pc": [
             268,
             269,
-            270,
+            270
+          ]
+        },
+        {
+          "teal": 40,
+          "source": "contracts/TownHall.algo.ts:83",
+          "pc": [
             271,
             272
           ]
         },
         {
-          "teal": 101,
-          "source": "contracts/TownHall.algo.ts:93",
+          "teal": 41,
+          "source": "contracts/TownHall.algo.ts:83",
           "pc": [
             273,
             274
           ]
         },
         {
-          "teal": 102,
-          "source": "contracts/TownHall.algo.ts:93",
+          "teal": 42,
+          "source": "contracts/TownHall.algo.ts:83",
           "pc": [
             275
           ]
         },
         {
-          "teal": 106,
-          "source": "contracts/TownHall.algo.ts:94",
+          "teal": 46,
+          "source": "contracts/TownHall.algo.ts:84",
           "pc": [
             276,
-            277,
-            278,
-            279,
-            280,
-            281,
-            282,
-            283
+            277
           ]
         },
         {
-          "teal": 107,
-          "source": "contracts/TownHall.algo.ts:94",
+          "teal": 47,
+          "source": "contracts/TownHall.algo.ts:84",
           "pc": [
-            284,
+            278,
+            279
+          ]
+        },
+        {
+          "teal": 48,
+          "source": "contracts/TownHall.algo.ts:84",
+          "pc": [
+            280
+          ]
+        },
+        {
+          "teal": 52,
+          "source": "contracts/TownHall.algo.ts:85",
+          "pc": [
+            281,
+            282
+          ]
+        },
+        {
+          "teal": 53,
+          "source": "contracts/TownHall.algo.ts:85",
+          "pc": [
+            283,
+            284
+          ]
+        },
+        {
+          "teal": 54,
+          "source": "contracts/TownHall.algo.ts:85",
+          "pc": [
             285
           ]
         },
         {
-          "teal": 108,
-          "source": "contracts/TownHall.algo.ts:94",
+          "teal": 58,
+          "source": "contracts/TownHall.algo.ts:86",
           "pc": [
-            286
-          ]
-        },
-        {
-          "teal": 112,
-          "source": "contracts/TownHall.algo.ts:96",
-          "pc": [
+            286,
             287
           ]
         },
         {
-          "teal": 113,
-          "source": "contracts/TownHall.algo.ts:96",
+          "teal": 59,
+          "source": "contracts/TownHall.algo.ts:86",
           "pc": [
-            288
-          ]
-        },
-        {
-          "teal": 114,
-          "source": "contracts/TownHall.algo.ts:96",
-          "pc": [
+            288,
             289
           ]
         },
         {
-          "teal": 118,
-          "source": "contracts/TownHall.algo.ts:104",
+          "teal": 60,
+          "source": "contracts/TownHall.algo.ts:86",
           "pc": [
-            290,
-            291
+            290
           ]
         },
         {
-          "teal": 119,
-          "source": "contracts/TownHall.algo.ts:104",
+          "teal": 64,
+          "source": "contracts/TownHall.algo.ts:87",
           "pc": [
+            291,
             292
           ]
         },
         {
-          "teal": 120,
-          "source": "contracts/TownHall.algo.ts:104",
+          "teal": 65,
+          "source": "contracts/TownHall.algo.ts:87",
           "pc": [
-            293
-          ]
-        },
-        {
-          "teal": 121,
-          "source": "contracts/TownHall.algo.ts:81",
-          "pc": [
+            293,
             294
           ]
         },
         {
-          "teal": 126,
-          "source": "contracts/TownHall.algo.ts:123",
+          "teal": 66,
+          "source": "contracts/TownHall.algo.ts:87",
           "pc": [
             295
           ]
         },
         {
-          "teal": 129,
-          "source": "contracts/TownHall.algo.ts:123",
+          "teal": 70,
+          "source": "contracts/TownHall.algo.ts:88",
           "pc": [
             296,
-            297,
-            298
+            297
           ]
         },
         {
-          "teal": 130,
-          "source": "contracts/TownHall.algo.ts:123",
+          "teal": 71,
+          "source": "contracts/TownHall.algo.ts:88",
           "pc": [
+            298,
             299
           ]
         },
         {
-          "teal": 133,
-          "source": "contracts/TownHall.algo.ts:123",
+          "teal": 72,
+          "source": "contracts/TownHall.algo.ts:88",
           "pc": [
-            300,
+            300
+          ]
+        },
+        {
+          "teal": 76,
+          "source": "contracts/TownHall.algo.ts:90",
+          "pc": [
             301,
-            302
+            302,
+            303,
+            304,
+            305,
+            306,
+            307,
+            308
           ]
         },
         {
-          "teal": 134,
-          "source": "contracts/TownHall.algo.ts:123",
+          "teal": 77,
+          "source": "contracts/TownHall.algo.ts:90",
           "pc": [
-            303
-          ]
-        },
-        {
-          "teal": 135,
-          "source": "contracts/TownHall.algo.ts:123",
-          "pc": [
-            304
-          ]
-        },
-        {
-          "teal": 136,
-          "source": "contracts/TownHall.algo.ts:123",
-          "pc": [
-            305
-          ]
-        },
-        {
-          "teal": 137,
-          "source": "contracts/TownHall.algo.ts:123",
-          "pc": [
-            306
-          ]
-        },
-        {
-          "teal": 138,
-          "source": "contracts/TownHall.algo.ts:123",
-          "pc": [
-            307
-          ]
-        },
-        {
-          "teal": 147,
-          "source": "contracts/TownHall.algo.ts:123",
-          "pc": [
-            308,
             309,
             310
           ]
         },
         {
-          "teal": 151,
-          "source": "contracts/TownHall.algo.ts:124",
+          "teal": 78,
+          "source": "contracts/TownHall.algo.ts:90",
           "pc": [
-            311,
-            312
+            311
           ]
         },
         {
-          "teal": 152,
-          "source": "contracts/TownHall.algo.ts:123",
+          "teal": 82,
+          "source": "contracts/TownHall.algo.ts:91",
           "pc": [
-            313
-          ]
-        },
-        {
-          "teal": 157,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
-            314
-          ]
-        },
-        {
-          "teal": 160,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
+            312,
+            313,
+            314,
             315,
             316,
-            317
-          ]
-        },
-        {
-          "teal": 161,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
+            317,
             318,
-            319,
-            320
+            319
           ]
         },
         {
-          "teal": 164,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 83,
+          "source": "contracts/TownHall.algo.ts:91",
           "pc": [
-            321,
-            322,
-            323
+            320,
+            321
           ]
         },
         {
-          "teal": 165,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 84,
+          "source": "contracts/TownHall.algo.ts:91",
           "pc": [
+            322
+          ]
+        },
+        {
+          "teal": 88,
+          "source": "contracts/TownHall.algo.ts:92",
+          "pc": [
+            323,
             324,
             325,
-            326
-          ]
-        },
-        {
-          "teal": 168,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
+            326,
             327,
             328,
-            329
+            329,
+            330
           ]
         },
         {
-          "teal": 169,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 89,
+          "source": "contracts/TownHall.algo.ts:92",
           "pc": [
-            330,
             331,
             332
           ]
         },
         {
-          "teal": 172,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 90,
+          "source": "contracts/TownHall.algo.ts:92",
           "pc": [
-            333,
-            334,
-            335
+            333
           ]
         },
         {
-          "teal": 173,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 94,
+          "source": "contracts/TownHall.algo.ts:93",
           "pc": [
+            334,
+            335,
             336,
             337,
-            338
-          ]
-        },
-        {
-          "teal": 176,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
+            338,
             339,
             340,
-            341
+            341,
+            342
           ]
         },
         {
-          "teal": 177,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 95,
+          "source": "contracts/TownHall.algo.ts:93",
           "pc": [
-            342,
-            343
-          ]
-        },
-        {
-          "teal": 178,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
+            343,
             344
           ]
         },
         {
-          "teal": 179,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 96,
+          "source": "contracts/TownHall.algo.ts:93",
           "pc": [
-            345,
-            346
+            345
           ]
         },
         {
-          "teal": 180,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 100,
+          "source": "contracts/TownHall.algo.ts:94",
           "pc": [
-            347
-          ]
-        },
-        {
-          "teal": 181,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
-            348
-          ]
-        },
-        {
-          "teal": 182,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
-            349
-          ]
-        },
-        {
-          "teal": 183,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
-            350
-          ]
-        },
-        {
-          "teal": 184,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
-            351
-          ]
-        },
-        {
-          "teal": 188,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
+            346,
+            347,
+            348,
+            349,
+            350,
+            351,
             352,
             353,
             354
           ]
         },
         {
-          "teal": 191,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 101,
+          "source": "contracts/TownHall.algo.ts:94",
           "pc": [
-            355
-          ]
-        },
-        {
-          "teal": 192,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
+            355,
             356
           ]
         },
         {
-          "teal": 196,
-          "source": "contracts/TownHall.algo.ts:148",
+          "teal": 102,
+          "source": "contracts/TownHall.algo.ts:94",
           "pc": [
-            357,
-            358
+            357
           ]
         },
         {
-          "teal": 197,
-          "source": "contracts/TownHall.algo.ts:148",
+          "teal": 106,
+          "source": "contracts/TownHall.algo.ts:95",
           "pc": [
+            358,
             359,
-            360
-          ]
-        },
-        {
-          "teal": 198,
-          "source": "contracts/TownHall.algo.ts:148",
-          "pc": [
+            360,
             361,
-            362
-          ]
-        },
-        {
-          "teal": 199,
-          "source": "contracts/TownHall.algo.ts:148",
-          "pc": [
-            363
-          ]
-        },
-        {
-          "teal": 200,
-          "source": "contracts/TownHall.algo.ts:148",
-          "pc": [
-            364
-          ]
-        },
-        {
-          "teal": 201,
-          "source": "contracts/TownHall.algo.ts:148",
-          "pc": [
+            362,
+            363,
+            364,
             365
           ]
         },
         {
-          "teal": 202,
-          "source": "contracts/TownHall.algo.ts:148",
+          "teal": 107,
+          "source": "contracts/TownHall.algo.ts:95",
           "pc": [
             366,
             367
           ]
         },
         {
-          "teal": 206,
-          "source": "contracts/TownHall.algo.ts:149",
+          "teal": 108,
+          "source": "contracts/TownHall.algo.ts:95",
           "pc": [
-            368,
+            368
+          ]
+        },
+        {
+          "teal": 112,
+          "source": "contracts/TownHall.algo.ts:97",
+          "pc": [
             369
           ]
         },
         {
-          "teal": 207,
-          "source": "contracts/TownHall.algo.ts:149",
+          "teal": 113,
+          "source": "contracts/TownHall.algo.ts:97",
           "pc": [
-            370,
-            371,
+            370
+          ]
+        },
+        {
+          "teal": 114,
+          "source": "contracts/TownHall.algo.ts:97",
+          "pc": [
+            371
+          ]
+        },
+        {
+          "teal": 118,
+          "source": "contracts/TownHall.algo.ts:105",
+          "pc": [
             372,
-            373,
-            374,
-            375,
-            376,
-            377,
+            373
+          ]
+        },
+        {
+          "teal": 119,
+          "source": "contracts/TownHall.algo.ts:105",
+          "pc": [
+            374
+          ]
+        },
+        {
+          "teal": 120,
+          "source": "contracts/TownHall.algo.ts:105",
+          "pc": [
+            375
+          ]
+        },
+        {
+          "teal": 121,
+          "source": "contracts/TownHall.algo.ts:82",
+          "pc": [
+            376
+          ]
+        },
+        {
+          "teal": 126,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            377
+          ]
+        },
+        {
+          "teal": 129,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
             378,
             379,
-            380,
-            381,
+            380
+          ]
+        },
+        {
+          "teal": 130,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            381
+          ]
+        },
+        {
+          "teal": 133,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
             382,
             383,
-            384,
-            385,
-            386,
-            387,
-            388,
-            389,
+            384
+          ]
+        },
+        {
+          "teal": 134,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            385
+          ]
+        },
+        {
+          "teal": 135,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            386
+          ]
+        },
+        {
+          "teal": 136,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            387
+          ]
+        },
+        {
+          "teal": 137,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            388
+          ]
+        },
+        {
+          "teal": 138,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            389
+          ]
+        },
+        {
+          "teal": 147,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
             390,
             391,
-            392,
+            392
+          ]
+        },
+        {
+          "teal": 151,
+          "source": "contracts/TownHall.algo.ts:125",
+          "pc": [
             393,
-            394,
-            395,
-            396,
+            394
+          ]
+        },
+        {
+          "teal": 152,
+          "source": "contracts/TownHall.algo.ts:124",
+          "pc": [
+            395
+          ]
+        },
+        {
+          "teal": 157,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
+            396
+          ]
+        },
+        {
+          "teal": 160,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
             397,
             398,
-            399,
+            399
+          ]
+        },
+        {
+          "teal": 161,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
             400,
             401,
-            402,
-            403
+            402
           ]
         },
         {
-          "teal": 208,
-          "source": "contracts/TownHall.algo.ts:149",
+          "teal": 164,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            404
+            403,
+            404,
+            405
           ]
         },
         {
-          "teal": 209,
-          "source": "contracts/TownHall.algo.ts:149",
+          "teal": 165,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            405,
-            406
-          ]
-        },
-        {
-          "teal": 215,
-          "source": "contracts/TownHall.algo.ts:152",
-          "pc": [
+            406,
             407,
             408
           ]
         },
         {
-          "teal": 216,
-          "source": "contracts/TownHall.algo.ts:152",
+          "teal": 168,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             409,
-            410
+            410,
+            411
           ]
         },
         {
-          "teal": 217,
-          "source": "contracts/TownHall.algo.ts:152",
+          "teal": 169,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            411,
-            412
-          ]
-        },
-        {
-          "teal": 218,
-          "source": "contracts/TownHall.algo.ts:152",
-          "pc": [
+            412,
             413,
             414
           ]
         },
         {
-          "teal": 219,
-          "source": "contracts/TownHall.algo.ts:152",
+          "teal": 172,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             415,
-            416
+            416,
+            417
           ]
         },
         {
-          "teal": 220,
-          "source": "contracts/TownHall.algo.ts:152",
+          "teal": 173,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            417,
-            418
-          ]
-        },
-        {
-          "teal": 221,
-          "source": "contracts/TownHall.algo.ts:152",
-          "pc": [
+            418,
             419,
             420
           ]
         },
         {
-          "teal": 222,
-          "source": "contracts/TownHall.algo.ts:152",
+          "teal": 176,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             421,
-            422
-          ]
-        },
-        {
-          "teal": 223,
-          "source": "contracts/TownHall.algo.ts:152",
-          "pc": [
+            422,
             423
           ]
         },
         {
-          "teal": 226,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 177,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             424,
-            425
+            425,
+            426
           ]
         },
         {
-          "teal": 229,
-          "source": "contracts/TownHall.algo.ts:146",
+          "teal": 180,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            426,
-            427
-          ]
-        },
-        {
-          "teal": 230,
-          "source": "contracts/TownHall.algo.ts:146",
-          "pc": [
-            428
-          ]
-        },
-        {
-          "teal": 235,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
+            427,
+            428,
             429
           ]
         },
         {
-          "teal": 238,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 181,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            430,
-            431,
+            430
+          ]
+        },
+        {
+          "teal": 182,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
+            431
+          ]
+        },
+        {
+          "teal": 183,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
             432
           ]
         },
         {
-          "teal": 239,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 184,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             433,
             434,
@@ -1433,38 +1286,50 @@
           ]
         },
         {
-          "teal": 242,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 185,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            436,
-            437,
+            436
+          ]
+        },
+        {
+          "teal": 186,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
+            437
+          ]
+        },
+        {
+          "teal": 187,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
             438
           ]
         },
         {
-          "teal": 243,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 188,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             439
           ]
         },
         {
-          "teal": 244,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 189,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             440
           ]
         },
         {
-          "teal": 245,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 190,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             441
           ]
         },
         {
-          "teal": 246,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 196,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             442,
             443,
@@ -1472,106 +1337,40 @@
           ]
         },
         {
-          "teal": 247,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 199,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
             445
           ]
         },
         {
-          "teal": 248,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 200,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            446
-          ]
-        },
-        {
-          "teal": 249,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
+            446,
             447
           ]
         },
         {
-          "teal": 250,
-          "source": "contracts/TownHall.algo.ts:156",
+          "teal": 208,
+          "source": "contracts/TownHall.algo.ts:139",
           "pc": [
-            448
-          ]
-        },
-        {
-          "teal": 251,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
-            449
-          ]
-        },
-        {
-          "teal": 252,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
-            450
-          ]
-        },
-        {
-          "teal": 256,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
+            448,
+            449,
+            450,
             451,
             452,
-            453
-          ]
-        },
-        {
-          "teal": 259,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
-            454
-          ]
-        },
-        {
-          "teal": 260,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
+            453,
+            454,
             455,
-            456
-          ]
-        },
-        {
-          "teal": 264,
-          "source": "contracts/TownHall.algo.ts:157",
-          "pc": [
+            456,
             457,
-            458
-          ]
-        },
-        {
-          "teal": 265,
-          "source": "contracts/TownHall.algo.ts:157",
-          "pc": [
-            459
-          ]
-        },
-        {
-          "teal": 266,
-          "source": "contracts/TownHall.algo.ts:157",
-          "pc": [
+            458,
+            459,
             460,
-            461
-          ]
-        },
-        {
-          "teal": 270,
-          "source": "contracts/TownHall.algo.ts:158",
-          "pc": [
+            461,
             462,
-            463
-          ]
-        },
-        {
-          "teal": 271,
-          "source": "contracts/TownHall.algo.ts:158",
-          "pc": [
+            463,
             464,
             465,
             466,
@@ -1621,534 +1420,402 @@
             510,
             511,
             512,
-            513
-          ]
-        },
-        {
-          "teal": 272,
-          "source": "contracts/TownHall.algo.ts:158",
-          "pc": [
-            514
-          ]
-        },
-        {
-          "teal": 273,
-          "source": "contracts/TownHall.algo.ts:158",
-          "pc": [
+            513,
+            514,
             515,
-            516
-          ]
-        },
-        {
-          "teal": 277,
-          "source": "contracts/TownHall.algo.ts:161",
-          "pc": [
+            516,
             517,
-            518
-          ]
-        },
-        {
-          "teal": 278,
-          "source": "contracts/TownHall.algo.ts:161",
-          "pc": [
+            518,
             519,
-            520
-          ]
-        },
-        {
-          "teal": 279,
-          "source": "contracts/TownHall.algo.ts:161",
-          "pc": [
+            520,
             521,
-            522
-          ]
-        },
-        {
-          "teal": 283,
-          "source": "contracts/TownHall.algo.ts:162",
-          "pc": [
+            522,
             523,
-            524
-          ]
-        },
-        {
-          "teal": 286,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
+            524,
             525,
-            526
-          ]
-        },
-        {
-          "teal": 289,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
+            526,
             527,
-            528
-          ]
-        },
-        {
-          "teal": 290,
-          "source": "contracts/TownHall.algo.ts:156",
-          "pc": [
-            529
-          ]
-        },
-        {
-          "teal": 295,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
-            530
-          ]
-        },
-        {
-          "teal": 298,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
+            528,
+            529,
+            530,
             531,
             532,
-            533
-          ]
-        },
-        {
-          "teal": 299,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
-            534
-          ]
-        },
-        {
-          "teal": 300,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
-            535
-          ]
-        },
-        {
-          "teal": 301,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
-            536
-          ]
-        },
-        {
-          "teal": 302,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
-            537
-          ]
-        },
-        {
-          "teal": 303,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
-            538
-          ]
-        },
-        {
-          "teal": 307,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
             539,
             540,
-            541
-          ]
-        },
-        {
-          "teal": 311,
-          "source": "contracts/TownHall.algo.ts:168",
-          "pc": [
+            541,
             542,
-            543
-          ]
-        },
-        {
-          "teal": 312,
-          "source": "contracts/TownHall.algo.ts:168",
-          "pc": [
-            544
-          ]
-        },
-        {
-          "teal": 313,
-          "source": "contracts/TownHall.algo.ts:167",
-          "pc": [
+            543,
+            544,
             545
           ]
         },
         {
-          "teal": 318,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 209,
+          "source": "contracts/TownHall.algo.ts:139",
           "pc": [
-            546
+            546,
+            547
           ]
         },
         {
-          "teal": 321,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 210,
+          "source": "contracts/TownHall.algo.ts:139",
           "pc": [
-            547,
             548,
             549
           ]
         },
         {
-          "teal": 322,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 211,
+          "source": "contracts/TownHall.algo.ts:140",
           "pc": [
             550,
-            551,
-            552
+            551
           ]
         },
         {
-          "teal": 325,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 212,
+          "source": "contracts/TownHall.algo.ts:140",
           "pc": [
-            553,
+            552,
+            553
+          ]
+        },
+        {
+          "teal": 213,
+          "source": "contracts/TownHall.algo.ts:140",
+          "pc": [
             554,
             555
           ]
         },
         {
-          "teal": 326,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 214,
+          "source": "contracts/TownHall.algo.ts:137",
           "pc": [
             556,
             557
           ]
         },
         {
-          "teal": 327,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 215,
+          "source": "contracts/TownHall.algo.ts:137",
           "pc": [
-            558
+            558,
+            559
           ]
         },
         {
-          "teal": 328,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 219,
+          "source": "contracts/TownHall.algo.ts:145",
           "pc": [
-            559,
-            560
-          ]
-        },
-        {
-          "teal": 329,
-          "source": "contracts/TownHall.algo.ts:171",
-          "pc": [
+            560,
             561
           ]
         },
         {
-          "teal": 330,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 220,
+          "source": "contracts/TownHall.algo.ts:145",
           "pc": [
             562
           ]
         },
         {
-          "teal": 331,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 221,
+          "source": "contracts/TownHall.algo.ts:145",
           "pc": [
-            563
-          ]
-        },
-        {
-          "teal": 332,
-          "source": "contracts/TownHall.algo.ts:171",
-          "pc": [
+            563,
             564
           ]
         },
         {
-          "teal": 333,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 225,
+          "source": "contracts/TownHall.algo.ts:146",
           "pc": [
-            565
+            565,
+            566
           ]
         },
         {
-          "teal": 337,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 226,
+          "source": "contracts/TownHall.algo.ts:146",
           "pc": [
-            566,
             567,
             568
           ]
         },
         {
-          "teal": 340,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 227,
+          "source": "contracts/TownHall.algo.ts:146",
           "pc": [
             569
           ]
         },
         {
-          "teal": 341,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 228,
+          "source": "contracts/TownHall.algo.ts:146",
           "pc": [
             570,
             571
           ]
         },
         {
-          "teal": 346,
-          "source": "contracts/TownHall.algo.ts:172",
+          "teal": 232,
+          "source": "contracts/TownHall.algo.ts:149",
           "pc": [
             572,
             573
           ]
         },
         {
-          "teal": 347,
-          "source": "contracts/TownHall.algo.ts:172",
+          "teal": 233,
+          "source": "contracts/TownHall.algo.ts:149",
           "pc": [
-            574
-          ]
-        },
-        {
-          "teal": 348,
-          "source": "contracts/TownHall.algo.ts:172",
-          "pc": [
+            574,
             575
           ]
         },
         {
-          "teal": 349,
-          "source": "contracts/TownHall.algo.ts:172",
+          "teal": 234,
+          "source": "contracts/TownHall.algo.ts:149",
           "pc": [
-            576
+            576,
+            577
           ]
         },
         {
-          "teal": 350,
-          "source": "contracts/TownHall.algo.ts:172",
+          "teal": 242,
+          "source": "contracts/TownHall.algo.ts:157",
           "pc": [
-            577,
             578,
             579
           ]
         },
         {
-          "teal": 355,
-          "source": "contracts/TownHall.algo.ts:173",
+          "teal": 243,
+          "source": "contracts/TownHall.algo.ts:157",
           "pc": [
-            580
+            580,
+            581
           ]
         },
         {
-          "teal": 356,
-          "source": "contracts/TownHall.algo.ts:173",
+          "teal": 244,
+          "source": "contracts/TownHall.algo.ts:157",
           "pc": [
-            581,
             582,
             583
           ]
         },
         {
-          "teal": 362,
-          "source": "contracts/TownHall.algo.ts:176",
+          "teal": 245,
+          "source": "contracts/TownHall.algo.ts:158",
           "pc": [
-            584
-          ]
-        },
-        {
-          "teal": 363,
-          "source": "contracts/TownHall.algo.ts:176",
-          "pc": [
+            584,
             585
           ]
         },
         {
-          "teal": 364,
-          "source": "contracts/TownHall.algo.ts:176",
+          "teal": 246,
+          "source": "contracts/TownHall.algo.ts:158",
           "pc": [
-            586
-          ]
-        },
-        {
-          "teal": 365,
-          "source": "contracts/TownHall.algo.ts:176",
-          "pc": [
+            586,
             587
           ]
         },
         {
-          "teal": 366,
-          "source": "contracts/TownHall.algo.ts:176",
+          "teal": 247,
+          "source": "contracts/TownHall.algo.ts:158",
           "pc": [
             588,
-            589,
-            590
+            589
           ]
         },
         {
-          "teal": 371,
-          "source": "contracts/TownHall.algo.ts:177",
+          "teal": 248,
+          "source": "contracts/TownHall.algo.ts:155",
           "pc": [
+            590,
             591
           ]
         },
         {
-          "teal": 372,
-          "source": "contracts/TownHall.algo.ts:177",
+          "teal": 249,
+          "source": "contracts/TownHall.algo.ts:155",
           "pc": [
             592,
-            593,
-            594
+            593
           ]
         },
         {
-          "teal": 377,
-          "source": "contracts/TownHall.algo.ts:180",
+          "teal": 255,
+          "source": "contracts/TownHall.algo.ts:166",
           "pc": [
-            595,
-            596
+            594,
+            595
           ]
         },
         {
-          "teal": 378,
-          "source": "contracts/TownHall.algo.ts:180",
+          "teal": 256,
+          "source": "contracts/TownHall.algo.ts:166",
           "pc": [
-            597,
-            598,
-            599
+            596,
+            597
           ]
         },
         {
-          "teal": 379,
-          "source": "contracts/TownHall.algo.ts:180",
+          "teal": 257,
+          "source": "contracts/TownHall.algo.ts:166",
           "pc": [
-            600,
+            598
+          ]
+        },
+        {
+          "teal": 258,
+          "source": "contracts/TownHall.algo.ts:166",
+          "pc": [
+            599,
+            600
+          ]
+        },
+        {
+          "teal": 259,
+          "source": "contracts/TownHall.algo.ts:166",
+          "pc": [
             601
           ]
         },
         {
-          "teal": 383,
-          "source": "contracts/TownHall.algo.ts:181",
+          "teal": 260,
+          "source": "contracts/TownHall.algo.ts:166",
           "pc": [
-            602,
-            603
+            602
           ]
         },
         {
-          "teal": 384,
-          "source": "contracts/TownHall.algo.ts:181",
+          "teal": 261,
+          "source": "contracts/TownHall.algo.ts:166",
           "pc": [
-            604,
-            605,
-            606
+            603,
+            604
           ]
         },
         {
-          "teal": 385,
-          "source": "contracts/TownHall.algo.ts:181",
+          "teal": 262,
+          "source": "contracts/TownHall.algo.ts:166",
           "pc": [
-            607,
-            608
+            605
           ]
         },
         {
-          "teal": 389,
-          "source": "contracts/TownHall.algo.ts:182",
+          "teal": 263,
+          "source": "contracts/TownHall.algo.ts:165",
           "pc": [
-            609,
-            610
+            606,
+            607
           ]
         },
         {
-          "teal": 390,
-          "source": "contracts/TownHall.algo.ts:182",
+          "teal": 267,
+          "source": "contracts/TownHall.algo.ts:169",
           "pc": [
-            611,
+            608,
+            609
+          ]
+        },
+        {
+          "teal": 270,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
+            610,
+            611
+          ]
+        },
+        {
+          "teal": 273,
+          "source": "contracts/TownHall.algo.ts:131",
+          "pc": [
             612,
             613
           ]
         },
         {
-          "teal": 391,
-          "source": "contracts/TownHall.algo.ts:182",
+          "teal": 274,
+          "source": "contracts/TownHall.algo.ts:131",
           "pc": [
-            614,
+            614
+          ]
+        },
+        {
+          "teal": 279,
+          "source": "contracts/TownHall.algo.ts:198",
+          "pc": [
             615
           ]
         },
         {
-          "teal": 395,
-          "source": "contracts/TownHall.algo.ts:183",
+          "teal": 282,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
             616,
-            617
+            617,
+            618
           ]
         },
         {
-          "teal": 396,
-          "source": "contracts/TownHall.algo.ts:183",
+          "teal": 283,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            618,
             619,
-            620
+            620,
+            621
           ]
         },
         {
-          "teal": 397,
-          "source": "contracts/TownHall.algo.ts:183",
+          "teal": 286,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            621,
-            622
+            622,
+            623,
+            624
           ]
         },
         {
-          "teal": 398,
-          "source": "contracts/TownHall.algo.ts:183",
+          "teal": 287,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            623
-          ]
-        },
-        {
-          "teal": 399,
-          "source": "contracts/TownHall.algo.ts:183",
-          "pc": [
-            624,
-            625
-          ]
-        },
-        {
-          "teal": 404,
-          "source": "contracts/TownHall.algo.ts:188",
-          "pc": [
+            625,
             626,
             627
           ]
         },
         {
-          "teal": 405,
-          "source": "contracts/TownHall.algo.ts:188",
+          "teal": 290,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
             628,
-            629
+            629,
+            630
           ]
         },
         {
-          "teal": 406,
-          "source": "contracts/TownHall.algo.ts:188",
+          "teal": 291,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            630,
-            631
-          ]
-        },
-        {
-          "teal": 407,
-          "source": "contracts/TownHall.algo.ts:188",
-          "pc": [
+            631,
             632,
             633
           ]
         },
         {
-          "teal": 408,
-          "source": "contracts/TownHall.algo.ts:188",
+          "teal": 294,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
             634,
             635,
@@ -2156,688 +1823,639 @@
           ]
         },
         {
-          "teal": 409,
-          "source": "contracts/TownHall.algo.ts:188",
+          "teal": 295,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            637
-          ]
-        },
-        {
-          "teal": 410,
-          "source": "contracts/TownHall.algo.ts:188",
-          "pc": [
+            637,
             638,
-            639,
-            640
+            639
           ]
         },
         {
-          "teal": 415,
-          "source": "contracts/TownHall.algo.ts:189",
+          "teal": 298,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            641
+            640,
+            641,
+            642
           ]
         },
         {
-          "teal": 416,
-          "source": "contracts/TownHall.algo.ts:189",
+          "teal": 299,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            642,
             643,
             644
           ]
         },
         {
-          "teal": 422,
-          "source": "contracts/TownHall.algo.ts:192",
+          "teal": 300,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
             645
           ]
         },
         {
-          "teal": 423,
-          "source": "contracts/TownHall.algo.ts:192",
+          "teal": 301,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            646
-          ]
-        },
-        {
-          "teal": 424,
-          "source": "contracts/TownHall.algo.ts:192",
-          "pc": [
+            646,
             647
           ]
         },
         {
-          "teal": 425,
-          "source": "contracts/TownHall.algo.ts:192",
+          "teal": 302,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
             648
           ]
         },
         {
-          "teal": 426,
-          "source": "contracts/TownHall.algo.ts:192",
+          "teal": 303,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
             649
           ]
         },
         {
-          "teal": 427,
-          "source": "contracts/TownHall.algo.ts:192",
+          "teal": 304,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            650,
-            651,
+            650
+          ]
+        },
+        {
+          "teal": 305,
+          "source": "contracts/TownHall.algo.ts:198",
+          "pc": [
+            651
+          ]
+        },
+        {
+          "teal": 306,
+          "source": "contracts/TownHall.algo.ts:198",
+          "pc": [
             652
           ]
         },
         {
-          "teal": 432,
-          "source": "contracts/TownHall.algo.ts:193",
+          "teal": 310,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            653
-          ]
-        },
-        {
-          "teal": 433,
-          "source": "contracts/TownHall.algo.ts:193",
-          "pc": [
-            654
-          ]
-        },
-        {
-          "teal": 434,
-          "source": "contracts/TownHall.algo.ts:193",
-          "pc": [
+            653,
+            654,
             655
           ]
         },
         {
-          "teal": 435,
-          "source": "contracts/TownHall.algo.ts:193",
+          "teal": 313,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
             656
           ]
         },
         {
-          "teal": 436,
-          "source": "contracts/TownHall.algo.ts:192",
+          "teal": 314,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            657,
+            657
+          ]
+        },
+        {
+          "teal": 318,
+          "source": "contracts/TownHall.algo.ts:200",
+          "pc": [
             658,
             659
           ]
         },
         {
-          "teal": 441,
-          "source": "contracts/TownHall.algo.ts:195",
+          "teal": 319,
+          "source": "contracts/TownHall.algo.ts:200",
           "pc": [
-            660
-          ]
-        },
-        {
-          "teal": 442,
-          "source": "contracts/TownHall.algo.ts:195",
-          "pc": [
+            660,
             661
           ]
         },
         {
-          "teal": 443,
-          "source": "contracts/TownHall.algo.ts:195",
+          "teal": 320,
+          "source": "contracts/TownHall.algo.ts:200",
           "pc": [
-            662
-          ]
-        },
-        {
-          "teal": 446,
-          "source": "contracts/TownHall.algo.ts:195",
-          "errorMessage": "box value does not exist: this.quickAccessPKBoxes(0).size",
-          "pc": [
+            662,
             663
           ]
         },
         {
-          "teal": 447,
-          "source": "contracts/TownHall.algo.ts:195",
+          "teal": 321,
+          "source": "contracts/TownHall.algo.ts:200",
           "pc": [
             664
           ]
         },
         {
-          "teal": 448,
-          "source": "contracts/TownHall.algo.ts:195",
+          "teal": 322,
+          "source": "contracts/TownHall.algo.ts:200",
           "pc": [
             665
           ]
         },
         {
-          "teal": 449,
-          "source": "contracts/TownHall.algo.ts:195",
+          "teal": 323,
+          "source": "contracts/TownHall.algo.ts:200",
           "pc": [
             666
           ]
         },
         {
-          "teal": 455,
-          "source": "contracts/TownHall.algo.ts:199",
+          "teal": 324,
+          "source": "contracts/TownHall.algo.ts:200",
           "pc": [
-            667
-          ]
-        },
-        {
-          "teal": 456,
-          "source": "contracts/TownHall.algo.ts:199",
-          "pc": [
+            667,
             668
           ]
         },
         {
-          "teal": 457,
-          "source": "contracts/TownHall.algo.ts:199",
+          "teal": 328,
+          "source": "contracts/TownHall.algo.ts:201",
           "pc": [
-            669
-          ]
-        },
-        {
-          "teal": 458,
-          "source": "contracts/TownHall.algo.ts:199",
-          "pc": [
+            669,
             670
           ]
         },
         {
-          "teal": 459,
-          "source": "contracts/TownHall.algo.ts:199",
+          "teal": 329,
+          "source": "contracts/TownHall.algo.ts:201",
           "pc": [
-            671
+            671,
+            672
           ]
         },
         {
-          "teal": 460,
-          "source": "contracts/TownHall.algo.ts:199",
+          "teal": 330,
+          "source": "contracts/TownHall.algo.ts:201",
           "pc": [
-            672,
-            673,
-            674
+            673
           ]
         },
         {
-          "teal": 465,
-          "source": "contracts/TownHall.algo.ts:200",
+          "teal": 331,
+          "source": "contracts/TownHall.algo.ts:201",
           "pc": [
+            674,
             675
           ]
         },
         {
-          "teal": 466,
-          "source": "contracts/TownHall.algo.ts:200",
+          "teal": 337,
+          "source": "contracts/TownHall.algo.ts:204",
           "pc": [
             676,
-            677,
-            678
+            677
           ]
         },
         {
-          "teal": 471,
-          "source": "contracts/TownHall.algo.ts:203",
+          "teal": 338,
+          "source": "contracts/TownHall.algo.ts:204",
           "pc": [
+            678,
             679
           ]
         },
         {
-          "teal": 472,
-          "source": "contracts/TownHall.algo.ts:203",
+          "teal": 339,
+          "source": "contracts/TownHall.algo.ts:204",
           "pc": [
-            680
-          ]
-        },
-        {
-          "teal": 473,
-          "source": "contracts/TownHall.algo.ts:203",
-          "pc": [
+            680,
             681
           ]
         },
         {
-          "teal": 474,
-          "source": "contracts/TownHall.algo.ts:203",
+          "teal": 340,
+          "source": "contracts/TownHall.algo.ts:204",
           "pc": [
-            682
-          ]
-        },
-        {
-          "teal": 475,
-          "source": "contracts/TownHall.algo.ts:203",
-          "pc": [
+            682,
             683
           ]
         },
         {
-          "teal": 476,
-          "source": "contracts/TownHall.algo.ts:203",
+          "teal": 341,
+          "source": "contracts/TownHall.algo.ts:204",
           "pc": [
             684,
             685
           ]
         },
         {
-          "teal": 477,
-          "source": "contracts/TownHall.algo.ts:203",
-          "pc": [
-            686
-          ]
-        },
-        {
-          "teal": 481,
+          "teal": 342,
           "source": "contracts/TownHall.algo.ts:204",
           "pc": [
+            686,
             687
           ]
         },
         {
-          "teal": 482,
+          "teal": 343,
           "source": "contracts/TownHall.algo.ts:204",
           "pc": [
-            688
-          ]
-        },
-        {
-          "teal": 483,
-          "source": "contracts/TownHall.algo.ts:204",
-          "pc": [
+            688,
             689
           ]
         },
         {
-          "teal": 484,
+          "teal": 344,
           "source": "contracts/TownHall.algo.ts:204",
           "pc": [
-            690
-          ]
-        },
-        {
-          "teal": 485,
-          "source": "contracts/TownHall.algo.ts:204",
-          "pc": [
+            690,
             691
           ]
         },
         {
-          "teal": 486,
+          "teal": 345,
           "source": "contracts/TownHall.algo.ts:204",
           "pc": [
             692
           ]
         },
         {
-          "teal": 487,
-          "source": "contracts/TownHall.algo.ts:204",
+          "teal": 348,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            693
+            693,
+            694
           ]
         },
         {
-          "teal": 492,
-          "source": "contracts/TownHall.algo.ts:206",
+          "teal": 351,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            694,
-            695
-          ]
-        },
-        {
-          "teal": 493,
-          "source": "contracts/TownHall.algo.ts:206",
-          "pc": [
+            695,
             696
           ]
         },
         {
-          "teal": 494,
-          "source": "contracts/TownHall.algo.ts:206",
+          "teal": 352,
+          "source": "contracts/TownHall.algo.ts:198",
           "pc": [
-            697,
+            697
+          ]
+        },
+        {
+          "teal": 357,
+          "source": "contracts/TownHall.algo.ts:208",
+          "pc": [
             698
           ]
         },
         {
-          "teal": 495,
-          "source": "contracts/TownHall.algo.ts:206",
+          "teal": 360,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
-            699
-          ]
-        },
-        {
-          "teal": 496,
-          "source": "contracts/TownHall.algo.ts:206",
-          "pc": [
+            699,
             700,
-            701,
-            702
+            701
           ]
         },
         {
-          "teal": 501,
-          "source": "contracts/TownHall.algo.ts:207",
+          "teal": 361,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
+            702,
             703,
             704
           ]
         },
         {
-          "teal": 502,
-          "source": "contracts/TownHall.algo.ts:207",
+          "teal": 364,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
             705,
-            706
-          ]
-        },
-        {
-          "teal": 503,
-          "source": "contracts/TownHall.algo.ts:207",
-          "pc": [
+            706,
             707
           ]
         },
         {
-          "teal": 507,
+          "teal": 365,
           "source": "contracts/TownHall.algo.ts:208",
           "pc": [
             708
           ]
         },
         {
-          "teal": 508,
+          "teal": 366,
           "source": "contracts/TownHall.algo.ts:208",
           "pc": [
-            709,
-            710,
-            711
+            709
           ]
         },
         {
-          "teal": 514,
-          "source": "contracts/TownHall.algo.ts:210",
+          "teal": 367,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
+            710
+          ]
+        },
+        {
+          "teal": 368,
+          "source": "contracts/TownHall.algo.ts:208",
+          "pc": [
+            711,
             712,
             713
           ]
         },
         {
-          "teal": 515,
-          "source": "contracts/TownHall.algo.ts:210",
+          "teal": 369,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
             714
           ]
         },
         {
-          "teal": 516,
-          "source": "contracts/TownHall.algo.ts:210",
+          "teal": 370,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
-            715,
+            715
+          ]
+        },
+        {
+          "teal": 371,
+          "source": "contracts/TownHall.algo.ts:208",
+          "pc": [
             716
           ]
         },
         {
-          "teal": 517,
-          "source": "contracts/TownHall.algo.ts:210",
+          "teal": 372,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
             717
           ]
         },
         {
-          "teal": 518,
-          "source": "contracts/TownHall.algo.ts:210",
+          "teal": 373,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
-            718,
-            719,
-            720
+            718
           ]
         },
         {
-          "teal": 523,
-          "source": "contracts/TownHall.algo.ts:211",
+          "teal": 374,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
+            719
+          ]
+        },
+        {
+          "teal": 378,
+          "source": "contracts/TownHall.algo.ts:208",
+          "pc": [
+            720,
             721,
             722
           ]
         },
         {
-          "teal": 524,
-          "source": "contracts/TownHall.algo.ts:211",
+          "teal": 381,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
-            723,
-            724
+            723
           ]
         },
         {
-          "teal": 525,
-          "source": "contracts/TownHall.algo.ts:211",
+          "teal": 382,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
+            724,
             725
           ]
         },
         {
-          "teal": 529,
-          "source": "contracts/TownHall.algo.ts:212",
+          "teal": 386,
+          "source": "contracts/TownHall.algo.ts:209",
           "pc": [
-            726
+            726,
+            727
           ]
         },
         {
-          "teal": 530,
-          "source": "contracts/TownHall.algo.ts:212",
+          "teal": 387,
+          "source": "contracts/TownHall.algo.ts:209",
           "pc": [
-            727,
-            728,
-            729
+            728
           ]
         },
         {
-          "teal": 536,
-          "source": "contracts/TownHall.algo.ts:214",
+          "teal": 388,
+          "source": "contracts/TownHall.algo.ts:209",
           "pc": [
-            730,
-            731
+            729,
+            730
           ]
         },
         {
-          "teal": 537,
-          "source": "contracts/TownHall.algo.ts:214",
+          "teal": 392,
+          "source": "contracts/TownHall.algo.ts:210",
           "pc": [
+            731,
             732
           ]
         },
         {
-          "teal": 538,
-          "source": "contracts/TownHall.algo.ts:214",
+          "teal": 393,
+          "source": "contracts/TownHall.algo.ts:210",
           "pc": [
             733,
             734
           ]
         },
         {
-          "teal": 539,
-          "source": "contracts/TownHall.algo.ts:214",
+          "teal": 394,
+          "source": "contracts/TownHall.algo.ts:210",
           "pc": [
             735
           ]
         },
         {
-          "teal": 540,
-          "source": "contracts/TownHall.algo.ts:214",
+          "teal": 395,
+          "source": "contracts/TownHall.algo.ts:210",
           "pc": [
             736,
-            737,
-            738
+            737
           ]
         },
         {
-          "teal": 545,
-          "source": "contracts/TownHall.algo.ts:215",
+          "teal": 399,
+          "source": "contracts/TownHall.algo.ts:213",
           "pc": [
-            739,
-            740
+            738,
+            739
           ]
         },
         {
-          "teal": 546,
-          "source": "contracts/TownHall.algo.ts:215",
+          "teal": 400,
+          "source": "contracts/TownHall.algo.ts:213",
           "pc": [
-            741,
-            742
+            740,
+            741
           ]
         },
         {
-          "teal": 547,
-          "source": "contracts/TownHall.algo.ts:215",
+          "teal": 401,
+          "source": "contracts/TownHall.algo.ts:213",
           "pc": [
+            742,
             743
           ]
         },
         {
-          "teal": 551,
-          "source": "contracts/TownHall.algo.ts:216",
+          "teal": 405,
+          "source": "contracts/TownHall.algo.ts:214",
           "pc": [
-            744
+            744,
+            745
           ]
         },
         {
-          "teal": 552,
-          "source": "contracts/TownHall.algo.ts:216",
+          "teal": 408,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
-            745,
             746,
             747
           ]
         },
         {
-          "teal": 558,
-          "source": "contracts/TownHall.algo.ts:218",
+          "teal": 411,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
             748,
             749
           ]
         },
         {
-          "teal": 559,
-          "source": "contracts/TownHall.algo.ts:218",
+          "teal": 412,
+          "source": "contracts/TownHall.algo.ts:208",
           "pc": [
             750
           ]
         },
         {
-          "teal": 560,
-          "source": "contracts/TownHall.algo.ts:218",
+          "teal": 417,
+          "source": "contracts/TownHall.algo.ts:219",
           "pc": [
-            751,
-            752
+            751
           ]
         },
         {
-          "teal": 561,
-          "source": "contracts/TownHall.algo.ts:218",
+          "teal": 420,
+          "source": "contracts/TownHall.algo.ts:219",
           "pc": [
-            753
+            752,
+            753,
+            754
           ]
         },
         {
-          "teal": 562,
-          "source": "contracts/TownHall.algo.ts:218",
+          "teal": 421,
+          "source": "contracts/TownHall.algo.ts:219",
           "pc": [
-            754,
-            755,
+            755
+          ]
+        },
+        {
+          "teal": 422,
+          "source": "contracts/TownHall.algo.ts:219",
+          "pc": [
             756
           ]
         },
         {
-          "teal": 567,
+          "teal": 423,
           "source": "contracts/TownHall.algo.ts:219",
           "pc": [
-            757,
+            757
+          ]
+        },
+        {
+          "teal": 424,
+          "source": "contracts/TownHall.algo.ts:219",
+          "pc": [
             758
           ]
         },
         {
-          "teal": 568,
+          "teal": 425,
           "source": "contracts/TownHall.algo.ts:219",
           "pc": [
-            759,
-            760
+            759
           ]
         },
         {
-          "teal": 569,
+          "teal": 429,
           "source": "contracts/TownHall.algo.ts:219",
           "pc": [
-            761
-          ]
-        },
-        {
-          "teal": 573,
-          "source": "contracts/TownHall.algo.ts:220",
-          "pc": [
+            760,
+            761,
             762
           ]
         },
         {
-          "teal": 574,
+          "teal": 433,
           "source": "contracts/TownHall.algo.ts:220",
           "pc": [
             763,
-            764,
+            764
+          ]
+        },
+        {
+          "teal": 434,
+          "source": "contracts/TownHall.algo.ts:220",
+          "pc": [
             765
           ]
         },
         {
-          "teal": 580,
-          "source": "contracts/TownHall.algo.ts:222",
+          "teal": 435,
+          "source": "contracts/TownHall.algo.ts:219",
           "pc": [
-            766,
+            766
+          ]
+        },
+        {
+          "teal": 440,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
             767
           ]
         },
         {
-          "teal": 581,
-          "source": "contracts/TownHall.algo.ts:222",
+          "teal": 443,
+          "source": "contracts/TownHall.algo.ts:223",
           "pc": [
-            768
-          ]
-        },
-        {
-          "teal": 582,
-          "source": "contracts/TownHall.algo.ts:222",
-          "pc": [
+            768,
             769,
             770
           ]
         },
         {
-          "teal": 583,
-          "source": "contracts/TownHall.algo.ts:222",
-          "pc": [
-            771
-          ]
-        },
-        {
-          "teal": 584,
-          "source": "contracts/TownHall.algo.ts:222",
-          "pc": [
-            772,
-            773,
-            774
-          ]
-        },
-        {
-          "teal": 589,
+          "teal": 444,
           "source": "contracts/TownHall.algo.ts:223",
           "pc": [
+            771,
+            772,
+            773
+          ]
+        },
+        {
+          "teal": 447,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
+            774,
             775,
             776
           ]
         },
         {
-          "teal": 590,
+          "teal": 448,
           "source": "contracts/TownHall.algo.ts:223",
           "pc": [
             777,
@@ -2845,168 +2463,180 @@
           ]
         },
         {
-          "teal": 591,
+          "teal": 449,
           "source": "contracts/TownHall.algo.ts:223",
           "pc": [
             779
           ]
         },
         {
-          "teal": 595,
-          "source": "contracts/TownHall.algo.ts:224",
+          "teal": 450,
+          "source": "contracts/TownHall.algo.ts:223",
           "pc": [
-            780
+            780,
+            781
           ]
         },
         {
-          "teal": 596,
-          "source": "contracts/TownHall.algo.ts:224",
+          "teal": 451,
+          "source": "contracts/TownHall.algo.ts:223",
           "pc": [
-            781,
-            782,
+            782
+          ]
+        },
+        {
+          "teal": 452,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
             783
           ]
         },
         {
-          "teal": 602,
-          "source": "contracts/TownHall.algo.ts:226",
+          "teal": 453,
+          "source": "contracts/TownHall.algo.ts:223",
           "pc": [
-            784,
+            784
+          ]
+        },
+        {
+          "teal": 454,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
             785
           ]
         },
         {
-          "teal": 603,
-          "source": "contracts/TownHall.algo.ts:226",
+          "teal": 455,
+          "source": "contracts/TownHall.algo.ts:223",
           "pc": [
             786
           ]
         },
         {
-          "teal": 604,
-          "source": "contracts/TownHall.algo.ts:226",
+          "teal": 459,
+          "source": "contracts/TownHall.algo.ts:223",
           "pc": [
             787,
-            788
-          ]
-        },
-        {
-          "teal": 605,
-          "source": "contracts/TownHall.algo.ts:226",
-          "pc": [
+            788,
             789
           ]
         },
         {
-          "teal": 606,
-          "source": "contracts/TownHall.algo.ts:226",
+          "teal": 462,
+          "source": "contracts/TownHall.algo.ts:223",
           "pc": [
-            790,
+            790
+          ]
+        },
+        {
+          "teal": 463,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
             791,
             792
           ]
         },
         {
-          "teal": 611,
-          "source": "contracts/TownHall.algo.ts:227",
+          "teal": 468,
+          "source": "contracts/TownHall.algo.ts:224",
           "pc": [
             793,
             794
           ]
         },
         {
-          "teal": 612,
-          "source": "contracts/TownHall.algo.ts:227",
+          "teal": 469,
+          "source": "contracts/TownHall.algo.ts:224",
           "pc": [
-            795,
+            795
+          ]
+        },
+        {
+          "teal": 470,
+          "source": "contracts/TownHall.algo.ts:224",
+          "pc": [
             796
           ]
         },
         {
-          "teal": 613,
-          "source": "contracts/TownHall.algo.ts:227",
+          "teal": 471,
+          "source": "contracts/TownHall.algo.ts:224",
           "pc": [
             797
           ]
         },
         {
-          "teal": 617,
-          "source": "contracts/TownHall.algo.ts:228",
+          "teal": 472,
+          "source": "contracts/TownHall.algo.ts:224",
           "pc": [
             798,
-            799
-          ]
-        },
-        {
-          "teal": 618,
-          "source": "contracts/TownHall.algo.ts:228",
-          "pc": [
+            799,
             800
           ]
         },
         {
-          "teal": 619,
-          "source": "contracts/TownHall.algo.ts:228",
+          "teal": 477,
+          "source": "contracts/TownHall.algo.ts:225",
           "pc": [
             801
           ]
         },
         {
-          "teal": 623,
-          "source": "contracts/TownHall.algo.ts:229",
+          "teal": 478,
+          "source": "contracts/TownHall.algo.ts:225",
           "pc": [
-            802
+            802,
+            803,
+            804
           ]
         },
         {
-          "teal": 624,
-          "source": "contracts/TownHall.algo.ts:229",
+          "teal": 484,
+          "source": "contracts/TownHall.algo.ts:228",
           "pc": [
-            803,
-            804,
             805
           ]
         },
         {
-          "teal": 629,
-          "source": "contracts/TownHall.algo.ts:232",
+          "teal": 485,
+          "source": "contracts/TownHall.algo.ts:228",
           "pc": [
             806
           ]
         },
         {
-          "teal": 633,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 486,
+          "source": "contracts/TownHall.algo.ts:228",
           "pc": [
-            807,
+            807
+          ]
+        },
+        {
+          "teal": 487,
+          "source": "contracts/TownHall.algo.ts:228",
+          "pc": [
             808
           ]
         },
         {
-          "teal": 636,
-          "source": "contracts/TownHall.algo.ts:171",
+          "teal": 488,
+          "source": "contracts/TownHall.algo.ts:228",
           "pc": [
             809,
-            810
-          ]
-        },
-        {
-          "teal": 637,
-          "source": "contracts/TownHall.algo.ts:171",
-          "pc": [
+            810,
             811
           ]
         },
         {
-          "teal": 642,
-          "source": "contracts/TownHall.algo.ts:235",
+          "teal": 493,
+          "source": "contracts/TownHall.algo.ts:229",
           "pc": [
             812
           ]
         },
         {
-          "teal": 645,
-          "source": "contracts/TownHall.algo.ts:240",
+          "teal": 494,
+          "source": "contracts/TownHall.algo.ts:229",
           "pc": [
             813,
             814,
@@ -3014,35 +2644,41 @@
           ]
         },
         {
-          "teal": 646,
-          "source": "contracts/TownHall.algo.ts:240",
+          "teal": 499,
+          "source": "contracts/TownHall.algo.ts:232",
           "pc": [
             816,
-            817,
-            818
+            817
           ]
         },
         {
-          "teal": 649,
-          "source": "contracts/TownHall.algo.ts:239",
+          "teal": 500,
+          "source": "contracts/TownHall.algo.ts:232",
           "pc": [
+            818,
             819,
-            820,
-            821
+            820
           ]
         },
         {
-          "teal": 650,
-          "source": "contracts/TownHall.algo.ts:239",
+          "teal": 501,
+          "source": "contracts/TownHall.algo.ts:232",
           "pc": [
-            822,
+            821,
+            822
+          ]
+        },
+        {
+          "teal": 505,
+          "source": "contracts/TownHall.algo.ts:233",
+          "pc": [
             823,
             824
           ]
         },
         {
-          "teal": 653,
-          "source": "contracts/TownHall.algo.ts:238",
+          "teal": 506,
+          "source": "contracts/TownHall.algo.ts:233",
           "pc": [
             825,
             826,
@@ -3050,434 +2686,513 @@
           ]
         },
         {
-          "teal": 654,
-          "source": "contracts/TownHall.algo.ts:238",
+          "teal": 507,
+          "source": "contracts/TownHall.algo.ts:233",
           "pc": [
             828,
-            829,
-            830
+            829
           ]
         },
         {
-          "teal": 657,
-          "source": "contracts/TownHall.algo.ts:237",
+          "teal": 511,
+          "source": "contracts/TownHall.algo.ts:234",
           "pc": [
-            831,
+            830,
+            831
+          ]
+        },
+        {
+          "teal": 512,
+          "source": "contracts/TownHall.algo.ts:234",
+          "pc": [
             832,
-            833
+            833,
+            834
           ]
         },
         {
-          "teal": 658,
-          "source": "contracts/TownHall.algo.ts:237",
+          "teal": 513,
+          "source": "contracts/TownHall.algo.ts:234",
           "pc": [
-            834,
             835,
             836
           ]
         },
         {
-          "teal": 661,
-          "source": "contracts/TownHall.algo.ts:236",
+          "teal": 517,
+          "source": "contracts/TownHall.algo.ts:235",
           "pc": [
             837,
-            838,
-            839
+            838
           ]
         },
         {
-          "teal": 662,
-          "source": "contracts/TownHall.algo.ts:236",
+          "teal": 518,
+          "source": "contracts/TownHall.algo.ts:235",
           "pc": [
+            839,
             840,
-            841,
-            842
+            841
           ]
         },
         {
-          "teal": 665,
+          "teal": 519,
           "source": "contracts/TownHall.algo.ts:235",
           "pc": [
-            843,
-            844,
-            845
+            842,
+            843
           ]
         },
         {
-          "teal": 666,
+          "teal": 520,
           "source": "contracts/TownHall.algo.ts:235",
           "pc": [
-            846,
-            847
+            844
           ]
         },
         {
-          "teal": 667,
+          "teal": 521,
           "source": "contracts/TownHall.algo.ts:235",
           "pc": [
+            845,
+            846
+          ]
+        },
+        {
+          "teal": 526,
+          "source": "contracts/TownHall.algo.ts:240",
+          "pc": [
+            847,
             848
           ]
         },
         {
-          "teal": 668,
-          "source": "contracts/TownHall.algo.ts:235",
+          "teal": 527,
+          "source": "contracts/TownHall.algo.ts:240",
           "pc": [
             849,
             850
           ]
         },
         {
-          "teal": 669,
-          "source": "contracts/TownHall.algo.ts:235",
+          "teal": 528,
+          "source": "contracts/TownHall.algo.ts:240",
           "pc": [
-            851
-          ]
-        },
-        {
-          "teal": 670,
-          "source": "contracts/TownHall.algo.ts:235",
-          "pc": [
+            851,
             852
           ]
         },
         {
-          "teal": 671,
-          "source": "contracts/TownHall.algo.ts:235",
+          "teal": 529,
+          "source": "contracts/TownHall.algo.ts:240",
           "pc": [
-            853
-          ]
-        },
-        {
-          "teal": 672,
-          "source": "contracts/TownHall.algo.ts:235",
-          "pc": [
+            853,
             854
           ]
         },
         {
-          "teal": 673,
-          "source": "contracts/TownHall.algo.ts:235",
+          "teal": 530,
+          "source": "contracts/TownHall.algo.ts:240",
           "pc": [
-            855
+            855,
+            856,
+            857
           ]
         },
         {
-          "teal": 677,
-          "source": "contracts/TownHall.algo.ts:235",
+          "teal": 531,
+          "source": "contracts/TownHall.algo.ts:240",
           "pc": [
-            856,
-            857,
             858
           ]
         },
         {
-          "teal": 682,
-          "source": "contracts/TownHall.algo.ts:255",
+          "teal": 532,
+          "source": "contracts/TownHall.algo.ts:240",
           "pc": [
             859,
-            860
-          ]
-        },
-        {
-          "teal": 683,
-          "source": "contracts/TownHall.algo.ts:255",
-          "pc": [
+            860,
             861
           ]
         },
         {
-          "teal": 684,
-          "source": "contracts/TownHall.algo.ts:255",
+          "teal": 537,
+          "source": "contracts/TownHall.algo.ts:241",
           "pc": [
             862
           ]
         },
         {
-          "teal": 685,
-          "source": "contracts/TownHall.algo.ts:255",
+          "teal": 538,
+          "source": "contracts/TownHall.algo.ts:241",
           "pc": [
-            863
+            863,
+            864,
+            865
           ]
         },
         {
-          "teal": 686,
-          "source": "contracts/TownHall.algo.ts:255",
+          "teal": 544,
+          "source": "contracts/TownHall.algo.ts:244",
           "pc": [
-            864,
-            865,
             866
           ]
         },
         {
-          "teal": 691,
-          "source": "contracts/TownHall.algo.ts:256",
+          "teal": 545,
+          "source": "contracts/TownHall.algo.ts:244",
           "pc": [
             867
           ]
         },
         {
-          "teal": 692,
-          "source": "contracts/TownHall.algo.ts:256",
+          "teal": 546,
+          "source": "contracts/TownHall.algo.ts:244",
           "pc": [
             868
           ]
         },
         {
-          "teal": 697,
-          "source": "contracts/TownHall.algo.ts:267",
+          "teal": 547,
+          "source": "contracts/TownHall.algo.ts:244",
           "pc": [
-            869,
+            869
+          ]
+        },
+        {
+          "teal": 548,
+          "source": "contracts/TownHall.algo.ts:244",
+          "pc": [
             870
           ]
         },
         {
-          "teal": 698,
-          "source": "contracts/TownHall.algo.ts:267",
+          "teal": 549,
+          "source": "contracts/TownHall.algo.ts:244",
           "pc": [
-            871
-          ]
-        },
-        {
-          "teal": 699,
-          "source": "contracts/TownHall.algo.ts:267",
-          "pc": [
-            872
-          ]
-        },
-        {
-          "teal": 700,
-          "source": "contracts/TownHall.algo.ts:267",
-          "pc": [
+            871,
+            872,
             873
           ]
         },
         {
-          "teal": 701,
-          "source": "contracts/TownHall.algo.ts:267",
+          "teal": 554,
+          "source": "contracts/TownHall.algo.ts:245",
           "pc": [
             874
           ]
         },
         {
-          "teal": 702,
-          "source": "contracts/TownHall.algo.ts:267",
+          "teal": 555,
+          "source": "contracts/TownHall.algo.ts:245",
           "pc": [
             875
           ]
         },
         {
-          "teal": 703,
-          "source": "contracts/TownHall.algo.ts:267",
+          "teal": 556,
+          "source": "contracts/TownHall.algo.ts:245",
           "pc": [
             876
           ]
         },
         {
-          "teal": 707,
-          "source": "contracts/TownHall.algo.ts:268",
+          "teal": 557,
+          "source": "contracts/TownHall.algo.ts:245",
           "pc": [
-            877,
-            878
+            877
           ]
         },
         {
-          "teal": 708,
-          "source": "contracts/TownHall.algo.ts:268",
+          "teal": 558,
+          "source": "contracts/TownHall.algo.ts:244",
           "pc": [
-            879
-          ]
-        },
-        {
-          "teal": 709,
-          "source": "contracts/TownHall.algo.ts:268",
-          "pc": [
+            878,
+            879,
             880
           ]
         },
         {
-          "teal": 710,
-          "source": "contracts/TownHall.algo.ts:268",
+          "teal": 563,
+          "source": "contracts/TownHall.algo.ts:247",
           "pc": [
             881
           ]
         },
         {
-          "teal": 711,
-          "source": "contracts/TownHall.algo.ts:268",
+          "teal": 564,
+          "source": "contracts/TownHall.algo.ts:247",
           "pc": [
             882
           ]
         },
         {
-          "teal": 715,
-          "source": "contracts/TownHall.algo.ts:273",
+          "teal": 565,
+          "source": "contracts/TownHall.algo.ts:247",
           "pc": [
-            883,
+            883
+          ]
+        },
+        {
+          "teal": 568,
+          "source": "contracts/TownHall.algo.ts:247",
+          "errorMessage": "box value does not exist: this.quickAccessPKBoxes(0).size",
+          "pc": [
             884
           ]
         },
         {
-          "teal": 716,
-          "source": "contracts/TownHall.algo.ts:273",
+          "teal": 569,
+          "source": "contracts/TownHall.algo.ts:247",
           "pc": [
-            885,
-            886,
-            887,
-            888,
-            889,
-            890,
-            891,
-            892,
+            885
+          ]
+        },
+        {
+          "teal": 570,
+          "source": "contracts/TownHall.algo.ts:247",
+          "pc": [
+            886
+          ]
+        },
+        {
+          "teal": 571,
+          "source": "contracts/TownHall.algo.ts:247",
+          "pc": [
+            887
+          ]
+        },
+        {
+          "teal": 577,
+          "source": "contracts/TownHall.algo.ts:251",
+          "pc": [
+            888
+          ]
+        },
+        {
+          "teal": 578,
+          "source": "contracts/TownHall.algo.ts:251",
+          "pc": [
+            889
+          ]
+        },
+        {
+          "teal": 579,
+          "source": "contracts/TownHall.algo.ts:251",
+          "pc": [
+            890
+          ]
+        },
+        {
+          "teal": 580,
+          "source": "contracts/TownHall.algo.ts:251",
+          "pc": [
+            891
+          ]
+        },
+        {
+          "teal": 581,
+          "source": "contracts/TownHall.algo.ts:251",
+          "pc": [
+            892
+          ]
+        },
+        {
+          "teal": 582,
+          "source": "contracts/TownHall.algo.ts:251",
+          "pc": [
             893,
             894,
-            895,
-            896,
-            897
+            895
           ]
         },
         {
-          "teal": 717,
-          "source": "contracts/TownHall.algo.ts:273",
+          "teal": 587,
+          "source": "contracts/TownHall.algo.ts:252",
           "pc": [
-            898
+            896
           ]
         },
         {
-          "teal": 718,
-          "source": "contracts/TownHall.algo.ts:273",
+          "teal": 588,
+          "source": "contracts/TownHall.algo.ts:252",
           "pc": [
+            897,
+            898,
             899
           ]
         },
         {
-          "teal": 722,
-          "source": "contracts/TownHall.algo.ts:276",
+          "teal": 593,
+          "source": "contracts/TownHall.algo.ts:255",
           "pc": [
             900
           ]
         },
         {
-          "teal": 723,
-          "source": "contracts/TownHall.algo.ts:276",
+          "teal": 594,
+          "source": "contracts/TownHall.algo.ts:255",
           "pc": [
             901
           ]
         },
         {
-          "teal": 724,
-          "source": "contracts/TownHall.algo.ts:276",
+          "teal": 595,
+          "source": "contracts/TownHall.algo.ts:255",
           "pc": [
-            902,
-            903,
+            902
+          ]
+        },
+        {
+          "teal": 596,
+          "source": "contracts/TownHall.algo.ts:255",
+          "pc": [
+            903
+          ]
+        },
+        {
+          "teal": 597,
+          "source": "contracts/TownHall.algo.ts:255",
+          "pc": [
             904
           ]
         },
         {
-          "teal": 725,
-          "source": "contracts/TownHall.algo.ts:276",
+          "teal": 598,
+          "source": "contracts/TownHall.algo.ts:255",
           "pc": [
-            905
+            905,
+            906
           ]
         },
         {
-          "teal": 726,
-          "source": "contracts/TownHall.algo.ts:276",
+          "teal": 599,
+          "source": "contracts/TownHall.algo.ts:255",
           "pc": [
-            906,
             907
           ]
         },
         {
-          "teal": 727,
-          "source": "contracts/TownHall.algo.ts:276",
+          "teal": 603,
+          "source": "contracts/TownHall.algo.ts:256",
           "pc": [
             908
           ]
         },
         {
-          "teal": 728,
-          "source": "contracts/TownHall.algo.ts:276",
+          "teal": 604,
+          "source": "contracts/TownHall.algo.ts:256",
           "pc": [
             909
           ]
         },
         {
-          "teal": 732,
-          "source": "contracts/TownHall.algo.ts:279",
+          "teal": 605,
+          "source": "contracts/TownHall.algo.ts:256",
           "pc": [
-            910,
+            910
+          ]
+        },
+        {
+          "teal": 606,
+          "source": "contracts/TownHall.algo.ts:256",
+          "pc": [
             911
           ]
         },
         {
-          "teal": 733,
-          "source": "contracts/TownHall.algo.ts:279",
+          "teal": 607,
+          "source": "contracts/TownHall.algo.ts:256",
           "pc": [
-            912,
-            913,
+            912
+          ]
+        },
+        {
+          "teal": 608,
+          "source": "contracts/TownHall.algo.ts:256",
+          "pc": [
+            913
+          ]
+        },
+        {
+          "teal": 609,
+          "source": "contracts/TownHall.algo.ts:256",
+          "pc": [
             914
           ]
         },
         {
-          "teal": 734,
-          "source": "contracts/TownHall.algo.ts:279",
+          "teal": 614,
+          "source": "contracts/TownHall.algo.ts:258",
           "pc": [
             915,
             916
           ]
         },
         {
-          "teal": 735,
-          "source": "contracts/TownHall.algo.ts:279",
+          "teal": 615,
+          "source": "contracts/TownHall.algo.ts:258",
           "pc": [
-            917,
+            917
+          ]
+        },
+        {
+          "teal": 616,
+          "source": "contracts/TownHall.algo.ts:258",
+          "pc": [
             918,
             919
           ]
         },
         {
-          "teal": 736,
-          "source": "contracts/TownHall.algo.ts:279",
+          "teal": 617,
+          "source": "contracts/TownHall.algo.ts:258",
           "pc": [
             920
           ]
         },
         {
-          "teal": 737,
-          "source": "contracts/TownHall.algo.ts:279",
+          "teal": 618,
+          "source": "contracts/TownHall.algo.ts:258",
           "pc": [
-            921
-          ]
-        },
-        {
-          "teal": 741,
-          "source": "contracts/TownHall.algo.ts:317",
-          "pc": [
-            922
-          ]
-        },
-        {
-          "teal": 742,
-          "source": "contracts/TownHall.algo.ts:235",
-          "pc": [
+            921,
+            922,
             923
           ]
         },
         {
-          "teal": 745,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 623,
+          "source": "contracts/TownHall.algo.ts:259",
           "pc": [
             924,
-            925,
+            925
+          ]
+        },
+        {
+          "teal": 624,
+          "source": "contracts/TownHall.algo.ts:259",
+          "pc": [
             926,
-            927,
-            928,
+            927
+          ]
+        },
+        {
+          "teal": 625,
+          "source": "contracts/TownHall.algo.ts:259",
+          "pc": [
+            928
+          ]
+        },
+        {
+          "teal": 629,
+          "source": "contracts/TownHall.algo.ts:260",
+          "pc": [
             929
           ]
         },
         {
-          "teal": 746,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 630,
+          "source": "contracts/TownHall.algo.ts:260",
           "pc": [
             930,
             931,
@@ -3485,130 +3200,1203 @@
           ]
         },
         {
-          "teal": 747,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 636,
+          "source": "contracts/TownHall.algo.ts:262",
           "pc": [
             933,
-            934,
-            935,
-            936
+            934
           ]
         },
         {
-          "teal": 750,
-          "source": "contracts/TownHall.algo.ts:17",
-          "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+          "teal": 637,
+          "source": "contracts/TownHall.algo.ts:262",
           "pc": [
+            935
+          ]
+        },
+        {
+          "teal": 638,
+          "source": "contracts/TownHall.algo.ts:262",
+          "pc": [
+            936,
             937
           ]
         },
         {
-          "teal": 753,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 639,
+          "source": "contracts/TownHall.algo.ts:262",
           "pc": [
-            938,
+            938
+          ]
+        },
+        {
+          "teal": 640,
+          "source": "contracts/TownHall.algo.ts:262",
+          "pc": [
             939,
             940,
-            941,
+            941
+          ]
+        },
+        {
+          "teal": 645,
+          "source": "contracts/TownHall.algo.ts:263",
+          "pc": [
             942,
             943
           ]
         },
         {
-          "teal": 754,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 646,
+          "source": "contracts/TownHall.algo.ts:263",
           "pc": [
             944,
-            945,
-            946,
-            947,
-            948,
-            949
+            945
           ]
         },
         {
-          "teal": 755,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 647,
+          "source": "contracts/TownHall.algo.ts:263",
           "pc": [
-            950,
+            946
+          ]
+        },
+        {
+          "teal": 651,
+          "source": "contracts/TownHall.algo.ts:264",
+          "pc": [
+            947
+          ]
+        },
+        {
+          "teal": 652,
+          "source": "contracts/TownHall.algo.ts:264",
+          "pc": [
+            948,
+            949,
+            950
+          ]
+        },
+        {
+          "teal": 658,
+          "source": "contracts/TownHall.algo.ts:266",
+          "pc": [
             951,
-            952,
-            953,
+            952
+          ]
+        },
+        {
+          "teal": 659,
+          "source": "contracts/TownHall.algo.ts:266",
+          "pc": [
+            953
+          ]
+        },
+        {
+          "teal": 660,
+          "source": "contracts/TownHall.algo.ts:266",
+          "pc": [
             954,
             955
           ]
         },
         {
-          "teal": 756,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 661,
+          "source": "contracts/TownHall.algo.ts:266",
           "pc": [
-            956,
+            956
+          ]
+        },
+        {
+          "teal": 662,
+          "source": "contracts/TownHall.algo.ts:266",
+          "pc": [
             957,
             958,
-            959,
+            959
+          ]
+        },
+        {
+          "teal": 667,
+          "source": "contracts/TownHall.algo.ts:267",
+          "pc": [
             960,
             961
           ]
         },
         {
-          "teal": 757,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 668,
+          "source": "contracts/TownHall.algo.ts:267",
           "pc": [
             962,
-            963,
-            964,
-            965,
-            966,
-            967
+            963
           ]
         },
         {
-          "teal": 758,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 669,
+          "source": "contracts/TownHall.algo.ts:267",
           "pc": [
-            968,
+            964
+          ]
+        },
+        {
+          "teal": 673,
+          "source": "contracts/TownHall.algo.ts:268",
+          "pc": [
+            965
+          ]
+        },
+        {
+          "teal": 674,
+          "source": "contracts/TownHall.algo.ts:268",
+          "pc": [
+            966,
+            967,
+            968
+          ]
+        },
+        {
+          "teal": 680,
+          "source": "contracts/TownHall.algo.ts:270",
+          "pc": [
             969,
-            970,
-            971,
+            970
+          ]
+        },
+        {
+          "teal": 681,
+          "source": "contracts/TownHall.algo.ts:270",
+          "pc": [
+            971
+          ]
+        },
+        {
+          "teal": 682,
+          "source": "contracts/TownHall.algo.ts:270",
+          "pc": [
             972,
             973
           ]
         },
         {
-          "teal": 759,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 683,
+          "source": "contracts/TownHall.algo.ts:270",
           "pc": [
-            974,
-            975,
-            976
+            974
           ]
         },
         {
-          "teal": 760,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 684,
+          "source": "contracts/TownHall.algo.ts:270",
           "pc": [
-            977,
+            975,
+            976,
+            977
+          ]
+        },
+        {
+          "teal": 689,
+          "source": "contracts/TownHall.algo.ts:271",
+          "pc": [
             978,
-            979,
+            979
+          ]
+        },
+        {
+          "teal": 690,
+          "source": "contracts/TownHall.algo.ts:271",
+          "pc": [
             980,
-            981,
-            982,
-            983,
+            981
+          ]
+        },
+        {
+          "teal": 691,
+          "source": "contracts/TownHall.algo.ts:271",
+          "pc": [
+            982
+          ]
+        },
+        {
+          "teal": 695,
+          "source": "contracts/TownHall.algo.ts:272",
+          "pc": [
+            983
+          ]
+        },
+        {
+          "teal": 696,
+          "source": "contracts/TownHall.algo.ts:272",
+          "pc": [
             984,
             985,
-            986,
-            987,
-            988,
-            989,
-            990
+            986
           ]
         },
         {
-          "teal": 763,
-          "source": "contracts/TownHall.algo.ts:17",
+          "teal": 702,
+          "source": "contracts/TownHall.algo.ts:274",
+          "pc": [
+            987,
+            988
+          ]
+        },
+        {
+          "teal": 703,
+          "source": "contracts/TownHall.algo.ts:274",
+          "pc": [
+            989
+          ]
+        },
+        {
+          "teal": 704,
+          "source": "contracts/TownHall.algo.ts:274",
+          "pc": [
+            990,
+            991
+          ]
+        },
+        {
+          "teal": 705,
+          "source": "contracts/TownHall.algo.ts:274",
+          "pc": [
+            992
+          ]
+        },
+        {
+          "teal": 706,
+          "source": "contracts/TownHall.algo.ts:274",
+          "pc": [
+            993,
+            994,
+            995
+          ]
+        },
+        {
+          "teal": 711,
+          "source": "contracts/TownHall.algo.ts:275",
+          "pc": [
+            996,
+            997
+          ]
+        },
+        {
+          "teal": 712,
+          "source": "contracts/TownHall.algo.ts:275",
+          "pc": [
+            998,
+            999
+          ]
+        },
+        {
+          "teal": 713,
+          "source": "contracts/TownHall.algo.ts:275",
+          "pc": [
+            1000
+          ]
+        },
+        {
+          "teal": 717,
+          "source": "contracts/TownHall.algo.ts:276",
+          "pc": [
+            1001
+          ]
+        },
+        {
+          "teal": 718,
+          "source": "contracts/TownHall.algo.ts:276",
+          "pc": [
+            1002,
+            1003,
+            1004
+          ]
+        },
+        {
+          "teal": 724,
+          "source": "contracts/TownHall.algo.ts:278",
+          "pc": [
+            1005,
+            1006
+          ]
+        },
+        {
+          "teal": 725,
+          "source": "contracts/TownHall.algo.ts:278",
+          "pc": [
+            1007
+          ]
+        },
+        {
+          "teal": 726,
+          "source": "contracts/TownHall.algo.ts:278",
+          "pc": [
+            1008,
+            1009
+          ]
+        },
+        {
+          "teal": 727,
+          "source": "contracts/TownHall.algo.ts:278",
+          "pc": [
+            1010
+          ]
+        },
+        {
+          "teal": 728,
+          "source": "contracts/TownHall.algo.ts:278",
+          "pc": [
+            1011,
+            1012,
+            1013
+          ]
+        },
+        {
+          "teal": 733,
+          "source": "contracts/TownHall.algo.ts:279",
+          "pc": [
+            1014,
+            1015
+          ]
+        },
+        {
+          "teal": 734,
+          "source": "contracts/TownHall.algo.ts:279",
+          "pc": [
+            1016,
+            1017
+          ]
+        },
+        {
+          "teal": 735,
+          "source": "contracts/TownHall.algo.ts:279",
+          "pc": [
+            1018
+          ]
+        },
+        {
+          "teal": 739,
+          "source": "contracts/TownHall.algo.ts:280",
+          "pc": [
+            1019,
+            1020
+          ]
+        },
+        {
+          "teal": 740,
+          "source": "contracts/TownHall.algo.ts:280",
+          "pc": [
+            1021
+          ]
+        },
+        {
+          "teal": 741,
+          "source": "contracts/TownHall.algo.ts:280",
+          "pc": [
+            1022
+          ]
+        },
+        {
+          "teal": 745,
+          "source": "contracts/TownHall.algo.ts:281",
+          "pc": [
+            1023
+          ]
+        },
+        {
+          "teal": 746,
+          "source": "contracts/TownHall.algo.ts:281",
+          "pc": [
+            1024,
+            1025,
+            1026
+          ]
+        },
+        {
+          "teal": 751,
+          "source": "contracts/TownHall.algo.ts:284",
+          "pc": [
+            1027
+          ]
+        },
+        {
+          "teal": 755,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
+            1028,
+            1029
+          ]
+        },
+        {
+          "teal": 758,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
+            1030,
+            1031
+          ]
+        },
+        {
+          "teal": 759,
+          "source": "contracts/TownHall.algo.ts:223",
+          "pc": [
+            1032
+          ]
+        },
+        {
+          "teal": 764,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1033
+          ]
+        },
+        {
+          "teal": 767,
+          "source": "contracts/TownHall.algo.ts:299",
+          "pc": [
+            1034,
+            1035
+          ]
+        },
+        {
+          "teal": 768,
+          "source": "contracts/TownHall.algo.ts:299",
+          "pc": [
+            1036
+          ]
+        },
+        {
+          "teal": 769,
+          "source": "contracts/TownHall.algo.ts:299",
+          "pc": [
+            1037
+          ]
+        },
+        {
+          "teal": 770,
+          "source": "contracts/TownHall.algo.ts:299",
+          "pc": [
+            1038
+          ]
+        },
+        {
+          "teal": 771,
+          "source": "contracts/TownHall.algo.ts:299",
+          "pc": [
+            1039,
+            1040
+          ]
+        },
+        {
+          "teal": 772,
+          "source": "contracts/TownHall.algo.ts:299",
+          "pc": [
+            1041
+          ]
+        },
+        {
+          "teal": 773,
+          "source": "contracts/TownHall.algo.ts:299",
+          "pc": [
+            1042
+          ]
+        },
+        {
+          "teal": 776,
+          "source": "contracts/TownHall.algo.ts:299",
+          "errorMessage": "argument 0 (lsigTxn0) for assignRole must be a pay transaction",
+          "pc": [
+            1043
+          ]
+        },
+        {
+          "teal": 779,
+          "source": "contracts/TownHall.algo.ts:292",
+          "pc": [
+            1044,
+            1045,
+            1046
+          ]
+        },
+        {
+          "teal": 780,
+          "source": "contracts/TownHall.algo.ts:292",
+          "pc": [
+            1047,
+            1048,
+            1049
+          ]
+        },
+        {
+          "teal": 783,
+          "source": "contracts/TownHall.algo.ts:291",
+          "pc": [
+            1050,
+            1051,
+            1052
+          ]
+        },
+        {
+          "teal": 784,
+          "source": "contracts/TownHall.algo.ts:291",
+          "pc": [
+            1053,
+            1054,
+            1055
+          ]
+        },
+        {
+          "teal": 787,
+          "source": "contracts/TownHall.algo.ts:290",
+          "pc": [
+            1056,
+            1057,
+            1058
+          ]
+        },
+        {
+          "teal": 788,
+          "source": "contracts/TownHall.algo.ts:290",
+          "pc": [
+            1059,
+            1060,
+            1061
+          ]
+        },
+        {
+          "teal": 791,
+          "source": "contracts/TownHall.algo.ts:289",
+          "pc": [
+            1062,
+            1063,
+            1064
+          ]
+        },
+        {
+          "teal": 792,
+          "source": "contracts/TownHall.algo.ts:289",
+          "pc": [
+            1065,
+            1066,
+            1067
+          ]
+        },
+        {
+          "teal": 795,
+          "source": "contracts/TownHall.algo.ts:288",
+          "pc": [
+            1068,
+            1069,
+            1070
+          ]
+        },
+        {
+          "teal": 796,
+          "source": "contracts/TownHall.algo.ts:288",
+          "pc": [
+            1071,
+            1072,
+            1073
+          ]
+        },
+        {
+          "teal": 799,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1074,
+            1075,
+            1076
+          ]
+        },
+        {
+          "teal": 800,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1077,
+            1078
+          ]
+        },
+        {
+          "teal": 801,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1079
+          ]
+        },
+        {
+          "teal": 802,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1080,
+            1081
+          ]
+        },
+        {
+          "teal": 803,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1082
+          ]
+        },
+        {
+          "teal": 804,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1083
+          ]
+        },
+        {
+          "teal": 805,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1084
+          ]
+        },
+        {
+          "teal": 806,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1085
+          ]
+        },
+        {
+          "teal": 807,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1086
+          ]
+        },
+        {
+          "teal": 811,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1087,
+            1088,
+            1089
+          ]
+        },
+        {
+          "teal": 816,
+          "source": "contracts/TownHall.algo.ts:307",
+          "pc": [
+            1090,
+            1091
+          ]
+        },
+        {
+          "teal": 817,
+          "source": "contracts/TownHall.algo.ts:307",
+          "pc": [
+            1092
+          ]
+        },
+        {
+          "teal": 818,
+          "source": "contracts/TownHall.algo.ts:307",
+          "pc": [
+            1093
+          ]
+        },
+        {
+          "teal": 819,
+          "source": "contracts/TownHall.algo.ts:307",
+          "pc": [
+            1094
+          ]
+        },
+        {
+          "teal": 820,
+          "source": "contracts/TownHall.algo.ts:307",
+          "pc": [
+            1095,
+            1096,
+            1097
+          ]
+        },
+        {
+          "teal": 825,
+          "source": "contracts/TownHall.algo.ts:308",
+          "pc": [
+            1098
+          ]
+        },
+        {
+          "teal": 826,
+          "source": "contracts/TownHall.algo.ts:308",
+          "pc": [
+            1099
+          ]
+        },
+        {
+          "teal": 831,
+          "source": "contracts/TownHall.algo.ts:319",
+          "pc": [
+            1100,
+            1101
+          ]
+        },
+        {
+          "teal": 832,
+          "source": "contracts/TownHall.algo.ts:319",
+          "pc": [
+            1102
+          ]
+        },
+        {
+          "teal": 833,
+          "source": "contracts/TownHall.algo.ts:319",
+          "pc": [
+            1103
+          ]
+        },
+        {
+          "teal": 834,
+          "source": "contracts/TownHall.algo.ts:319",
+          "pc": [
+            1104
+          ]
+        },
+        {
+          "teal": 835,
+          "source": "contracts/TownHall.algo.ts:319",
+          "pc": [
+            1105
+          ]
+        },
+        {
+          "teal": 836,
+          "source": "contracts/TownHall.algo.ts:319",
+          "pc": [
+            1106
+          ]
+        },
+        {
+          "teal": 837,
+          "source": "contracts/TownHall.algo.ts:319",
+          "pc": [
+            1107
+          ]
+        },
+        {
+          "teal": 841,
+          "source": "contracts/TownHall.algo.ts:320",
+          "pc": [
+            1108,
+            1109
+          ]
+        },
+        {
+          "teal": 842,
+          "source": "contracts/TownHall.algo.ts:320",
+          "pc": [
+            1110
+          ]
+        },
+        {
+          "teal": 843,
+          "source": "contracts/TownHall.algo.ts:320",
+          "pc": [
+            1111
+          ]
+        },
+        {
+          "teal": 844,
+          "source": "contracts/TownHall.algo.ts:320",
+          "pc": [
+            1112
+          ]
+        },
+        {
+          "teal": 845,
+          "source": "contracts/TownHall.algo.ts:320",
+          "pc": [
+            1113
+          ]
+        },
+        {
+          "teal": 849,
+          "source": "contracts/TownHall.algo.ts:325",
+          "pc": [
+            1114,
+            1115
+          ]
+        },
+        {
+          "teal": 850,
+          "source": "contracts/TownHall.algo.ts:325",
+          "pc": [
+            1116,
+            1117,
+            1118,
+            1119,
+            1120,
+            1121,
+            1122,
+            1123,
+            1124,
+            1125,
+            1126,
+            1127,
+            1128
+          ]
+        },
+        {
+          "teal": 851,
+          "source": "contracts/TownHall.algo.ts:325",
+          "pc": [
+            1129
+          ]
+        },
+        {
+          "teal": 852,
+          "source": "contracts/TownHall.algo.ts:325",
+          "pc": [
+            1130
+          ]
+        },
+        {
+          "teal": 856,
+          "source": "contracts/TownHall.algo.ts:328",
+          "pc": [
+            1131
+          ]
+        },
+        {
+          "teal": 857,
+          "source": "contracts/TownHall.algo.ts:328",
+          "pc": [
+            1132
+          ]
+        },
+        {
+          "teal": 858,
+          "source": "contracts/TownHall.algo.ts:328",
+          "pc": [
+            1133,
+            1134,
+            1135
+          ]
+        },
+        {
+          "teal": 859,
+          "source": "contracts/TownHall.algo.ts:328",
+          "pc": [
+            1136
+          ]
+        },
+        {
+          "teal": 860,
+          "source": "contracts/TownHall.algo.ts:328",
+          "pc": [
+            1137,
+            1138
+          ]
+        },
+        {
+          "teal": 861,
+          "source": "contracts/TownHall.algo.ts:328",
+          "pc": [
+            1139
+          ]
+        },
+        {
+          "teal": 862,
+          "source": "contracts/TownHall.algo.ts:328",
+          "pc": [
+            1140
+          ]
+        },
+        {
+          "teal": 866,
+          "source": "contracts/TownHall.algo.ts:331",
+          "pc": [
+            1141,
+            1142
+          ]
+        },
+        {
+          "teal": 867,
+          "source": "contracts/TownHall.algo.ts:331",
+          "pc": [
+            1143,
+            1144,
+            1145
+          ]
+        },
+        {
+          "teal": 868,
+          "source": "contracts/TownHall.algo.ts:331",
+          "pc": [
+            1146,
+            1147
+          ]
+        },
+        {
+          "teal": 869,
+          "source": "contracts/TownHall.algo.ts:331",
+          "pc": [
+            1148,
+            1149,
+            1150
+          ]
+        },
+        {
+          "teal": 870,
+          "source": "contracts/TownHall.algo.ts:331",
+          "pc": [
+            1151
+          ]
+        },
+        {
+          "teal": 871,
+          "source": "contracts/TownHall.algo.ts:331",
+          "pc": [
+            1152
+          ]
+        },
+        {
+          "teal": 876,
+          "source": "contracts/TownHall.algo.ts:335",
+          "pc": [
+            1153,
+            1154
+          ]
+        },
+        {
+          "teal": 877,
+          "source": "contracts/TownHall.algo.ts:335",
+          "pc": [
+            1155,
+            1156
+          ]
+        },
+        {
+          "teal": 878,
+          "source": "contracts/TownHall.algo.ts:335",
+          "pc": [
+            1157,
+            1158,
+            1159,
+            1160,
+            1161,
+            1162,
+            1163,
+            1164,
+            1165,
+            1166,
+            1167,
+            1168,
+            1169,
+            1170,
+            1171,
+            1172,
+            1173,
+            1174,
+            1175,
+            1176,
+            1177,
+            1178,
+            1179,
+            1180,
+            1181,
+            1182,
+            1183,
+            1184,
+            1185,
+            1186,
+            1187,
+            1188,
+            1189,
+            1190
+          ]
+        },
+        {
+          "teal": 879,
+          "source": "contracts/TownHall.algo.ts:335",
+          "pc": [
+            1191
+          ]
+        },
+        {
+          "teal": 882,
+          "source": "contracts/TownHall.algo.ts:335",
+          "errorMessage": "transaction verification failed: {\"txn\":\"lsigTxn0\",\"field\":\"sender\",\"expected\":\"Address.fromBytes(RingLinkLSig0.address())\"}",
+          "pc": [
+            1192
+          ]
+        },
+        {
+          "teal": 886,
+          "source": "contracts/TownHall.algo.ts:369",
+          "pc": [
+            1193
+          ]
+        },
+        {
+          "teal": 887,
+          "source": "contracts/TownHall.algo.ts:287",
+          "pc": [
+            1194
+          ]
+        },
+        {
+          "teal": 890,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1195,
+            1196,
+            1197,
+            1198,
+            1199,
+            1200
+          ]
+        },
+        {
+          "teal": 891,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1201,
+            1202,
+            1203
+          ]
+        },
+        {
+          "teal": 892,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1204,
+            1205,
+            1206,
+            1207
+          ]
+        },
+        {
+          "teal": 895,
+          "source": "contracts/TownHall.algo.ts:18",
+          "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+          "pc": [
+            1208
+          ]
+        },
+        {
+          "teal": 898,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1209,
+            1210,
+            1211,
+            1212,
+            1213,
+            1214
+          ]
+        },
+        {
+          "teal": 899,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1215,
+            1216,
+            1217,
+            1218,
+            1219,
+            1220
+          ]
+        },
+        {
+          "teal": 900,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1221,
+            1222,
+            1223,
+            1224,
+            1225,
+            1226
+          ]
+        },
+        {
+          "teal": 901,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1227,
+            1228,
+            1229,
+            1230,
+            1231,
+            1232
+          ]
+        },
+        {
+          "teal": 902,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1233,
+            1234,
+            1235,
+            1236,
+            1237,
+            1238
+          ]
+        },
+        {
+          "teal": 903,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1239,
+            1240,
+            1241,
+            1242,
+            1243,
+            1244
+          ]
+        },
+        {
+          "teal": 904,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1245,
+            1246,
+            1247,
+            1248,
+            1249,
+            1250
+          ]
+        },
+        {
+          "teal": 905,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1251,
+            1252,
+            1253
+          ]
+        },
+        {
+          "teal": 906,
+          "source": "contracts/TownHall.algo.ts:18",
+          "pc": [
+            1254,
+            1255,
+            1256,
+            1257,
+            1258,
+            1259,
+            1260,
+            1261,
+            1262,
+            1263,
+            1264,
+            1265,
+            1266,
+            1267,
+            1268,
+            1269
+          ]
+        },
+        {
+          "teal": 909,
+          "source": "contracts/TownHall.algo.ts:18",
           "errorMessage": "this contract does not implement the given ABI method for call NoOp",
           "pc": [
-            991
+            1270
           ]
         }
       ],
@@ -3620,11 +4408,11 @@
     }
   },
   "source": {
-    "approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCmludGNibG9jayAxIDAgOTYgNgpieXRlY2Jsb2NrIDB4IDB4MDAwMDAwMDAwMDAwMDAwMCAweDE1MWY3Yzc1IDB4NzA2YzYxNzk2NTcyNzM0YTZmNjk2ZTY1NjQgMHg2NzYxNmQ2NTUzNzQ2MTc0NjUgMHg3MDZjNjE3OTY1NzIzMTQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzMjQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzMzQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzNDQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzNTQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzNjQxNmM2NzZmNDE2NDY0NzIgMHgwMAoKLy8gVGhpcyBURUFMIHdhcyBnZW5lcmF0ZWQgYnkgVEVBTFNjcmlwdCB2MC4xMDYuMgovLyBodHRwczovL2dpdGh1Yi5jb20vYWxnb3JhbmRmb3VuZGF0aW9uL1RFQUxTY3JpcHQKCi8vIFRoaXMgY29udHJhY3QgaXMgY29tcGxpYW50IHdpdGggYW5kL29yIGltcGxlbWVudHMgdGhlIGZvbGxvd2luZyBBUkNzOiBbIEFSQzQgXQoKLy8gVGhlIGZvbGxvd2luZyB0ZW4gbGluZXMgb2YgVEVBTCBoYW5kbGUgaW5pdGlhbCBwcm9ncmFtIGZsb3cKLy8gVGhpcyBwYXR0ZXJuIGlzIHVzZWQgdG8gbWFrZSBpdCBlYXN5IGZvciBhbnlvbmUgdG8gcGFyc2UgdGhlIHN0YXJ0IG9mIHRoZSBwcm9ncmFtIGFuZCBkZXRlcm1pbmUgaWYgYSBzcGVjaWZpYyBhY3Rpb24gaXMgYWxsb3dlZAovLyBIZXJlLCBhY3Rpb24gcmVmZXJzIHRvIHRoZSBPbkNvbXBsZXRlIGluIGNvbWJpbmF0aW9uIHdpdGggd2hldGhlciB0aGUgYXBwIGlzIGJlaW5nIGNyZWF0ZWQgb3IgY2FsbGVkCi8vIEV2ZXJ5IHBvc3NpYmxlIGFjdGlvbiBmb3IgdGhpcyBjb250cmFjdCBpcyByZXByZXNlbnRlZCBpbiB0aGUgc3dpdGNoIHN0YXRlbWVudAovLyBJZiB0aGUgYWN0aW9uIGlzIG5vdCBpbXBsZW1lbnRlZCBpbiB0aGUgY29udHJhY3QsIGl0cyByZXNwZWN0aXZlIGJyYW5jaCB3aWxsIGJlICIqTk9UX0lNUExFTUVOVEVEIiB3aGljaCBqdXN0IGNvbnRhaW5zICJlcnIiCnR4biBBcHBsaWNhdGlvbklECiEKaW50YyAzIC8vIDYKKgp0eG4gT25Db21wbGV0aW9uCisKc3dpdGNoICpjYWxsX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpjcmVhdGVfTm9PcCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQKCipOT1RfSU1QTEVNRU5URUQ6CgkvLyBUaGUgcmVxdWVzdGVkIGFjdGlvbiBpcyBub3QgaW1wbGVtZW50ZWQgaW4gdGhpcyBjb250cmFjdC4gQXJlIHlvdSB1c2luZyB0aGUgY29ycmVjdCBPbkNvbXBsZXRlPyBEaWQgeW91IHNldCB5b3VyIGFwcCBJRD8KCWVycgoKLy8gY3JlYXRlQXBwbGljYXRpb24oKXZvaWQKKmFiaV9yb3V0ZV9jcmVhdGVBcHBsaWNhdGlvbjoKCS8vIGV4ZWN1dGUgY3JlYXRlQXBwbGljYXRpb24oKXZvaWQKCWNhbGxzdWIgY3JlYXRlQXBwbGljYXRpb24KCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGNyZWF0ZUFwcGxpY2F0aW9uKCk6IHZvaWQKY3JlYXRlQXBwbGljYXRpb246Cglwcm90byAwIDAKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czo4MgoJLy8gdGhpcy5wbGF5ZXIxQWxnb0FkZHIudmFsdWUgPSBnbG9iYWxzLnplcm9BZGRyZXNzCglieXRlYyA1IC8vICAicGxheWVyMUFsZ29BZGRyIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjgzCgkvLyB0aGlzLnBsYXllcjJBbGdvQWRkci52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCWJ5dGVjIDYgLy8gICJwbGF5ZXIyQWxnb0FkZHIiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6ODQKCS8vIHRoaXMucGxheWVyM0FsZ29BZGRyLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNyAvLyAgInBsYXllcjNBbGdvQWRkciIKCWdsb2JhbCBaZXJvQWRkcmVzcwoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czo4NQoJLy8gdGhpcy5wbGF5ZXI0QWxnb0FkZHIudmFsdWUgPSBnbG9iYWxzLnplcm9BZGRyZXNzCglieXRlYyA4IC8vICAicGxheWVyNEFsZ29BZGRyIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjg2CgkvLyB0aGlzLnBsYXllcjVBbGdvQWRkci52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCWJ5dGVjIDkgLy8gICJwbGF5ZXI1QWxnb0FkZHIiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6ODcKCS8vIHRoaXMucGxheWVyNkFsZ29BZGRyLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgMTAgLy8gICJwbGF5ZXI2QWxnb0FkZHIiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6ODkKCS8vIHRoaXMubWFmZmlhLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJcHVzaGJ5dGVzIDB4NmQ2MTY2NjY2OTYxIC8vICJtYWZmaWEiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6OTAKCS8vIHRoaXMuZG9jdG9yLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJcHVzaGJ5dGVzIDB4NjQ2ZjYzNzQ2ZjcyIC8vICJkb2N0b3IiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6OTEKCS8vIHRoaXMuZmFybWVyLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJcHVzaGJ5dGVzIDB4NjY2MTcyNmQ2NTcyIC8vICJmYXJtZXIiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6OTIKCS8vIHRoaXMuYnV0Y2hlci52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCXB1c2hieXRlcyAweDYyNzU3NDYzNjg2NTcyIC8vICJidXRjaGVyIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjkzCgkvLyB0aGlzLmlubmtlZXAudmFsdWUgPSBnbG9iYWxzLnplcm9BZGRyZXNzCglwdXNoYnl0ZXMgMHg2OTZlNmU2YjY1NjU3MCAvLyAiaW5ua2VlcCIKCWdsb2JhbCBaZXJvQWRkcmVzcwoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czo5NAoJLy8gdGhpcy5ncm9jZXIudmFsdWUgPSBnbG9iYWxzLnplcm9BZGRyZXNzCglwdXNoYnl0ZXMgMHg2NzcyNmY2MzY1NzIgLy8gImdyb2NlciIKCWdsb2JhbCBaZXJvQWRkcmVzcwoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czo5NgoJLy8gdGhpcy5wbGF5ZXJzSm9pbmVkLnZhbHVlID0gMAoJYnl0ZWMgMyAvLyAgInBsYXllcnNKb2luZWQiCglpbnRjIDEgLy8gMAoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxMDQKCS8vIHRoaXMuZ2FtZVN0YXRlLnZhbHVlID0gMAoJYnl0ZWMgNCAvLyAgImdhbWVTdGF0ZSIKCWludGMgMSAvLyAwCglhcHBfZ2xvYmFsX3B1dAoJcmV0c3ViCgovLyBkdW1teU9wVXAodWludDY0KXVpbnQ2NAoqYWJpX3JvdXRlX2R1bW15T3BVcDoKCS8vIFRoZSBBQkkgcmV0dXJuIHByZWZpeAoJYnl0ZWMgMiAvLyAweDE1MWY3Yzc1CgoJLy8gaTogdWludDY0Cgl0eG5hIEFwcGxpY2F0aW9uQXJncyAxCglidG9pCgoJLy8gZXhlY3V0ZSBkdW1teU9wVXAodWludDY0KXVpbnQ2NAoJY2FsbHN1YiBkdW1teU9wVXAKCWl0b2IKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBkdW1teU9wVXAoaTogdWludDY0KTogdWludDY0Ci8vCi8vIER1bW15IE9wIFVwCi8vIER1bW15IG9wZXJhdGlvbiB0byBnZXQgbW9yZSBvcGNvZGUgYnVkZ2V0Ci8vIEBpIC0gVGhlIG51bWJlciB0byByZXR1cm4sIG5lY3NzYXJ5IHRvIGRlZHVwbGljYXRlIHRoZSBuYW1lCi8vIEByZXR1cm5zIHRoZSBudW1iZXIgKGJ1dCB3ZSBkbyBub3RoaW5nIHdpdGggaXQpCmR1bW15T3BVcDoKCXByb3RvIDEgMQoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjEyNAoJLy8gcmV0dXJuIGk7CglmcmFtZV9kaWcgLTEgLy8gaTogdWludDY0CglyZXRzdWIKCi8vIGRsb2coYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdKWJvb2wKKmFiaV9yb3V0ZV9kbG9nOgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglieXRlYyAyIC8vIDB4MTUxZjdjNzUKCgkvLyB6OiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDQKCWV4dHJhY3QgMiAwCgoJLy8gdjogYnl0ZVtdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAzCglleHRyYWN0IDIgMAoKCS8vIHg6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgoJZXh0cmFjdCAyIDAKCgkvLyBnOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWV4dHJhY3QgMiAwCgoJLy8gZXhlY3V0ZSBkbG9nKGJ5dGVbXSxieXRlW10sYnl0ZVtdLGJ5dGVbXSlib29sCgljYWxsc3ViIGRsb2cKCWJ5dGVjIDExIC8vIDB4MDAKCWludGMgMSAvLyAwCgl1bmNvdmVyIDIKCXNldGJpdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGRsb2coZzogYnl0ZXMsIHg6IGJ5dGVzLCB2OiBieXRlcywgejogYnl0ZXMpOiBib29sZWFuCmRsb2c6Cglwcm90byA0IDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTQ4CgkvLyBoYXNoID0ga2VjY2FrMjU2KGNvbmNhdChnLCBjb25jYXQoeCwgdikpKQoJZnJhbWVfZGlnIC0xIC8vIGc6IGJ5dGVzCglmcmFtZV9kaWcgLTIgLy8geDogYnl0ZXMKCWZyYW1lX2RpZyAtMyAvLyB2OiBieXRlcwoJY29uY2F0Cgljb25jYXQKCWtlY2NhazI1NgoJZnJhbWVfYnVyeSAwIC8vIGhhc2g6IGJ5dGVbMzJdCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTQ5CgkvLyBjaGFsbGVuZ2UgPSBidG9iaWdpbnQoaGFzaCkgJSBidG9iaWdpbnQoaGV4KEJMUzEyMzgxX0NVUlZFX09SREVSX0hFWCkpCglmcmFtZV9kaWcgMCAvLyBoYXNoOiBieXRlWzMyXQoJcHVzaGJ5dGVzIDB4NzNlZGE3NTMyOTlkN2Q0ODMzMzlkODA4MDlhMWQ4MDU1M2JkYTQwMmZmZmU1YmZlZmZmZmZmZmYwMDAwMDAwMQoJYiUKCWZyYW1lX2J1cnkgMSAvLyBjaGFsbGVuZ2U6IGJpZ2ludAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE1MQoJLy8gcmV0dXJuICgKCS8vICAgICAgIHYgPT09IGVjQWRkKCdCTFMxMl8zODFnMScsIGVjU2NhbGFyTXVsKCdCTFMxMl8zODFnMScsIGcsIHopLCBlY1NjYWxhck11bCgnQkxTMTJfMzgxZzEnLCB4LCByYXdCeXRlcyhjaGFsbGVuZ2UpKSkKCS8vICAgICApOwoJZnJhbWVfZGlnIC0zIC8vIHY6IGJ5dGVzCglmcmFtZV9kaWcgLTEgLy8gZzogYnl0ZXMKCWZyYW1lX2RpZyAtNCAvLyB6OiBieXRlcwoJZWNfc2NhbGFyX211bCBCTFMxMl8zODFnMQoJZnJhbWVfZGlnIC0yIC8vIHg6IGJ5dGVzCglmcmFtZV9kaWcgMSAvLyBjaGFsbGVuZ2U6IGJpZ2ludAoJZWNfc2NhbGFyX211bCBCTFMxMl8zODFnMQoJZWNfYWRkIEJMUzEyXzM4MWcxCgk9PQoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDEKCXJldHN1YgoKLy8gaGFzaFBvaW50VG9Qb2ludChieXRlW10pYnl0ZVtdCiphYmlfcm91dGVfaGFzaFBvaW50VG9Qb2ludDoKCS8vIFRoZSBBQkkgcmV0dXJuIHByZWZpeAoJYnl0ZWMgMiAvLyAweDE1MWY3Yzc1CgoJLy8gcG9pbnQ6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQoJZXh0cmFjdCAyIDAKCgkvLyBleGVjdXRlIGhhc2hQb2ludFRvUG9pbnQoYnl0ZVtdKWJ5dGVbXQoJY2FsbHN1YiBoYXNoUG9pbnRUb1BvaW50CglkdXAKCWxlbgoJaXRvYgoJZXh0cmFjdCA2IDIKCXN3YXAKCWNvbmNhdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGhhc2hQb2ludFRvUG9pbnQocG9pbnQ6IGJ5dGVzKTogYnl0ZXMKaGFzaFBvaW50VG9Qb2ludDoKCXByb3RvIDEgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXBuIDIKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxNTcKCS8vIGhhc2ggPSBrZWNjYWsyNTYocG9pbnQpCglmcmFtZV9kaWcgLTEgLy8gcG9pbnQ6IGJ5dGVzCglrZWNjYWsyNTYKCWZyYW1lX2J1cnkgMCAvLyBoYXNoOiBieXRlWzMyXQoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE1OAoJLy8gZnBFbGVtZW50ID0gYnRvYmlnaW50KGhhc2gpICUgYnRvYmlnaW50KGhleChCTFMxMjM4MV9GSUVMRF9NT0RVTFVTX0hFWCkpCglmcmFtZV9kaWcgMCAvLyBoYXNoOiBieXRlWzMyXQoJcHVzaGJ5dGVzIDB4MWEwMTExZWEzOTdmZTY5YTRiMWJhN2I2NDM0YmFjZDc2NDc3NGI4NGYzODUxMmJmNjczMGQyYTBmNmIwZjYyNDFlYWJmZmZlYjE1M2ZmZmZiOWZlZmZmZmZmZmZhYWFiCgliJQoJZnJhbWVfYnVyeSAxIC8vIGZwRWxlbWVudDogYmlnaW50CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTYxCgkvLyByZXN1bHQgPSBlY01hcFRvKCdCTFMxMl8zODFnMScsIHJhd0J5dGVzKGZwRWxlbWVudCkpCglmcmFtZV9kaWcgMSAvLyBmcEVsZW1lbnQ6IGJpZ2ludAoJZWNfbWFwX3RvIEJMUzEyXzM4MWcxCglmcmFtZV9idXJ5IDIgLy8gcmVzdWx0OiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxNjIKCS8vIHJldHVybiByZXN1bHQ7CglmcmFtZV9kaWcgMiAvLyByZXN1bHQ6IGJ5dGVbXQoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDIKCXJldHN1YgoKLy8gZ2V0R2FtZVN0YXRlKCl1aW50NjQKKmFiaV9yb3V0ZV9nZXRHYW1lU3RhdGU6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGV4ZWN1dGUgZ2V0R2FtZVN0YXRlKCl1aW50NjQKCWNhbGxzdWIgZ2V0R2FtZVN0YXRlCglpdG9iCgljb25jYXQKCWxvZwoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gZ2V0R2FtZVN0YXRlKCk6IHVpbnQ2NApnZXRHYW1lU3RhdGU6Cglwcm90byAwIDEKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxNjgKCS8vIHJldHVybiB0aGlzLmdhbWVTdGF0ZS52YWx1ZTsKCWJ5dGVjIDQgLy8gICJnYW1lU3RhdGUiCglhcHBfZ2xvYmFsX2dldAoJcmV0c3ViCgovLyBqb2luR2FtZUxvYmJ5KGJ5dGVbXSlib29sCiphYmlfcm91dGVfam9pbkdhbWVMb2JieToKCS8vIFRoZSBBQkkgcmV0dXJuIHByZWZpeAoJYnl0ZWMgMiAvLyAweDE1MWY3Yzc1CgoJLy8gTklaS19ETE9HOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWV4dHJhY3QgMiAwCgoJLy8gZXhlY3V0ZSBqb2luR2FtZUxvYmJ5KGJ5dGVbXSlib29sCgljYWxsc3ViIGpvaW5HYW1lTG9iYnkKCWJ5dGVjIDExIC8vIDB4MDAKCWludGMgMSAvLyAwCgl1bmNvdmVyIDIKCXNldGJpdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGpvaW5HYW1lTG9iYnkoTklaS19ETE9HOiBieXRlcyk6IGJvb2xlYW4Kam9pbkdhbWVMb2JieToKCXByb3RvIDEgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXBuIDMKCgkvLyAqaWYwX2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTcyCgkvLyB0aGlzLmdhbWVTdGF0ZS52YWx1ZSAhPT0gMAoJYnl0ZWMgNCAvLyAgImdhbWVTdGF0ZSIKCWFwcF9nbG9iYWxfZ2V0CglpbnRjIDEgLy8gMAoJIT0KCWJ6ICppZjBfZW5kCgoJLy8gKmlmMF9jb25zZXF1ZW50CgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxNzMKCS8vIHJldHVybiBmYWxzZTsKCWludGMgMSAvLyAwCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmMF9lbmQ6CgkvLyAqaWYxX2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTc2CgkvLyB0aGlzLnBsYXllcnNKb2luZWQudmFsdWUgPT09IDYKCWJ5dGVjIDMgLy8gICJwbGF5ZXJzSm9pbmVkIgoJYXBwX2dsb2JhbF9nZXQKCWludGMgMyAvLyA2Cgk9PQoJYnogKmlmMV9lbmQKCgkvLyAqaWYxX2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE3NwoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCWIgKmpvaW5HYW1lTG9iYnkqcmV0dXJuCgoqaWYxX2VuZDoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE4MAoJLy8gZyA9IGV4dHJhY3QzKE5JWktfRExPRywgMCwgQkxTMTIzODFHMV9MRU5HVEgpCglmcmFtZV9kaWcgLTEgLy8gTklaS19ETE9HOiBieXRlcwoJZXh0cmFjdCAwIDk2CglmcmFtZV9idXJ5IDAgLy8gZzogYnl0ZVtdCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTgxCgkvLyBSaW5nUEsgPSBleHRyYWN0MyhOSVpLX0RMT0csIEJMUzEyMzgxRzFfTEVOR1RILCBCTFMxMjM4MUcxX0xFTkdUSCkKCWZyYW1lX2RpZyAtMSAvLyBOSVpLX0RMT0c6IGJ5dGVzCglleHRyYWN0IDk2IDk2CglmcmFtZV9idXJ5IDEgLy8gUmluZ1BLOiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxODIKCS8vIHYgPSBleHRyYWN0MyhOSVpLX0RMT0csIEJMUzEyMzgxRzFfTEVOR1RIICogMiwgQkxTMTIzODFHMV9MRU5HVEgpCglmcmFtZV9kaWcgLTEgLy8gTklaS19ETE9HOiBieXRlcwoJZXh0cmFjdCAxOTIgOTYKCWZyYW1lX2J1cnkgMiAvLyB2OiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxODMKCS8vIHogPSBleHRyYWN0MyhOSVpLX0RMT0csIEJMUzEyMzgxRzFfTEVOR1RIICogMywgMzIpCglmcmFtZV9kaWcgLTEgLy8gTklaS19ETE9HOiBieXRlcwoJcHVzaGludCAyODgKCXB1c2hpbnQgMzIKCWV4dHJhY3QzCglmcmFtZV9idXJ5IDMgLy8gejogYnl0ZVtdCgoJLy8gKmlmMl9jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE4OAoJLy8gIXRoaXMuZGxvZyhnLCBSaW5nUEssIHYsIHopCglmcmFtZV9kaWcgMyAvLyB6OiBieXRlW10KCWZyYW1lX2RpZyAyIC8vIHY6IGJ5dGVbXQoJZnJhbWVfZGlnIDEgLy8gUmluZ1BLOiBieXRlW10KCWZyYW1lX2RpZyAwIC8vIGc6IGJ5dGVbXQoJY2FsbHN1YiBkbG9nCgkhCglieiAqaWYyX2VuZAoKCS8vICppZjJfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTg5CgkvLyByZXR1cm4gZmFsc2U7CglpbnRjIDEgLy8gMAoJYiAqam9pbkdhbWVMb2JieSpyZXR1cm4KCippZjJfZW5kOgoJLy8gKmlmM19jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE5MgoJLy8gIXRoaXMucXVpY2tBY2Nlc3NQS0JveGVzKDApLmV4aXN0cwoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWJveF9sZW4KCXN3YXAKCXBvcAoJIQoJYnogKmlmM19lbHNlCgoJLy8gKmlmM19jb25zZXF1ZW50CgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxOTMKCS8vIHRoaXMucXVpY2tBY2Nlc3NQS0JveGVzKDApLmNyZWF0ZShCTFMxMjM4MUcxX0xFTkdUSCkKCWJ5dGVjIDEgLy8gMHgwMDAwMDAwMDAwMDAwMDAwCglpbnRjIDIgLy8gOTYKCWJveF9jcmVhdGUKCXBvcAoJYiAqaWYzX2VuZAoKKmlmM19lbHNlOgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTk1CgkvLyB0aGlzLnF1aWNrQWNjZXNzUEtCb3hlcygwKS5yZXNpemUodGhpcy5xdWlja0FjY2Vzc1BLQm94ZXMoMCkuc2l6ZSArIEJMUzEyMzgxRzFfTEVOR1RIKQoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWR1cAoJYm94X2xlbgoKCS8vIGJveCB2YWx1ZSBkb2VzIG5vdCBleGlzdDogdGhpcy5xdWlja0FjY2Vzc1BLQm94ZXMoMCkuc2l6ZQoJYXNzZXJ0CglpbnRjIDIgLy8gOTYKCSsKCWJveF9yZXNpemUKCippZjNfZW5kOgoJLy8gKmlmNF9jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE5OQoJLy8gIXRoaXMucXVpY2tBY2Nlc3NQS0JveGVzKDApLmV4aXN0cwoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWJveF9sZW4KCXN3YXAKCXBvcAoJIQoJYnogKmlmNF9lbmQKCgkvLyAqaWY0X2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIwMAoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCWIgKmpvaW5HYW1lTG9iYnkqcmV0dXJuCgoqaWY0X2VuZDoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIwMwoJLy8gdGhpcy5xdWlja0FjY2Vzc1BLQm94ZXMoMCkucmVwbGFjZSh0aGlzLnBsYXllcnNKb2luZWQudmFsdWUgKiBCTFMxMjM4MUcxX0xFTkdUSCwgUmluZ1BLKQoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWJ5dGVjIDMgLy8gICJwbGF5ZXJzSm9pbmVkIgoJYXBwX2dsb2JhbF9nZXQKCWludGMgMiAvLyA5NgoJKgoJZnJhbWVfZGlnIDEgLy8gUmluZ1BLOiBieXRlW10KCWJveF9yZXBsYWNlCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjA0CgkvLyB0aGlzLnBsYXllcnNKb2luZWQudmFsdWUgKz0gMQoJYnl0ZWMgMyAvLyAgInBsYXllcnNKb2luZWQiCglhcHBfZ2xvYmFsX2dldAoJaW50YyAwIC8vIDEKCSsKCWJ5dGVjIDMgLy8gICJwbGF5ZXJzSm9pbmVkIgoJc3dhcAoJYXBwX2dsb2JhbF9wdXQKCgkvLyAqaWY1X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjA2CgkvLyB0aGlzLnBsYXllcjFBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNSAvLyAgInBsYXllcjFBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY1X2VuZAoKCS8vICppZjVfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjA3CgkvLyB0aGlzLnBsYXllcjFBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgNSAvLyAgInBsYXllcjFBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjA4CgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmNV9lbmQ6CgkvLyAqaWY2X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjEwCgkvLyB0aGlzLnBsYXllcjJBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNiAvLyAgInBsYXllcjJBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY2X2VuZAoKCS8vICppZjZfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjExCgkvLyB0aGlzLnBsYXllcjJBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgNiAvLyAgInBsYXllcjJBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjEyCgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmNl9lbmQ6CgkvLyAqaWY3X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjE0CgkvLyB0aGlzLnBsYXllcjNBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNyAvLyAgInBsYXllcjNBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY3X2VuZAoKCS8vICppZjdfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjE1CgkvLyB0aGlzLnBsYXllcjNBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgNyAvLyAgInBsYXllcjNBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjE2CgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmN19lbmQ6CgkvLyAqaWY4X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjE4CgkvLyB0aGlzLnBsYXllcjRBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgOCAvLyAgInBsYXllcjRBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY4X2VuZAoKCS8vICppZjhfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjE5CgkvLyB0aGlzLnBsYXllcjRBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgOCAvLyAgInBsYXllcjRBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjIwCgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmOF9lbmQ6CgkvLyAqaWY5X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjIyCgkvLyB0aGlzLnBsYXllcjVBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgOSAvLyAgInBsYXllcjVBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY5X2VuZAoKCS8vICppZjlfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjIzCgkvLyB0aGlzLnBsYXllcjVBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgOSAvLyAgInBsYXllcjVBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjI0CgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmOV9lbmQ6CgkvLyAqaWYxMF9jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIyNgoJLy8gdGhpcy5wbGF5ZXI2QWxnb0FkZHIudmFsdWUgPT09IGdsb2JhbHMuemVyb0FkZHJlc3MKCWJ5dGVjIDEwIC8vICAicGxheWVyNkFsZ29BZGRyIgoJYXBwX2dsb2JhbF9nZXQKCWdsb2JhbCBaZXJvQWRkcmVzcwoJPT0KCWJ6ICppZjEwX2VuZAoKCS8vICppZjEwX2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIyNwoJLy8gdGhpcy5wbGF5ZXI2QWxnb0FkZHIudmFsdWUgPSB0aGlzLnR4bi5zZW5kZXIKCWJ5dGVjIDEwIC8vICAicGxheWVyNkFsZ29BZGRyIgoJdHhuIFNlbmRlcgoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMjgKCS8vIHRoaXMuZ2FtZVN0YXRlLnZhbHVlID0gMQoJYnl0ZWMgNCAvLyAgImdhbWVTdGF0ZSIKCWludGMgMCAvLyAxCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIyOQoJLy8gcmV0dXJuIHRydWU7CglpbnRjIDAgLy8gMQoJYiAqam9pbkdhbWVMb2JieSpyZXR1cm4KCippZjEwX2VuZDoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIzMgoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCipqb2luR2FtZUxvYmJ5KnJldHVybjoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDMKCXJldHN1YgoKLy8gYXNzaWduUm9sZShieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdKWJvb2wKKmFiaV9yb3V0ZV9hc3NpZ25Sb2xlOgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglieXRlYyAyIC8vIDB4MTUxZjdjNzUKCgkvLyBjaGFsbGVuZ2VzOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDUKCWV4dHJhY3QgMiAwCgoJLy8gc2lnOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDQKCWV4dHJhY3QgMiAwCgoJLy8ga2V5SW1hZ2U6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMwoJZXh0cmFjdCAyIDAKCgkvLyBwa0FsbDogYnl0ZVtdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAyCglleHRyYWN0IDIgMAoKCS8vIG1zZzogYnl0ZVtdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAxCglleHRyYWN0IDIgMAoKCS8vIGV4ZWN1dGUgYXNzaWduUm9sZShieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdKWJvb2wKCWNhbGxzdWIgYXNzaWduUm9sZQoJYnl0ZWMgMTEgLy8gMHgwMAoJaW50YyAxIC8vIDAKCXVuY292ZXIgMgoJc2V0Yml0Cgljb25jYXQKCWxvZwoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gYXNzaWduUm9sZShtc2c6IGJ5dGVzLCBwa0FsbDogYnl0ZXMsIGtleUltYWdlOiBieXRlcywgc2lnOiBieXRlcywgY2hhbGxlbmdlczogYnl0ZXMpOiBib29sZWFuCmFzc2lnblJvbGU6Cglwcm90byA1IDEKCgkvLyAqaWYxMV9jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI1NQoJLy8gdGhpcy5nYW1lU3RhdGUudmFsdWUgIT09IDEKCWJ5dGVjIDQgLy8gICJnYW1lU3RhdGUiCglhcHBfZ2xvYmFsX2dldAoJaW50YyAwIC8vIDEKCSE9CglieiAqaWYxMV9lbmQKCgkvLyAqaWYxMV9jb25zZXF1ZW50CgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyNTYKCS8vIHJldHVybiBmYWxzZTsKCWludGMgMSAvLyAwCglyZXRzdWIKCippZjExX2VuZDoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI2NwoJLy8gYXNzZXJ0KCF0aGlzLmhhc2hGaWx0ZXIocmF3Qnl0ZXMoc2hhMjU2KGtleUltYWdlKSkpLmV4aXN0cykKCWZyYW1lX2RpZyAtMyAvLyBrZXlJbWFnZTogYnl0ZXMKCXNoYTI1NgoJYm94X2xlbgoJc3dhcAoJcG9wCgkhCglhc3NlcnQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyNjgKCS8vIHRoaXMuaGFzaEZpbHRlcihyYXdCeXRlcyhzaGEyNTYoa2V5SW1hZ2UpKSkuY3JlYXRlKDApCglmcmFtZV9kaWcgLTMgLy8ga2V5SW1hZ2U6IGJ5dGVzCglzaGEyNTYKCWludGMgMSAvLyAwCglib3hfY3JlYXRlCglwb3AKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyNzMKCS8vIGFzc2VydChtc2cgPT09ICdIZWxsbyBXb3JsZCcpCglmcmFtZV9kaWcgLTEgLy8gbXNnOiBieXRlcwoJcHVzaGJ5dGVzIDB4NDg2NTZjNmM2ZjIwNTc2ZjcyNmM2NCAvLyAiSGVsbG8gV29ybGQiCgk9PQoJYXNzZXJ0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6Mjc2CgkvLyBhc3NlcnQodGhpcy5xdWlja0FjY2Vzc1BLQm94ZXMoMCkuZXh0cmFjdCgwLCA2ICogQkxTMTIzODFHMV9MRU5HVEgpID09PSBwa0FsbCkKCWJ5dGVjIDEgLy8gMHgwMDAwMDAwMDAwMDAwMDAwCglpbnRjIDEgLy8gMAoJcHVzaGludCA1NzYKCWJveF9leHRyYWN0CglmcmFtZV9kaWcgLTIgLy8gcGtBbGw6IGJ5dGVzCgk9PQoJYXNzZXJ0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6Mjc5CgkvLyBhc3NlcnQoZXh0cmFjdDMoc2lnLCAwLCBSSU5HX1NJR19OT05DRV9MRU5HVEgpID09PSBleHRyYWN0MyhjaGFsbGVuZ2VzLCAwLCBSSU5HX1NJR19DSEFMTF9MRU5HVEgpKQoJZnJhbWVfZGlnIC00IC8vIHNpZzogYnl0ZXMKCWV4dHJhY3QgMCAzMgoJZnJhbWVfZGlnIC01IC8vIGNoYWxsZW5nZXM6IGJ5dGVzCglleHRyYWN0IDAgMzIKCT09Cglhc3NlcnQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czozMTcKCS8vIHJldHVybiBmYWxzZTsKCWludGMgMSAvLyAwCglyZXRzdWIKCipjcmVhdGVfTm9PcDoKCXB1c2hieXRlcyAweGI4NDQ3YjM2IC8vIG1ldGhvZCAiY3JlYXRlQXBwbGljYXRpb24oKXZvaWQiCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAwCgltYXRjaCAqYWJpX3JvdXRlX2NyZWF0ZUFwcGxpY2F0aW9uCgoJLy8gdGhpcyBjb250cmFjdCBkb2VzIG5vdCBpbXBsZW1lbnQgdGhlIGdpdmVuIEFCSSBtZXRob2QgZm9yIGNyZWF0ZSBOb09wCgllcnIKCipjYWxsX05vT3A6CglwdXNoYnl0ZXMgMHg3MGNlZWExYiAvLyBtZXRob2QgImR1bW15T3BVcCh1aW50NjQpdWludDY0IgoJcHVzaGJ5dGVzIDB4YTAxN2JkOGMgLy8gbWV0aG9kICJkbG9nKGJ5dGVbXSxieXRlW10sYnl0ZVtdLGJ5dGVbXSlib29sIgoJcHVzaGJ5dGVzIDB4ZDc3MmNkYmMgLy8gbWV0aG9kICJoYXNoUG9pbnRUb1BvaW50KGJ5dGVbXSlieXRlW10iCglwdXNoYnl0ZXMgMHhmNTQwYmEyYyAvLyBtZXRob2QgImdldEdhbWVTdGF0ZSgpdWludDY0IgoJcHVzaGJ5dGVzIDB4M2FhMjBjZWEgLy8gbWV0aG9kICJqb2luR2FtZUxvYmJ5KGJ5dGVbXSlib29sIgoJcHVzaGJ5dGVzIDB4Yzg5YzAxMDEgLy8gbWV0aG9kICJhc3NpZ25Sb2xlKGJ5dGVbXSxieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10pYm9vbCIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfZHVtbXlPcFVwICphYmlfcm91dGVfZGxvZyAqYWJpX3JvdXRlX2hhc2hQb2ludFRvUG9pbnQgKmFiaV9yb3V0ZV9nZXRHYW1lU3RhdGUgKmFiaV9yb3V0ZV9qb2luR2FtZUxvYmJ5ICphYmlfcm91dGVfYXNzaWduUm9sZQoKCS8vIHRoaXMgY29udHJhY3QgZG9lcyBub3QgaW1wbGVtZW50IHRoZSBnaXZlbiBBQkkgbWV0aG9kIGZvciBjYWxsIE5vT3AKCWVycg==",
+    "approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCmludGNibG9jayAxIDAgOTYgNgpieXRlY2Jsb2NrIDB4IDB4MDAwMDAwMDAwMDAwMDAwMCAweDE1MWY3Yzc1IDB4NzA2YzYxNzk2NTcyNzM0YTZmNjk2ZTY1NjQgMHg2NzYxNmQ2NTUzNzQ2MTc0NjUgMHg3MDZjNjE3OTY1NzIzMTQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzMjQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzMzQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzNDQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzNTQxNmM2NzZmNDE2NDY0NzIgMHg3MDZjNjE3OTY1NzIzNjQxNmM2NzZmNDE2NDY0NzIgMHgwMCAweDFhMDExMWVhMzk3ZmU2OWE0YjFiYTdiNjQzNGJhY2Q3NjQ3NzRiODRmMzg1MTJiZjY3MzBkMmEwZjZiMGY2MjQxZWFiZmZmZWIxNTNmZmZmYjlmZWZmZmZmZmZmYWFhYiAweDczZWRhNzUzMjk5ZDdkNDgzMzM5ZDgwODA5YTFkODA1NTNiZGE0MDJmZmZlNWJmZWZmZmZmZmZmMDAwMDAwMDEKCi8vIFRoaXMgVEVBTCB3YXMgZ2VuZXJhdGVkIGJ5IFRFQUxTY3JpcHQgdjAuMTA2LjIKLy8gaHR0cHM6Ly9naXRodWIuY29tL2FsZ29yYW5kZm91bmRhdGlvbi9URUFMU2NyaXB0CgovLyBUaGlzIGNvbnRyYWN0IGlzIGNvbXBsaWFudCB3aXRoIGFuZC9vciBpbXBsZW1lbnRzIHRoZSBmb2xsb3dpbmcgQVJDczogWyBBUkM0IF0KCi8vIFRoZSBmb2xsb3dpbmcgdGVuIGxpbmVzIG9mIFRFQUwgaGFuZGxlIGluaXRpYWwgcHJvZ3JhbSBmbG93Ci8vIFRoaXMgcGF0dGVybiBpcyB1c2VkIHRvIG1ha2UgaXQgZWFzeSBmb3IgYW55b25lIHRvIHBhcnNlIHRoZSBzdGFydCBvZiB0aGUgcHJvZ3JhbSBhbmQgZGV0ZXJtaW5lIGlmIGEgc3BlY2lmaWMgYWN0aW9uIGlzIGFsbG93ZWQKLy8gSGVyZSwgYWN0aW9uIHJlZmVycyB0byB0aGUgT25Db21wbGV0ZSBpbiBjb21iaW5hdGlvbiB3aXRoIHdoZXRoZXIgdGhlIGFwcCBpcyBiZWluZyBjcmVhdGVkIG9yIGNhbGxlZAovLyBFdmVyeSBwb3NzaWJsZSBhY3Rpb24gZm9yIHRoaXMgY29udHJhY3QgaXMgcmVwcmVzZW50ZWQgaW4gdGhlIHN3aXRjaCBzdGF0ZW1lbnQKLy8gSWYgdGhlIGFjdGlvbiBpcyBub3QgaW1wbGVtZW50ZWQgaW4gdGhlIGNvbnRyYWN0LCBpdHMgcmVzcGVjdGl2ZSBicmFuY2ggd2lsbCBiZSAiKk5PVF9JTVBMRU1FTlRFRCIgd2hpY2gganVzdCBjb250YWlucyAiZXJyIgp0eG4gQXBwbGljYXRpb25JRAohCmludGMgMyAvLyA2CioKdHhuIE9uQ29tcGxldGlvbgorCnN3aXRjaCAqY2FsbF9Ob09wICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqY3JlYXRlX05vT3AgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVEICpOT1RfSU1QTEVNRU5URUQgKk5PVF9JTVBMRU1FTlRFRCAqTk9UX0lNUExFTUVOVEVECgoqTk9UX0lNUExFTUVOVEVEOgoJLy8gVGhlIHJlcXVlc3RlZCBhY3Rpb24gaXMgbm90IGltcGxlbWVudGVkIGluIHRoaXMgY29udHJhY3QuIEFyZSB5b3UgdXNpbmcgdGhlIGNvcnJlY3QgT25Db21wbGV0ZT8gRGlkIHlvdSBzZXQgeW91ciBhcHAgSUQ/CgllcnIKCi8vIGNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkCiphYmlfcm91dGVfY3JlYXRlQXBwbGljYXRpb246CgkvLyBleGVjdXRlIGNyZWF0ZUFwcGxpY2F0aW9uKCl2b2lkCgljYWxsc3ViIGNyZWF0ZUFwcGxpY2F0aW9uCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBjcmVhdGVBcHBsaWNhdGlvbigpOiB2b2lkCmNyZWF0ZUFwcGxpY2F0aW9uOgoJcHJvdG8gMCAwCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6ODMKCS8vIHRoaXMucGxheWVyMUFsZ29BZGRyLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNSAvLyAgInBsYXllcjFBbGdvQWRkciIKCWdsb2JhbCBaZXJvQWRkcmVzcwoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czo4NAoJLy8gdGhpcy5wbGF5ZXIyQWxnb0FkZHIudmFsdWUgPSBnbG9iYWxzLnplcm9BZGRyZXNzCglieXRlYyA2IC8vICAicGxheWVyMkFsZ29BZGRyIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjg1CgkvLyB0aGlzLnBsYXllcjNBbGdvQWRkci52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCWJ5dGVjIDcgLy8gICJwbGF5ZXIzQWxnb0FkZHIiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6ODYKCS8vIHRoaXMucGxheWVyNEFsZ29BZGRyLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgOCAvLyAgInBsYXllcjRBbGdvQWRkciIKCWdsb2JhbCBaZXJvQWRkcmVzcwoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czo4NwoJLy8gdGhpcy5wbGF5ZXI1QWxnb0FkZHIudmFsdWUgPSBnbG9iYWxzLnplcm9BZGRyZXNzCglieXRlYyA5IC8vICAicGxheWVyNUFsZ29BZGRyIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjg4CgkvLyB0aGlzLnBsYXllcjZBbGdvQWRkci52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCWJ5dGVjIDEwIC8vICAicGxheWVyNkFsZ29BZGRyIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjkwCgkvLyB0aGlzLm1hZmZpYS52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCXB1c2hieXRlcyAweDZkNjE2NjY2Njk2MSAvLyAibWFmZmlhIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjkxCgkvLyB0aGlzLmRvY3Rvci52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCXB1c2hieXRlcyAweDY0NmY2Mzc0NmY3MiAvLyAiZG9jdG9yIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjkyCgkvLyB0aGlzLmZhcm1lci52YWx1ZSA9IGdsb2JhbHMuemVyb0FkZHJlc3MKCXB1c2hieXRlcyAweDY2NjE3MjZkNjU3MiAvLyAiZmFybWVyIgoJZ2xvYmFsIFplcm9BZGRyZXNzCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjkzCgkvLyB0aGlzLmJ1dGNoZXIudmFsdWUgPSBnbG9iYWxzLnplcm9BZGRyZXNzCglwdXNoYnl0ZXMgMHg2Mjc1NzQ2MzY4NjU3MiAvLyAiYnV0Y2hlciIKCWdsb2JhbCBaZXJvQWRkcmVzcwoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czo5NAoJLy8gdGhpcy5pbm5rZWVwLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJcHVzaGJ5dGVzIDB4Njk2ZTZlNmI2NTY1NzAgLy8gImlubmtlZXAiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6OTUKCS8vIHRoaXMuZ3JvY2VyLnZhbHVlID0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJcHVzaGJ5dGVzIDB4Njc3MjZmNjM2NTcyIC8vICJncm9jZXIiCglnbG9iYWwgWmVyb0FkZHJlc3MKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6OTcKCS8vIHRoaXMucGxheWVyc0pvaW5lZC52YWx1ZSA9IDAKCWJ5dGVjIDMgLy8gICJwbGF5ZXJzSm9pbmVkIgoJaW50YyAxIC8vIDAKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTA1CgkvLyB0aGlzLmdhbWVTdGF0ZS52YWx1ZSA9IDAKCWJ5dGVjIDQgLy8gICJnYW1lU3RhdGUiCglpbnRjIDEgLy8gMAoJYXBwX2dsb2JhbF9wdXQKCXJldHN1YgoKLy8gZHVtbXlPcFVwKHVpbnQ2NCl1aW50NjQKKmFiaV9yb3V0ZV9kdW1teU9wVXA6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGk6IHVpbnQ2NAoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQoJYnRvaQoKCS8vIGV4ZWN1dGUgZHVtbXlPcFVwKHVpbnQ2NCl1aW50NjQKCWNhbGxzdWIgZHVtbXlPcFVwCglpdG9iCgljb25jYXQKCWxvZwoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gZHVtbXlPcFVwKGk6IHVpbnQ2NCk6IHVpbnQ2NAovLwovLyBEdW1teSBPcCBVcAovLyBEdW1teSBvcGVyYXRpb24gdG8gZ2V0IG1vcmUgb3Bjb2RlIGJ1ZGdldAovLyBAaSAtIFRoZSBudW1iZXIgdG8gcmV0dXJuLCBuZWNzc2FyeSB0byBkZWR1cGxpY2F0ZSB0aGUgbmFtZQovLyBAcmV0dXJucyB0aGUgbnVtYmVyIChidXQgd2UgZG8gbm90aGluZyB3aXRoIGl0KQpkdW1teU9wVXA6Cglwcm90byAxIDEKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxMjUKCS8vIHJldHVybiBpOwoJZnJhbWVfZGlnIC0xIC8vIGk6IHVpbnQ2NAoJcmV0c3ViCgovLyB0ZXN0dChieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdKWJ5dGVbXQoqYWJpX3JvdXRlX3Rlc3R0OgoJLy8gVGhlIEFCSSByZXR1cm4gcHJlZml4CglieXRlYyAyIC8vIDB4MTUxZjdjNzUKCgkvLyBjOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDUKCWV4dHJhY3QgMiAwCgoJLy8gbm9uY2U6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgNAoJZXh0cmFjdCAyIDAKCgkvLyBrZXlJbWFnZTogYnl0ZVtdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAzCglleHRyYWN0IDIgMAoKCS8vIHBrOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDIKCWV4dHJhY3QgMiAwCgoJLy8gbXNnOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWV4dHJhY3QgMiAwCgoJLy8gZXhlY3V0ZSB0ZXN0dChieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdKWJ5dGVbXQoJY2FsbHN1YiB0ZXN0dAoJZHVwCglsZW4KCWl0b2IKCWV4dHJhY3QgNiAyCglzd2FwCgljb25jYXQKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyB0ZXN0dChtc2c6IGJ5dGVzLCBwazogYnl0ZXMsIGtleUltYWdlOiBieXRlcywgbm9uY2U6IGJ5dGVzLCBjOiBieXRlcyk6IGJ5dGVzCi8vCi8vIFRFU1QKdGVzdHQ6Cglwcm90byA1IDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwbiA1CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTM3CgkvLyBsZWZ0ID0gZWNBZGQoCgkvLyAgICAgICAnQkxTMTJfMzgxZzEnLAoJLy8gICAgICAgZWNTY2FsYXJNdWwoJ0JMUzEyXzM4MWcxJywgaGV4KEJMUzEyMzgxRzFfQkFTRVBPSU5UX0JZVEVTKSwgbm9uY2UpLAoJLy8gICAgICAgZWNTY2FsYXJNdWwoJ0JMUzEyXzM4MWcxJywgcGssIGMpCgkvLyAgICAgKQoJcHVzaGJ5dGVzIDB4MTdmMWQzYTczMTk3ZDc5NDI2OTU2MzhjNGZhOWFjMGZjMzY4OGM0Zjk3NzRiOTA1YTE0ZTNhM2YxNzFiYWM1ODZjNTVlODNmZjk3YTFhZWZmYjNhZjAwYWRiMjJjNmJiMDhiM2Y0ODFlM2FhYTBmMWEwOWUzMGVkNzQxZDhhZTRmY2Y1ZTA5NWQ1ZDAwYWY2MDBkYjE4Y2IyYzA0YjNlZGQwM2NjNzQ0YTI4ODhhZTQwY2FhMjMyOTQ2YzVlN2UxCglmcmFtZV9kaWcgLTQgLy8gbm9uY2U6IGJ5dGVzCgllY19zY2FsYXJfbXVsIEJMUzEyXzM4MWcxCglmcmFtZV9kaWcgLTIgLy8gcGs6IGJ5dGVzCglmcmFtZV9kaWcgLTUgLy8gYzogYnl0ZXMKCWVjX3NjYWxhcl9tdWwgQkxTMTJfMzgxZzEKCWVjX2FkZCBCTFMxMl8zODFnMQoJZnJhbWVfYnVyeSAwIC8vIGxlZnQ6IGJ5dGVbXQoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE0NQoJLy8gaGFzaCA9IGtlY2NhazI1NihwaykKCWZyYW1lX2RpZyAtMiAvLyBwazogYnl0ZXMKCWtlY2NhazI1NgoJZnJhbWVfYnVyeSAxIC8vIGhhc2g6IGJ5dGVbMzJdCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTQ2CgkvLyBmcEVsZW1lbnQgPSBidG9iaWdpbnQoaGFzaCkgJSBidG9iaWdpbnQoaGV4KEJMUzEyMzgxX0ZJRUxEX01PRFVMVVNfSEVYKSkKCWZyYW1lX2RpZyAxIC8vIGhhc2g6IGJ5dGVbMzJdCglieXRlYyAxMiAvLyAweDFhMDExMWVhMzk3ZmU2OWE0YjFiYTdiNjQzNGJhY2Q3NjQ3NzRiODRmMzg1MTJiZjY3MzBkMmEwZjZiMGY2MjQxZWFiZmZmZWIxNTNmZmZmYjlmZWZmZmZmZmZmYWFhYgoJYiUKCWZyYW1lX2J1cnkgMiAvLyBmcEVsZW1lbnQ6IGJpZ2ludAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjE0OQoJLy8gaHAycCA9IGVjTWFwVG8oJ0JMUzEyXzM4MWcxJywgcmF3Qnl0ZXMoZnBFbGVtZW50KSkKCWZyYW1lX2RpZyAyIC8vIGZwRWxlbWVudDogYmlnaW50CgllY19tYXBfdG8gQkxTMTJfMzgxZzEKCWZyYW1lX2J1cnkgMyAvLyBocDJwOiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxNTUKCS8vIHJpZ2h0ID0gZWNBZGQoCgkvLyAgICAgICAnQkxTMTJfMzgxZzEnLAoJLy8gICAgICAgZWNTY2FsYXJNdWwoJ0JMUzEyXzM4MWcxJywgaHAycCwgbm9uY2UpLAoJLy8gICAgICAgZWNTY2FsYXJNdWwoJ0JMUzEyXzM4MWcxJywga2V5SW1hZ2UsIGMpCgkvLyAgICAgKQoJZnJhbWVfZGlnIDMgLy8gaHAycDogYnl0ZVtdCglmcmFtZV9kaWcgLTQgLy8gbm9uY2U6IGJ5dGVzCgllY19zY2FsYXJfbXVsIEJMUzEyXzM4MWcxCglmcmFtZV9kaWcgLTMgLy8ga2V5SW1hZ2U6IGJ5dGVzCglmcmFtZV9kaWcgLTUgLy8gYzogYnl0ZXMKCWVjX3NjYWxhcl9tdWwgQkxTMTJfMzgxZzEKCWVjX2FkZCBCTFMxMl8zODFnMQoJZnJhbWVfYnVyeSA0IC8vIHJpZ2h0OiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoxNjUKCS8vIGggPSByYXdCeXRlcygKCS8vICAgICAgIGJ0b2JpZ2ludChrZWNjYWsyNTYoY29uY2F0KGNvbmNhdChtc2csIGxlZnQpLCByaWdodCkpKSAlIGJ0b2JpZ2ludChoZXgoQkxTMTIzODFfQ1VSVkVfT1JERVJfSEVYKSkKCS8vICAgICApCglmcmFtZV9kaWcgLTEgLy8gbXNnOiBieXRlcwoJZnJhbWVfZGlnIDAgLy8gbGVmdDogYnl0ZVtdCgljb25jYXQKCWZyYW1lX2RpZyA0IC8vIHJpZ2h0OiBieXRlW10KCWNvbmNhdAoJa2VjY2FrMjU2CglieXRlYyAxMyAvLyAweDczZWRhNzUzMjk5ZDdkNDgzMzM5ZDgwODA5YTFkODA1NTNiZGE0MDJmZmZlNWJmZWZmZmZmZmZmMDAwMDAwMDEKCWIlCglmcmFtZV9idXJ5IDUgLy8gaDogYnl0ZVtdCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MTY5CgkvLyByZXR1cm4gaDsKCWZyYW1lX2RpZyA1IC8vIGg6IGJ5dGVbXQoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDUKCXJldHN1YgoKLy8gZGxvZyhieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10pYm9vbAoqYWJpX3JvdXRlX2Rsb2c6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIHo6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgNAoJZXh0cmFjdCAyIDAKCgkvLyB2OiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDMKCWV4dHJhY3QgMiAwCgoJLy8geDogYnl0ZVtdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAyCglleHRyYWN0IDIgMAoKCS8vIGc6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQoJZXh0cmFjdCAyIDAKCgkvLyBleGVjdXRlIGRsb2coYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdKWJvb2wKCWNhbGxzdWIgZGxvZwoJYnl0ZWMgMTEgLy8gMHgwMAoJaW50YyAxIC8vIDAKCXVuY292ZXIgMgoJc2V0Yml0Cgljb25jYXQKCWxvZwoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gZGxvZyhnOiBieXRlcywgeDogYnl0ZXMsIHY6IGJ5dGVzLCB6OiBieXRlcyk6IGJvb2xlYW4KZGxvZzoKCXByb3RvIDQgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXAKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMDAKCS8vIGhhc2ggPSBrZWNjYWsyNTYoY29uY2F0KGcsIGNvbmNhdCh4LCB2KSkpCglmcmFtZV9kaWcgLTEgLy8gZzogYnl0ZXMKCWZyYW1lX2RpZyAtMiAvLyB4OiBieXRlcwoJZnJhbWVfZGlnIC0zIC8vIHY6IGJ5dGVzCgljb25jYXQKCWNvbmNhdAoJa2VjY2FrMjU2CglmcmFtZV9idXJ5IDAgLy8gaGFzaDogYnl0ZVszMl0KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMDEKCS8vIGNoYWxsZW5nZSA9IGJ0b2JpZ2ludChoYXNoKSAlIGJ0b2JpZ2ludChoZXgoQkxTMTIzODFfQ1VSVkVfT1JERVJfSEVYKSkKCWZyYW1lX2RpZyAwIC8vIGhhc2g6IGJ5dGVbMzJdCglieXRlYyAxMyAvLyAweDczZWRhNzUzMjk5ZDdkNDgzMzM5ZDgwODA5YTFkODA1NTNiZGE0MDJmZmZlNWJmZWZmZmZmZmZmMDAwMDAwMDEKCWIlCglmcmFtZV9idXJ5IDEgLy8gY2hhbGxlbmdlOiBiaWdpbnQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMDMKCS8vIHJldHVybiAoCgkvLyAgICAgICB2ID09PSBlY0FkZCgnQkxTMTJfMzgxZzEnLCBlY1NjYWxhck11bCgnQkxTMTJfMzgxZzEnLCBnLCB6KSwgZWNTY2FsYXJNdWwoJ0JMUzEyXzM4MWcxJywgeCwgcmF3Qnl0ZXMoY2hhbGxlbmdlKSkpCgkvLyAgICAgKTsKCWZyYW1lX2RpZyAtMyAvLyB2OiBieXRlcwoJZnJhbWVfZGlnIC0xIC8vIGc6IGJ5dGVzCglmcmFtZV9kaWcgLTQgLy8gejogYnl0ZXMKCWVjX3NjYWxhcl9tdWwgQkxTMTJfMzgxZzEKCWZyYW1lX2RpZyAtMiAvLyB4OiBieXRlcwoJZnJhbWVfZGlnIDEgLy8gY2hhbGxlbmdlOiBiaWdpbnQKCWVjX3NjYWxhcl9tdWwgQkxTMTJfMzgxZzEKCWVjX2FkZCBCTFMxMl8zODFnMQoJPT0KCgkvLyBzZXQgdGhlIHN1YnJvdXRpbmUgcmV0dXJuIHZhbHVlCglmcmFtZV9idXJ5IDAKCgkvLyBwb3AgYWxsIGxvY2FsIHZhcmlhYmxlcyBmcm9tIHRoZSBzdGFjawoJcG9wbiAxCglyZXRzdWIKCi8vIGhhc2hQb2ludFRvUG9pbnQoYnl0ZVtdKWJ5dGVbXQoqYWJpX3JvdXRlX2hhc2hQb2ludFRvUG9pbnQ6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIHBvaW50OiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWV4dHJhY3QgMiAwCgoJLy8gZXhlY3V0ZSBoYXNoUG9pbnRUb1BvaW50KGJ5dGVbXSlieXRlW10KCWNhbGxzdWIgaGFzaFBvaW50VG9Qb2ludAoJZHVwCglsZW4KCWl0b2IKCWV4dHJhY3QgNiAyCglzd2FwCgljb25jYXQKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBoYXNoUG9pbnRUb1BvaW50KHBvaW50OiBieXRlcyk6IGJ5dGVzCmhhc2hQb2ludFRvUG9pbnQ6Cglwcm90byAxIDEKCgkvLyBQdXNoIGVtcHR5IGJ5dGVzIGFmdGVyIHRoZSBmcmFtZSBwb2ludGVyIHRvIHJlc2VydmUgc3BhY2UgZm9yIGxvY2FsIHZhcmlhYmxlcwoJYnl0ZWMgMCAvLyAweAoJZHVwbiAyCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjA5CgkvLyBoYXNoID0ga2VjY2FrMjU2KHBvaW50KQoJZnJhbWVfZGlnIC0xIC8vIHBvaW50OiBieXRlcwoJa2VjY2FrMjU2CglmcmFtZV9idXJ5IDAgLy8gaGFzaDogYnl0ZVszMl0KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMTAKCS8vIGZwRWxlbWVudCA9IGJ0b2JpZ2ludChoYXNoKSAlIGJ0b2JpZ2ludChoZXgoQkxTMTIzODFfRklFTERfTU9EVUxVU19IRVgpKQoJZnJhbWVfZGlnIDAgLy8gaGFzaDogYnl0ZVszMl0KCWJ5dGVjIDEyIC8vIDB4MWEwMTExZWEzOTdmZTY5YTRiMWJhN2I2NDM0YmFjZDc2NDc3NGI4NGYzODUxMmJmNjczMGQyYTBmNmIwZjYyNDFlYWJmZmZlYjE1M2ZmZmZiOWZlZmZmZmZmZmZhYWFiCgliJQoJZnJhbWVfYnVyeSAxIC8vIGZwRWxlbWVudDogYmlnaW50CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjEzCgkvLyByZXN1bHQgPSBlY01hcFRvKCdCTFMxMl8zODFnMScsIHJhd0J5dGVzKGZwRWxlbWVudCkpCglmcmFtZV9kaWcgMSAvLyBmcEVsZW1lbnQ6IGJpZ2ludAoJZWNfbWFwX3RvIEJMUzEyXzM4MWcxCglmcmFtZV9idXJ5IDIgLy8gcmVzdWx0OiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMTQKCS8vIHJldHVybiByZXN1bHQ7CglmcmFtZV9kaWcgMiAvLyByZXN1bHQ6IGJ5dGVbXQoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDIKCXJldHN1YgoKLy8gZ2V0R2FtZVN0YXRlKCl1aW50NjQKKmFiaV9yb3V0ZV9nZXRHYW1lU3RhdGU6CgkvLyBUaGUgQUJJIHJldHVybiBwcmVmaXgKCWJ5dGVjIDIgLy8gMHgxNTFmN2M3NQoKCS8vIGV4ZWN1dGUgZ2V0R2FtZVN0YXRlKCl1aW50NjQKCWNhbGxzdWIgZ2V0R2FtZVN0YXRlCglpdG9iCgljb25jYXQKCWxvZwoJaW50YyAwIC8vIDEKCXJldHVybgoKLy8gZ2V0R2FtZVN0YXRlKCk6IHVpbnQ2NApnZXRHYW1lU3RhdGU6Cglwcm90byAwIDEKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMjAKCS8vIHJldHVybiB0aGlzLmdhbWVTdGF0ZS52YWx1ZTsKCWJ5dGVjIDQgLy8gICJnYW1lU3RhdGUiCglhcHBfZ2xvYmFsX2dldAoJcmV0c3ViCgovLyBqb2luR2FtZUxvYmJ5KGJ5dGVbXSlib29sCiphYmlfcm91dGVfam9pbkdhbWVMb2JieToKCS8vIFRoZSBBQkkgcmV0dXJuIHByZWZpeAoJYnl0ZWMgMiAvLyAweDE1MWY3Yzc1CgoJLy8gTklaS19ETE9HOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDEKCWV4dHJhY3QgMiAwCgoJLy8gZXhlY3V0ZSBqb2luR2FtZUxvYmJ5KGJ5dGVbXSlib29sCgljYWxsc3ViIGpvaW5HYW1lTG9iYnkKCWJ5dGVjIDExIC8vIDB4MDAKCWludGMgMSAvLyAwCgl1bmNvdmVyIDIKCXNldGJpdAoJY29uY2F0Cglsb2cKCWludGMgMCAvLyAxCglyZXR1cm4KCi8vIGpvaW5HYW1lTG9iYnkoTklaS19ETE9HOiBieXRlcyk6IGJvb2xlYW4Kam9pbkdhbWVMb2JieToKCXByb3RvIDEgMQoKCS8vIFB1c2ggZW1wdHkgYnl0ZXMgYWZ0ZXIgdGhlIGZyYW1lIHBvaW50ZXIgdG8gcmVzZXJ2ZSBzcGFjZSBmb3IgbG9jYWwgdmFyaWFibGVzCglieXRlYyAwIC8vIDB4CglkdXBuIDMKCgkvLyAqaWYwX2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjI0CgkvLyB0aGlzLmdhbWVTdGF0ZS52YWx1ZSAhPT0gMAoJYnl0ZWMgNCAvLyAgImdhbWVTdGF0ZSIKCWFwcF9nbG9iYWxfZ2V0CglpbnRjIDEgLy8gMAoJIT0KCWJ6ICppZjBfZW5kCgoJLy8gKmlmMF9jb25zZXF1ZW50CgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMjUKCS8vIHJldHVybiBmYWxzZTsKCWludGMgMSAvLyAwCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmMF9lbmQ6CgkvLyAqaWYxX2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjI4CgkvLyB0aGlzLnBsYXllcnNKb2luZWQudmFsdWUgPT09IDYKCWJ5dGVjIDMgLy8gICJwbGF5ZXJzSm9pbmVkIgoJYXBwX2dsb2JhbF9nZXQKCWludGMgMyAvLyA2Cgk9PQoJYnogKmlmMV9lbmQKCgkvLyAqaWYxX2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIyOQoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCWIgKmpvaW5HYW1lTG9iYnkqcmV0dXJuCgoqaWYxX2VuZDoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjIzMgoJLy8gZyA9IGV4dHJhY3QzKE5JWktfRExPRywgMCwgQkxTMTIzODFHMV9MRU5HVEgpCglmcmFtZV9kaWcgLTEgLy8gTklaS19ETE9HOiBieXRlcwoJZXh0cmFjdCAwIDk2CglmcmFtZV9idXJ5IDAgLy8gZzogYnl0ZVtdCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjMzCgkvLyBSaW5nUEsgPSBleHRyYWN0MyhOSVpLX0RMT0csIEJMUzEyMzgxRzFfTEVOR1RILCBCTFMxMjM4MUcxX0xFTkdUSCkKCWZyYW1lX2RpZyAtMSAvLyBOSVpLX0RMT0c6IGJ5dGVzCglleHRyYWN0IDk2IDk2CglmcmFtZV9idXJ5IDEgLy8gUmluZ1BLOiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMzQKCS8vIHYgPSBleHRyYWN0MyhOSVpLX0RMT0csIEJMUzEyMzgxRzFfTEVOR1RIICogMiwgQkxTMTIzODFHMV9MRU5HVEgpCglmcmFtZV9kaWcgLTEgLy8gTklaS19ETE9HOiBieXRlcwoJZXh0cmFjdCAxOTIgOTYKCWZyYW1lX2J1cnkgMiAvLyB2OiBieXRlW10KCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyMzUKCS8vIHogPSBleHRyYWN0MyhOSVpLX0RMT0csIEJMUzEyMzgxRzFfTEVOR1RIICogMywgMzIpCglmcmFtZV9kaWcgLTEgLy8gTklaS19ETE9HOiBieXRlcwoJcHVzaGludCAyODgKCXB1c2hpbnQgMzIKCWV4dHJhY3QzCglmcmFtZV9idXJ5IDMgLy8gejogYnl0ZVtdCgoJLy8gKmlmMl9jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI0MAoJLy8gIXRoaXMuZGxvZyhnLCBSaW5nUEssIHYsIHopCglmcmFtZV9kaWcgMyAvLyB6OiBieXRlW10KCWZyYW1lX2RpZyAyIC8vIHY6IGJ5dGVbXQoJZnJhbWVfZGlnIDEgLy8gUmluZ1BLOiBieXRlW10KCWZyYW1lX2RpZyAwIC8vIGc6IGJ5dGVbXQoJY2FsbHN1YiBkbG9nCgkhCglieiAqaWYyX2VuZAoKCS8vICppZjJfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjQxCgkvLyByZXR1cm4gZmFsc2U7CglpbnRjIDEgLy8gMAoJYiAqam9pbkdhbWVMb2JieSpyZXR1cm4KCippZjJfZW5kOgoJLy8gKmlmM19jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI0NAoJLy8gIXRoaXMucXVpY2tBY2Nlc3NQS0JveGVzKDApLmV4aXN0cwoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWJveF9sZW4KCXN3YXAKCXBvcAoJIQoJYnogKmlmM19lbHNlCgoJLy8gKmlmM19jb25zZXF1ZW50CgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyNDUKCS8vIHRoaXMucXVpY2tBY2Nlc3NQS0JveGVzKDApLmNyZWF0ZShCTFMxMjM4MUcxX0xFTkdUSCkKCWJ5dGVjIDEgLy8gMHgwMDAwMDAwMDAwMDAwMDAwCglpbnRjIDIgLy8gOTYKCWJveF9jcmVhdGUKCXBvcAoJYiAqaWYzX2VuZAoKKmlmM19lbHNlOgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjQ3CgkvLyB0aGlzLnF1aWNrQWNjZXNzUEtCb3hlcygwKS5yZXNpemUodGhpcy5xdWlja0FjY2Vzc1BLQm94ZXMoMCkuc2l6ZSArIEJMUzEyMzgxRzFfTEVOR1RIKQoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWR1cAoJYm94X2xlbgoKCS8vIGJveCB2YWx1ZSBkb2VzIG5vdCBleGlzdDogdGhpcy5xdWlja0FjY2Vzc1BLQm94ZXMoMCkuc2l6ZQoJYXNzZXJ0CglpbnRjIDIgLy8gOTYKCSsKCWJveF9yZXNpemUKCippZjNfZW5kOgoJLy8gKmlmNF9jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI1MQoJLy8gIXRoaXMucXVpY2tBY2Nlc3NQS0JveGVzKDApLmV4aXN0cwoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWJveF9sZW4KCXN3YXAKCXBvcAoJIQoJYnogKmlmNF9lbmQKCgkvLyAqaWY0X2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI1MgoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCWIgKmpvaW5HYW1lTG9iYnkqcmV0dXJuCgoqaWY0X2VuZDoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI1NQoJLy8gdGhpcy5xdWlja0FjY2Vzc1BLQm94ZXMoMCkucmVwbGFjZSh0aGlzLnBsYXllcnNKb2luZWQudmFsdWUgKiBCTFMxMjM4MUcxX0xFTkdUSCwgUmluZ1BLKQoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWJ5dGVjIDMgLy8gICJwbGF5ZXJzSm9pbmVkIgoJYXBwX2dsb2JhbF9nZXQKCWludGMgMiAvLyA5NgoJKgoJZnJhbWVfZGlnIDEgLy8gUmluZ1BLOiBieXRlW10KCWJveF9yZXBsYWNlCgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjU2CgkvLyB0aGlzLnBsYXllcnNKb2luZWQudmFsdWUgKz0gMQoJYnl0ZWMgMyAvLyAgInBsYXllcnNKb2luZWQiCglhcHBfZ2xvYmFsX2dldAoJaW50YyAwIC8vIDEKCSsKCWJ5dGVjIDMgLy8gICJwbGF5ZXJzSm9pbmVkIgoJc3dhcAoJYXBwX2dsb2JhbF9wdXQKCgkvLyAqaWY1X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjU4CgkvLyB0aGlzLnBsYXllcjFBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNSAvLyAgInBsYXllcjFBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY1X2VuZAoKCS8vICppZjVfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjU5CgkvLyB0aGlzLnBsYXllcjFBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgNSAvLyAgInBsYXllcjFBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjYwCgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmNV9lbmQ6CgkvLyAqaWY2X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjYyCgkvLyB0aGlzLnBsYXllcjJBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNiAvLyAgInBsYXllcjJBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY2X2VuZAoKCS8vICppZjZfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjYzCgkvLyB0aGlzLnBsYXllcjJBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgNiAvLyAgInBsYXllcjJBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjY0CgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmNl9lbmQ6CgkvLyAqaWY3X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjY2CgkvLyB0aGlzLnBsYXllcjNBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgNyAvLyAgInBsYXllcjNBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY3X2VuZAoKCS8vICppZjdfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjY3CgkvLyB0aGlzLnBsYXllcjNBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgNyAvLyAgInBsYXllcjNBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjY4CgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmN19lbmQ6CgkvLyAqaWY4X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjcwCgkvLyB0aGlzLnBsYXllcjRBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgOCAvLyAgInBsYXllcjRBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY4X2VuZAoKCS8vICppZjhfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjcxCgkvLyB0aGlzLnBsYXllcjRBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgOCAvLyAgInBsYXllcjRBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MjcyCgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmOF9lbmQ6CgkvLyAqaWY5X2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6Mjc0CgkvLyB0aGlzLnBsYXllcjVBbGdvQWRkci52YWx1ZSA9PT0gZ2xvYmFscy56ZXJvQWRkcmVzcwoJYnl0ZWMgOSAvLyAgInBsYXllcjVBbGdvQWRkciIKCWFwcF9nbG9iYWxfZ2V0CglnbG9iYWwgWmVyb0FkZHJlc3MKCT09CglieiAqaWY5X2VuZAoKCS8vICppZjlfY29uc2VxdWVudAoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6Mjc1CgkvLyB0aGlzLnBsYXllcjVBbGdvQWRkci52YWx1ZSA9IHRoaXMudHhuLnNlbmRlcgoJYnl0ZWMgOSAvLyAgInBsYXllcjVBbGdvQWRkciIKCXR4biBTZW5kZXIKCWFwcF9nbG9iYWxfcHV0CgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6Mjc2CgkvLyByZXR1cm4gdHJ1ZTsKCWludGMgMCAvLyAxCgliICpqb2luR2FtZUxvYmJ5KnJldHVybgoKKmlmOV9lbmQ6CgkvLyAqaWYxMF9jb25kaXRpb24KCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI3OAoJLy8gdGhpcy5wbGF5ZXI2QWxnb0FkZHIudmFsdWUgPT09IGdsb2JhbHMuemVyb0FkZHJlc3MKCWJ5dGVjIDEwIC8vICAicGxheWVyNkFsZ29BZGRyIgoJYXBwX2dsb2JhbF9nZXQKCWdsb2JhbCBaZXJvQWRkcmVzcwoJPT0KCWJ6ICppZjEwX2VuZAoKCS8vICppZjEwX2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI3OQoJLy8gdGhpcy5wbGF5ZXI2QWxnb0FkZHIudmFsdWUgPSB0aGlzLnR4bi5zZW5kZXIKCWJ5dGVjIDEwIC8vICAicGxheWVyNkFsZ29BZGRyIgoJdHhuIFNlbmRlcgoJYXBwX2dsb2JhbF9wdXQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czoyODAKCS8vIHRoaXMuZ2FtZVN0YXRlLnZhbHVlID0gMQoJYnl0ZWMgNCAvLyAgImdhbWVTdGF0ZSIKCWludGMgMCAvLyAxCglhcHBfZ2xvYmFsX3B1dAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI4MQoJLy8gcmV0dXJuIHRydWU7CglpbnRjIDAgLy8gMQoJYiAqam9pbkdhbWVMb2JieSpyZXR1cm4KCippZjEwX2VuZDoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjI4NAoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCipqb2luR2FtZUxvYmJ5KnJldHVybjoKCS8vIHNldCB0aGUgc3Vicm91dGluZSByZXR1cm4gdmFsdWUKCWZyYW1lX2J1cnkgMAoKCS8vIHBvcCBhbGwgbG9jYWwgdmFyaWFibGVzIGZyb20gdGhlIHN0YWNrCglwb3BuIDMKCXJldHN1YgoKLy8gYXNzaWduUm9sZShieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdLHBheSlib29sCiphYmlfcm91dGVfYXNzaWduUm9sZToKCS8vIFRoZSBBQkkgcmV0dXJuIHByZWZpeAoJYnl0ZWMgMiAvLyAweDE1MWY3Yzc1CgoJLy8gbHNpZ1R4bjA6IHBheQoJdHhuIEdyb3VwSW5kZXgKCWludGMgMCAvLyAxCgktCglkdXAKCWd0eG5zIFR5cGVFbnVtCglpbnRjIDAgLy8gIHBheQoJPT0KCgkvLyBhcmd1bWVudCAwIChsc2lnVHhuMCkgZm9yIGFzc2lnblJvbGUgbXVzdCBiZSBhIHBheSB0cmFuc2FjdGlvbgoJYXNzZXJ0CgoJLy8gY2hhbGxlbmdlczogYnl0ZVtdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyA1CglleHRyYWN0IDIgMAoKCS8vIHNpZzogYnl0ZVtdCgl0eG5hIEFwcGxpY2F0aW9uQXJncyA0CglleHRyYWN0IDIgMAoKCS8vIGtleUltYWdlOiBieXRlW10KCXR4bmEgQXBwbGljYXRpb25BcmdzIDMKCWV4dHJhY3QgMiAwCgoJLy8gcGtBbGw6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMgoJZXh0cmFjdCAyIDAKCgkvLyBtc2c6IGJ5dGVbXQoJdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQoJZXh0cmFjdCAyIDAKCgkvLyBleGVjdXRlIGFzc2lnblJvbGUoYnl0ZVtdLGJ5dGVbXSxieXRlW10sYnl0ZVtdLGJ5dGVbXSxwYXkpYm9vbAoJY2FsbHN1YiBhc3NpZ25Sb2xlCglieXRlYyAxMSAvLyAweDAwCglpbnRjIDEgLy8gMAoJdW5jb3ZlciAyCglzZXRiaXQKCWNvbmNhdAoJbG9nCglpbnRjIDAgLy8gMQoJcmV0dXJuCgovLyBhc3NpZ25Sb2xlKG1zZzogYnl0ZXMsIHBrQWxsOiBieXRlcywga2V5SW1hZ2U6IGJ5dGVzLCBzaWc6IGJ5dGVzLCBjaGFsbGVuZ2VzOiBieXRlcywgbHNpZ1R4bjA6IFBheVR4bik6IGJvb2xlYW4KYXNzaWduUm9sZToKCXByb3RvIDYgMQoKCS8vICppZjExX2NvbmRpdGlvbgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MzA3CgkvLyB0aGlzLmdhbWVTdGF0ZS52YWx1ZSAhPT0gMQoJYnl0ZWMgNCAvLyAgImdhbWVTdGF0ZSIKCWFwcF9nbG9iYWxfZ2V0CglpbnRjIDAgLy8gMQoJIT0KCWJ6ICppZjExX2VuZAoKCS8vICppZjExX2NvbnNlcXVlbnQKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjMwOAoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCXJldHN1YgoKKmlmMTFfZW5kOgoJLy8gY29udHJhY3RzL1Rvd25IYWxsLmFsZ28udHM6MzE5CgkvLyBhc3NlcnQoIXRoaXMuaGFzaEZpbHRlcihyYXdCeXRlcyhzaGEyNTYoa2V5SW1hZ2UpKSkuZXhpc3RzKQoJZnJhbWVfZGlnIC0zIC8vIGtleUltYWdlOiBieXRlcwoJc2hhMjU2Cglib3hfbGVuCglzd2FwCglwb3AKCSEKCWFzc2VydAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjMyMAoJLy8gdGhpcy5oYXNoRmlsdGVyKHJhd0J5dGVzKHNoYTI1NihrZXlJbWFnZSkpKS5jcmVhdGUoMCkKCWZyYW1lX2RpZyAtMyAvLyBrZXlJbWFnZTogYnl0ZXMKCXNoYTI1NgoJaW50YyAxIC8vIDAKCWJveF9jcmVhdGUKCXBvcAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjMyNQoJLy8gYXNzZXJ0KG1zZyA9PT0gJ0hlbGxvIFdvcmxkJykKCWZyYW1lX2RpZyAtMSAvLyBtc2c6IGJ5dGVzCglwdXNoYnl0ZXMgMHg0ODY1NmM2YzZmMjA1NzZmNzI2YzY0IC8vICJIZWxsbyBXb3JsZCIKCT09Cglhc3NlcnQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czozMjgKCS8vIGFzc2VydCh0aGlzLnF1aWNrQWNjZXNzUEtCb3hlcygwKS5leHRyYWN0KDAsIDYgKiBCTFMxMjM4MUcxX0xFTkdUSCkgPT09IHBrQWxsKQoJYnl0ZWMgMSAvLyAweDAwMDAwMDAwMDAwMDAwMDAKCWludGMgMSAvLyAwCglwdXNoaW50IDU3NgoJYm94X2V4dHJhY3QKCWZyYW1lX2RpZyAtMiAvLyBwa0FsbDogYnl0ZXMKCT09Cglhc3NlcnQKCgkvLyBjb250cmFjdHMvVG93bkhhbGwuYWxnby50czozMzEKCS8vIGFzc2VydChleHRyYWN0MyhzaWcsIDAsIFJJTkdfU0lHX05PTkNFX0xFTkdUSCkgPT09IGV4dHJhY3QzKGNoYWxsZW5nZXMsIDAsIFJJTkdfU0lHX0NIQUxMX0xFTkdUSCkpCglmcmFtZV9kaWcgLTQgLy8gc2lnOiBieXRlcwoJZXh0cmFjdCAwIDMyCglmcmFtZV9kaWcgLTUgLy8gY2hhbGxlbmdlczogYnl0ZXMKCWV4dHJhY3QgMCAzMgoJPT0KCWFzc2VydAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjMzNQoJLy8gdmVyaWZ5VHhuKGxzaWdUeG4wLCB7IHNlbmRlcjogQWRkcmVzcy5mcm9tQnl0ZXMoUmluZ0xpbmtMU2lnMC5hZGRyZXNzKCkpIH0pCgkvLyB2ZXJpZnkgc2VuZGVyCglmcmFtZV9kaWcgLTYgLy8gbHNpZ1R4bjA6IFBheVR4bgoJZ3R4bnMgU2VuZGVyCglwdXNoYnl0ZXMgMHg2ZmY5ZWZjMWUxNjJiMmM4YTI5OWY2MDc4ZmQ0ZmY3NGM2Nzg2Y2M0ZGEzMTAyY2EwNmEyMjUzNDFhODdhOWVkIC8vIGFkZHIgIk43NDY3UVBCTUtaTVJJVVo2WURZN1ZIN09UREhRM0dFM0lZUUZTUUdVSVNUSUdVSFZIV1RQSVFQUFUiCgk9PQoKCS8vIHRyYW5zYWN0aW9uIHZlcmlmaWNhdGlvbiBmYWlsZWQ6IHsidHhuIjoibHNpZ1R4bjAiLCJmaWVsZCI6InNlbmRlciIsImV4cGVjdGVkIjoiQWRkcmVzcy5mcm9tQnl0ZXMoUmluZ0xpbmtMU2lnMC5hZGRyZXNzKCkpIn0KCWFzc2VydAoKCS8vIGNvbnRyYWN0cy9Ub3duSGFsbC5hbGdvLnRzOjM2OQoJLy8gcmV0dXJuIGZhbHNlOwoJaW50YyAxIC8vIDAKCXJldHN1YgoKKmNyZWF0ZV9Ob09wOgoJcHVzaGJ5dGVzIDB4Yjg0NDdiMzYgLy8gbWV0aG9kICJjcmVhdGVBcHBsaWNhdGlvbigpdm9pZCIKCXR4bmEgQXBwbGljYXRpb25BcmdzIDAKCW1hdGNoICphYmlfcm91dGVfY3JlYXRlQXBwbGljYXRpb24KCgkvLyB0aGlzIGNvbnRyYWN0IGRvZXMgbm90IGltcGxlbWVudCB0aGUgZ2l2ZW4gQUJJIG1ldGhvZCBmb3IgY3JlYXRlIE5vT3AKCWVycgoKKmNhbGxfTm9PcDoKCXB1c2hieXRlcyAweDcwY2VlYTFiIC8vIG1ldGhvZCAiZHVtbXlPcFVwKHVpbnQ2NCl1aW50NjQiCglwdXNoYnl0ZXMgMHhjZTBjZjkzMyAvLyBtZXRob2QgInRlc3R0KGJ5dGVbXSxieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10pYnl0ZVtdIgoJcHVzaGJ5dGVzIDB4YTAxN2JkOGMgLy8gbWV0aG9kICJkbG9nKGJ5dGVbXSxieXRlW10sYnl0ZVtdLGJ5dGVbXSlib29sIgoJcHVzaGJ5dGVzIDB4ZDc3MmNkYmMgLy8gbWV0aG9kICJoYXNoUG9pbnRUb1BvaW50KGJ5dGVbXSlieXRlW10iCglwdXNoYnl0ZXMgMHhmNTQwYmEyYyAvLyBtZXRob2QgImdldEdhbWVTdGF0ZSgpdWludDY0IgoJcHVzaGJ5dGVzIDB4M2FhMjBjZWEgLy8gbWV0aG9kICJqb2luR2FtZUxvYmJ5KGJ5dGVbXSlib29sIgoJcHVzaGJ5dGVzIDB4YjY1M2Y1N2MgLy8gbWV0aG9kICJhc3NpZ25Sb2xlKGJ5dGVbXSxieXRlW10sYnl0ZVtdLGJ5dGVbXSxieXRlW10scGF5KWJvb2wiCgl0eG5hIEFwcGxpY2F0aW9uQXJncyAwCgltYXRjaCAqYWJpX3JvdXRlX2R1bW15T3BVcCAqYWJpX3JvdXRlX3Rlc3R0ICphYmlfcm91dGVfZGxvZyAqYWJpX3JvdXRlX2hhc2hQb2ludFRvUG9pbnQgKmFiaV9yb3V0ZV9nZXRHYW1lU3RhdGUgKmFiaV9yb3V0ZV9qb2luR2FtZUxvYmJ5ICphYmlfcm91dGVfYXNzaWduUm9sZQoKCS8vIHRoaXMgY29udHJhY3QgZG9lcyBub3QgaW1wbGVtZW50IHRoZSBnaXZlbiBBQkkgbWV0aG9kIGZvciBjYWxsIE5vT3AKCWVycg==",
     "clear": "I3ByYWdtYSB2ZXJzaW9uIDEw"
   },
   "byteCode": {
-    "approval": "CiAEAQBgBiYMAAgAAAAAAAAAAAQVH3x1DXBsYXllcnNKb2luZWQJZ2FtZVN0YXRlD3BsYXllcjFBbGdvQWRkcg9wbGF5ZXIyQWxnb0FkZHIPcGxheWVyM0FsZ29BZGRyD3BsYXllcjRBbGdvQWRkcg9wbGF5ZXI1QWxnb0FkZHIPcGxheWVyNkFsZ29BZGRyAQAxGBQlCzEZCI0MAvYAAAAAAAAAAAAAAugAAAAAAAAAAAAAAIgAAiJDigAAJwUyA2cnBjIDZycHMgNnJwgyA2cnCTIDZycKMgNngAZtYWZmaWEyA2eABmRvY3RvcjIDZ4AGZmFybWVyMgNngAdidXRjaGVyMgNngAdpbm5rZWVwMgNngAZncm9jZXIyA2crI2cnBCNniSo2GgEXiAAFFlCwIkOKAQGL/4kqNhoEVwIANhoDVwIANhoCVwIANhoBVwIAiAAKJwsjTwJUULAiQ4oEAShJi/+L/ov9UFACjACLAIAgc+2nUymdfUgzOdgICaHYBVO9pAL//lv+/////wAAAAGqjAGL/Yv/i/zhAov+iwHhAuACEowARgGJKjYaAVcCAIgADEkVFlcGAkxQULAiQ4oBAShHAov/AowAiwCAMBoBEeo5f+aaSxuntkNLrNdkd0uE84USv2cw0qD2sPYkHqv//rFT//+5/v////+qq6qMAYsB5QKMAosCjABGAokqiAAFFlCwIkOKAAEnBGSJKjYaAVcCAIgACicLI08CVFCwIkOKAQEoRwMnBGQjE0EABCNCAN8rZCUSQQAEI0IA1Iv/VwBgjACL/1dgYIwBi/9XwGCMAov/gaACgSBYjAOLA4sCiwGLAIj+4xRBAAQjQgCiKb1MSBRBAAcpJLlIQgAHKUm9RCQI0ym9TEgUQQAEI0IAgCkrZCQLiwG7K2QiCCtMZycFZDIDEkEACScFMQBnIkIAXycGZDIDEkEACScGMQBnIkIATScHZDIDEkEACScHMQBnIkIAOycIZDIDEkEACScIMQBnIkIAKScJZDIDEkEACScJMQBnIkIAFycKZDIDEkEADScKMQBnJwQiZyJCAAEjjABGA4kqNhoFVwIANhoEVwIANhoDVwIANhoCVwIANhoBVwIAiAAKJwsjTwJUULAiQ4oFAScEZCITQQACI4mL/QG9TEgURIv9ASO5SIv/gAtIZWxsbyBXb3JsZBJEKSOBwAS6i/4SRIv8VwAgi/tXACASRCOJgAS4RHs2NhoAjgH9DACABHDO6huABKAXvYyABNdyzbyABPVAuiyABDqiDOqABMicAQE2GgCOBv1I/Vv9zv4z/kP/TQA=",
+    "approval": "CiAEAQBgBiYOAAgAAAAAAAAAAAQVH3x1DXBsYXllcnNKb2luZWQJZ2FtZVN0YXRlD3BsYXllcjFBbGdvQWRkcg9wbGF5ZXIyQWxnb0FkZHIPcGxheWVyM0FsZ29BZGRyD3BsYXllcjRBbGdvQWRkcg9wbGF5ZXI1QWxnb0FkZHIPcGxheWVyNkFsZ29BZGRyAQAwGgER6jl/5ppLG6e2Q0us12R3S4TzhRK/ZzDSoPaw9iQeq//+sVP//7n+/////6qrIHPtp1MpnX1IMznYCAmh2AVTvaQC//5b/v////8AAAABMRgUJQsxGQiNDAOzAAAAAAAAAAAAAAOlAAAAAAAAAAAAAACIAAIiQ4oAACcFMgNnJwYyA2cnBzIDZycIMgNnJwkyA2cnCjIDZ4AGbWFmZmlhMgNngAZkb2N0b3IyA2eABmZhcm1lcjIDZ4AHYnV0Y2hlcjIDZ4AHaW5ua2VlcDIDZ4AGZ3JvY2VyMgNnKyNnJwQjZ4kqNhoBF4gABRZQsCJDigEBi/+JKjYaBVcCADYaBFcCADYaA1cCADYaAlcCADYaAVcCAIgADEkVFlcGAkxQULAiQ4oFAShHBYBgF/HTpzGX15QmlWOMT6msD8NojE+XdLkFoU46PxcbrFhsVeg/+Xoa7/s68ArbIsa7CLP0geOqoPGgnjDtdB2K5Pz14JXV0Ar2ANsYyywEs+3QPMdEooiK5AyqIylGxefhi/zhAov+i/vhAuACjACL/gKMAYsBJwyqjAKLAuUCjAOLA4v84QKL/Yv74QLgAowEi/+LAFCLBFACJw2qjAWLBYwARgWJKjYaBFcCADYaA1cCADYaAlcCADYaAVcCAIgACicLI08CVFCwIkOKBAEoSYv/i/6L/VBQAowAiwAnDaqMAYv9i/+L/OECi/6LAeEC4AISjABGAYkqNhoBVwIAiAAMSRUWVwYCTFBQsCJDigEBKEcCi/8CjACLACcMqowBiwHlAowCiwKMAEYCiSqIAAUWULAiQ4oAAScEZIkqNhoBVwIAiAAKJwsjTwJUULAiQ4oBAShHAycEZCMTQQAEI0IA3ytkJRJBAAQjQgDUi/9XAGCMAIv/V2BgjAGL/1fAYIwCi/+BoAKBIFiMA4sDiwKLAYsAiP8zFEEABCNCAKIpvUxIFEEABykkuUhCAAcpSb1EJAjTKb1MSBRBAAQjQgCAKStkJAuLAbsrZCIIK0xnJwVkMgMSQQAJJwUxAGciQgBfJwZkMgMSQQAJJwYxAGciQgBNJwdkMgMSQQAJJwcxAGciQgA7JwhkMgMSQQAJJwgxAGciQgApJwlkMgMSQQAJJwkxAGciQgAXJwpkMgMSQQANJwoxAGcnBCJnIkIAASOMAEYDiSoxFiIJSTgQIhJENhoFVwIANhoEVwIANhoDVwIANhoCVwIANhoBVwIAiAAKJwsjTwJUULAiQ4oGAScEZCITQQACI4mL/QG9TEgURIv9ASO5SIv/gAtIZWxsbyBXb3JsZBJEKSOBwAS6i/4SRIv8VwAgi/tXACASRIv6OACAIG/578HhYrLIopn2B4/U/3TGeGzE2jECygaiJTQah6ntEkQjiYAEuER7NjYaAI4B/E8AgARwzuobgATODPkzgASgF72MgATXcs28gAT1QLosgAQ6ogzqgAS2U/V8NhoAjgf8g/yW/XH9xP35/gn/EwA=",
     "clear": "Cg=="
   },
   "compilerInfo": {

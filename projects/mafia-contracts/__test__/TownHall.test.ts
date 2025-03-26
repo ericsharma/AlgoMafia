@@ -6,6 +6,7 @@ import * as algoring from 'algoring-ts';
 import { TransactionSignerAccount } from '@algorandfoundation/algokit-utils/types/account';
 import algosdk from 'algosdk';
 import { TextEncoder } from 'util';
+import { readFileSync } from 'fs';
 import { TownHallClient, TownHallFactory } from '../contracts/clients/TownHallClient';
 import { BLS12381G1_LENGTH } from '../contracts/Constants';
 
@@ -60,11 +61,6 @@ describe('TownHall', () => {
     const createResult = await factory.send.create.createApplication();
 
     appClient = createResult.appClient;
-
-    // await appClient.appClient.fundAppAccount({
-    //   sender: dispenser.addr,
-    //   amount: (336100).microAlgos(),
-    // });
 
     players = Array.from({ length: 6 }, () => new Player());
     players.forEach(async (player) => {
@@ -145,6 +141,65 @@ describe('TownHall', () => {
     expect(newPoint.toString()).toStrictEqual(expectedPoint.toString());
   });
 
+  // test('test', async () => {
+
+  //   const p = players[0];
+
+  //   // const msg = new TextEncoder().encode(p.day_algo_address.addr + p.client.appClient.appAddress);
+  //   const msg = new TextEncoder().encode('Hello World');
+  //   // console.log(msg);
+
+  //   // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
+
+  //   // For some reason, the 0th element will be different from the actual value it is suppsoed to be.
+  //   const ringOfPKs = [
+  //     p.bls_public_key,
+  //     players[1].bls_public_key,
+  //     players[2].bls_public_key,
+  //     players[3].bls_public_key,
+  //     players[4].bls_public_key,
+  //     players[5].bls_public_key,
+  //   ];
+
+  //   const keyImage = algoring.genKeyImage(p.bls_private_key, p.bls_public_key);
+
+  //   // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
+  //   const { signature } = algoring.generate_ring_signature(msg, p.bls_private_key, ringOfPKs, keyImage);
+
+  //   // TODO: remove msg return
+  //   const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
+  //     msg,
+  //     signature,
+  //     ringOfPKs,
+  //     keyImage
+  //   );
+
+
+  //   const h1 = await p.client.newGroup().testt({
+  //     args: {
+  //       msg,
+  //       pk: algoring.to_pxpy(p.bls_public_key),
+  //       keyImage: algoring.to_pxpy(keyImage),
+  //       nonce: signatureConcat.slice(0, 32),
+  //       c: intermediateValues.slice(0, 32),
+  //     }
+  //   }).simulate({
+  //     extraOpcodeBudget: 20000,
+  //   })
+
+  //   const h2 = await algoring.create_ring_link(
+  //     msg,
+  //     signatureConcat.slice(0, 32),
+  //     intermediateValues.slice(0, 32),
+  //     p.bls_public_key,
+  //     keyImage
+  //   );
+
+  //   console.log("h1:", h1.returns[0]);
+  //   console.log("h2:", h2);
+
+  // });
+
   test('entire_play', async () => {
     let state = await appClient.send.getGameState();
     expect(Number(state.return)).toEqual(0);
@@ -207,7 +262,7 @@ describe('TownHall', () => {
         })
         .send();
       // eslint-disable-next-line no-await-in-loop
-      expect((result).returns[0]).toBe(true);
+      expect(result.returns[0]).toBe(true);
     }
 
     expect(await appClient.state.global.player1AlgoAddr()).toBe(players[0].day_algo_address.addr);
@@ -228,7 +283,7 @@ describe('TownHall', () => {
     expect(Number(state.return)).toEqual(1); // Advanced to the AssignRoles stage
     /// <----------- ENTERED AssignRole Stage ----------->
 
-    const p = players[1];
+    const p = players[0];
 
     // const msg = new TextEncoder().encode(p.day_algo_address.addr + p.client.appClient.appAddress);
     const msg = new TextEncoder().encode('Hello World');
@@ -236,7 +291,6 @@ describe('TownHall', () => {
 
     // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
 
-    // For some reason, the 0th element will be different from the actual value it is suppsoed to be.
     const ringOfPKs = [
       algoring.from_pxpy(ring.slice(0 * BLS12381G1_LENGTH, 1 * BLS12381G1_LENGTH)),
       algoring.from_pxpy(ring.slice(1 * BLS12381G1_LENGTH, 2 * BLS12381G1_LENGTH)),
@@ -259,6 +313,39 @@ describe('TownHall', () => {
       keyImage
     );
 
+    // TODO: Spend from night address, not day address
+
+    // BEGIN LSIG
+    const abiBytes = algosdk.ABIType.from('byte[]');
+    const abiUInt64 = algosdk.ABIType.from('uint64');
+
+    const lsigRingLinkLSig0Teal = readFileSync('./contracts/artifacts/RingLinkLSig0.lsig.teal').toString('utf-8');
+
+    const compileResult = await p.client.algorand.app.compileTeal(lsigRingLinkLSig0Teal);
+
+    const lsigRingLinkLSig0 = new algosdk.LogicSigAccount(compileResult.compiledBase64ToBytes, [
+      abiBytes.encode(msg),
+      abiBytes.encode(ring.slice(0 * BLS12381G1_LENGTH, 1 * BLS12381G1_LENGTH)),
+      abiUInt64.encode(0),
+      abiBytes.encode(algoring.to_pxpy(keyImage)),
+      abiBytes.encode(signatureConcat.slice(1 * 32, 2 * 32)),
+      abiBytes.encode(intermediateValues.slice(0 * 32, 1 * 32)),
+      abiBytes.encode(intermediateValues.slice(1 * 32, 2 * 32)),
+    ]);
+
+    const sp = await AlgorandClient.defaultLocalNet().getSuggestedParams();
+
+    console.log('player day address:', p.day_algo_address.addr);
+
+    console.log('lsig address:', lsigRingLinkLSig0.address());
+
+    const lsigRingLinkLSig0PayTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+      suggestedParams: { ...sp, flatFee: true, fee: 0 },
+      from: lsigRingLinkLSig0.address(),
+      to: lsigRingLinkLSig0.address(),
+      amount: 0,
+    });
+
     const res = await p.client
       .newGroup()
       .assignRole({
@@ -268,12 +355,16 @@ describe('TownHall', () => {
           keyImage: algoring.to_pxpy(keyImage),
           sig: signatureConcat,
           challenges: intermediateValues,
+          lsigTxn0: {
+            txn: lsigRingLinkLSig0PayTxn,
+            signer: algosdk.makeLogicSigAccountTransactionSigner(lsigRingLinkLSig0),
+          },
         },
+        extraFee: (1000).microAlgos(),
       })
       .send();
 
-    console.log("returned:", res.returns[0]);
-
+    console.log('returned:', res.returns[0]);
   });
 });
 /**
