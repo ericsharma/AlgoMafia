@@ -7,8 +7,9 @@ import { TransactionSignerAccount } from '@algorandfoundation/algokit-utils/type
 import algosdk from 'algosdk';
 import { TextEncoder } from 'util';
 import { readFileSync } from 'fs';
+import { sign } from 'crypto';
 import { TownHallClient, TownHallFactory } from '../contracts/clients/TownHallClient';
-import { BLS12381G1_LENGTH } from '../contracts/Constants';
+import { BLS12381G1_LENGTH, RING_SIG_CHALL_LENGTH, RING_SIG_NONCE_LENGTH } from '../contracts/Constants';
 
 const fixture = algorandFixture();
 Config.configure({ populateAppCallResources: true });
@@ -41,6 +42,46 @@ class Player {
         defaultSigner: this.day_algo_address.signer,
       }); // Client set with their signers, so we can have the player can sign
   }
+}
+
+async function prepareLSigRingLink(
+  i: number,
+  playerClient: TownHallClient,
+  msg: Uint8Array,
+  pk: Uint8Array,
+  keyImage: Uint8Array,
+  signatureNonce: Uint8Array,
+  inputC: Uint8Array,
+  expectedCNext: Uint8Array
+) {
+  const abiBytes = algosdk.ABIType.from('byte[]');
+
+  const lsigRingLinkLSigTeal = readFileSync(`./contracts/artifacts/RingLinkLSig${i.toString()}.lsig.teal`).toString(
+    'utf-8'
+  );
+
+  const compileResult = await playerClient.algorand.app.compileTeal(lsigRingLinkLSigTeal);
+
+  const lsigRingLinkLSig0 = new algosdk.LogicSigAccount(compileResult.compiledBase64ToBytes, [
+    abiBytes.encode(msg),
+    abiBytes.encode(pk),
+    abiBytes.encode(algoring.to_pxpy(keyImage)),
+    abiBytes.encode(signatureNonce),
+    abiBytes.encode(inputC),
+    abiBytes.encode(expectedCNext),
+  ]);
+
+  const sp = await AlgorandClient.defaultLocalNet().getSuggestedParams();
+
+  const lSigRingSigPayTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+    suggestedParams: { ...sp, flatFee: true, fee: 0 },
+    from: lsigRingLinkLSig0.address(),
+    to: lsigRingLinkLSig0.address(),
+    amount: 0,
+  });
+
+  const lSigRingSigSigner = algosdk.makeLogicSigAccountTransactionSigner(lsigRingLinkLSig0);
+  return { lSigRingSigPayTxn, lSigRingSigSigner };
 }
 
 let players: Player[];
@@ -174,7 +215,6 @@ describe('TownHall', () => {
   //     keyImage
   //   );
 
-
   //   const h1 = await p.client.newGroup().testt({
   //     args: {
   //       msg,
@@ -305,6 +345,8 @@ describe('TownHall', () => {
     // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
     const { signature } = algoring.generate_ring_signature(msg, p.bls_private_key, ringOfPKs, keyImage);
 
+    console.log(signature);
+
     // TODO: remove msg return
     const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
       msg,
@@ -313,38 +355,36 @@ describe('TownHall', () => {
       keyImage
     );
 
+    console.log('signatureConcat:', signatureConcat.length / RING_SIG_NONCE_LENGTH);
+    console.log('intermediateValues:', intermediateValues.length / RING_SIG_CHALL_LENGTH);
+
     // TODO: Spend from night address, not day address
 
     // BEGIN LSIG
-    const abiBytes = algosdk.ABIType.from('byte[]');
-    const abiUInt64 = algosdk.ABIType.from('uint64');
 
-    const lsigRingLinkLSig0Teal = readFileSync('./contracts/artifacts/RingLinkLSig0.lsig.teal').toString('utf-8');
+    const pts = [];
+    const signers = [];
 
-    const compileResult = await p.client.algorand.app.compileTeal(lsigRingLinkLSig0Teal);
+    const length = intermediateValues.length / RING_SIG_CHALL_LENGTH;
 
-    const lsigRingLinkLSig0 = new algosdk.LogicSigAccount(compileResult.compiledBase64ToBytes, [
-      abiBytes.encode(msg),
-      abiBytes.encode(ring.slice(0 * BLS12381G1_LENGTH, 1 * BLS12381G1_LENGTH)),
-      abiUInt64.encode(0),
-      abiBytes.encode(algoring.to_pxpy(keyImage)),
-      abiBytes.encode(signatureConcat.slice(1 * 32, 2 * 32)),
-      abiBytes.encode(intermediateValues.slice(0 * 32, 1 * 32)),
-      abiBytes.encode(intermediateValues.slice(1 * 32, 2 * 32)),
-    ]);
-
-    const sp = await AlgorandClient.defaultLocalNet().getSuggestedParams();
-
-    console.log('player day address:', p.day_algo_address.addr);
-
-    console.log('lsig address:', lsigRingLinkLSig0.address());
-
-    const lsigRingLinkLSig0PayTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
-      suggestedParams: { ...sp, flatFee: true, fee: 0 },
-      from: lsigRingLinkLSig0.address(),
-      to: lsigRingLinkLSig0.address(),
-      amount: 0,
-    });
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < length; i++) {
+      // eslint-disable-next-line no-await-in-loop
+      const { lSigRingSigPayTxn, lSigRingSigSigner } = await prepareLSigRingLink(
+        i,
+        p.client,
+        msg,
+        ring.slice(i * BLS12381G1_LENGTH, (i + 1) * BLS12381G1_LENGTH),
+        keyImage,
+        signatureConcat.slice((i + 1) * RING_SIG_NONCE_LENGTH, (i + 2) * RING_SIG_NONCE_LENGTH),
+        intermediateValues.slice(i * RING_SIG_CHALL_LENGTH, (i + 1) * RING_SIG_CHALL_LENGTH),
+        i === length - 1
+          ? intermediateValues.slice(0 * RING_SIG_CHALL_LENGTH, 1 * RING_SIG_CHALL_LENGTH)
+          : intermediateValues.slice((i + 1) * RING_SIG_CHALL_LENGTH, (i + 2) * RING_SIG_CHALL_LENGTH)
+      );
+      pts.push(lSigRingSigPayTxn);
+      signers.push(lSigRingSigSigner);
+    }
 
     const res = await p.client
       .newGroup()
@@ -356,17 +396,38 @@ describe('TownHall', () => {
           sig: signatureConcat,
           challenges: intermediateValues,
           lsigTxn0: {
-            txn: lsigRingLinkLSig0PayTxn,
-            signer: algosdk.makeLogicSigAccountTransactionSigner(lsigRingLinkLSig0),
+            txn: pts[0],
+            signer: signers[0],
+          },
+          lsigTxn1: {
+            txn: pts[1],
+            signer: signers[1],
+          },
+          lsigTxn2: {
+            txn: pts[2],
+            signer: signers[2],
+          },
+          lsigTxn3: {
+            txn: pts[3],
+            signer: signers[3],
+          },
+          lsigTxn4: {
+            txn: pts[4],
+            signer: signers[4],
+          },
+          lsigTxn5: {
+            txn: pts[5],
+            signer: signers[5],
           },
         },
-        extraFee: (1000).microAlgos(),
+        extraFee: (1000 * length).microAlgos(),
       })
       .send();
 
     console.log('returned:', res.returns[0]);
   });
 });
+
 /**
 
 

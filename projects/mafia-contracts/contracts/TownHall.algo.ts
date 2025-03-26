@@ -125,57 +125,6 @@ export class TownHall extends Contract {
     return i;
   }
 
-
-  /** TEST */
-
-  testt(msg: bytes, pk: bytes, keyImage: bytes, nonce: bytes, c: bytes): bytes {
-
-    /* CALCULATE LEFT-HAND SIDE OF EQUATION (AFTER MSG BYTES)
-     ** r_{i} * G + c_{i} * K_{i}
-     ** G = 0x00...0100...02 (basepoint)
-     */
-    const left = ecAdd(
-      'BLS12_381g1',
-      ecScalarMul('BLS12_381g1', hex(BLS12381G1_BASEPOINT_BYTES), nonce),
-      ecScalarMul('BLS12_381g1', pk, c)
-    );
-
-    // Added because the hashPointToPoint function could not be imported
-    // HashPointToPoint section
-    const hash = keccak256(pk);
-    const fpElement = btobigint(hash) % btobigint(hex(BLS12381_FIELD_MODULUS_HEX));
-    // ^This field modulus is so much larger than 2^256 that it will never be required to reduce modulo it
-    // This needs to be looked over and converted the ExpandMsgXmd method to properly implement EncodeToG1
-    const hp2p = ecMapTo('BLS12_381g1', rawBytes(fpElement));
-
-    /* CALCULATE RIGHT-HAND SIDE OF EQUATION (AFTER MSG BYTES)
-     ** r_{i}*Hp(K_{i}) + c_{i} * I
-     ** where Hp is a hash function that maps a point to a point on the curve
-     */
-    const right = ecAdd(
-      'BLS12_381g1',
-      ecScalarMul('BLS12_381g1', hp2p, nonce),
-      ecScalarMul('BLS12_381g1', keyImage, c)
-    );
-
-    /* COMBINE MSG BYTES WITH LEFT AND RIGHT BYTES
-     ** Take hash of the concatenated bytes and then mod |fr|
-     ** Then return the results.
-     */
-    const h = rawBytes(
-      btobigint(keccak256(concat(concat(msg, left), right))) % btobigint(hex(BLS12381_CURVE_ORDER_HEX))
-    );
-
-    return h;
-
-    // assert(
-    //   h === cExpected // extract3(challenges, ((iter + 1) % 7) * RING_SIG_CHALL_LENGTH, ((iter + 2) % 7) * RING_SIG_CHALL_LENGTH)
-    // );
-
-  }
-
-
-
   /* Cryptography Utils Functions Start Here */
 
   /*
@@ -290,19 +239,12 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
     keyImage: bytes,
     sig: bytes,
     challenges: bytes,
-    // pkindex0: uint64,
-    // pkindex1: uint64,
-    // pkindex2: uint64,
-    // pkindex3: uint64,
-    // pkindex4: uint64,
-    // pkindex5: uint64,
-    lsigTxn0: PayTxn
-    // lsigTxn1: PayTxn,
-    // lsigTxn2: PayTxn,
-    // lsigTxn3: PayTxn,
-    // lsigTxn4: PayTxn,
-    // lsigTxn5: PayTxn,
-    // lsigTxn6: PayTxn
+    lsigTxn0: PayTxn,
+    lsigTxn1: PayTxn,
+    lsigTxn2: PayTxn,
+    lsigTxn3: PayTxn,
+    lsigTxn4: PayTxn,
+    lsigTxn5: PayTxn
   ): boolean {
     if (this.gameState.value !== 1) {
       return false;
@@ -333,12 +275,11 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
     // Regarding 5: Verify Correct RingSig Links Calculation
 
     verifyTxn(lsigTxn0, { sender: Address.fromBytes(RingLinkLSig0.address()) });
-    // verifyTxn(lsigTxn1, { sender: Address.fromBytes(RingLinkLSig1.address()) });
-    // verifyTxn(lsigTxn2, { sender: Address.fromBytes(RingLinkLSig2.address()) });
-    // verifyTxn(lsigTxn3, { sender: Address.fromBytes(RingLinkLSig3.address()) });
-    // verifyTxn(lsigTxn4, { sender: Address.fromBytes(RingLinkLSig4.address()) });
-    // verifyTxn(lsigTxn5, { sender: Address.fromBytes(RingLinkLSig5.address()) });
-    // verifyTxn(lsigTxn6, { sender: Address.fromBytes(RingLinkLSig6.address()) });
+    verifyTxn(lsigTxn1, { sender: Address.fromBytes(RingLinkLSig1.address()) });
+    verifyTxn(lsigTxn2, { sender: Address.fromBytes(RingLinkLSig2.address()) });
+    verifyTxn(lsigTxn3, { sender: Address.fromBytes(RingLinkLSig3.address()) });
+    verifyTxn(lsigTxn4, { sender: Address.fromBytes(RingLinkLSig4.address()) });
+    verifyTxn(lsigTxn5, { sender: Address.fromBytes(RingLinkLSig5.address()) });
 
     // if (this.maffia.value === globals.zeroAddress) {
     //   this.maffia.value = this.txn.sender.authAddr;

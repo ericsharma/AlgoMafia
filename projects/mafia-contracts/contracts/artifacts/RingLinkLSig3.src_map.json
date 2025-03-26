@@ -1,394 +1,267 @@
 [
   {
     "teal": 1,
-    "source": "contracts/RingLinkLSig3.algo.ts:13",
+    "source": "contracts/RingLinkLSig3.algo.ts:6",
     "pc": [
       0
     ]
   },
   {
     "teal": 3,
-    "source": "contracts/RingLinkLSig3.algo.ts:13",
+    "source": "contracts/RingLinkLSig3.algo.ts:6",
     "pc": [
       1,
       2,
       3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9
+      4
     ]
   },
   {
     "teal": 4,
-    "source": "contracts/RingLinkLSig3.algo.ts:13",
+    "source": "contracts/RingLinkLSig3.algo.ts:6",
     "pc": [
-      10,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "teal": 11,
+    "source": "contracts/RingLinkLSig3.algo.ts:6",
+    "pc": [
+      8,
+      9,
+      10
+    ]
+  },
+  {
+    "teal": 16,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
+    "pc": [
       11,
       12
     ]
   },
   {
-    "teal": 11,
-    "source": "contracts/RingLinkLSig3.algo.ts:13",
-    "pc": [
-      13,
-      14,
-      15
-    ]
-  },
-  {
-    "teal": 16,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      16,
-      17
-    ]
-  },
-  {
     "teal": 17,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      18
+      13
     ]
   },
   {
     "teal": 18,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      19,
-      20,
-      21
+      14,
+      15,
+      16
     ]
   },
   {
     "teal": 21,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      22
+      17,
+      18
     ]
   },
   {
     "teal": 22,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
+    "pc": [
+      19
+    ]
+  },
+  {
+    "teal": 23,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
+    "pc": [
+      20,
+      21,
+      22
+    ]
+  },
+  {
+    "teal": 26,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
       23
     ]
   },
   {
-    "teal": 23,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      24,
-      25,
-      26
-    ]
-  },
-  {
-    "teal": 26,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      27,
-      28
-    ]
-  },
-  {
     "teal": 27,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      29
+      24
     ]
   },
   {
     "teal": 28,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      30,
-      31,
-      32
+      25,
+      26,
+      27
     ]
   },
   {
     "teal": 31,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      33,
-      34
+      28,
+      29
     ]
   },
   {
     "teal": 32,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
+    "pc": [
+      30
+    ]
+  },
+  {
+    "teal": 33,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
+    "pc": [
+      31,
+      32,
+      33
+    ]
+  },
+  {
+    "teal": 36,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
+    "pc": [
+      34
+    ]
+  },
+  {
+    "teal": 37,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
       35
     ]
   },
   {
-    "teal": 33,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "teal": 38,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      36
-    ]
-  },
-  {
-    "teal": 36,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      37
-    ]
-  },
-  {
-    "teal": 37,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
+      36,
+      37,
       38
     ]
   },
   {
-    "teal": 38,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "teal": 41,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
       39,
-      40,
-      41
-    ]
-  },
-  {
-    "teal": 41,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      42
+      40
     ]
   },
   {
     "teal": 42,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      43
+      41
     ]
   },
   {
     "teal": 43,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
+      42,
+      43,
       44
     ]
   },
   {
-    "teal": 44,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      45
-    ]
-  },
-  {
-    "teal": 45,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      46
-    ]
-  },
-  {
     "teal": 46,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
+      45,
+      46,
       47
     ]
   },
   {
-    "teal": 49,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "errorMessage": "argument 5 (msg) for logic must be a address",
+    "teal": 47,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
       48
     ]
   },
   {
-    "teal": 52,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "teal": 48,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      49,
-      50,
-      51
+      49
     ]
   },
   {
-    "teal": 53,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "teal": 62,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
+      50,
+      51,
       52
     ]
   },
   {
-    "teal": 54,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "teal": 65,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
       53
     ]
   },
   {
-    "teal": 69,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "teal": 66,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
       54,
-      55,
-      56
+      55
     ]
   },
   {
-    "teal": 72,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "teal": 74,
+    "source": "contracts/RingLinkLSig3.algo.ts:24",
     "pc": [
-      57
-    ]
-  },
-  {
-    "teal": 73,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
+      56,
+      57,
       58,
-      59
-    ]
-  },
-  {
-    "teal": 77,
-    "source": "contracts/RingLinkLSig3.algo.ts:26",
-    "pc": [
+      59,
       60,
-      61
-    ]
-  },
-  {
-    "teal": 78,
-    "source": "contracts/RingLinkLSig3.algo.ts:26",
-    "pc": [
+      61,
       62,
       63,
-      64
-    ]
-  },
-  {
-    "teal": 79,
-    "source": "contracts/RingLinkLSig3.algo.ts:26",
-    "pc": [
+      64,
       65,
-      66
-    ]
-  },
-  {
-    "teal": 83,
-    "source": "contracts/RingLinkLSig3.algo.ts:27",
-    "pc": [
+      66,
       67,
-      68
-    ]
-  },
-  {
-    "teal": 84,
-    "source": "contracts/RingLinkLSig3.algo.ts:27",
-    "pc": [
+      68,
       69,
       70,
-      71
-    ]
-  },
-  {
-    "teal": 85,
-    "source": "contracts/RingLinkLSig3.algo.ts:27",
-    "pc": [
+      71,
       72,
-      73
-    ]
-  },
-  {
-    "teal": 89,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
+      73,
       74,
-      75
-    ]
-  },
-  {
-    "teal": 90,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
+      75,
       76,
-      77
-    ]
-  },
-  {
-    "teal": 91,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
+      77,
       78,
-      79
-    ]
-  },
-  {
-    "teal": 92,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
-      80
-    ]
-  },
-  {
-    "teal": 93,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
+      79,
+      80,
       81,
-      82
-    ]
-  },
-  {
-    "teal": 94,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
-      83
-    ]
-  },
-  {
-    "teal": 95,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
-      84
-    ]
-  },
-  {
-    "teal": 96,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
+      82,
+      83,
+      84,
       85,
-      86
-    ]
-  },
-  {
-    "teal": 97,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
-      87
-    ]
-  },
-  {
-    "teal": 98,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
-      88
-    ]
-  },
-  {
-    "teal": 99,
-    "source": "contracts/RingLinkLSig3.algo.ts:28",
-    "pc": [
+      86,
+      87,
+      88,
       89,
-      90
-    ]
-  },
-  {
-    "teal": 107,
-    "source": "contracts/RingLinkLSig3.algo.ts:36",
-    "pc": [
+      90,
       91,
       92,
       93,
@@ -451,28 +324,100 @@
       150,
       151,
       152,
-      153,
+      153
+    ]
+  },
+  {
+    "teal": 75,
+    "source": "contracts/RingLinkLSig3.algo.ts:24",
+    "pc": [
       154,
-      155,
+      155
+    ]
+  },
+  {
+    "teal": 76,
+    "source": "contracts/RingLinkLSig3.algo.ts:24",
+    "pc": [
       156,
-      157,
+      157
+    ]
+  },
+  {
+    "teal": 77,
+    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "pc": [
       158,
-      159,
+      159
+    ]
+  },
+  {
+    "teal": 78,
+    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "pc": [
       160,
-      161,
+      161
+    ]
+  },
+  {
+    "teal": 79,
+    "source": "contracts/RingLinkLSig3.algo.ts:25",
+    "pc": [
       162,
-      163,
+      163
+    ]
+  },
+  {
+    "teal": 80,
+    "source": "contracts/RingLinkLSig3.algo.ts:22",
+    "pc": [
       164,
-      165,
+      165
+    ]
+  },
+  {
+    "teal": 81,
+    "source": "contracts/RingLinkLSig3.algo.ts:22",
+    "pc": [
       166,
-      167,
+      167
+    ]
+  },
+  {
+    "teal": 85,
+    "source": "contracts/RingLinkLSig3.algo.ts:30",
+    "pc": [
       168,
-      169,
-      170,
+      169
+    ]
+  },
+  {
+    "teal": 86,
+    "source": "contracts/RingLinkLSig3.algo.ts:30",
+    "pc": [
+      170
+    ]
+  },
+  {
+    "teal": 87,
+    "source": "contracts/RingLinkLSig3.algo.ts:30",
+    "pc": [
       171,
-      172,
+      172
+    ]
+  },
+  {
+    "teal": 91,
+    "source": "contracts/RingLinkLSig3.algo.ts:31",
+    "pc": [
       173,
-      174,
+      174
+    ]
+  },
+  {
+    "teal": 92,
+    "source": "contracts/RingLinkLSig3.algo.ts:31",
+    "pc": [
       175,
       176,
       177,
@@ -486,100 +431,28 @@
       185,
       186,
       187,
-      188
-    ]
-  },
-  {
-    "teal": 108,
-    "source": "contracts/RingLinkLSig3.algo.ts:36",
-    "pc": [
+      188,
       189,
-      190
-    ]
-  },
-  {
-    "teal": 109,
-    "source": "contracts/RingLinkLSig3.algo.ts:36",
-    "pc": [
+      190,
       191,
-      192
-    ]
-  },
-  {
-    "teal": 110,
-    "source": "contracts/RingLinkLSig3.algo.ts:37",
-    "pc": [
+      192,
       193,
-      194
-    ]
-  },
-  {
-    "teal": 111,
-    "source": "contracts/RingLinkLSig3.algo.ts:37",
-    "pc": [
+      194,
       195,
-      196
-    ]
-  },
-  {
-    "teal": 112,
-    "source": "contracts/RingLinkLSig3.algo.ts:37",
-    "pc": [
+      196,
       197,
-      198
-    ]
-  },
-  {
-    "teal": 113,
-    "source": "contracts/RingLinkLSig3.algo.ts:34",
-    "pc": [
+      198,
       199,
-      200
-    ]
-  },
-  {
-    "teal": 114,
-    "source": "contracts/RingLinkLSig3.algo.ts:34",
-    "pc": [
+      200,
       201,
-      202
-    ]
-  },
-  {
-    "teal": 118,
-    "source": "contracts/RingLinkLSig3.algo.ts:42",
-    "pc": [
+      202,
       203,
-      204
-    ]
-  },
-  {
-    "teal": 119,
-    "source": "contracts/RingLinkLSig3.algo.ts:42",
-    "pc": [
-      205
-    ]
-  },
-  {
-    "teal": 120,
-    "source": "contracts/RingLinkLSig3.algo.ts:42",
-    "pc": [
+      204,
+      205,
       206,
-      207
-    ]
-  },
-  {
-    "teal": 124,
-    "source": "contracts/RingLinkLSig3.algo.ts:43",
-    "pc": [
+      207,
       208,
-      209
-    ]
-  },
-  {
-    "teal": 125,
-    "source": "contracts/RingLinkLSig3.algo.ts:43",
-    "pc": [
+      209,
       210,
       211,
       212,
@@ -594,771 +467,268 @@
       221,
       222,
       223,
-      224,
-      225,
+      224
+    ]
+  },
+  {
+    "teal": 93,
+    "source": "contracts/RingLinkLSig3.algo.ts:31",
+    "pc": [
+      225
+    ]
+  },
+  {
+    "teal": 94,
+    "source": "contracts/RingLinkLSig3.algo.ts:31",
+    "pc": [
       226,
-      227,
+      227
+    ]
+  },
+  {
+    "teal": 98,
+    "source": "contracts/RingLinkLSig3.algo.ts:34",
+    "pc": [
       228,
-      229,
+      229
+    ]
+  },
+  {
+    "teal": 99,
+    "source": "contracts/RingLinkLSig3.algo.ts:34",
+    "pc": [
       230,
-      231,
+      231
+    ]
+  },
+  {
+    "teal": 100,
+    "source": "contracts/RingLinkLSig3.algo.ts:34",
+    "pc": [
       232,
-      233,
+      233
+    ]
+  },
+  {
+    "teal": 108,
+    "source": "contracts/RingLinkLSig3.algo.ts:42",
+    "pc": [
       234,
-      235,
+      235
+    ]
+  },
+  {
+    "teal": 109,
+    "source": "contracts/RingLinkLSig3.algo.ts:42",
+    "pc": [
       236,
-      237,
+      237
+    ]
+  },
+  {
+    "teal": 110,
+    "source": "contracts/RingLinkLSig3.algo.ts:42",
+    "pc": [
       238,
-      239,
+      239
+    ]
+  },
+  {
+    "teal": 111,
+    "source": "contracts/RingLinkLSig3.algo.ts:43",
+    "pc": [
       240,
-      241,
+      241
+    ]
+  },
+  {
+    "teal": 112,
+    "source": "contracts/RingLinkLSig3.algo.ts:43",
+    "pc": [
       242,
-      243,
+      243
+    ]
+  },
+  {
+    "teal": 113,
+    "source": "contracts/RingLinkLSig3.algo.ts:43",
+    "pc": [
       244,
-      245,
+      245
+    ]
+  },
+  {
+    "teal": 114,
+    "source": "contracts/RingLinkLSig3.algo.ts:40",
+    "pc": [
       246,
-      247,
+      247
+    ]
+  },
+  {
+    "teal": 115,
+    "source": "contracts/RingLinkLSig3.algo.ts:40",
+    "pc": [
       248,
-      249,
+      249
+    ]
+  },
+  {
+    "teal": 121,
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
+    "pc": [
       250,
-      251,
+      251
+    ]
+  },
+  {
+    "teal": 122,
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
+    "pc": [
       252,
-      253,
-      254,
+      253
+    ]
+  },
+  {
+    "teal": 123,
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
+    "pc": [
+      254
+    ]
+  },
+  {
+    "teal": 124,
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
+    "pc": [
       255,
-      256,
-      257,
-      258,
-      259
+      256
+    ]
+  },
+  {
+    "teal": 125,
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
+    "pc": [
+      257
     ]
   },
   {
     "teal": 126,
-    "source": "contracts/RingLinkLSig3.algo.ts:43",
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
     "pc": [
-      260
+      258
     ]
   },
   {
     "teal": 127,
-    "source": "contracts/RingLinkLSig3.algo.ts:43",
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
     "pc": [
+      259,
+      260,
       261,
-      262
-    ]
-  },
-  {
-    "teal": 131,
-    "source": "contracts/RingLinkLSig3.algo.ts:46",
-    "pc": [
+      262,
       263,
-      264
-    ]
-  },
-  {
-    "teal": 132,
-    "source": "contracts/RingLinkLSig3.algo.ts:46",
-    "pc": [
+      264,
       265,
-      266
-    ]
-  },
-  {
-    "teal": 133,
-    "source": "contracts/RingLinkLSig3.algo.ts:46",
-    "pc": [
+      266,
       267,
-      268
-    ]
-  },
-  {
-    "teal": 141,
-    "source": "contracts/RingLinkLSig3.algo.ts:54",
-    "pc": [
+      268,
       269,
-      270
-    ]
-  },
-  {
-    "teal": 142,
-    "source": "contracts/RingLinkLSig3.algo.ts:54",
-    "pc": [
+      270,
       271,
-      272
-    ]
-  },
-  {
-    "teal": 143,
-    "source": "contracts/RingLinkLSig3.algo.ts:54",
-    "pc": [
+      272,
       273,
-      274
-    ]
-  },
-  {
-    "teal": 144,
-    "source": "contracts/RingLinkLSig3.algo.ts:55",
-    "pc": [
+      274,
       275,
-      276
-    ]
-  },
-  {
-    "teal": 145,
-    "source": "contracts/RingLinkLSig3.algo.ts:55",
-    "pc": [
+      276,
       277,
-      278
-    ]
-  },
-  {
-    "teal": 146,
-    "source": "contracts/RingLinkLSig3.algo.ts:55",
-    "pc": [
+      278,
       279,
-      280
-    ]
-  },
-  {
-    "teal": 147,
-    "source": "contracts/RingLinkLSig3.algo.ts:52",
-    "pc": [
+      280,
       281,
-      282
-    ]
-  },
-  {
-    "teal": 148,
-    "source": "contracts/RingLinkLSig3.algo.ts:52",
-    "pc": [
+      282,
       283,
-      284
-    ]
-  },
-  {
-    "teal": 154,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
-    "pc": [
+      284,
       285,
-      286
-    ]
-  },
-  {
-    "teal": 155,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
-    "pc": [
+      286,
       287,
-      288
-    ]
-  },
-  {
-    "teal": 156,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
-    "pc": [
-      289
-    ]
-  },
-  {
-    "teal": 157,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
-    "pc": [
+      288,
+      289,
       290,
-      291
-    ]
-  },
-  {
-    "teal": 158,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
-    "pc": [
+      291,
       292
     ]
   },
   {
-    "teal": 159,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
+    "teal": 128,
+    "source": "contracts/RingLinkLSig3.algo.ts:51",
     "pc": [
       293
     ]
   },
   {
-    "teal": 160,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
+    "teal": 129,
+    "source": "contracts/RingLinkLSig3.algo.ts:50",
     "pc": [
       294,
-      295,
+      295
+    ]
+  },
+  {
+    "teal": 133,
+    "source": "contracts/RingLinkLSig3.algo.ts:54",
+    "pc": [
       296,
-      297,
+      297
+    ]
+  },
+  {
+    "teal": 134,
+    "source": "contracts/RingLinkLSig3.algo.ts:54",
+    "pc": [
       298,
-      299,
-      300,
-      301,
-      302,
-      303,
-      304,
-      305,
-      306,
-      307,
-      308,
-      309,
-      310,
-      311,
-      312,
-      313,
-      314,
-      315,
-      316,
-      317,
-      318,
-      319,
-      320,
-      321,
-      322,
-      323,
-      324,
-      325,
-      326,
-      327
+      299
     ]
   },
   {
-    "teal": 161,
-    "source": "contracts/RingLinkLSig3.algo.ts:63",
+    "teal": 135,
+    "source": "contracts/RingLinkLSig3.algo.ts:54",
     "pc": [
-      328
+      300
     ]
   },
   {
-    "teal": 162,
-    "source": "contracts/RingLinkLSig3.algo.ts:62",
+    "teal": 136,
+    "source": "contracts/RingLinkLSig3.algo.ts:54",
     "pc": [
-      329,
-      330
+      301
     ]
   },
   {
-    "teal": 168,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
+    "teal": 137,
+    "source": "contracts/RingLinkLSig3.algo.ts:56",
     "pc": [
-      331,
-      332
+      302
     ]
   },
   {
-    "teal": 169,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
+    "teal": 138,
+    "source": "contracts/RingLinkLSig3.algo.ts:56",
     "pc": [
-      333,
-      334
+      303
     ]
   },
   {
-    "teal": 170,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
+    "teal": 139,
+    "source": "contracts/RingLinkLSig3.algo.ts:56",
     "pc": [
-      335
+      304
     ]
   },
   {
-    "teal": 171,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
+    "teal": 140,
+    "source": "contracts/RingLinkLSig3.algo.ts:17",
     "pc": [
-      336,
-      337
-    ]
-  },
-  {
-    "teal": 172,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      338
-    ]
-  },
-  {
-    "teal": 173,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      339
-    ]
-  },
-  {
-    "teal": 174,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      340
-    ]
-  },
-  {
-    "teal": 175,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      341,
-      342
-    ]
-  },
-  {
-    "teal": 176,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      343,
-      344
-    ]
-  },
-  {
-    "teal": 177,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      345
-    ]
-  },
-  {
-    "teal": 178,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      346
-    ]
-  },
-  {
-    "teal": 179,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      347
-    ]
-  },
-  {
-    "teal": 180,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      348
-    ]
-  },
-  {
-    "teal": 181,
-    "source": "contracts/RingLinkLSig3.algo.ts:67",
-    "pc": [
-      349
-    ]
-  },
-  {
-    "teal": 182,
-    "source": "contracts/RingLinkLSig3.algo.ts:66",
-    "pc": [
-      350
-    ]
-  },
-  {
-    "teal": 195,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      351
-    ]
-  },
-  {
-    "teal": 196,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      352,
-      353
-    ]
-  },
-  {
-    "teal": 197,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      354,
-      355
-    ]
-  },
-  {
-    "teal": 198,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      356
-    ]
-  },
-  {
-    "teal": 201,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "errorMessage": "transaction verification failed: {\"txn\":\"this.txnGroup[0]\",\"field\":\"typeEnum\",\"expected\":\"appl\"}",
-    "pc": [
-      357
-    ]
-  },
-  {
-    "teal": 205,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      358
-    ]
-  },
-  {
-    "teal": 206,
-    "source": "contracts/RingLinkLSig3.algo.ts:72",
-    "pc": [
-      359,
-      360,
-      361
-    ]
-  },
-  {
-    "teal": 207,
-    "source": "contracts/RingLinkLSig3.algo.ts:72",
-    "pc": [
-      362,
-      363
-    ]
-  },
-  {
-    "teal": 208,
-    "source": "contracts/RingLinkLSig3.algo.ts:72",
-    "pc": [
-      364
-    ]
-  },
-  {
-    "teal": 211,
-    "source": "contracts/RingLinkLSig3.algo.ts:72",
-    "errorMessage": "transaction verification failed: {\"txn\":\"this.txnGroup[0]\",\"field\":\"applicationArgs\",\"index\":\"0\",\"expected\":\"rawBytes(msg)\"}",
-    "pc": [
-      365
-    ]
-  },
-  {
-    "teal": 214,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      366
-    ]
-  },
-  {
-    "teal": 215,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      367,
-      368,
-      369
-    ]
-  },
-  {
-    "teal": 216,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      370,
-      371
-    ]
-  },
-  {
-    "teal": 217,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      372
-    ]
-  },
-  {
-    "teal": 218,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      373
-    ]
-  },
-  {
-    "teal": 219,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      374
-    ]
-  },
-  {
-    "teal": 220,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      375,
-      376,
-      377
-    ]
-  },
-  {
-    "teal": 221,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      378
-    ]
-  },
-  {
-    "teal": 222,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      379
-    ]
-  },
-  {
-    "teal": 223,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "pc": [
-      380
-    ]
-  },
-  {
-    "teal": 226,
-    "source": "contracts/RingLinkLSig3.algo.ts:73",
-    "errorMessage": "transaction verification failed: {\"txn\":\"this.txnGroup[0]\",\"field\":\"applicationArgs\",\"index\":\"1\",\"expected\":\"rawBytes(pkAll)\"}",
-    "pc": [
-      381
-    ]
-  },
-  {
-    "teal": 229,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      382
-    ]
-  },
-  {
-    "teal": 230,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      383,
-      384,
-      385
-    ]
-  },
-  {
-    "teal": 231,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      386,
-      387
-    ]
-  },
-  {
-    "teal": 232,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      388
-    ]
-  },
-  {
-    "teal": 233,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      389
-    ]
-  },
-  {
-    "teal": 234,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      390
-    ]
-  },
-  {
-    "teal": 235,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      391,
-      392,
-      393
-    ]
-  },
-  {
-    "teal": 236,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      394
-    ]
-  },
-  {
-    "teal": 237,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      395
-    ]
-  },
-  {
-    "teal": 238,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "pc": [
-      396
-    ]
-  },
-  {
-    "teal": 241,
-    "source": "contracts/RingLinkLSig3.algo.ts:74",
-    "errorMessage": "transaction verification failed: {\"txn\":\"this.txnGroup[0]\",\"field\":\"applicationArgs\",\"index\":\"2\",\"expected\":\"rawBytes(keyImage)\"}",
-    "pc": [
-      397
-    ]
-  },
-  {
-    "teal": 244,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      398
-    ]
-  },
-  {
-    "teal": 245,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      399,
-      400,
-      401
-    ]
-  },
-  {
-    "teal": 246,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      402,
-      403
-    ]
-  },
-  {
-    "teal": 247,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      404
-    ]
-  },
-  {
-    "teal": 248,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      405
-    ]
-  },
-  {
-    "teal": 249,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      406
-    ]
-  },
-  {
-    "teal": 250,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      407,
-      408,
-      409
-    ]
-  },
-  {
-    "teal": 251,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      410
-    ]
-  },
-  {
-    "teal": 252,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      411
-    ]
-  },
-  {
-    "teal": 253,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "pc": [
-      412
-    ]
-  },
-  {
-    "teal": 256,
-    "source": "contracts/RingLinkLSig3.algo.ts:75",
-    "errorMessage": "transaction verification failed: {\"txn\":\"this.txnGroup[0]\",\"field\":\"applicationArgs\",\"index\":\"3\",\"expected\":\"rawBytes(sig)\"}",
-    "pc": [
-      413
-    ]
-  },
-  {
-    "teal": 259,
-    "source": "contracts/RingLinkLSig3.algo.ts:70",
-    "pc": [
-      414
-    ]
-  },
-  {
-    "teal": 260,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      415,
-      416,
-      417
-    ]
-  },
-  {
-    "teal": 261,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      418,
-      419
-    ]
-  },
-  {
-    "teal": 262,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      420
-    ]
-  },
-  {
-    "teal": 263,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      421
-    ]
-  },
-  {
-    "teal": 264,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      422
-    ]
-  },
-  {
-    "teal": 265,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      423,
-      424,
-      425
-    ]
-  },
-  {
-    "teal": 266,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      426
-    ]
-  },
-  {
-    "teal": 267,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      427
-    ]
-  },
-  {
-    "teal": 268,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "pc": [
-      428
-    ]
-  },
-  {
-    "teal": 271,
-    "source": "contracts/RingLinkLSig3.algo.ts:76",
-    "errorMessage": "transaction verification failed: {\"txn\":\"this.txnGroup[0]\",\"field\":\"applicationArgs\",\"index\":\"4\",\"expected\":\"rawBytes(challenges)\"}",
-    "pc": [
-      429
-    ]
-  },
-  {
-    "teal": 272,
-    "source": "contracts/RingLinkLSig3.algo.ts:25",
-    "pc": [
-      430
+      305
     ]
   }
 ]

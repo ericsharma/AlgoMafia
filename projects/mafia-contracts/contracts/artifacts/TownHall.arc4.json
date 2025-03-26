@@ -24,35 +24,6 @@
       }
     },
     {
-      "name": "testt",
-      "desc": "TEST",
-      "args": [
-        {
-          "name": "msg",
-          "type": "byte[]"
-        },
-        {
-          "name": "pk",
-          "type": "byte[]"
-        },
-        {
-          "name": "keyImage",
-          "type": "byte[]"
-        },
-        {
-          "name": "nonce",
-          "type": "byte[]"
-        },
-        {
-          "name": "c",
-          "type": "byte[]"
-        }
-      ],
-      "returns": {
-        "type": "byte[]"
-      }
-    },
-    {
       "name": "dlog",
       "args": [
         {
@@ -132,6 +103,26 @@
         },
         {
           "name": "lsigTxn0",
+          "type": "pay"
+        },
+        {
+          "name": "lsigTxn1",
+          "type": "pay"
+        },
+        {
+          "name": "lsigTxn2",
+          "type": "pay"
+        },
+        {
+          "name": "lsigTxn3",
+          "type": "pay"
+        },
+        {
+          "name": "lsigTxn4",
+          "type": "pay"
+        },
+        {
+          "name": "lsigTxn5",
           "type": "pay"
         }
       ],
