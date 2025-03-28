@@ -902,7 +902,7 @@ assignRole:
 	// verify sender
 	frame_dig -6 // lsigTxn0: PayTxn
 	gtxns Sender
-	pushbytes 0x7978bcf0d2f57e768e215b2947f5350862206a523f0399d24acf57cc994256f5 // addr "PF4LZ4GS6V7HNDRBLMUUP5JVBBRCA2SSH4BZTUSKZ5L4ZGKCK3262SJVGI"
+	pushbytes 0x5546d13a7a2ffd5575e59f639284f6669cc4f6f59677dc7430453af57d01e53d // addr "KVDNCOT2F76VK5PFT5RZFBHWM2OMJ5XVSZ35Y5BQIU5PK7IB4U6VNS4DME"
 	==
 
 	// transaction verification failed: {"txn":"lsigTxn0","field":"sender","expected":"Address.fromBytes(RingLinkLSig0.address())"}
@@ -913,7 +913,7 @@ assignRole:
 	// verify sender
 	frame_dig -7 // lsigTxn1: PayTxn
 	gtxns Sender
-	pushbytes 0x0375697194f7a405deb880918458a532aa272335605fda74e81e1c21debadce7 // addr "AN2WS4MU66SALXVYQCIYIWFFGKVCOIZVMBP5U5HIDYOCDXV23TTXO5K2QE"
+	pushbytes 0x7dc561ea0f0c329bc57e9a5fa15cfb475e082a265188b9113d86577286388064 // addr "PXCWD2QPBQZJXRL6TJP2CXH3I5PAQKRGKGELSEJ5QZLXFBRYQBSDCKKJBI"
 	==
 
 	// transaction verification failed: {"txn":"lsigTxn1","field":"sender","expected":"Address.fromBytes(RingLinkLSig1.address())"}
@@ -924,7 +924,7 @@ assignRole:
 	// verify sender
 	frame_dig -8 // lsigTxn2: PayTxn
 	gtxns Sender
-	pushbytes 0x49fd2ed3aa21f7e3494beda7ad1de178eb2fa25e22cef3dad89d24dc62385ced // addr "JH6S5U5KEH36GSKL5WT22HPBPDVS7IS6ELHPHWWYTUSNYYRYLTW4FZTRI4"
+	pushbytes 0xdc2ad85805a2bc152129e27e28dbc002f3831cf424656a01e97ce8586cd438e6 // addr "3QVNQWAFUK6BKIJJ4J7CRW6AALZYGHHUERSWUAPJPTUFQ3GUHDTOCR6AGI"
 	==
 
 	// transaction verification failed: {"txn":"lsigTxn2","field":"sender","expected":"Address.fromBytes(RingLinkLSig2.address())"}
@@ -935,7 +935,7 @@ assignRole:
 	// verify sender
 	frame_dig -9 // lsigTxn3: PayTxn
 	gtxns Sender
-	pushbytes 0x03626453e8d3da12fe0ab456b71e8479bbab1358a04b9a455505774d829e6172 // addr "ANRGIU7I2PNBF7QKWRLLOHUEPG52WE2YUBFZURKVAV3U3AU6MFZKLZMXKY"
+	pushbytes 0xee3a5a51aa2ed361985114a3a9585f79dcbe32d936bc0f584d8a469177a9ac40 // addr "5Y5FUUNKF3JWDGCRCSR2SWC7PHOL4MWZG26A6WCNRJDJC55JVRADS33KZQ"
 	==
 
 	// transaction verification failed: {"txn":"lsigTxn3","field":"sender","expected":"Address.fromBytes(RingLinkLSig3.address())"}
@@ -946,7 +946,7 @@ assignRole:
 	// verify sender
 	frame_dig -10 // lsigTxn4: PayTxn
 	gtxns Sender
-	pushbytes 0xf566763cb99d028aef7ae2772357c245ceebf7953998d665e4610265fd835eb5 // addr "6VTHMPFZTUBIV3324J3SGV6CIXHOX54VHGMNMZPEMEBGL7MDL22ZTYZTEY"
+	pushbytes 0xc23ce7cbd2b65ddc0011fab76c11e3aa01a7af26b527fddfdbaa872e2f0bdb0c // addr "YI6OPS6SWZO5YAAR7K3WYEPDVIA2PLZGWUT73X63VKDS4LYL3MGIQW4WL4"
 	==
 
 	// transaction verification failed: {"txn":"lsigTxn4","field":"sender","expected":"Address.fromBytes(RingLinkLSig4.address())"}
@@ -957,7 +957,7 @@ assignRole:
 	// verify sender
 	frame_dig -11 // lsigTxn5: PayTxn
 	gtxns Sender
-	pushbytes 0x5cd43fda0fbb37ce4e9ab8287434f465c81105eb88d81cae1afaa962b280ee82 // addr "LTKD7WQPXM344TU2XAUHINHUMXEBCBPLRDMBZLQ27KUWFMUA52BFRCEUEE"
+	pushbytes 0xad89d53881690c56eb1990e28bc22b728d85e3c95ddc3cd4d32410d4f394ba28 // addr "VWE5KOEBNEGFN2YZSDRIXQRLOKGYLY6JLXODZVGTEQINJ44UXIUP4IW4NU"
 	==
 
 	// transaction verification failed: {"txn":"lsigTxn5","field":"sender","expected":"Address.fromBytes(RingLinkLSig5.address())"}

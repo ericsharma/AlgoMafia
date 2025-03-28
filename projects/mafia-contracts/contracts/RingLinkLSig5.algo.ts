@@ -1,5 +1,13 @@
 import { LogicSig } from '@algorandfoundation/tealscript';
-import { BLS12381G1_BASEPOINT_BYTES, BLS12381_CURVE_ORDER_HEX, BLS12381_FIELD_MODULUS_HEX } from './Constants';
+import {
+  BLS12381G1_BASEPOINT_BYTES,
+  BLS12381G1_LENGTH,
+  BLS12381_CURVE_ORDER_HEX,
+  BLS12381_FIELD_MODULUS_HEX,
+  RING_SIG_CHALL_LENGTH,
+  RING_SIG_LINKS_AMNT,
+  RING_SIG_NONCE_LENGTH,
+} from './Constants';
 
 const i = 5;
 
@@ -54,27 +62,35 @@ export class RingLinkLSig5 extends LogicSig {
 
     assert(h === cExpected);
 
-    i === i;
-
-    // TODO: Get this to work:
-
-    // assert(this.txnGroup[0].applicationArgs[0] === msg);
-    // assert(extract3(this.txnGroup[0].applicationArgs[1], i * BLS12381G1_LENGTH, BLS12381G1_LENGTH) === pk);
-    // assert(this.txnGroup[0].applicationArgs[2] === keyImage);
-    // assert(
-    //   extract3(this.txnGroup[0].applicationArgs[3], (i + 1) * RING_SIG_NONCE_LENGTH, RING_SIG_NONCE_LENGTH) === nonce
-    // );
-    // assert(extract3(this.txnGroup[0].applicationArgs[4], i * RING_SIG_CHALL_LENGTH, BLS12381G1_LENGTH) === cPrev);
-    // assert(extract3(this.txnGroup[0].applicationArgs[4], ((i + 1) % 5) * RING_SIG_CHALL_LENGTH, BLS12381G1_LENGTH) === cExpected);
-
-    // verifyAppCallTxn(this.txnGroup[0], {
-    //   applicationArgs: {
-    //     0: rawBytes(msg),
-    //     1: rawBytes(pkAll),
-    //     2: rawBytes(keyImage),
-    //     3: rawBytes(sig),
-    //     4: rawBytes(challenges),
-    //   },
-    // });
+    assert(this.txnGroup[this.txn.groupIndex + RING_SIG_LINKS_AMNT - i].applicationArgs[1] === rawBytes(msg));
+    assert(
+      extract3(
+        this.txnGroup[this.txn.groupIndex + RING_SIG_LINKS_AMNT - i].applicationArgs[2],
+        2 + i * BLS12381G1_LENGTH,
+        BLS12381G1_LENGTH
+      ) === pk
+    );
+    assert(this.txnGroup[this.txn.groupIndex + RING_SIG_LINKS_AMNT - i].applicationArgs[3] === rawBytes(keyImage));
+    assert(
+      extract3(
+        this.txnGroup[this.txn.groupIndex + RING_SIG_LINKS_AMNT - i].applicationArgs[4],
+        2 + (i + 1) * RING_SIG_NONCE_LENGTH,
+        RING_SIG_NONCE_LENGTH
+      ) === nonce
+    );
+    assert(
+      extract3(
+        this.txnGroup[this.txn.groupIndex + RING_SIG_LINKS_AMNT - i].applicationArgs[5],
+        2 + i * RING_SIG_CHALL_LENGTH,
+        RING_SIG_CHALL_LENGTH
+      ) === cPrev
+    );
+    assert(
+      extract3(
+        this.txnGroup[this.txn.groupIndex + RING_SIG_LINKS_AMNT - i].applicationArgs[5],
+        2 + ((i + 1) % 6) * RING_SIG_CHALL_LENGTH,
+        RING_SIG_CHALL_LENGTH
+      ) === cExpected
+    );
   }
 }
