@@ -75,7 +75,7 @@
         }
       ],
       "returns": {
-        "type": "bool"
+        "type": "void"
       }
     },
     {
@@ -127,7 +127,120 @@
         }
       ],
       "returns": {
-        "type": "bool"
+        "type": "void"
+      }
+    },
+    {
+      "name": "dayStageVote",
+      "args": [
+        {
+          "name": "vote",
+          "type": "uint64"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "dayStageEliminate",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "dayStageRevealRole",
+      "args": [
+        {
+          "name": "BLS_PRIVATE",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "nightStageMafiaCommit",
+      "args": [
+        {
+          "name": "commitment",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "nightStageDoctorCommit",
+      "args": [
+        {
+          "name": "commitment",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "dawnStageMafiaReveal",
+      "args": [
+        {
+          "name": "victimAim",
+          "type": "address"
+        },
+        {
+          "name": "blinder",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "dawnStageDoctorReveal",
+      "args": [
+        {
+          "name": "patientAim",
+          "type": "address"
+        },
+        {
+          "name": "blinder",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "dawnStageDeadOrSaved",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "dawnStageRevealRole",
+      "args": [
+        {
+          "name": "BLS_PRIVATE",
+          "type": "byte[]"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "gameOver",
+      "args": [],
+      "returns": {
+        "type": "void"
       }
     }
   ]

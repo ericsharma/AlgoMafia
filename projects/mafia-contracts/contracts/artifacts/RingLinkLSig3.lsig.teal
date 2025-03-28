@@ -57,7 +57,8 @@ b *route_logic
 // @param pk - The public key relevant to this link.
 // @param keyImage - The key image of the signer, required for linkabiltiy to prevent double spending
 // @param nonce - The ring sig nonces, in 1 large byte array. The core of the ring sig itself.
-// @param challenges - The challenges, in 1 large byte array. Intermediate values. We check if what's provided into the contract is the same as what is calculated.
+// @param cPrev - The input "challenge", or previous challenge in the ring sig verification flow.
+// @param cExpected - The expected challenge, to be compared against the calculated challenge.
 logic:
 	proto 6 0
 
@@ -65,7 +66,7 @@ logic:
 	bytec 0 // 0x
 	dupn 5
 
-	// contracts/RingLinkLSig3.algo.ts:22
+	// contracts/RingLinkLSig3.algo.ts:23
 	// left = ecAdd(
 	//       'BLS12_381g1',
 	//       ecScalarMul('BLS12_381g1', hex(BLS12381G1_BASEPOINT_BYTES), nonce),
@@ -80,26 +81,26 @@ logic:
 	ec_add BLS12_381g1
 	frame_bury 0 // left: byte[]
 
-	// contracts/RingLinkLSig3.algo.ts:30
+	// contracts/RingLinkLSig3.algo.ts:31
 	// hash = keccak256(pk)
 	frame_dig -2 // pk: bytes
 	keccak256
 	frame_bury 1 // hash: byte[32]
 
-	// contracts/RingLinkLSig3.algo.ts:31
+	// contracts/RingLinkLSig3.algo.ts:32
 	// fpElement = btobigint(hash) % btobigint(hex(BLS12381_FIELD_MODULUS_HEX))
 	frame_dig 1 // hash: byte[32]
 	pushbytes 0x1a0111ea397fe69a4b1ba7b6434bacd764774b84f38512bf6730d2a0f6b0f6241eabfffeb153ffffb9feffffffffaaab
 	b%
 	frame_bury 2 // fpElement: bigint
 
-	// contracts/RingLinkLSig3.algo.ts:34
+	// contracts/RingLinkLSig3.algo.ts:35
 	// hp2p = ecMapTo('BLS12_381g1', rawBytes(fpElement))
 	frame_dig 2 // fpElement: bigint
 	ec_map_to BLS12_381g1
 	frame_bury 3 // hp2p: byte[]
 
-	// contracts/RingLinkLSig3.algo.ts:40
+	// contracts/RingLinkLSig3.algo.ts:41
 	// right = ecAdd(
 	//       'BLS12_381g1',
 	//       ecScalarMul('BLS12_381g1', hp2p, nonce),
@@ -114,7 +115,7 @@ logic:
 	ec_add BLS12_381g1
 	frame_bury 4 // right: byte[]
 
-	// contracts/RingLinkLSig3.algo.ts:50
+	// contracts/RingLinkLSig3.algo.ts:51
 	// h = rawBytes(
 	//       btobigint(keccak256(concat(concat(msg, left), right))) % btobigint(hex(BLS12381_CURVE_ORDER_HEX))
 	//     )
@@ -128,7 +129,7 @@ logic:
 	b%
 	frame_bury 5 // h: byte[]
 
-	// contracts/RingLinkLSig3.algo.ts:54
+	// contracts/RingLinkLSig3.algo.ts:55
 	// assert(h === cExpected)
 	frame_dig 5 // h: byte[]
 	frame_dig -6 // cExpected: bytes

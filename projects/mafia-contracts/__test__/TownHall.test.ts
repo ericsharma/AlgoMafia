@@ -27,19 +27,28 @@ class Player {
 
   bls_public_key: Uint8Array;
 
-  client: TownHallClient;
+  day_client: TownHallClient;
+
+  night_client: TownHallClient;
 
   constructor() {
     this.bls_private_key = algoring.generate_fe();
     this.bls_public_key = algoring.generate_ge(this.bls_private_key);
     this.day_algo_address = AlgorandClient.defaultLocalNet().account.random();
     this.night_algo_address = AlgorandClient.defaultLocalNet().account.random();
-    this.client = AlgorandClient.defaultLocalNet()
+    this.day_client = AlgorandClient.defaultLocalNet()
       .setDefaultSigner(this.day_algo_address.signer)
       .client.getTypedAppClientById(TownHallClient, {
         appId: appClient.appId,
         defaultSender: this.day_algo_address.addr,
         defaultSigner: this.day_algo_address.signer,
+      }); // Client set with their signers, so we can have the player can sign
+    this.night_client = AlgorandClient.defaultLocalNet()
+      .setDefaultSigner(this.night_algo_address.signer)
+      .client.getTypedAppClientById(TownHallClient, {
+        appId: appClient.appId,
+        defaultSender: this.night_algo_address.addr,
+        defaultSigner: this.night_algo_address.signer,
       }); // Client set with their signers, so we can have the player can sign
   }
 }
@@ -106,6 +115,9 @@ describe('TownHall', () => {
     players = Array.from({ length: 6 }, () => new Player());
     players.forEach(async (player) => {
       algorand.account.ensureFundedFromEnvironment(player.day_algo_address.account.addr, fundAmount);
+
+      // TODO: Have the night address through an LSIG funded by the contract!
+      algorand.account.ensureFundedFromEnvironment(player.night_algo_address.account.addr, fundAmount);
     });
   });
 
@@ -182,64 +194,6 @@ describe('TownHall', () => {
     expect(newPoint.toString()).toStrictEqual(expectedPoint.toString());
   });
 
-  // test('test', async () => {
-
-  //   const p = players[0];
-
-  //   // const msg = new TextEncoder().encode(p.day_algo_address.addr + p.client.appClient.appAddress);
-  //   const msg = new TextEncoder().encode('Hello World');
-  //   // console.log(msg);
-
-  //   // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
-
-  //   // For some reason, the 0th element will be different from the actual value it is suppsoed to be.
-  //   const ringOfPKs = [
-  //     p.bls_public_key,
-  //     players[1].bls_public_key,
-  //     players[2].bls_public_key,
-  //     players[3].bls_public_key,
-  //     players[4].bls_public_key,
-  //     players[5].bls_public_key,
-  //   ];
-
-  //   const keyImage = algoring.genKeyImage(p.bls_private_key, p.bls_public_key);
-
-  //   // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
-  //   const { signature } = algoring.generate_ring_signature(msg, p.bls_private_key, ringOfPKs, keyImage);
-
-  //   // TODO: remove msg return
-  //   const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
-  //     msg,
-  //     signature,
-  //     ringOfPKs,
-  //     keyImage
-  //   );
-
-  //   const h1 = await p.client.newGroup().testt({
-  //     args: {
-  //       msg,
-  //       pk: algoring.to_pxpy(p.bls_public_key),
-  //       keyImage: algoring.to_pxpy(keyImage),
-  //       nonce: signatureConcat.slice(0, 32),
-  //       c: intermediateValues.slice(0, 32),
-  //     }
-  //   }).simulate({
-  //     extraOpcodeBudget: 20000,
-  //   })
-
-  //   const h2 = await algoring.create_ring_link(
-  //     msg,
-  //     signatureConcat.slice(0, 32),
-  //     intermediateValues.slice(0, 32),
-  //     p.bls_public_key,
-  //     keyImage
-  //   );
-
-  //   console.log("h1:", h1.returns[0]);
-  //   console.log("h2:", h2);
-
-  // });
-
   test('entire_play', async () => {
     let state = await appClient.send.getGameState();
     expect(Number(state.return)).toEqual(0);
@@ -266,7 +220,7 @@ describe('TownHall', () => {
       NIZK_DLOG.set(proof[3], 96 + 96 + 96);
 
       // eslint-disable-next-line no-await-in-loop
-      const result = await player.client
+      const result = await player.day_client
         .newGroup()
         .joinGameLobby({
           args: {
@@ -302,7 +256,6 @@ describe('TownHall', () => {
         })
         .send();
       // eslint-disable-next-line no-await-in-loop
-      expect(result.returns[0]).toBe(true);
     }
 
     expect(await appClient.state.global.player1AlgoAddr()).toBe(players[0].day_algo_address.addr);
@@ -323,14 +276,6 @@ describe('TownHall', () => {
     expect(Number(state.return)).toEqual(1); // Advanced to the AssignRoles stage
     /// <----------- ENTERED AssignRole Stage ----------->
 
-    const p = players[0];
-
-    // const msg = new TextEncoder().encode(p.day_algo_address.addr + p.client.appClient.appAddress);
-    const msg = new TextEncoder().encode('Hello World');
-    // console.log(msg);
-
-    // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
-
     const ringOfPKs = [
       algoring.from_pxpy(ring.slice(0 * BLS12381G1_LENGTH, 1 * BLS12381G1_LENGTH)),
       algoring.from_pxpy(ring.slice(1 * BLS12381G1_LENGTH, 2 * BLS12381G1_LENGTH)),
@@ -340,99 +285,133 @@ describe('TownHall', () => {
       algoring.from_pxpy(ring.slice(5 * BLS12381G1_LENGTH, 6 * BLS12381G1_LENGTH)),
     ];
 
-    const keyImage = algoring.genKeyImage(p.bls_private_key, p.bls_public_key);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const player of players) {
+      // TODO: MSG should be the player's night address concatenated with the app's address
+      // const msg = new TextEncoder().encode(player.night_algo_address.addr + player.client.appClient.appAddress);
+      const msg = new TextEncoder().encode('Hello World');
 
-    // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
-    const { signature } = algoring.generate_ring_signature(msg, p.bls_private_key, ringOfPKs, keyImage);
+      // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
+      const keyImage = algoring.genKeyImage(player.bls_private_key, player.bls_public_key);
 
-    console.log(signature);
+      // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
+      const { signature } = algoring.generate_ring_signature(msg, player.bls_private_key, ringOfPKs, keyImage);
 
-    // TODO: remove msg return
-    const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
-      msg,
-      signature,
-      ringOfPKs,
-      keyImage
-    );
-
-    console.log('signatureConcat:', signatureConcat.length / RING_SIG_NONCE_LENGTH);
-    console.log('intermediateValues:', intermediateValues.length / RING_SIG_CHALL_LENGTH);
-
-    // TODO: Spend from night address, not day address
-
-    // BEGIN LSIG
-
-    const pts = [];
-    const signers = [];
-
-    const length = intermediateValues.length / RING_SIG_CHALL_LENGTH;
-
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < length; i++) {
-      // eslint-disable-next-line no-await-in-loop
-      const { lSigRingSigPayTxn, lSigRingSigSigner } = await prepareLSigRingLink(
-        i,
-        p.client,
+      // TODO: remove msg return
+      const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
         msg,
-        ring.slice(i * BLS12381G1_LENGTH, (i + 1) * BLS12381G1_LENGTH),
-        keyImage,
-        signatureConcat.slice((i + 1) * RING_SIG_NONCE_LENGTH, (i + 2) * RING_SIG_NONCE_LENGTH),
-        intermediateValues.slice(i * RING_SIG_CHALL_LENGTH, (i + 1) * RING_SIG_CHALL_LENGTH),
-        i === length - 1
-          ? intermediateValues.slice(0 * RING_SIG_CHALL_LENGTH, 1 * RING_SIG_CHALL_LENGTH)
-          : intermediateValues.slice((i + 1) * RING_SIG_CHALL_LENGTH, (i + 2) * RING_SIG_CHALL_LENGTH)
+        signature,
+        ringOfPKs,
+        keyImage
       );
-      pts.push(lSigRingSigPayTxn);
-      signers.push(lSigRingSigSigner);
+
+      // BEGIN LSIG
+
+      const pts = [];
+      const signers = [];
+
+      const length = intermediateValues.length / RING_SIG_CHALL_LENGTH;
+
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < length; i++) {
+        // eslint-disable-next-line no-await-in-loop
+        const { lSigRingSigPayTxn, lSigRingSigSigner } = await prepareLSigRingLink(
+          i,
+          player.night_client,
+          msg,
+          ring.slice(i * BLS12381G1_LENGTH, (i + 1) * BLS12381G1_LENGTH),
+          keyImage,
+          signatureConcat.slice((i + 1) * RING_SIG_NONCE_LENGTH, (i + 2) * RING_SIG_NONCE_LENGTH),
+          intermediateValues.slice(i * RING_SIG_CHALL_LENGTH, (i + 1) * RING_SIG_CHALL_LENGTH),
+          i === length - 1
+            ? intermediateValues.slice(0 * RING_SIG_CHALL_LENGTH, 1 * RING_SIG_CHALL_LENGTH)
+            : intermediateValues.slice((i + 1) * RING_SIG_CHALL_LENGTH, (i + 2) * RING_SIG_CHALL_LENGTH)
+        );
+        pts.push(lSigRingSigPayTxn);
+        signers.push(lSigRingSigSigner);
+      }
+
+      // eslint-disable-next-line no-await-in-loop
+      await player.night_client
+        .newGroup()
+        .assignRole({
+          args: {
+            msg,
+            pkAll: ring,
+            keyImage: algoring.to_pxpy(keyImage),
+            sig: signatureConcat,
+            challenges: intermediateValues,
+            lsigTxn0: {
+              txn: pts[0],
+              signer: signers[0],
+            },
+            lsigTxn1: {
+              txn: pts[1],
+              signer: signers[1],
+            },
+            lsigTxn2: {
+              txn: pts[2],
+              signer: signers[2],
+            },
+            lsigTxn3: {
+              txn: pts[3],
+              signer: signers[3],
+            },
+            lsigTxn4: {
+              txn: pts[4],
+              signer: signers[4],
+            },
+            lsigTxn5: {
+              txn: pts[5],
+              signer: signers[5],
+            },
+          },
+          extraFee: (1000 * length).microAlgos(),
+        })
+        .send();
     }
 
-    const res = await p.client
-      .newGroup()
-      .assignRole({
-        args: {
-          msg,
-          pkAll: ring,
-          keyImage: algoring.to_pxpy(keyImage),
-          sig: signatureConcat,
-          challenges: intermediateValues,
-          lsigTxn0: {
-            txn: pts[0],
-            signer: signers[0],
-          },
-          lsigTxn1: {
-            txn: pts[1],
-            signer: signers[1],
-          },
-          lsigTxn2: {
-            txn: pts[2],
-            signer: signers[2],
-          },
-          lsigTxn3: {
-            txn: pts[3],
-            signer: signers[3],
-          },
-          lsigTxn4: {
-            txn: pts[4],
-            signer: signers[4],
-          },
-          lsigTxn5: {
-            txn: pts[5],
-            signer: signers[5],
-          },
-        },
-        extraFee: (1000 * length).microAlgos(),
-      })
-      .send();
+    // <----->
 
-    console.log('returned:', res.returns[0]);
+    expect(await appClient.state.global.mafia()).toBe(players[0].night_algo_address.addr);
+    expect(await appClient.state.global.doctor()).toBe(players[1].night_algo_address.addr);
+    expect(await appClient.state.global.farmer()).toBe(players[2].night_algo_address.addr);
+    expect(await appClient.state.global.butcher()).toBe(players[3].night_algo_address.addr);
+    expect(await appClient.state.global.innkeep()).toBe(players[4].night_algo_address.addr);
+    expect(await appClient.state.global.grocer()).toBe(players[5].night_algo_address.addr);
+
+    state = await appClient.send.getGameState();
+    expect(Number(state.return)).toEqual(2); // Advanced to the AssignRoles stage
+
+    /// <----------- ENTERED DayStageVote ----------->
+
+    // Everyone but player 3 votes for player 3
+    // Player 3 votes for player 1 ( who just happens to be the maffia)
+    await players[0].day_client.send.dayStageVote({ args: { vote: 3 } });
+    await players[1].day_client.send.dayStageVote({ args: { vote: 3 } });
+    await players[2].day_client.send.dayStageVote({ args: { vote: 1 } });
+    await players[3].day_client.send.dayStageVote({ args: { vote: 3 } });
+    await players[4].day_client.send.dayStageVote({ args: { vote: 3 } });
+    await players[5].day_client.send.dayStageVote({ args: { vote: 3 } });
+
+    state = await appClient.send.getGameState();
+    expect(Number(state.return)).toEqual(3); // Advanced to the AssignRoles stage
+
+    /// <----------- ENTERED DayStageEliminate ----------->
+    // Player 3 is eliminated
+    await players[0].day_client.send.dayStageEliminate(); // Doesn't matter who calls it
+    state = await appClient.send.getGameState();
+    // TODO: check that Player 3 has been set to Zero Address
+    expect(Number(state.return)).toEqual(4); // Advanced to the AssignRoles stage
+
+    /// <----------- ENTERED DayStageEliminate ----------->
+    // Player 3 reveals themselves
+
+    // await players[2].day_client.send.dayStageReveal({ args: { BLS_PRIVATE: players[2].bls_private_key } });
   });
 });
 
 /**
-
-
-test('entire_play', async () => {
-  const { testAccount } = fixture.context;
 
 
   ## Create a new game
@@ -453,7 +432,7 @@ test('entire_play', async () => {
   ## Day Stage
     * if there are equal or more mafia than townsfolk+doctor, the mafia wins
     * each player votes for a player
-    * the player with the most votes is lynched; they are removed from the game
+    * the player with the most votes is eliminated; they are removed from the game
     * the player reveals their role to retrieve their deposit
     * if there are no mafia left, the townsfolk win
 

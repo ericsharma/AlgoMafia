@@ -13,7 +13,20 @@ import { RingLinkLSig2 } from './RingLinkLSig2.algo';
 import { RingLinkLSig3 } from './RingLinkLSig3.algo';
 import { RingLinkLSig4 } from './RingLinkLSig4.algo';
 import { RingLinkLSig5 } from './RingLinkLSig5.algo';
-import { RingLinkLSig6 } from './RingLinkLSig6.algo';
+
+// Would ideally be an ENUM but they are not supported at this point
+const stateJoinGameLobby = 0;
+const stateAssignRole = stateJoinGameLobby + 1;
+const stateDayStageVote = stateAssignRole + 1;
+const stateDayStageEliminate = stateDayStageVote + 1;
+const stateDayStageReveal = stateDayStageEliminate + 1;
+const stateNightStageMafiaCommit = stateDayStageReveal + 1;
+const stateNightStageDoctorCommit = stateNightStageMafiaCommit + 1;
+const stateDawnStageMafiaReveal = stateNightStageDoctorCommit + 1;
+const stateDawnStageDoctorReveal = stateDawnStageMafiaReveal + 1;
+const stateDawnStageDeadOrSaved = stateDawnStageDoctorReveal + 1;
+const stateDawnStageRevealRoles = stateDawnStageDeadOrSaved + 1;
+const stateGameOver = stateDawnStageRevealRoles + 1;
 
 export class TownHall extends Contract {
   // Players:
@@ -31,9 +44,13 @@ export class TownHall extends Contract {
   player6AlgoAddr = GlobalStateKey<Address>();
 
   // Roles:
-  maffia = GlobalStateKey<Address>();
+  mafia = GlobalStateKey<Address>();
+
+  mafiaKeyImage = GlobalStateKey<bytes>();
 
   doctor = GlobalStateKey<Address>();
+
+  doctorKeyImage = GlobalStateKey<bytes>();
 
   farmer = GlobalStateKey<Address>();
 
@@ -50,28 +67,52 @@ export class TownHall extends Contract {
   quickAccessPKBoxes = BoxMap<uint64, bytes>(); // Boxes containing PK bytes, accessible by [boxId][offsetIndex].
 
   // HashFilter BOXES
-  // We want a simple way to ensure that an ephemeral PK or a key image (KI) are not submitted twice.
+  // We want a simple way to ensure that an ephemeral PK or a key image (KI) is not submitted twice.
   hashFilter = BoxMap<bytes, bytes>(); // HashFilter with box titles = Hash(public key) or Hash/(key image)
 
   // Day States
 
-  // playerVote = GlobalStateMap<bytes, uint64>({
-  //   maxKeys: 6,
-  // });
+  player1HasVoted = GlobalStateKey<uint64>();
 
-  justKilledPlayer = GlobalStateKey<Address>();
+  player1ReceivedVotes = GlobalStateKey<uint64>();
 
-  justKilledTimeOfDeath = GlobalStateKey<uint64>();
+  player2HasVoted = GlobalStateKey<uint64>();
+
+  player2ReceivedVotes = GlobalStateKey<uint64>();
+
+  player3HasVoted = GlobalStateKey<uint64>();
+
+  player3ReceivedVotes = GlobalStateKey<uint64>();
+
+  player4HasVoted = GlobalStateKey<uint64>();
+
+  player4ReceivedVotes = GlobalStateKey<uint64>();
+
+  player5HasVoted = GlobalStateKey<uint64>();
+
+  player5ReceivedVotes = GlobalStateKey<uint64>();
+
+  player6HasVoted = GlobalStateKey<uint64>();
+
+  player6ReceivedVotes = GlobalStateKey<uint64>();
+
+  playersVoted = GlobalStateKey<uint64>();
+
+  playersAlive = GlobalStateKey<uint64>();
+
+  justEliminatedPlayer = GlobalStateKey<Address>();
 
   // Night States
 
-  maffiaCommitment = GlobalStateKey<bytes>();
+  doctorStillAlive = GlobalStateKey<uint64>();
+
+  mafiaCommitment = GlobalStateKey<bytes>();
 
   doctorCommitment = GlobalStateKey<bytes>();
 
-  maffiaVictim = GlobalStateKey<bytes>();
+  mafiaVictim = GlobalStateKey<Address>();
 
-  doctorPatient = GlobalStateKey<bytes>();
+  doctorPatient = GlobalStateKey<Address>();
 
   // Game States:
 
@@ -87,33 +128,38 @@ export class TownHall extends Contract {
     this.player5AlgoAddr.value = globals.zeroAddress;
     this.player6AlgoAddr.value = globals.zeroAddress;
 
-    this.maffia.value = globals.zeroAddress;
+    this.mafia.value = globals.zeroAddress;
     this.doctor.value = globals.zeroAddress;
     this.farmer.value = globals.zeroAddress;
     this.butcher.value = globals.zeroAddress;
     this.innkeep.value = globals.zeroAddress;
     this.grocer.value = globals.zeroAddress;
 
+    this.player1HasVoted.value = 0;
+    this.player2HasVoted.value = 0;
+    this.player3HasVoted.value = 0;
+    this.player4HasVoted.value = 0;
+    this.player5HasVoted.value = 0;
+    this.player6HasVoted.value = 0;
+    this.playersVoted.value = 0;
+
+    this.player1ReceivedVotes.value = 0;
+    this.player2ReceivedVotes.value = 0;
+    this.player3ReceivedVotes.value = 0;
+    this.player4ReceivedVotes.value = 0;
+    this.player5ReceivedVotes.value = 0;
+    this.player6ReceivedVotes.value = 0;
+    this.playersVoted.value = 0;
+
     this.playersJoined.value = 0;
+    this.playersAlive.value = 6;
+    this.doctorStillAlive.value = 1;
 
-    /*     this.justKilledPlayer.value = globals.zeroAddress;
-    this.justKilledTimeOfDeath.value = 0;
+    this.justEliminatedPlayer.value = globals.zeroAddress;
+    this.mafiaVictim.value = globals.zeroAddress;
+    this.doctorPatient.value = globals.zeroAddress;
 
-    this.maffiaCommitment.value = new Uint8Array(0);
-    this.doctorCommitment.value = new Uint8Array(0);
- */
     this.gameState.value = 0;
-    // 0 = lobby
-    // 1 = assign roles
-    // 2 = dayVote
-    // 3 = dayLynch
-    // 4 = dayReveal
-    // 5 = nightMaffiaCommitment
-    // 6 = nightDoctorCommitment
-    // 7 = dawnMaffiaReveal
-    // 8 = dawnDoctorReveal
-    // 9 = dawnDeadOrSavedReveal
-    // 10 = game over
   }
 
   /** Dummy Op Up
@@ -169,13 +215,13 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
     return this.gameState.value;
   }
 
-  joinGameLobby(NIZK_DLOG: bytes): boolean {
-    if (this.gameState.value !== 0) {
-      return false;
+  joinGameLobby(NIZK_DLOG: bytes): void {
+    if (this.gameState.value !== stateJoinGameLobby) {
+      throw Error('Invalid method call: Game is not in Join Game Lobby state.');
     }
 
     if (this.playersJoined.value === 6) {
-      return false; // error, should have already moved to the next stage
+      throw Error('Max players already joined! Error, game should have moved to the next stage already.');
     }
 
     const g = extract3(NIZK_DLOG, 0, BLS12381G1_LENGTH);
@@ -187,7 +233,7 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
 
     // Verify ephemeralPK and NIZK_DLOG proof
     if (!this.dlog(g, RingPK, v, z)) {
-      return false;
+      throw Error('DLOG NIZK Proof failed!');
     }
 
     if (!this.quickAccessPKBoxes(0).exists) {
@@ -198,7 +244,7 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
 
     // Verify that the box exists
     if (!this.quickAccessPKBoxes(0).exists) {
-      return false;
+      throw Error('PK Box failed to be created.');
     }
 
     this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
@@ -206,31 +252,31 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
 
     if (this.player1AlgoAddr.value === globals.zeroAddress) {
       this.player1AlgoAddr.value = this.txn.sender;
-      return true;
+      return;
     }
     if (this.player2AlgoAddr.value === globals.zeroAddress) {
       this.player2AlgoAddr.value = this.txn.sender;
-      return true;
+      return;
     }
     if (this.player3AlgoAddr.value === globals.zeroAddress) {
       this.player3AlgoAddr.value = this.txn.sender;
-      return true;
+      return;
     }
     if (this.player4AlgoAddr.value === globals.zeroAddress) {
       this.player4AlgoAddr.value = this.txn.sender;
-      return true;
+      return;
     }
     if (this.player5AlgoAddr.value === globals.zeroAddress) {
       this.player5AlgoAddr.value = this.txn.sender;
-      return true;
+      return;
     }
     if (this.player6AlgoAddr.value === globals.zeroAddress) {
       this.player6AlgoAddr.value = this.txn.sender;
-      this.gameState.value = 1; // Go to assign roles
-      return true;
+      this.gameState.value = stateAssignRole; // Go to next stage.
+      return;
     }
 
-    return false; // Error state
+    throw Error('Invalid state! Error, game should have moved to the next stage already.');
   }
 
   assignRole(
@@ -245,9 +291,9 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
     lsigTxn3: PayTxn,
     lsigTxn4: PayTxn,
     lsigTxn5: PayTxn
-  ): boolean {
-    if (this.gameState.value !== 1) {
-      return false;
+  ): void {
+    if (this.gameState.value !== stateAssignRole) {
+      throw Error('Invalid method call: Game is not in Assign Role state.');
     }
     // To verify a RingSig you need:
     // 1. The key image of the signer in question, to prevent duplicate calling/"double spending"
@@ -258,19 +304,28 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
 
     // Regarding 1:
     // TODO:
-    assert(!this.hashFilter(rawBytes(sha256(keyImage))).exists); // Has Key Image been used before?
+    assert(
+      !this.hashFilter(rawBytes(sha256(keyImage))).exists,
+      'KeyImage already in store. Are you trying to double-dip with your ring signature?'
+    ); // Has Key Image been used before?
     this.hashFilter(rawBytes(sha256(keyImage))).create(0); // This Key Image can no longer be used
 
     // Regarding 2: The message is a concatenation of the calling address and this contract's address
     // TODO: Fix msg
-    // assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address.authAddr)));
-    assert(msg === 'Hello World');
+    // assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address)));
+    assert(msg === 'Hello World', 'Invalid msg value to have been signed!');
 
     // Regarding 3: Verify PKs are correct:
-    assert(this.quickAccessPKBoxes(0).extract(0, 6 * BLS12381G1_LENGTH) === pkAll);
+    assert(
+      this.quickAccessPKBoxes(0).extract(0, 6 * BLS12381G1_LENGTH) === pkAll,
+      'Invalid PKs! Are you trying to pass in a different ring of PKs?'
+    );
 
     // Regarding 4: Verify Sig and Challenges share 0:th value
-    assert(extract3(sig, 0, RING_SIG_NONCE_LENGTH) === extract3(challenges, 0, RING_SIG_CHALL_LENGTH));
+    assert(
+      extract3(sig, 0, RING_SIG_NONCE_LENGTH) === extract3(challenges, 0, RING_SIG_CHALL_LENGTH),
+      'The Ring Sig Nonces and Ring Sig Intermediate Challenge Values must start with the same value!'
+    );
 
     // Regarding 5: Verify Correct RingSig Links Calculation
 
@@ -281,234 +336,420 @@ Since v = g ^ r, z = r - c * a and x = g ^ a, step 4 is
     verifyTxn(lsigTxn4, { sender: Address.fromBytes(RingLinkLSig4.address()) });
     verifyTxn(lsigTxn5, { sender: Address.fromBytes(RingLinkLSig5.address()) });
 
-    // if (this.maffia.value === globals.zeroAddress) {
-    //   this.maffia.value = this.txn.sender.authAddr;
-    //   return true;
-    // }
-    // if (this.doctor.value === globals.zeroAddress) {
-    //   this.doctor.value = this.txn.sender.authAddr;
-    //   return true;
-    // }
-    // if (this.farmer.value === globals.zeroAddress) {
-    //   this.farmer.value = this.txn.sender.authAddr;
-    //   return true;
-    // }
-    // if (this.butcher.value === globals.zeroAddress) {
-    //   this.butcher.value = this.txn.sender.authAddr;
-    //   return true;
-    // }
-    // if (this.innkeep.value === globals.zeroAddress) {
-    //   this.innkeep.value = this.txn.sender.authAddr;
-    //   return true;
-    // }
-    // if (this.grocer.value === globals.zeroAddress) {
-    //   this.grocer.value = this.txn.sender.authAddr;
-    //   this.gameState.value = 2; // Go to day
-    //   return true;
-    // }
+    // TODO: introduce some type of randomness here, so that it is more difficult for someone
+    // to be able to influence which role they will get. Currently it is just whichever player
+    // was able to get their transaction in first, and if they happen to be the block proposer
+    // they will be able to control the order of transactions.
 
-    return false; // Error state
+    if (this.mafia.value === globals.zeroAddress) {
+      this.mafia.value = this.txn.sender;
+      this.mafiaKeyImage.value = keyImage;
+      return;
+    }
+    if (this.doctor.value === globals.zeroAddress) {
+      this.doctor.value = this.txn.sender;
+      this.doctorKeyImage.value = keyImage;
+      return;
+    }
+    if (this.farmer.value === globals.zeroAddress) {
+      this.farmer.value = this.txn.sender;
+      return;
+    }
+    if (this.butcher.value === globals.zeroAddress) {
+      this.butcher.value = this.txn.sender;
+      return;
+    }
+    if (this.innkeep.value === globals.zeroAddress) {
+      this.innkeep.value = this.txn.sender;
+      return;
+    }
+    if (this.grocer.value === globals.zeroAddress) {
+      this.grocer.value = this.txn.sender;
+      this.gameState.value = stateDayStageVote; // Go to day
+      return;
+    }
+
+    throw Error('Invalid state! Error, game should have moved to the next stage already.');
   }
 
-  /*
-
-  dayStageVote(): Boolean {
-    if (this.gameState.value !== 2) {
-      return false;
+  dayStageVote(vote: uint64): void {
+    if (this.gameState.value !== stateDayStageVote) {
+      throw Error('Invalid method call: Game is not in Day Stage Vote state.');
     }
 
-    // TODO: Implement day stage
-    // Each player votes for a player
-    // Once all players have voted, proceed to next stage
+    assert(vote > 0 && vote < 7, 'Invalid vote: Vote must be int 1 <= n <= 6.');
 
-    // Implement timer as well, to force a decision to be made in time
+    assert(this.txn.sender !== globals.zeroAddress, 'Sending from global zero address is not allowed.');
 
-    return false;
+    if (vote === 1 && this.player1AlgoAddr.value !== globals.zeroAddress) {
+      this.player1ReceivedVotes.value += 1;
+    } else if (vote === 2 && this.player2AlgoAddr.value !== globals.zeroAddress) {
+      this.player2ReceivedVotes.value += 1;
+    } else if (vote === 3 && this.player3AlgoAddr.value !== globals.zeroAddress) {
+      this.player3ReceivedVotes.value += 1;
+    } else if (vote === 4 && this.player4AlgoAddr.value !== globals.zeroAddress) {
+      this.player4ReceivedVotes.value += 1;
+    } else if (vote === 5 && this.player5AlgoAddr.value !== globals.zeroAddress) {
+      this.player5ReceivedVotes.value += 1;
+    } else if (vote === 6 && this.player6AlgoAddr.value !== globals.zeroAddress) {
+      this.player6ReceivedVotes.value += 1;
+    } else {
+      throw Error('Invalid vote: Is player still alive?');
+    }
+
+    if (this.txn.sender === this.player1AlgoAddr.value && this.player1HasVoted.value === 0) {
+      this.player1HasVoted.value = 1;
+    } else if (this.txn.sender === this.player2AlgoAddr.value && this.player2HasVoted.value === 0) {
+      this.player2HasVoted.value = 1;
+    } else if (this.txn.sender === this.player3AlgoAddr.value && this.player3HasVoted.value === 0) {
+      this.player3HasVoted.value = 1;
+    } else if (this.txn.sender === this.player4AlgoAddr.value && this.player4HasVoted.value === 0) {
+      this.player4HasVoted.value = 1;
+    } else if (this.txn.sender === this.player5AlgoAddr.value && this.player5HasVoted.value === 0) {
+      this.player5HasVoted.value = 1;
+    } else if (this.txn.sender === this.player6AlgoAddr.value && this.player6HasVoted.value === 0) {
+      this.player6HasVoted.value = 1;
+    } else {
+      throw Error('Address not allowed to vote.'); // Error state, player has already voted, or not actually player voting
+    }
+
+    this.playersVoted.value += 1;
+
+    if (this.playersVoted.value === this.playersAlive.value) {
+      // All players have voted
+      this.gameState.value = stateDayStageEliminate; // Go to next stage
+
+      // Reset all votes
+      this.playersVoted.value = 0;
+      this.player1HasVoted.value = 0;
+      this.player2HasVoted.value = 0;
+      this.player3HasVoted.value = 0;
+      this.player4HasVoted.value = 0;
+      this.player5HasVoted.value = 0;
+      this.player6HasVoted.value = 0;
+    }
+
+    // TODO: Implement timer as well, to force a decision to be made in time and prevent the game from stalling
   }
 
-  dayStageLynch(): Boolean {
-    if (this.gameState.value !== 3) {
-      return false;
+  dayStageEliminate(): void {
+    if (this.gameState.value !== stateDayStageEliminate) {
+      throw Error('Invalid method call: Game is not in Day Stage Eliminate state.');
     }
-    // Tally votes
 
-    // The player with the most votes is lynched; they are removed from the game
+    this.justEliminatedPlayer.value = globals.zeroAddress;
+    let topVotes = 0;
 
-    // If there is a draw, a person is killed at random <-- TODO: think over this
+    // Sometimes we get a draw, in which case we need to have a tiebreaker
+    // We check if the global round is even or odd and use that as our tiebreaker
+    // Definitely NOT the best way to do this, but it's a simple way to do it
 
-    // Set recently killed
-    // this.justKilledPlayer = chosenPlayer
-    this.justKilledTimeOfDeath.value = globals.latestTimestamp;
+    const even = globals.round % 2 === 0;
 
-    // once lynch is done, proceed to next stage
+    if (this.player1ReceivedVotes.value > topVotes || (this.player1ReceivedVotes.value === topVotes && even)) {
+      this.justEliminatedPlayer.value = this.player1AlgoAddr.value;
+      topVotes = this.player1ReceivedVotes.value;
+    }
 
-    return false;
+    if (this.player2ReceivedVotes.value > topVotes || (this.player2ReceivedVotes.value === topVotes && even)) {
+      this.justEliminatedPlayer.value = this.player2AlgoAddr.value;
+      topVotes = this.player2ReceivedVotes.value;
+    }
+
+    if (this.player3ReceivedVotes.value > topVotes || (this.player3ReceivedVotes.value === topVotes && even)) {
+      this.justEliminatedPlayer.value = this.player3AlgoAddr.value;
+      topVotes = this.player3ReceivedVotes.value;
+    }
+
+    if (this.player4ReceivedVotes.value > topVotes || (this.player4ReceivedVotes.value === topVotes && even)) {
+      this.justEliminatedPlayer.value = this.player4AlgoAddr.value;
+      topVotes = this.player4ReceivedVotes.value;
+    }
+
+    if (this.player5ReceivedVotes.value > topVotes || (this.player5ReceivedVotes.value === topVotes && even)) {
+      this.justEliminatedPlayer.value = this.player5AlgoAddr.value;
+      topVotes = this.player5ReceivedVotes.value;
+    }
+
+    if (this.player6ReceivedVotes.value > topVotes || (this.player6ReceivedVotes.value === topVotes && even)) {
+      this.justEliminatedPlayer.value = this.player6AlgoAddr.value;
+      topVotes = this.player6ReceivedVotes.value;
+    }
+
+    assert(this.justEliminatedPlayer.value !== globals.zeroAddress, 'Error state: Zero Address won vote!');
+    assert(topVotes !== 0, 'Error state: No votes were cast!');
+
+    // justEliminatedPlayer should now be the player with the most votes
+    // The player with the most votes is Eliminateed; they are removed from the game
+
+    if (this.justEliminatedPlayer.value === this.player1AlgoAddr.value) {
+      this.player1AlgoAddr.value = globals.zeroAddress;
+    }
+
+    if (this.justEliminatedPlayer.value === this.player2AlgoAddr.value) {
+      this.player2AlgoAddr.value = globals.zeroAddress;
+    }
+
+    if (this.justEliminatedPlayer.value === this.player3AlgoAddr.value) {
+      this.player3AlgoAddr.value = globals.zeroAddress;
+    }
+
+    if (this.justEliminatedPlayer.value === this.player4AlgoAddr.value) {
+      this.player4AlgoAddr.value = globals.zeroAddress;
+    }
+
+    if (this.justEliminatedPlayer.value === this.player5AlgoAddr.value) {
+      this.player5AlgoAddr.value = globals.zeroAddress;
+    }
+
+    if (this.justEliminatedPlayer.value === this.player6AlgoAddr.value) {
+      this.player6AlgoAddr.value = globals.zeroAddress;
+    }
+
+    this.playersAlive.value -= 1;
+
+    // Reset all votes
+
+    this.player1ReceivedVotes.value = 0;
+    this.player2ReceivedVotes.value = 0;
+    this.player3ReceivedVotes.value = 0;
+    this.player4ReceivedVotes.value = 0;
+    this.player5ReceivedVotes.value = 0;
+    this.player6ReceivedVotes.value = 0;
+
+    this.gameState.value = stateDayStageReveal; // Go to next stage
   }
 
-  dayStageRevealRole(): Boolean {
-    if (this.gameState.value !== 4) {
-      return false;
+  dayStageRevealRole(BLS_PRIVATE: bytes): void {
+    if (this.gameState.value !== stateDayStageReveal) {
+      throw Error('Invalid method call: Game is not in Day Stage Reveal state.');
     }
 
-    if (this.justKilledPlayer.value === this.txn.sender) {
-      // Validate proof of role
-      // If proof is valid, return deposit
-      // reset this.justKilledPlayer = global.zeroAddress
-      // reset this.justKilledTimeOfDeath = 0
-      // If there are no mafia left, the townsfolk win
-      // --> this.gameState = ; // Game over
-      // else if there are mafia left, proceed to next stage
-      // this.gameState = ; // Go to next stage
+    assert(this.justEliminatedPlayer.value === this.txn.sender, 'Error state: Other player called method.');
+    // TODO: Implement timer, to avoid everyone waiting indefinitely on a reluctant eliminated player.
+
+    const BLS_PK = ecScalarMul('BLS12_381g1', BLS12381G1_BASEPOINT_BYTES, BLS_PRIVATE);
+    const hashToPoint = this.hashPointToPoint(BLS_PK);
+    const genKeyImage = ecScalarMul('BLS12_381g1', hashToPoint, BLS_PRIVATE);
+
+    if (genKeyImage === this.mafiaKeyImage.value) {
+      // The village eliminated the mafia!
+      // The townsfolk have won!
+      this.gameState.value = stateGameOver;
+      return;
     }
 
-    if (this.justKilledTimeOfDeath.value !== 0 && this.justKilledTimeOfDeath.value + 5 < globals.latestTimestamp) {
-      // if the player does not reveal their role within time, the game ends and their deposit is forfeited
-      // after all, there is no way to know if they were the mafia or not
-      // this.gameState = 7; // Game over
+    if (genKeyImage === this.doctorKeyImage.value) {
+      // The village eliminated the doctor! Uh oh.
+      this.gameState.value = stateNightStageMafiaCommit;
+      this.doctorStillAlive.value = 0;
     }
 
-    // the justKilledPlayer is set to zero
-    return false;
+    this.justEliminatedPlayer.value = globals.zeroAddress;
   }
 
-  nightStageMaffiaCommitment(commitment: Uint8Array): Boolean {
-    if (this.gameState.value !== 5) {
-      return false;
+  nightStageMafiaCommit(commitment: bytes): void {
+    if (this.gameState.value !== stateNightStageMafiaCommit) {
+      throw Error('Invalid method call: Game is not in Night Stage Maffia Commit state.');
     }
 
-    if (this.txn.sender === this.maffia.value) {
-      this.maffiaCommitment.value = commitment;
-      this.gameState.value = 6; // Go to next stage
-      return true;
-    }
+    assert(this.txn.sender === this.mafia.value, 'Error state: Non-mafia player called method.');
 
-    // add timer, to avoid waiting indefinitely
-    return false;
+    this.mafiaCommitment.value = commitment;
+
+    if (this.doctorStillAlive.value === 0) {
+      // If doctor is dead, no point in waiting for them to commit
+      this.gameState.value = stateDawnStageMafiaReveal;
+    } else {
+      this.gameState.value = stateNightStageDoctorCommit;
+    }
   }
 
-  nightStageDoctorCommitment(commitment: bytes32): Boolean {
-    if (this.gameState.value !== 6) {
-      return false;
+  nightStageDoctorCommit(commitment: bytes): void {
+    if (this.gameState.value !== stateNightStageDoctorCommit) {
+      throw Error('Invalid method call: Game is not in Night Stage Doctor Commit state.');
     }
 
-    if (this.txn.sender === this.maffia.value) {
-      this.doctorCommitment.value = commitment;
-      this.gameState.value = 7; // Go to next stage
-      return true;
-    }
+    assert(this.txn.sender === this.doctor.value, 'Error state: Non-doctor player called method.');
+    assert(this.doctorStillAlive.value === 1, 'Error state: Doctor is dead, should not have entered this state.');
 
-    // add timer, to avoid waiting indefinitely
-    return false;
+    this.doctorCommitment.value = commitment;
+
+    this.gameState.value = stateDawnStageMafiaReveal;
   }
 
-  dawnStageMaffiaReveal(victimAim: Uint8Array, nonce: Uint8Array): Boolean {
-    if (this.gameState.value !== 7) {
-      return false;
+  dawnStageMafiaReveal(victimAim: Address, blinder: bytes): void {
+    if (this.gameState.value !== stateDawnStageMafiaReveal) {
+      throw Error('Invalid method call: Game is not in Dawn Stage Maffia Reveal state.');
     }
 
-    if (this.txn.sender !== this.maffia.value) {
-      return false; // Error state
+    assert(this.txn.sender === this.mafia.value, 'Error state: Non-mafia player called method.');
+
+    assert(this.mafiaVictim.value === globals.zeroAddress, 'Error state: Mafia has already committed to a victim.');
+
+    assert(victimAim !== globals.zeroAddress, 'Error state: Victim must be a valid address.');
+
+    // TODO: Implement timer logic that handles the case where the mafia doesn't call this method (successfully) in time
+
+    const reveal = sha256(concat(victimAim, blinder));
+
+    assert(
+      rawBytes(reveal) === this.mafiaCommitment.value,
+      'Error state: Provided address + blinder does NOT match commitment.'
+    );
+
+    if (victimAim === this.player1AlgoAddr.value) {
+      this.mafiaVictim.value = this.player1AlgoAddr.value;
+    } else if (victimAim === this.player2AlgoAddr.value) {
+      this.mafiaVictim.value = this.player2AlgoAddr.value;
+    } else if (victimAim === this.player3AlgoAddr.value) {
+      this.mafiaVictim.value = this.player3AlgoAddr.value;
+    } else if (victimAim === this.player4AlgoAddr.value) {
+      this.mafiaVictim.value = this.player4AlgoAddr.value;
+    } else if (victimAim === this.player5AlgoAddr.value) {
+      this.mafiaVictim.value = this.player5AlgoAddr.value;
+    } else if (victimAim === this.player6AlgoAddr.value) {
+      this.mafiaVictim.value = this.player6AlgoAddr.value;
+    } else {
+      throw Error('Error state: Victim must be a player!');
     }
 
-    if (sha256(concat(victimAim, nonce)) === this.maffiaCommitment.value) {
-      this.maffiaVictim.value = this.maffiaCommitment.value;
-      this.gameStateState.value = 8;
-      return true;
-    }
+    // Reset commitment
+    // TODO: this.mafiaCommitment.value = hex('0');
 
-    return false;
+    this.gameState.value = stateDawnStageDoctorReveal;
   }
 
-  dawnStageDoctorReveal(saveAim: Uint8Array, nonce: Uint8Array): Boolean {
-    if (this.gameState.value !== 8) {
-      return false;
+  dawnStageDoctorReveal(patientAim: Address, blinder: bytes): void {
+    if (this.gameState.value !== stateDawnStageDoctorReveal) {
+      throw Error('Invalid method call: Game is not in Dawn Stage Doctor Reveal state.');
     }
 
-    if (this.txn.sender !== this.doctor.value) {
-      return false; // Error state
+    assert(this.txn.sender === this.doctor.value, 'Error state: Non-doctor player called method.');
+
+    assert(this.doctorPatient.value === globals.zeroAddress, 'Error state: Doctor has already committed to a patient.');
+
+    assert(patientAim !== globals.zeroAddress, 'Error state: Patient must be a valid address.');
+
+    // TODO: Implement timer logic that handles the case where the mafia doesn't call this method (successfully) in time
+
+    const reveal = sha256(concat(patientAim, blinder));
+
+    assert(
+      rawBytes(reveal) === this.doctorCommitment.value,
+      'Error state: Provided address + blinder does NOT match commitment.'
+    );
+
+    if (patientAim === this.player1AlgoAddr.value) {
+      this.doctorPatient.value = this.player1AlgoAddr.value;
+    } else if (patientAim === this.player2AlgoAddr.value) {
+      this.doctorPatient.value = this.player2AlgoAddr.value;
+    } else if (patientAim === this.player3AlgoAddr.value) {
+      this.doctorPatient.value = this.player3AlgoAddr.value;
+    } else if (patientAim === this.player4AlgoAddr.value) {
+      this.doctorPatient.value = this.player4AlgoAddr.value;
+    } else if (patientAim === this.player5AlgoAddr.value) {
+      this.doctorPatient.value = this.player5AlgoAddr.value;
+    } else if (patientAim === this.player6AlgoAddr.value) {
+      this.doctorPatient.value = this.player6AlgoAddr.value;
+    } else {
+      throw Error('Error state: Victim must be a player!');
     }
 
-    if (sha256(concat(saveAim, nonce)) === this.doctorCommitment.value) {
-      this.doctorPatient.value = this.maffiaCommitment.value;
-      this.gameStateState.value = 9;
-      return true;
-    }
+    // Reset commitment
+    // TODO: this.doctorCommitment.value = hex('0'); ? Is it necessary?
 
-    return false;
+    this.gameState.value = stateDawnStageDeadOrSaved;
   }
 
-  dawnStageDeadOrSaved(): Boolean {
-    if (this.gameState.value !== 9) {
-      return false;
+  dawnStageDeadOrSaved() {
+    if (this.gameState.value !== stateDawnStageDeadOrSaved) {
+      throw Error('Invalid method call: Game is not in Dawn Stage DeadOrSaved? state.');
     }
-    const chosenPlayer = this.maffiaVictim.value;
-    const dead = this.maffiaVictim.value !== this.doctorPatient.value;
 
-    // TODO: we can check here if the doctor is saving the same person twice
-    // According to some rules, the doctor can not save the same person twice in a row
-    // We also don't want the doctor to save themselves, but implementing that would require
-    // using some kind of DLEQ proof that the underlying value of a once encrypted and a twice encrypted
-    // value are not the same.
-
-    // reset a bunch of values here
-    // this.maffiaCommitment = new Uint8Array(0);
-    // this.doctorCommitment = new Uint8Array(0);
-    // this.maffiaVictim = new Uint8Array(0);
-    // this.doctorPatient = new Uint8Array(0);
-
-    if (!dead) {
-      // The victim was saved
+    if (this.mafiaVictim.value === this.doctorPatient.value) {
+      // The doctor saved the victim
+      // Nothing happened!
       // The game continues
-      this.gameState.value = 2;
-      return true;
+      this.gameState.value = stateDayStageVote;
+      return;
     }
 
-    // The victim was not saved
-    // Set recently killed
-    // this.justKilledPlayer = chosenPlayer
-    this.justKilledTimeOfDeath.value = globals.latestTimestamp;
-    this.gameState.value = 10;
-    return true;
+    // TODO: look into the possibility preventing the doctor saving the same person twice in a row
+
+    if (this.mafiaVictim.value === this.player1AlgoAddr.value) {
+      this.justEliminatedPlayer.value = this.player1AlgoAddr.value;
+      this.player1AlgoAddr.value = globals.zeroAddress;
+    } else if (this.mafiaVictim.value === this.player2AlgoAddr.value) {
+      this.justEliminatedPlayer.value = this.player2AlgoAddr.value;
+      this.player2AlgoAddr.value = globals.zeroAddress;
+    } else if (this.mafiaVictim.value === this.player3AlgoAddr.value) {
+      this.justEliminatedPlayer.value = this.player3AlgoAddr.value;
+      this.player3AlgoAddr.value = globals.zeroAddress;
+    } else if (this.mafiaVictim.value === this.player4AlgoAddr.value) {
+      this.justEliminatedPlayer.value = this.player4AlgoAddr.value;
+      this.player4AlgoAddr.value = globals.zeroAddress;
+    } else if (this.mafiaVictim.value === this.player5AlgoAddr.value) {
+      this.justEliminatedPlayer.value = this.player5AlgoAddr.value;
+      this.player5AlgoAddr.value = globals.zeroAddress;
+    } else if (this.mafiaVictim.value === this.player6AlgoAddr.value) {
+      this.justEliminatedPlayer.value = this.player6AlgoAddr.value;
+      this.player6AlgoAddr.value = globals.zeroAddress;
+    } else {
+      throw Error('Error state: Victim must be a player! Should not have entered this state.');
+    }
+
+    this.playersAlive.value -= 1;
+
+    if (this.playersAlive.value <= 2) {
+      // The mafia has won!
+      this.gameState.value = stateGameOver;
+    }
   }
 
-  dawnStageRevealRole(): Boolean {
-    // This stage is a little unnecessary since it is illogical for he maffia to kill themselves
-    // It would be simpler to assume that the maffia would never kill themselves and just check instead
-    // if the number of non-maffia players alive is enough to continue the game or if the maffia won
-    // But we'll keep this stage. At the very least, it will let the maffia know if they've killed the doctor or not
+  dawnStageRevealRole(BLS_PRIVATE: bytes): void {
+    // This stage is a little unnecessary since it is illogical for he mafia to kill themselves
+    // It would be simpler to assume that the mafia would never kill themselves and just check instead
+    // if the number of non-mafia players alive is enough to continue the game or if the mafia won
+    // But we'll keep this stage. At the very least, it will let the mafia know if they've killed the doctor or not
 
-    if (this.gameState.value !== 10) {
-      return false;
+    if (this.gameState.value !== stateDawnStageRevealRoles) {
+      throw Error('Invalid method call: Game is not in Dawn Stage Reveal state.');
     }
 
-    if (this.justKilledPlayer.value === this.txn.sender) {
-      // Validate proof of role
-      // If proof is valid, return deposit
-      // reset this.justKilledPlayer = global.zeroAddress
-      // reset this.justKilledTimeOfDeath = 0
-      // If there are no mafia left, the townsfolk win
-      // --> this.gameState = ; // Game over
-      // else if there are mafia left, proceed to next stage
-      // this.gameState = ; // Go to next stage
+    assert(this.justEliminatedPlayer.value === this.txn.sender, 'Error state: Other player called method.');
+    // TODO: Implement timer, to avoid everyone waiting indefinitely on a reluctant eliminated player.
+
+    const BLS_PK = ecScalarMul('BLS12_381g1', BLS12381G1_BASEPOINT_BYTES, BLS_PRIVATE);
+    const hashToPoint = this.hashPointToPoint(BLS_PK);
+    const genKeyImage = ecScalarMul('BLS12_381g1', hashToPoint, BLS_PRIVATE);
+
+    if (genKeyImage === this.mafiaKeyImage.value) {
+      // The maffia some how eliminated the mafia!?
+      // Impossible scenario in this one with only 1 mafia?
+      // The townsfolk have won!
+      this.gameState.value = stateGameOver;
+      return;
     }
 
-    if (this.justKilledTimeOfDeath.value !== 0 && this.justKilledTimeOfDeath.value + 5 < globals.latestTimestamp) {
-      // if the player does not reveal their role within time, the game ends and their deposit is forfeited
-      // after all, there is no way to know if they were the mafia or not
-      // this.gameState = 7; // Game over
+    if (genKeyImage === this.doctorKeyImage.value) {
+      // The village eliminated the doctor! Uh oh.
+      this.gameState.value = stateNightStageMafiaCommit;
+      this.doctorStillAlive.value = 0;
     }
 
-    // the justKilledPlayer is set to zero
-    return false;
+    // Reset the justEliminatedPlayer
+    this.justEliminatedPlayer.value = globals.zeroAddress;
+
+    this.gameState.value = stateDayStageVote;
   }
 
-  gameOver(): Boolean {
-    if (this.gameState.value !== 11) {
-      return false;
+  gameOver(): void {
+    if (this.gameState.value !== stateGameOver) {
+      throw Error('Invalid method call: Game is not in Game Over state.');
     }
-    // return deposits to all players
-    // clear out any boxxes
-    // delete contract
-    return true;
-  } */
+    // TODO: return deposits to all players
+    // TODO: clear out any boxxes
+    // TODO: delete contract
+  }
 }

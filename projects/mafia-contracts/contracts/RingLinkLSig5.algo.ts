@@ -1,7 +1,7 @@
 import { LogicSig } from '@algorandfoundation/tealscript';
 import { BLS12381G1_BASEPOINT_BYTES, BLS12381_CURVE_ORDER_HEX, BLS12381_FIELD_MODULUS_HEX } from './Constants';
 
-const iter = 5;
+const i = 5;
 
 export class RingLinkLSig5 extends LogicSig {
   /** logic: challenge
@@ -12,7 +12,8 @@ export class RingLinkLSig5 extends LogicSig {
    * @param pk - The public key relevant to this link.
    * @param keyImage - The key image of the signer, required for linkabiltiy to prevent double spending
    * @param nonce - The ring sig nonces, in 1 large byte array. The core of the ring sig itself.
-   * @param challenges - The challenges, in 1 large byte array. Intermediate values. We check if what's provided into the contract is the same as what is calculated.
+   * @param cPrev - The input "challenge", or previous challenge in the ring sig verification flow.
+   * @param cExpected - The expected challenge, to be compared against the calculated challenge.
    */
   logic(msg: bytes, pk: bytes, keyImage: bytes, nonce: bytes, cPrev: bytes, cExpected: bytes): void {
     /* CALCULATE LEFT-HAND SIDE OF EQUATION (AFTER MSG BYTES)
@@ -53,7 +54,18 @@ export class RingLinkLSig5 extends LogicSig {
 
     assert(h === cExpected);
 
-    iter === iter;
+    i === i;
+
+    // TODO: Get this to work:
+
+    // assert(this.txnGroup[0].applicationArgs[0] === msg);
+    // assert(extract3(this.txnGroup[0].applicationArgs[1], i * BLS12381G1_LENGTH, BLS12381G1_LENGTH) === pk);
+    // assert(this.txnGroup[0].applicationArgs[2] === keyImage);
+    // assert(
+    //   extract3(this.txnGroup[0].applicationArgs[3], (i + 1) * RING_SIG_NONCE_LENGTH, RING_SIG_NONCE_LENGTH) === nonce
+    // );
+    // assert(extract3(this.txnGroup[0].applicationArgs[4], i * RING_SIG_CHALL_LENGTH, BLS12381G1_LENGTH) === cPrev);
+    // assert(extract3(this.txnGroup[0].applicationArgs[4], ((i + 1) % 5) * RING_SIG_CHALL_LENGTH, BLS12381G1_LENGTH) === cExpected);
 
     // verifyAppCallTxn(this.txnGroup[0], {
     //   applicationArgs: {
