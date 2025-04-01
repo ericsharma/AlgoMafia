@@ -60,7 +60,7 @@ export class RingLinkLSig2 extends LogicSig {
       btobigint(keccak256(concat(concat(msg, left), right))) % btobigint(hex(BLS12381_CURVE_ORDER_HEX))
     );
 
-    assert(h === cExpected);
+    assert(btobigint(h) === btobigint(cExpected));
 
     assert(this.txnGroup[this.txn.groupIndex + RING_SIG_LINKS_AMNT - i].applicationArgs[1] === rawBytes(msg));
     assert(
