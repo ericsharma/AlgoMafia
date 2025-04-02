@@ -150,10 +150,10 @@
       }
     },
     {
-      "name": "dayStageRevealRole",
+      "name": "dayStageUnmasking",
       "args": [
         {
-          "name": "BLS_PRIVATE",
+          "name": "blsSk",
           "type": "byte[]"
         }
       ],
@@ -194,7 +194,7 @@
         },
         {
           "name": "blinder",
-          "type": "byte[]"
+          "type": "byte[32]"
         }
       ],
       "returns": {
@@ -210,7 +210,7 @@
         },
         {
           "name": "blinder",
-          "type": "byte[]"
+          "type": "byte[32]"
         }
       ],
       "returns": {
@@ -225,10 +225,10 @@
       }
     },
     {
-      "name": "dawnStageRevealRole",
+      "name": "dawnStageUnmasking",
       "args": [
         {
-          "name": "BLS_PRIVATE",
+          "name": "blsSk",
           "type": "byte[]"
         }
       ],

@@ -3,13 +3,36 @@ import { algorandFixture } from '@algorandfoundation/algokit-utils/testing';
 import { Config, AlgorandClient } from '@algorandfoundation/algokit-utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as algoring from 'algoring-ts';
-import { TransactionSignerAccount } from '@algorandfoundation/algokit-utils/types/account';
 import algosdk from 'algosdk';
 import { TextEncoder } from 'util';
-import { readFileSync } from 'fs';
-import { sign } from 'crypto';
+import { createHash, randomBytes } from 'crypto';
+
 import { TownHallClient, TownHallFactory } from '../contracts/clients/TownHallClient';
-import { BLS12381G1_LENGTH, RING_SIG_CHALL_LENGTH, RING_SIG_NONCE_LENGTH } from '../contracts/Constants';
+import {
+  BLS12381G1_LENGTH,
+  RING_SIG_CHALL_LENGTH,
+  RING_SIG_NONCE_LENGTH,
+  stateAssignRole,
+  stateDawnStageDeadOrSaved,
+  stateDawnStageDoctorReveal,
+  stateDawnStageMafiaReveal,
+  stateDawnStageUnmasking,
+  stateDayStageEliminate,
+  stateDayStageUnmasking,
+  stateDayStageVote,
+  stateJoinGameLobby,
+  stateNightStageDoctorCommit,
+  stateNightStageMafiaCommit,
+  ZERO_ADDRESS,
+} from '../contracts/Constants';
+import {
+  joinGameLobby,
+  Player,
+  prepareLSigRingLink,
+  unMaskDayStage,
+  unMaskDawnStage,
+  assignRole,
+} from '../contracts/Utils';
 
 const fixture = algorandFixture();
 Config.configure({ populateAppCallResources: true });
@@ -17,81 +40,6 @@ Config.configure({ populateAppCallResources: true });
 let appClient: TownHallClient;
 
 const fundAmount = (10).algo();
-
-class Player {
-  day_algo_address: TransactionSignerAccount & { account: algosdk.Account };
-
-  night_algo_address: TransactionSignerAccount & { account: algosdk.Account };
-
-  bls_private_key: Uint8Array;
-
-  bls_public_key: Uint8Array;
-
-  day_client: TownHallClient;
-
-  night_client: TownHallClient;
-
-  constructor() {
-    this.bls_private_key = algoring.generate_fe();
-    this.bls_public_key = algoring.generate_ge(this.bls_private_key);
-    this.day_algo_address = AlgorandClient.defaultLocalNet().account.random();
-    this.night_algo_address = AlgorandClient.defaultLocalNet().account.random();
-    this.day_client = AlgorandClient.defaultLocalNet()
-      .setDefaultSigner(this.day_algo_address.signer)
-      .client.getTypedAppClientById(TownHallClient, {
-        appId: appClient.appId,
-        defaultSender: this.day_algo_address.addr,
-        defaultSigner: this.day_algo_address.signer,
-      }); // Client set with their signers, so we can have the player can sign
-    this.night_client = AlgorandClient.defaultLocalNet()
-      .setDefaultSigner(this.night_algo_address.signer)
-      .client.getTypedAppClientById(TownHallClient, {
-        appId: appClient.appId,
-        defaultSender: this.night_algo_address.addr,
-        defaultSigner: this.night_algo_address.signer,
-      }); // Client set with their signers, so we can have the player can sign
-  }
-}
-
-async function prepareLSigRingLink(
-  i: number,
-  playerClient: TownHallClient,
-  msg: Uint8Array,
-  pk: Uint8Array,
-  keyImage: Uint8Array,
-  signatureNonce: Uint8Array,
-  inputC: Uint8Array,
-  expectedCNext: Uint8Array
-) {
-  const abiBytes = algosdk.ABIType.from('byte[]');
-
-  const lsigRingLinkLSigTeal = readFileSync(`./contracts/artifacts/RingLinkLSig${i.toString()}.lsig.teal`).toString(
-    'utf-8'
-  );
-
-  const compileResult = await playerClient.algorand.app.compileTeal(lsigRingLinkLSigTeal);
-
-  const lsigRingLinkLSig0 = new algosdk.LogicSigAccount(compileResult.compiledBase64ToBytes, [
-    abiBytes.encode(msg),
-    abiBytes.encode(pk),
-    abiBytes.encode(algoring.to_pxpy(keyImage)),
-    abiBytes.encode(signatureNonce),
-    abiBytes.encode(inputC),
-    abiBytes.encode(expectedCNext),
-  ]);
-
-  const sp = await AlgorandClient.defaultLocalNet().getSuggestedParams();
-
-  const lSigRingSigPayTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
-    suggestedParams: { ...sp, flatFee: true, fee: 0 },
-    from: lsigRingLinkLSig0.address(),
-    to: lsigRingLinkLSig0.address(),
-    amount: 0,
-  });
-
-  const lSigRingSigSigner = algosdk.makeLogicSigAccountTransactionSigner(lsigRingLinkLSig0);
-  return { lSigRingSigPayTxn, lSigRingSigSigner };
-}
 
 let players: Player[];
 
@@ -112,7 +60,7 @@ describe('TownHall', () => {
 
     appClient = createResult.appClient;
 
-    players = Array.from({ length: 6 }, () => new Player());
+    players = Array.from({ length: 6 }, () => new Player(appClient.appId));
     players.forEach(async (player) => {
       algorand.account.ensureFundedFromEnvironment(player.day_algo_address.account.addr, fundAmount);
 
@@ -195,8 +143,7 @@ describe('TownHall', () => {
   });
 
   test('entire_play', async () => {
-    let state = await appClient.send.getGameState();
-    expect(Number(state.return)).toEqual(0);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateJoinGameLobby);
 
     // TODO: have users fund the contract as part of their deposit!
     await AlgorandClient.defaultLocalNet().account.ensureFundedFromEnvironment(appClient.appAddress, fundAmount);
@@ -210,52 +157,8 @@ describe('TownHall', () => {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const player of players) {
-      const proof = algoring.NIZK_DLOG_generate_proof(player.bls_private_key);
-
-      // Concatenate the proof into a single byte array
-      const NIZK_DLOG = new Uint8Array(96 + 96 + 96 + 32);
-      NIZK_DLOG.set(proof[0]);
-      NIZK_DLOG.set(proof[1], 96);
-      NIZK_DLOG.set(proof[2], 96 + 96);
-      NIZK_DLOG.set(proof[3], 96 + 96 + 96);
-
       // eslint-disable-next-line no-await-in-loop
-      const result = await player.day_client
-        .newGroup()
-        .joinGameLobby({
-          args: {
-            nizkDlog: NIZK_DLOG,
-          },
-        })
-        .dummyOpUp({
-          args: { i: 1 },
-        })
-        .dummyOpUp({
-          args: { i: 2 },
-        })
-        .dummyOpUp({
-          args: { i: 3 },
-        })
-        .dummyOpUp({
-          args: { i: 4 },
-        })
-        .dummyOpUp({
-          args: { i: 5 },
-        })
-        .dummyOpUp({
-          args: { i: 6 },
-        })
-        .dummyOpUp({
-          args: { i: 7 },
-        })
-        .dummyOpUp({
-          args: { i: 8 },
-        })
-        .dummyOpUp({
-          args: { i: 9 },
-        })
-        .send();
-      // eslint-disable-next-line no-await-in-loop
+      await joinGameLobby(player.day_client, player.bls_private_key);
     }
 
     expect(await appClient.state.global.player1AlgoAddr()).toBe(players[0].day_algo_address.addr);
@@ -272,8 +175,7 @@ describe('TownHall', () => {
     expect(ring.length).toBe(BLS12381G1_LENGTH * 6);
     // TODO: Refactor and make sure that the same player can't join twice lol
 
-    state = await appClient.send.getGameState();
-    expect(Number(state.return)).toEqual(1); // Advanced to the AssignRoles stage
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateAssignRole); // Advanced to the AssignRoles stage
     /// <----------- ENTERED AssignRole Stage ----------->
 
     const ringOfPKs = [
@@ -296,6 +198,8 @@ describe('TownHall', () => {
 
       // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
       const { signature } = algoring.generate_ring_signature(msg, player.bls_private_key, ringOfPKs, keyImage);
+
+      expect(algoring.verify_ring_signature(msg, signature, ringOfPKs, keyImage)).toBe(true);
 
       // TODO: remove msg return
       const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
@@ -332,43 +236,17 @@ describe('TownHall', () => {
       }
 
       // eslint-disable-next-line no-await-in-loop
-      await player.night_client
-        .newGroup()
-        .assignRole({
-          args: {
-            msg,
-            pkAll: ring,
-            keyImage: algoring.to_pxpy(keyImage),
-            sig: signatureConcat,
-            challenges: intermediateValues,
-            lsigTxn0: {
-              txn: pts[0],
-              signer: signers[0],
-            },
-            lsigTxn1: {
-              txn: pts[1],
-              signer: signers[1],
-            },
-            lsigTxn2: {
-              txn: pts[2],
-              signer: signers[2],
-            },
-            lsigTxn3: {
-              txn: pts[3],
-              signer: signers[3],
-            },
-            lsigTxn4: {
-              txn: pts[4],
-              signer: signers[4],
-            },
-            lsigTxn5: {
-              txn: pts[5],
-              signer: signers[5],
-            },
-          },
-          extraFee: (1000 * length).microAlgos(),
-        })
-        .send();
+      await assignRole(
+        player.night_client,
+        msg,
+        ring,
+        keyImage,
+        signatureConcat,
+        intermediateValues,
+        pts,
+        signers,
+        length
+      );
     }
 
     // <----->
@@ -380,8 +258,7 @@ describe('TownHall', () => {
     expect(await appClient.state.global.innkeep()).toBe(players[4].night_algo_address.addr);
     expect(await appClient.state.global.grocer()).toBe(players[5].night_algo_address.addr);
 
-    state = await appClient.send.getGameState();
-    expect(Number(state.return)).toEqual(2); // Advanced to the AssignRoles stage
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageVote); // Advanced to the DayStageVote stage
 
     /// <----------- ENTERED DayStageVote ----------->
 
@@ -394,20 +271,100 @@ describe('TownHall', () => {
     await players[4].day_client.send.dayStageVote({ args: { vote: 3 } });
     await players[5].day_client.send.dayStageVote({ args: { vote: 3 } });
 
-    state = await appClient.send.getGameState();
-    expect(Number(state.return)).toEqual(3); // Advanced to the AssignRoles stage
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageEliminate); // Advanced to the DayStageEliminate stage
 
     /// <----------- ENTERED DayStageEliminate ----------->
     // Player 3 is eliminated
     await players[0].day_client.send.dayStageEliminate(); // Doesn't matter who calls it
-    state = await appClient.send.getGameState();
-    // TODO: check that Player 3 has been set to Zero Address
-    expect(Number(state.return)).toEqual(4); // Advanced to the AssignRoles stage
+    expect(await appClient.state.global.player3AlgoAddr()).toEqual(ZERO_ADDRESS);
+    expect(Number(await appClient.state.global.playersAlive())).toEqual(5);
+    expect(await appClient.state.global.justEliminatedPlayer()).toStrictEqual(players[2].day_algo_address.addr);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageUnmasking); // Advanced to the DayStageUnmasking stage
 
-    /// <----------- ENTERED DayStageEliminate ----------->
+    /// <----------- ENTERED DayStageUnmasking ----------->
     // Player 3 reveals themselves
 
-    // await players[2].day_client.send.dayStageReveal({ args: { BLS_PRIVATE: players[2].bls_private_key } });
+    await unMaskDayStage(players[2].day_client, players[2].bls_private_key);
+
+    expect(await appClient.state.global.justEliminatedPlayer()).toEqual(ZERO_ADDRESS);
+    expect((await appClient.state.global.doctor()) === ZERO_ADDRESS).toBeFalsy();
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateNightStageMafiaCommit); // Advanced to the NightStageMafiaCommit stage
+
+    /// <----------- ENTERED NightStageMafiaCommit ----------->
+    // Mafia commits to value
+
+    const mafiaCommitBlinder = randomBytes(32);
+    const playerToKill = players[3].day_algo_address.addr;
+
+    // Hash the concatenated data using sha256
+    const mafiaCommitHash = createHash('sha256')
+      .update(Buffer.concat([algosdk.decodeAddress(playerToKill).publicKey, mafiaCommitBlinder]))
+      .digest();
+
+    await players[0].night_client.send.nightStageMafiaCommit({
+      args: {
+        commitment: mafiaCommitHash,
+      },
+    });
+
+    expect((await appClient.state.global.mafiaCommitment()).asByteArray()).toStrictEqual(
+      new Uint8Array(mafiaCommitHash)
+    );
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateNightStageDoctorCommit); // Advanced to the Night Stage Doctor Commit
+
+    /// <----------- ENTERED NightStageDoctorCommit ----------->
+
+    const doctorCommitBlinder = randomBytes(32);
+    const playerToSave = players[4].day_algo_address.addr;
+
+    const doctorCommitHash = createHash('sha256')
+      .update(Buffer.concat([algosdk.decodeAddress(playerToSave).publicKey, doctorCommitBlinder]))
+      .digest();
+
+    await players[1].night_client.send.nightStageDoctorCommit({
+      args: {
+        commitment: doctorCommitHash,
+      },
+    });
+
+    expect((await appClient.state.global.doctorCommitment()).asByteArray()).toStrictEqual(
+      new Uint8Array(doctorCommitHash)
+    );
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDawnStageMafiaReveal); // Advanced to the Dawn Stage Mafia Reveal
+    /// <----------- ENTERED DawnStageMafiaReveal ----------->
+
+    await players[0].night_client.send.dawnStageMafiaReveal({
+      args: { victimAim: playerToKill, blinder: new Uint8Array(mafiaCommitBlinder) },
+    });
+
+    expect((await appClient.state.global.mafiaVictim()) === playerToKill);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDawnStageDoctorReveal); // Advanced to the Dawn Stage Doctor Reveal
+
+    /// <----------- ENTERED DawnStageDoctorReveal ----------->
+
+    await players[1].night_client.send.dawnStageDoctorReveal({
+      args: { patientAim: playerToSave, blinder: new Uint8Array(doctorCommitBlinder) },
+    });
+
+    expect((await appClient.state.global.doctorPatient()) === playerToSave);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDawnStageDeadOrSaved); // Advanced to the Dawn Stage Dead Or Saved
+
+    /// <----------- ENTERED DawnStageDeadOrSaved----------->
+
+    await players[0].day_client.send.dawnStageDeadOrSaved(); // Anyone can call it
+
+    expect(Number(await appClient.state.global.playersAlive())).toEqual(4);
+    expect(await appClient.state.global.mafiaVictim()).toEqual(ZERO_ADDRESS);
+    expect(await appClient.state.global.doctorPatient()).toEqual(ZERO_ADDRESS);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDawnStageUnmasking); // Advanced to Dawn Stage Unmasking
+    /// <----------- ENTERED DawnStageUnmasking----------->
+
+    await unMaskDawnStage(players[3].day_client, players[3].bls_private_key);
+
+    expect(await appClient.state.global.justEliminatedPlayer()).toEqual(ZERO_ADDRESS);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageVote); // Advanced back to DayStageVote
+
+    /// <----------- ENTERED DayStageVote----------->
   });
 });
 
