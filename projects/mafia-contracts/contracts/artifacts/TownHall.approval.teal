@@ -834,13 +834,13 @@ assignRole:
 	box_create
 	pop
 
-	// contracts/TownHall.algo.ts:305
-	// assert(msg === 'Hello World', 'Invalid msg value to have been signed!')
+	// contracts/TownHall.algo.ts:304
+	// assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address)))
 	frame_dig -1 // msg: bytes
-	pushbytes 0x48656c6c6f20576f726c64 // "Hello World"
+	txn Sender
+	global CurrentApplicationAddress
+	concat
 	==
-
-	// Invalid msg value to have been signed!
 	assert
 
 	// contracts/TownHall.algo.ts:308

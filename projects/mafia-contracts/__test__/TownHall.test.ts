@@ -190,9 +190,10 @@ describe('TownHall', () => {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const player of players) {
-      // TODO: MSG should be the player's night address concatenated with the app's address
-      // const msg = new TextEncoder().encode(player.night_algo_address.addr + player.client.appClient.appAddress);
-      const msg = new TextEncoder().encode('Hello World');
+      const msg = Buffer.concat([
+        algosdk.decodeAddress(player.night_algo_address.addr).publicKey,
+        algosdk.decodeAddress(player.night_client.appClient.appAddress).publicKey,
+      ]);
 
       // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
       const keyImage = algoring.genKeyImage(player.bls_private_key, player.bls_public_key);

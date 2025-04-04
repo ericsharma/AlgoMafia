@@ -300,9 +300,7 @@ export class TownHall extends Contract {
     this.hashFilter(rawBytes(sha256(keyImage))).create(0); // This Key Image can no longer be used
 
     // Regarding 2: The message is a concatenation of the calling address and this contract's address
-    // TODO: Fix msg
-    // assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address)));
-    assert(msg === 'Hello World', 'Invalid msg value to have been signed!');
+    assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address)));
 
     // Regarding 3: Verify PKs are correct:
     assert(
