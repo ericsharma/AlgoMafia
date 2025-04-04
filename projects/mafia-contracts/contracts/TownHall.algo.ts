@@ -360,7 +360,18 @@ export class TownHall extends Contract {
 
     assert(vote > 0 && vote < 7, 'Invalid vote: Vote must be int 1 <= n <= 6.');
 
-    assert(this.txn.sender !== globals.zeroAddress, 'Sending from global zero address is not allowed.');
+    if (
+      !(
+        this.txn.sender === this.player1AlgoAddr.value ||
+        this.txn.sender === this.player2AlgoAddr.value ||
+        this.txn.sender === this.player3AlgoAddr.value ||
+        this.txn.sender === this.player4AlgoAddr.value ||
+        this.txn.sender === this.player5AlgoAddr.value ||
+        this.txn.sender === this.player6AlgoAddr.value
+      )
+    ) {
+      throw Error('Illegal call: Address sender not allowed to vote.');
+    }
 
     if (vote === 1 && this.player1AlgoAddr.value !== globals.zeroAddress) {
       this.player1ReceivedVotes.value += 1;
@@ -664,6 +675,8 @@ export class TownHall extends Contract {
       // Either the Mafia failed to provide a valid address, or the Doctor managed to save the  victim.
       // (Or, neither of them providede a valid address...)
       // The game continues.
+      this.mafiaVictim.value = globals.zeroAddress; // Reset the mafia victim
+      this.doctorPatient.value = globals.zeroAddress; // Reset the doctor patient
       this.gameState.value = stateDayStageVote;
       return;
     }
@@ -694,6 +707,9 @@ export class TownHall extends Contract {
 
     this.playersAlive.value -= 1;
 
+    this.mafiaVictim.value = globals.zeroAddress; // Reset the mafia victim
+    this.doctorPatient.value = globals.zeroAddress; // Reset the doctor patient
+
     if (this.playersAlive.value <= 2) {
       // The mafia has won!
       // This assumes that the mafia is 1 of the remaining plays.
@@ -702,8 +718,6 @@ export class TownHall extends Contract {
     }
 
     this.gameState.value = stateDawnStageUnmasking; // Go to next stage
-    this.mafiaVictim.value = globals.zeroAddress; // Reset the mafia victim
-    this.doctorPatient.value = globals.zeroAddress; // Reset the doctor patient
   }
 
   dawnStageUnmasking(blsSk: bytes): void {

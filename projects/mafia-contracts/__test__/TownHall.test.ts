@@ -20,6 +20,7 @@ import {
   stateDayStageEliminate,
   stateDayStageUnmasking,
   stateDayStageVote,
+  stateGameOver,
   stateJoinGameLobby,
   stateNightStageDoctorCommit,
   stateNightStageMafiaCommit,
@@ -293,11 +294,11 @@ describe('TownHall', () => {
     /// <----------- ENTERED NightStageMafiaCommit ----------->
     // Mafia commits to value
 
-    const mafiaCommitBlinder = randomBytes(32);
-    const playerToKill = players[3].day_algo_address.addr;
+    let mafiaCommitBlinder = randomBytes(32);
+    let playerToKill = players[3].day_algo_address.addr;
 
     // Hash the concatenated data using sha256
-    const mafiaCommitHash = createHash('sha256')
+    let mafiaCommitHash = createHash('sha256')
       .update(Buffer.concat([algosdk.decodeAddress(playerToKill).publicKey, mafiaCommitBlinder]))
       .digest();
 
@@ -314,10 +315,10 @@ describe('TownHall', () => {
 
     /// <----------- ENTERED NightStageDoctorCommit ----------->
 
-    const doctorCommitBlinder = randomBytes(32);
-    const playerToSave = players[4].day_algo_address.addr;
+    let doctorCommitBlinder = randomBytes(32);
+    let playerToSave = players[4].day_algo_address.addr;
 
-    const doctorCommitHash = createHash('sha256')
+    let doctorCommitHash = createHash('sha256')
       .update(Buffer.concat([algosdk.decodeAddress(playerToSave).publicKey, doctorCommitBlinder]))
       .digest();
 
@@ -365,6 +366,100 @@ describe('TownHall', () => {
     expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageVote); // Advanced back to DayStageVote
 
     /// <----------- ENTERED DayStageVote----------->
+
+    await players[0].day_client.send.dayStageVote({ args: { vote: 6 } });
+    await players[1].day_client.send.dayStageVote({ args: { vote: 6 } });
+    // players[2] <--- player is dead
+    // players[3] <--- player is dead
+    await players[4].day_client.send.dayStageVote({ args: { vote: 6 } });
+    await players[5].day_client.send.dayStageVote({ args: { vote: 6 } });
+
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageEliminate); // Advanced to the DayStageEliminate stage
+
+    /// <----------- ENTERED DayStageEliminate----------->
+    // Player 6 is eliminated
+    await players[5].day_client.send.dayStageEliminate(); // Doesn't matter who calls it
+    expect(await appClient.state.global.player6AlgoAddr()).toEqual(ZERO_ADDRESS);
+    expect(Number(await appClient.state.global.playersAlive())).toEqual(3);
+    expect(await appClient.state.global.justEliminatedPlayer()).toStrictEqual(players[5].day_algo_address.addr);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageUnmasking); // Advanced to the DayStageUnmasking stage
+
+    /// <----------- ENTERED DayStageUnmasking ----------->
+    // Player 6 reveals themselves
+
+    await unMaskDayStage(players[5].day_client, players[5].bls_private_key);
+
+    expect(await appClient.state.global.justEliminatedPlayer()).toEqual(ZERO_ADDRESS);
+    expect((await appClient.state.global.doctor()) === ZERO_ADDRESS).toBeFalsy();
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateNightStageMafiaCommit); // Advanced to the NightStageMafiaCommit stage
+
+    /// <----------- ENTERED NightStageMafiaCommit ----------->
+    // Mafia commits to value
+
+    mafiaCommitBlinder = randomBytes(32);
+    playerToKill = players[4].day_algo_address.addr;
+
+    // Hash the concatenated data using sha256
+    mafiaCommitHash = createHash('sha256')
+      .update(Buffer.concat([algosdk.decodeAddress(playerToKill).publicKey, mafiaCommitBlinder]))
+      .digest();
+
+    await players[0].night_client.send.nightStageMafiaCommit({
+      args: {
+        commitment: mafiaCommitHash,
+      },
+    });
+
+    expect((await appClient.state.global.mafiaCommitment()).asByteArray()).toStrictEqual(
+      new Uint8Array(mafiaCommitHash)
+    );
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateNightStageDoctorCommit); // Advanced to the Night Stage Doctor Commit
+
+    /// <----------- ENTERED NightStageDoctorCommit ----------->
+
+    doctorCommitBlinder = randomBytes(32);
+    playerToSave = players[1].day_algo_address.addr;
+
+    doctorCommitHash = createHash('sha256')
+      .update(Buffer.concat([algosdk.decodeAddress(playerToSave).publicKey, doctorCommitBlinder]))
+      .digest();
+
+    await players[1].night_client.send.nightStageDoctorCommit({
+      args: {
+        commitment: doctorCommitHash,
+      },
+    });
+
+    expect((await appClient.state.global.doctorCommitment()).asByteArray()).toStrictEqual(
+      new Uint8Array(doctorCommitHash)
+    );
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDawnStageMafiaReveal); // Advanced to the Dawn Stage Mafia Reveal
+    /// <----------- ENTERED DawnStageMafiaReveal ----------->
+
+    await players[0].night_client.send.dawnStageMafiaReveal({
+      args: { victimAim: playerToKill, blinder: new Uint8Array(mafiaCommitBlinder) },
+    });
+
+    expect((await appClient.state.global.mafiaVictim()) === playerToKill);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDawnStageDoctorReveal); // Advanced to the Dawn Stage Doctor Reveal
+
+    /// <----------- ENTERED DawnStageDoctorReveal ----------->
+
+    await players[1].night_client.send.dawnStageDoctorReveal({
+      args: { patientAim: playerToSave, blinder: new Uint8Array(doctorCommitBlinder) },
+    });
+
+    expect((await appClient.state.global.doctorPatient()) === playerToSave);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDawnStageDeadOrSaved); // Advanced to the Dawn Stage Dead Or Saved
+
+    /// <----------- ENTERED DawnStageDeadOrSaved----------->
+
+    await players[1].day_client.send.dawnStageDeadOrSaved(); // Anyone can call it
+
+    expect(Number(await appClient.state.global.playersAlive())).toEqual(2);
+    expect(await appClient.state.global.mafiaVictim()).toEqual(ZERO_ADDRESS);
+    expect(await appClient.state.global.doctorPatient()).toEqual(ZERO_ADDRESS);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateGameOver); // Advanced to Game Over
   });
 });
 

@@ -1113,17 +1113,75 @@ dayStageVote:
 	// Invalid vote: Vote must be int 1 <= n <= 6.
 	assert
 
-	// contracts/TownHall.algo.ts:363
-	// assert(this.txn.sender !== globals.zeroAddress, 'Sending from global zero address is not allowed.')
-	txn Sender
-	global ZeroAddress
-	!=
-
-	// Sending from global zero address is not allowed.
-	assert
-
 	// *if13_condition
-	// contracts/TownHall.algo.ts:365
+	// contracts/TownHall.algo.ts:364
+	// !(
+	//         this.txn.sender === this.player1AlgoAddr.value ||
+	//         this.txn.sender === this.player2AlgoAddr.value ||
+	//         this.txn.sender === this.player3AlgoAddr.value ||
+	//         this.txn.sender === this.player4AlgoAddr.value ||
+	//         this.txn.sender === this.player5AlgoAddr.value ||
+	//         this.txn.sender === this.player6AlgoAddr.value
+	//       )
+	txn Sender
+	bytec 4 //  "player1AlgoAddr"
+	app_global_get
+	==
+	dup
+	bnz *skip_or0
+	txn Sender
+	bytec 5 //  "player2AlgoAddr"
+	app_global_get
+	==
+	||
+
+*skip_or0:
+	dup
+	bnz *skip_or1
+	txn Sender
+	bytec 6 //  "player3AlgoAddr"
+	app_global_get
+	==
+	||
+
+*skip_or1:
+	dup
+	bnz *skip_or2
+	txn Sender
+	bytec 7 //  "player4AlgoAddr"
+	app_global_get
+	==
+	||
+
+*skip_or2:
+	dup
+	bnz *skip_or3
+	txn Sender
+	bytec 8 //  "player5AlgoAddr"
+	app_global_get
+	==
+	||
+
+*skip_or3:
+	dup
+	bnz *skip_or4
+	txn Sender
+	bytec 9 //  "player6AlgoAddr"
+	app_global_get
+	==
+	||
+
+*skip_or4:
+	!
+	bz *if13_end
+
+	// *if13_consequent
+	// Illegal call: Address sender not allowed to vote.
+	err
+
+*if13_end:
+	// *if14_condition
+	// contracts/TownHall.algo.ts:376
 	// vote === 1 && this.player1AlgoAddr.value !== globals.zeroAddress
 	frame_dig -1 // vote: uint64
 	intc 1 // 1
@@ -1137,10 +1195,10 @@ dayStageVote:
 	&&
 
 *skip_and1:
-	bz *if13_elseif1_condition
+	bz *if14_elseif1_condition
 
-	// *if13_consequent
-	// contracts/TownHall.algo.ts:366
+	// *if14_consequent
+	// contracts/TownHall.algo.ts:377
 	// this.player1ReceivedVotes.value += 1
 	bytec 12 //  "player1ReceivedVotes"
 	app_global_get
@@ -1149,10 +1207,10 @@ dayStageVote:
 	bytec 12 //  "player1ReceivedVotes"
 	swap
 	app_global_put
-	b *if13_end
+	b *if14_end
 
-*if13_elseif1_condition:
-	// contracts/TownHall.algo.ts:367
+*if14_elseif1_condition:
+	// contracts/TownHall.algo.ts:378
 	// vote === 2 && this.player2AlgoAddr.value !== globals.zeroAddress
 	frame_dig -1 // vote: uint64
 	intc 2 // 2
@@ -1166,10 +1224,10 @@ dayStageVote:
 	&&
 
 *skip_and2:
-	bz *if13_elseif2_condition
+	bz *if14_elseif2_condition
 
-	// *if13_elseif1_consequent
-	// contracts/TownHall.algo.ts:368
+	// *if14_elseif1_consequent
+	// contracts/TownHall.algo.ts:379
 	// this.player2ReceivedVotes.value += 1
 	bytec 13 //  "player2ReceivedVotes"
 	app_global_get
@@ -1178,10 +1236,10 @@ dayStageVote:
 	bytec 13 //  "player2ReceivedVotes"
 	swap
 	app_global_put
-	b *if13_end
+	b *if14_end
 
-*if13_elseif2_condition:
-	// contracts/TownHall.algo.ts:369
+*if14_elseif2_condition:
+	// contracts/TownHall.algo.ts:380
 	// vote === 3 && this.player3AlgoAddr.value !== globals.zeroAddress
 	frame_dig -1 // vote: uint64
 	intc 6 // 3
@@ -1195,10 +1253,10 @@ dayStageVote:
 	&&
 
 *skip_and3:
-	bz *if13_elseif3_condition
+	bz *if14_elseif3_condition
 
-	// *if13_elseif2_consequent
-	// contracts/TownHall.algo.ts:370
+	// *if14_elseif2_consequent
+	// contracts/TownHall.algo.ts:381
 	// this.player3ReceivedVotes.value += 1
 	bytec 14 //  "player3ReceivedVotes"
 	app_global_get
@@ -1207,10 +1265,10 @@ dayStageVote:
 	bytec 14 //  "player3ReceivedVotes"
 	swap
 	app_global_put
-	b *if13_end
+	b *if14_end
 
-*if13_elseif3_condition:
-	// contracts/TownHall.algo.ts:371
+*if14_elseif3_condition:
+	// contracts/TownHall.algo.ts:382
 	// vote === 4 && this.player4AlgoAddr.value !== globals.zeroAddress
 	frame_dig -1 // vote: uint64
 	intc 7 // 4
@@ -1224,10 +1282,10 @@ dayStageVote:
 	&&
 
 *skip_and4:
-	bz *if13_elseif4_condition
+	bz *if14_elseif4_condition
 
-	// *if13_elseif3_consequent
-	// contracts/TownHall.algo.ts:372
+	// *if14_elseif3_consequent
+	// contracts/TownHall.algo.ts:383
 	// this.player4ReceivedVotes.value += 1
 	bytec 15 //  "player4ReceivedVotes"
 	app_global_get
@@ -1236,10 +1294,10 @@ dayStageVote:
 	bytec 15 //  "player4ReceivedVotes"
 	swap
 	app_global_put
-	b *if13_end
+	b *if14_end
 
-*if13_elseif4_condition:
-	// contracts/TownHall.algo.ts:373
+*if14_elseif4_condition:
+	// contracts/TownHall.algo.ts:384
 	// vote === 5 && this.player5AlgoAddr.value !== globals.zeroAddress
 	frame_dig -1 // vote: uint64
 	intc 4 // 5
@@ -1253,10 +1311,10 @@ dayStageVote:
 	&&
 
 *skip_and5:
-	bz *if13_elseif5_condition
+	bz *if14_elseif5_condition
 
-	// *if13_elseif4_consequent
-	// contracts/TownHall.algo.ts:374
+	// *if14_elseif4_consequent
+	// contracts/TownHall.algo.ts:385
 	// this.player5ReceivedVotes.value += 1
 	bytec 16 //  "player5ReceivedVotes"
 	app_global_get
@@ -1265,10 +1323,10 @@ dayStageVote:
 	bytec 16 //  "player5ReceivedVotes"
 	swap
 	app_global_put
-	b *if13_end
+	b *if14_end
 
-*if13_elseif5_condition:
-	// contracts/TownHall.algo.ts:375
+*if14_elseif5_condition:
+	// contracts/TownHall.algo.ts:386
 	// vote === 6 && this.player6AlgoAddr.value !== globals.zeroAddress
 	frame_dig -1 // vote: uint64
 	intc 3 // 6
@@ -1282,10 +1340,10 @@ dayStageVote:
 	&&
 
 *skip_and6:
-	bz *if13_else
+	bz *if14_else
 
-	// *if13_elseif5_consequent
-	// contracts/TownHall.algo.ts:376
+	// *if14_elseif5_consequent
+	// contracts/TownHall.algo.ts:387
 	// this.player6ReceivedVotes.value += 1
 	bytec 17 //  "player6ReceivedVotes"
 	app_global_get
@@ -1294,15 +1352,15 @@ dayStageVote:
 	bytec 17 //  "player6ReceivedVotes"
 	swap
 	app_global_put
-	b *if13_end
+	b *if14_end
 
-*if13_else:
+*if14_else:
 	// Invalid vote: Is player still alive?
 	err
 
-*if13_end:
-	// *if14_condition
-	// contracts/TownHall.algo.ts:381
+*if14_end:
+	// *if15_condition
+	// contracts/TownHall.algo.ts:392
 	// this.txn.sender === this.player1AlgoAddr.value && this.player1HasVoted.value === 0
 	txn Sender
 	bytec 4 //  "player1AlgoAddr"
@@ -1317,18 +1375,18 @@ dayStageVote:
 	&&
 
 *skip_and7:
-	bz *if14_elseif1_condition
+	bz *if15_elseif1_condition
 
-	// *if14_consequent
-	// contracts/TownHall.algo.ts:382
+	// *if15_consequent
+	// contracts/TownHall.algo.ts:393
 	// this.player1HasVoted.value = 1
 	bytec 23 //  "player1HasVoted"
 	intc 1 // 1
 	app_global_put
-	b *if14_end
+	b *if15_end
 
-*if14_elseif1_condition:
-	// contracts/TownHall.algo.ts:383
+*if15_elseif1_condition:
+	// contracts/TownHall.algo.ts:394
 	// this.txn.sender === this.player2AlgoAddr.value && this.player2HasVoted.value === 0
 	txn Sender
 	bytec 5 //  "player2AlgoAddr"
@@ -1343,18 +1401,18 @@ dayStageVote:
 	&&
 
 *skip_and8:
-	bz *if14_elseif2_condition
+	bz *if15_elseif2_condition
 
-	// *if14_elseif1_consequent
-	// contracts/TownHall.algo.ts:384
+	// *if15_elseif1_consequent
+	// contracts/TownHall.algo.ts:395
 	// this.player2HasVoted.value = 1
 	bytec 24 //  "player2HasVoted"
 	intc 1 // 1
 	app_global_put
-	b *if14_end
+	b *if15_end
 
-*if14_elseif2_condition:
-	// contracts/TownHall.algo.ts:385
+*if15_elseif2_condition:
+	// contracts/TownHall.algo.ts:396
 	// this.txn.sender === this.player3AlgoAddr.value && this.player3HasVoted.value === 0
 	txn Sender
 	bytec 6 //  "player3AlgoAddr"
@@ -1369,18 +1427,18 @@ dayStageVote:
 	&&
 
 *skip_and9:
-	bz *if14_elseif3_condition
+	bz *if15_elseif3_condition
 
-	// *if14_elseif2_consequent
-	// contracts/TownHall.algo.ts:386
+	// *if15_elseif2_consequent
+	// contracts/TownHall.algo.ts:397
 	// this.player3HasVoted.value = 1
 	bytec 25 //  "player3HasVoted"
 	intc 1 // 1
 	app_global_put
-	b *if14_end
+	b *if15_end
 
-*if14_elseif3_condition:
-	// contracts/TownHall.algo.ts:387
+*if15_elseif3_condition:
+	// contracts/TownHall.algo.ts:398
 	// this.txn.sender === this.player4AlgoAddr.value && this.player4HasVoted.value === 0
 	txn Sender
 	bytec 7 //  "player4AlgoAddr"
@@ -1395,18 +1453,18 @@ dayStageVote:
 	&&
 
 *skip_and10:
-	bz *if14_elseif4_condition
+	bz *if15_elseif4_condition
 
-	// *if14_elseif3_consequent
-	// contracts/TownHall.algo.ts:388
+	// *if15_elseif3_consequent
+	// contracts/TownHall.algo.ts:399
 	// this.player4HasVoted.value = 1
 	bytec 26 //  "player4HasVoted"
 	intc 1 // 1
 	app_global_put
-	b *if14_end
+	b *if15_end
 
-*if14_elseif4_condition:
-	// contracts/TownHall.algo.ts:389
+*if15_elseif4_condition:
+	// contracts/TownHall.algo.ts:400
 	// this.txn.sender === this.player5AlgoAddr.value && this.player5HasVoted.value === 0
 	txn Sender
 	bytec 8 //  "player5AlgoAddr"
@@ -1421,18 +1479,18 @@ dayStageVote:
 	&&
 
 *skip_and11:
-	bz *if14_elseif5_condition
+	bz *if15_elseif5_condition
 
-	// *if14_elseif4_consequent
-	// contracts/TownHall.algo.ts:390
+	// *if15_elseif4_consequent
+	// contracts/TownHall.algo.ts:401
 	// this.player5HasVoted.value = 1
 	bytec 27 //  "player5HasVoted"
 	intc 1 // 1
 	app_global_put
-	b *if14_end
+	b *if15_end
 
-*if14_elseif5_condition:
-	// contracts/TownHall.algo.ts:391
+*if15_elseif5_condition:
+	// contracts/TownHall.algo.ts:402
 	// this.txn.sender === this.player6AlgoAddr.value && this.player6HasVoted.value === 0
 	txn Sender
 	bytec 9 //  "player6AlgoAddr"
@@ -1447,22 +1505,22 @@ dayStageVote:
 	&&
 
 *skip_and12:
-	bz *if14_else
+	bz *if15_else
 
-	// *if14_elseif5_consequent
-	// contracts/TownHall.algo.ts:392
+	// *if15_elseif5_consequent
+	// contracts/TownHall.algo.ts:403
 	// this.player6HasVoted.value = 1
 	bytec 28 //  "player6HasVoted"
 	intc 1 // 1
 	app_global_put
-	b *if14_end
+	b *if15_end
 
-*if14_else:
+*if15_else:
 	// Address not allowed to vote.
 	err
 
-*if14_end:
-	// contracts/TownHall.algo.ts:397
+*if15_end:
+	// contracts/TownHall.algo.ts:408
 	// this.playersVoted.value += 1
 	bytec 21 //  "playersVoted"
 	app_global_get
@@ -1472,66 +1530,66 @@ dayStageVote:
 	swap
 	app_global_put
 
-	// *if15_condition
-	// contracts/TownHall.algo.ts:399
+	// *if16_condition
+	// contracts/TownHall.algo.ts:410
 	// this.playersVoted.value === this.playersAlive.value
 	bytec 21 //  "playersVoted"
 	app_global_get
 	bytec 18 //  "playersAlive"
 	app_global_get
 	==
-	bz *if15_end
+	bz *if16_end
 
-	// *if15_consequent
-	// contracts/TownHall.algo.ts:401
+	// *if16_consequent
+	// contracts/TownHall.algo.ts:412
 	// this.gameState.value = stateDayStageEliminate
 	bytec 0 //  "gameState"
 	intc 6 // 3
 	app_global_put
 
-	// contracts/TownHall.algo.ts:404
+	// contracts/TownHall.algo.ts:415
 	// this.playersVoted.value = 0
 	bytec 21 //  "playersVoted"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:405
+	// contracts/TownHall.algo.ts:416
 	// this.player1HasVoted.value = 0
 	bytec 23 //  "player1HasVoted"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:406
+	// contracts/TownHall.algo.ts:417
 	// this.player2HasVoted.value = 0
 	bytec 24 //  "player2HasVoted"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:407
+	// contracts/TownHall.algo.ts:418
 	// this.player3HasVoted.value = 0
 	bytec 25 //  "player3HasVoted"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:408
+	// contracts/TownHall.algo.ts:419
 	// this.player4HasVoted.value = 0
 	bytec 26 //  "player4HasVoted"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:409
+	// contracts/TownHall.algo.ts:420
 	// this.player5HasVoted.value = 0
 	bytec 27 //  "player5HasVoted"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:410
+	// contracts/TownHall.algo.ts:421
 	// this.player6HasVoted.value = 0
 	bytec 28 //  "player6HasVoted"
 	intc 0 // 0
 	app_global_put
 
-*if15_end:
+*if16_end:
 	retsub
 
 // dayStageEliminate()void
@@ -1549,7 +1607,7 @@ dayStageEliminate:
 	bytec 2 // 0x
 	dup
 
-	// contracts/TownHall.algo.ts:417
+	// contracts/TownHall.algo.ts:428
 	// assert(
 	//       this.gameState.value === stateDayStageEliminate,
 	//       'Invalid method call: Game is not in Day Stage Eliminate state.'
@@ -1562,18 +1620,18 @@ dayStageEliminate:
 	// Invalid method call: Game is not in Day Stage Eliminate state.
 	assert
 
-	// contracts/TownHall.algo.ts:422
+	// contracts/TownHall.algo.ts:433
 	// this.justEliminatedPlayer.value = globals.zeroAddress
 	bytec 1 //  "justEliminatedPlayer"
 	global ZeroAddress
 	app_global_put
 
-	// contracts/TownHall.algo.ts:423
+	// contracts/TownHall.algo.ts:434
 	// topVotes = 0
 	intc 0 // 0
 	frame_bury 0 // topVotes: uint64
 
-	// contracts/TownHall.algo.ts:429
+	// contracts/TownHall.algo.ts:440
 	// even = globals.round % 2 === 0
 	global Round
 	intc 2 // 2
@@ -1582,15 +1640,15 @@ dayStageEliminate:
 	==
 	frame_bury 1 // even: bool
 
-	// *if16_condition
-	// contracts/TownHall.algo.ts:431
+	// *if17_condition
+	// contracts/TownHall.algo.ts:442
 	// this.player1ReceivedVotes.value > topVotes || (this.player1ReceivedVotes.value === topVotes && even)
 	bytec 12 //  "player1ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
 	>
 	dup
-	bnz *skip_or0
+	bnz *skip_or5
 	bytec 12 //  "player1ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
@@ -1603,33 +1661,33 @@ dayStageEliminate:
 *skip_and13:
 	||
 
-*skip_or0:
-	bz *if16_end
+*skip_or5:
+	bz *if17_end
 
-	// *if16_consequent
-	// contracts/TownHall.algo.ts:432
+	// *if17_consequent
+	// contracts/TownHall.algo.ts:443
 	// this.justEliminatedPlayer.value = this.player1AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:433
+	// contracts/TownHall.algo.ts:444
 	// topVotes = this.player1ReceivedVotes.value
 	bytec 12 //  "player1ReceivedVotes"
 	app_global_get
 	frame_bury 0 // topVotes: uint64
 
-*if16_end:
-	// *if17_condition
-	// contracts/TownHall.algo.ts:436
+*if17_end:
+	// *if18_condition
+	// contracts/TownHall.algo.ts:447
 	// this.player2ReceivedVotes.value > topVotes || (this.player2ReceivedVotes.value === topVotes && even)
 	bytec 13 //  "player2ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
 	>
 	dup
-	bnz *skip_or1
+	bnz *skip_or6
 	bytec 13 //  "player2ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
@@ -1642,33 +1700,33 @@ dayStageEliminate:
 *skip_and14:
 	||
 
-*skip_or1:
-	bz *if17_end
+*skip_or6:
+	bz *if18_end
 
-	// *if17_consequent
-	// contracts/TownHall.algo.ts:437
+	// *if18_consequent
+	// contracts/TownHall.algo.ts:448
 	// this.justEliminatedPlayer.value = this.player2AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:438
+	// contracts/TownHall.algo.ts:449
 	// topVotes = this.player2ReceivedVotes.value
 	bytec 13 //  "player2ReceivedVotes"
 	app_global_get
 	frame_bury 0 // topVotes: uint64
 
-*if17_end:
-	// *if18_condition
-	// contracts/TownHall.algo.ts:441
+*if18_end:
+	// *if19_condition
+	// contracts/TownHall.algo.ts:452
 	// this.player3ReceivedVotes.value > topVotes || (this.player3ReceivedVotes.value === topVotes && even)
 	bytec 14 //  "player3ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
 	>
 	dup
-	bnz *skip_or2
+	bnz *skip_or7
 	bytec 14 //  "player3ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
@@ -1681,33 +1739,33 @@ dayStageEliminate:
 *skip_and15:
 	||
 
-*skip_or2:
-	bz *if18_end
+*skip_or7:
+	bz *if19_end
 
-	// *if18_consequent
-	// contracts/TownHall.algo.ts:442
+	// *if19_consequent
+	// contracts/TownHall.algo.ts:453
 	// this.justEliminatedPlayer.value = this.player3AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:443
+	// contracts/TownHall.algo.ts:454
 	// topVotes = this.player3ReceivedVotes.value
 	bytec 14 //  "player3ReceivedVotes"
 	app_global_get
 	frame_bury 0 // topVotes: uint64
 
-*if18_end:
-	// *if19_condition
-	// contracts/TownHall.algo.ts:446
+*if19_end:
+	// *if20_condition
+	// contracts/TownHall.algo.ts:457
 	// this.player4ReceivedVotes.value > topVotes || (this.player4ReceivedVotes.value === topVotes && even)
 	bytec 15 //  "player4ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
 	>
 	dup
-	bnz *skip_or3
+	bnz *skip_or8
 	bytec 15 //  "player4ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
@@ -1720,33 +1778,33 @@ dayStageEliminate:
 *skip_and16:
 	||
 
-*skip_or3:
-	bz *if19_end
+*skip_or8:
+	bz *if20_end
 
-	// *if19_consequent
-	// contracts/TownHall.algo.ts:447
+	// *if20_consequent
+	// contracts/TownHall.algo.ts:458
 	// this.justEliminatedPlayer.value = this.player4AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:448
+	// contracts/TownHall.algo.ts:459
 	// topVotes = this.player4ReceivedVotes.value
 	bytec 15 //  "player4ReceivedVotes"
 	app_global_get
 	frame_bury 0 // topVotes: uint64
 
-*if19_end:
-	// *if20_condition
-	// contracts/TownHall.algo.ts:451
+*if20_end:
+	// *if21_condition
+	// contracts/TownHall.algo.ts:462
 	// this.player5ReceivedVotes.value > topVotes || (this.player5ReceivedVotes.value === topVotes && even)
 	bytec 16 //  "player5ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
 	>
 	dup
-	bnz *skip_or4
+	bnz *skip_or9
 	bytec 16 //  "player5ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
@@ -1759,33 +1817,33 @@ dayStageEliminate:
 *skip_and17:
 	||
 
-*skip_or4:
-	bz *if20_end
+*skip_or9:
+	bz *if21_end
 
-	// *if20_consequent
-	// contracts/TownHall.algo.ts:452
+	// *if21_consequent
+	// contracts/TownHall.algo.ts:463
 	// this.justEliminatedPlayer.value = this.player5AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:453
+	// contracts/TownHall.algo.ts:464
 	// topVotes = this.player5ReceivedVotes.value
 	bytec 16 //  "player5ReceivedVotes"
 	app_global_get
 	frame_bury 0 // topVotes: uint64
 
-*if20_end:
-	// *if21_condition
-	// contracts/TownHall.algo.ts:456
+*if21_end:
+	// *if22_condition
+	// contracts/TownHall.algo.ts:467
 	// this.player6ReceivedVotes.value > topVotes || (this.player6ReceivedVotes.value === topVotes && even)
 	bytec 17 //  "player6ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
 	>
 	dup
-	bnz *skip_or5
+	bnz *skip_or10
 	bytec 17 //  "player6ReceivedVotes"
 	app_global_get
 	frame_dig 0 // topVotes: uint64
@@ -1798,25 +1856,25 @@ dayStageEliminate:
 *skip_and18:
 	||
 
-*skip_or5:
-	bz *if21_end
+*skip_or10:
+	bz *if22_end
 
-	// *if21_consequent
-	// contracts/TownHall.algo.ts:457
+	// *if22_consequent
+	// contracts/TownHall.algo.ts:468
 	// this.justEliminatedPlayer.value = this.player6AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:458
+	// contracts/TownHall.algo.ts:469
 	// topVotes = this.player6ReceivedVotes.value
 	bytec 17 //  "player6ReceivedVotes"
 	app_global_get
 	frame_bury 0 // topVotes: uint64
 
-*if21_end:
-	// contracts/TownHall.algo.ts:461
+*if22_end:
+	// contracts/TownHall.algo.ts:472
 	// assert(this.justEliminatedPlayer.value !== globals.zeroAddress, 'Error state: Zero Address won vote!')
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
@@ -1826,7 +1884,7 @@ dayStageEliminate:
 	// Error state: Zero Address won vote!
 	assert
 
-	// contracts/TownHall.algo.ts:462
+	// contracts/TownHall.algo.ts:473
 	// assert(topVotes !== 0, 'Error state: No votes were cast!')
 	frame_dig 0 // topVotes: uint64
 	intc 0 // 0
@@ -1835,115 +1893,115 @@ dayStageEliminate:
 	// Error state: No votes were cast!
 	assert
 
-	// *if22_condition
-	// contracts/TownHall.algo.ts:467
+	// *if23_condition
+	// contracts/TownHall.algo.ts:478
 	// this.justEliminatedPlayer.value === this.player1AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	==
-	bz *if22_end
+	bz *if23_end
 
-	// *if22_consequent
-	// contracts/TownHall.algo.ts:468
+	// *if23_consequent
+	// contracts/TownHall.algo.ts:479
 	// this.player1AlgoAddr.value = globals.zeroAddress
 	bytec 4 //  "player1AlgoAddr"
 	global ZeroAddress
 	app_global_put
 
-*if22_end:
-	// *if23_condition
-	// contracts/TownHall.algo.ts:471
+*if23_end:
+	// *if24_condition
+	// contracts/TownHall.algo.ts:482
 	// this.justEliminatedPlayer.value === this.player2AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	==
-	bz *if23_end
+	bz *if24_end
 
-	// *if23_consequent
-	// contracts/TownHall.algo.ts:472
+	// *if24_consequent
+	// contracts/TownHall.algo.ts:483
 	// this.player2AlgoAddr.value = globals.zeroAddress
 	bytec 5 //  "player2AlgoAddr"
 	global ZeroAddress
 	app_global_put
 
-*if23_end:
-	// *if24_condition
-	// contracts/TownHall.algo.ts:475
+*if24_end:
+	// *if25_condition
+	// contracts/TownHall.algo.ts:486
 	// this.justEliminatedPlayer.value === this.player3AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	==
-	bz *if24_end
+	bz *if25_end
 
-	// *if24_consequent
-	// contracts/TownHall.algo.ts:476
+	// *if25_consequent
+	// contracts/TownHall.algo.ts:487
 	// this.player3AlgoAddr.value = globals.zeroAddress
 	bytec 6 //  "player3AlgoAddr"
 	global ZeroAddress
 	app_global_put
 
-*if24_end:
-	// *if25_condition
-	// contracts/TownHall.algo.ts:479
+*if25_end:
+	// *if26_condition
+	// contracts/TownHall.algo.ts:490
 	// this.justEliminatedPlayer.value === this.player4AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	==
-	bz *if25_end
+	bz *if26_end
 
-	// *if25_consequent
-	// contracts/TownHall.algo.ts:480
+	// *if26_consequent
+	// contracts/TownHall.algo.ts:491
 	// this.player4AlgoAddr.value = globals.zeroAddress
 	bytec 7 //  "player4AlgoAddr"
 	global ZeroAddress
 	app_global_put
 
-*if25_end:
-	// *if26_condition
-	// contracts/TownHall.algo.ts:483
+*if26_end:
+	// *if27_condition
+	// contracts/TownHall.algo.ts:494
 	// this.justEliminatedPlayer.value === this.player5AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	==
-	bz *if26_end
+	bz *if27_end
 
-	// *if26_consequent
-	// contracts/TownHall.algo.ts:484
+	// *if27_consequent
+	// contracts/TownHall.algo.ts:495
 	// this.player5AlgoAddr.value = globals.zeroAddress
 	bytec 8 //  "player5AlgoAddr"
 	global ZeroAddress
 	app_global_put
 
-*if26_end:
-	// *if27_condition
-	// contracts/TownHall.algo.ts:487
+*if27_end:
+	// *if28_condition
+	// contracts/TownHall.algo.ts:498
 	// this.justEliminatedPlayer.value === this.player6AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	==
-	bz *if27_end
+	bz *if28_end
 
-	// *if27_consequent
-	// contracts/TownHall.algo.ts:488
+	// *if28_consequent
+	// contracts/TownHall.algo.ts:499
 	// this.player6AlgoAddr.value = globals.zeroAddress
 	bytec 9 //  "player6AlgoAddr"
 	global ZeroAddress
 	app_global_put
 
-*if27_end:
-	// contracts/TownHall.algo.ts:491
+*if28_end:
+	// contracts/TownHall.algo.ts:502
 	// this.playersAlive.value -= 1
 	bytec 18 //  "playersAlive"
 	app_global_get
@@ -1953,43 +2011,43 @@ dayStageEliminate:
 	swap
 	app_global_put
 
-	// contracts/TownHall.algo.ts:495
+	// contracts/TownHall.algo.ts:506
 	// this.player1ReceivedVotes.value = 0
 	bytec 12 //  "player1ReceivedVotes"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:496
+	// contracts/TownHall.algo.ts:507
 	// this.player2ReceivedVotes.value = 0
 	bytec 13 //  "player2ReceivedVotes"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:497
+	// contracts/TownHall.algo.ts:508
 	// this.player3ReceivedVotes.value = 0
 	bytec 14 //  "player3ReceivedVotes"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:498
+	// contracts/TownHall.algo.ts:509
 	// this.player4ReceivedVotes.value = 0
 	bytec 15 //  "player4ReceivedVotes"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:499
+	// contracts/TownHall.algo.ts:510
 	// this.player5ReceivedVotes.value = 0
 	bytec 16 //  "player5ReceivedVotes"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:500
+	// contracts/TownHall.algo.ts:511
 	// this.player6ReceivedVotes.value = 0
 	bytec 17 //  "player6ReceivedVotes"
 	intc 0 // 0
 	app_global_put
 
-	// contracts/TownHall.algo.ts:502
+	// contracts/TownHall.algo.ts:513
 	// this.gameState.value = stateDayStageUnmasking
 	bytec 0 //  "gameState"
 	intc 7 // 4
@@ -2015,7 +2073,7 @@ dayStageUnmasking:
 	bytec 2 // 0x
 	dupn 2
 
-	// contracts/TownHall.algo.ts:506
+	// contracts/TownHall.algo.ts:517
 	// assert(
 	//       this.gameState.value === stateDayStageUnmasking,
 	//       'Invalid method call: Game is not in Day Stage Reveal state.'
@@ -2028,7 +2086,7 @@ dayStageUnmasking:
 	// Invalid method call: Game is not in Day Stage Reveal state.
 	assert
 
-	// contracts/TownHall.algo.ts:511
+	// contracts/TownHall.algo.ts:522
 	// assert(this.justEliminatedPlayer.value === this.txn.sender, 'Error state: Other player called method.')
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
@@ -2038,83 +2096,83 @@ dayStageUnmasking:
 	// Error state: Other player called method.
 	assert
 
-	// contracts/TownHall.algo.ts:514
+	// contracts/TownHall.algo.ts:525
 	// BLS_PK = ecScalarMul('BLS12_381g1', hex(BLS12381G1_BASEPOINT_BYTES), blsSk)
 	bytec 36 // 0x17f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb08b3f481e3aaa0f1a09e30ed741d8ae4fcf5e095d5d00af600db18cb2c04b3edd03cc744a2888ae40caa232946c5e7e1
 	frame_dig -1 // blsSk: bytes
 	ec_scalar_mul BLS12_381g1
 	frame_bury 0 // BLS_PK: byte[]
 
-	// contracts/TownHall.algo.ts:515
+	// contracts/TownHall.algo.ts:526
 	// hashToPoint = this.hashPointToPoint(BLS_PK)
 	frame_dig 0 // BLS_PK: byte[]
 	callsub hashPointToPoint
 	frame_bury 1 // hashToPoint: byte[]
 
-	// contracts/TownHall.algo.ts:516
+	// contracts/TownHall.algo.ts:527
 	// genKeyImage = ecScalarMul('BLS12_381g1', hashToPoint, blsSk)
 	frame_dig 1 // hashToPoint: byte[]
 	frame_dig -1 // blsSk: bytes
 	ec_scalar_mul BLS12_381g1
 	frame_bury 2 // genKeyImage: byte[]
 
-	// *if28_condition
-	// contracts/TownHall.algo.ts:518
+	// *if29_condition
+	// contracts/TownHall.algo.ts:529
 	// genKeyImage === this.mafiaKeyImage.value
 	frame_dig 2 // genKeyImage: byte[]
 	bytec 31 //  "mafiaKeyImage"
 	app_global_get
 	==
-	bz *if28_end
+	bz *if29_end
 
-	// *if28_consequent
-	// contracts/TownHall.algo.ts:521
+	// *if29_consequent
+	// contracts/TownHall.algo.ts:532
 	// this.mafia.value = globals.zeroAddress
 	bytec 20 //  "mafia"
 	global ZeroAddress
 	app_global_put
 
-	// contracts/TownHall.algo.ts:522
+	// contracts/TownHall.algo.ts:533
 	// this.gameState.value = stateGameOver
 	bytec 0 //  "gameState"
 	intc 9 // 11
 	app_global_put
 
-	// contracts/TownHall.algo.ts:523
+	// contracts/TownHall.algo.ts:534
 	// return;
 	retsub
 
-*if28_end:
-	// *if29_condition
-	// contracts/TownHall.algo.ts:526
+*if29_end:
+	// *if30_condition
+	// contracts/TownHall.algo.ts:537
 	// genKeyImage === this.doctorKeyImage.value
 	frame_dig 2 // genKeyImage: byte[]
 	bytec 30 //  "doctorKeyImage"
 	app_global_get
 	==
-	bz *if29_end
+	bz *if30_end
 
-	// *if29_consequent
-	// contracts/TownHall.algo.ts:528
+	// *if30_consequent
+	// contracts/TownHall.algo.ts:539
 	// this.gameState.value = stateNightStageMafiaCommit
 	bytec 0 //  "gameState"
 	intc 4 // 5
 	app_global_put
 
-	// contracts/TownHall.algo.ts:529
+	// contracts/TownHall.algo.ts:540
 	// this.doctor.value = globals.zeroAddress
 	bytec 11 //  "doctor"
 	global ZeroAddress
 	app_global_put
 
-*if29_end:
-	// contracts/TownHall.algo.ts:532
+*if30_end:
+	// contracts/TownHall.algo.ts:543
 	// this.justEliminatedPlayer.value = globals.zeroAddress
 	bytec 1 //  "justEliminatedPlayer"
 	global ZeroAddress
 	app_global_put
 
-	// contracts/TownHall.algo.ts:534
+	// contracts/TownHall.algo.ts:545
 	// this.gameState.value = stateNightStageMafiaCommit
 	bytec 0 //  "gameState"
 	intc 4 // 5
@@ -2136,7 +2194,7 @@ dayStageUnmasking:
 nightStageMafiaCommit:
 	proto 1 0
 
-	// contracts/TownHall.algo.ts:538
+	// contracts/TownHall.algo.ts:549
 	// assert(
 	//       this.gameState.value === stateNightStageMafiaCommit,
 	//       'Invalid method call: Game is not in Night Stage Maffia Commit state.'
@@ -2149,7 +2207,7 @@ nightStageMafiaCommit:
 	// Invalid method call: Game is not in Night Stage Maffia Commit state.
 	assert
 
-	// contracts/TownHall.algo.ts:543
+	// contracts/TownHall.algo.ts:554
 	// assert(this.txn.sender === this.mafia.value, 'Error state: Non-mafia player called method.')
 	txn Sender
 	bytec 20 //  "mafia"
@@ -2159,37 +2217,37 @@ nightStageMafiaCommit:
 	// Error state: Non-mafia player called method.
 	assert
 
-	// contracts/TownHall.algo.ts:545
+	// contracts/TownHall.algo.ts:556
 	// this.mafiaCommitment.value = commitment
 	bytec 38 //  "mafiaCommitment"
 	frame_dig -1 // commitment: bytes
 	app_global_put
 
-	// *if30_condition
-	// contracts/TownHall.algo.ts:547
+	// *if31_condition
+	// contracts/TownHall.algo.ts:558
 	// this.doctor.value === globals.zeroAddress
 	bytec 11 //  "doctor"
 	app_global_get
 	global ZeroAddress
 	==
-	bz *if30_else
+	bz *if31_else
 
-	// *if30_consequent
-	// contracts/TownHall.algo.ts:549
+	// *if31_consequent
+	// contracts/TownHall.algo.ts:560
 	// this.gameState.value = stateDawnStageMafiaReveal
 	bytec 0 //  "gameState"
 	intc 8 // 7
 	app_global_put
-	b *if30_end
+	b *if31_end
 
-*if30_else:
-	// contracts/TownHall.algo.ts:551
+*if31_else:
+	// contracts/TownHall.algo.ts:562
 	// this.gameState.value = stateNightStageDoctorCommit
 	bytec 0 //  "gameState"
 	intc 3 // 6
 	app_global_put
 
-*if30_end:
+*if31_end:
 	retsub
 
 // nightStageDoctorCommit(byte[])void
@@ -2207,7 +2265,7 @@ nightStageMafiaCommit:
 nightStageDoctorCommit:
 	proto 1 0
 
-	// contracts/TownHall.algo.ts:556
+	// contracts/TownHall.algo.ts:567
 	// assert(
 	//       this.gameState.value === stateNightStageDoctorCommit,
 	//       'Invalid method call: Game is not in Night Stage Doctor Commit state.'
@@ -2220,7 +2278,7 @@ nightStageDoctorCommit:
 	// Invalid method call: Game is not in Night Stage Doctor Commit state.
 	assert
 
-	// contracts/TownHall.algo.ts:561
+	// contracts/TownHall.algo.ts:572
 	// assert(this.txn.sender === this.doctor.value, 'Error state: Non-doctor player called method.')
 	txn Sender
 	bytec 11 //  "doctor"
@@ -2230,7 +2288,7 @@ nightStageDoctorCommit:
 	// Error state: Non-doctor player called method.
 	assert
 
-	// contracts/TownHall.algo.ts:562
+	// contracts/TownHall.algo.ts:573
 	// assert(
 	//       this.doctor.value !== globals.zeroAddress,
 	//       'Error state: Doctor is dead, should not have entered this state.'
@@ -2243,13 +2301,13 @@ nightStageDoctorCommit:
 	// Error state: Doctor is dead, should not have entered this state.
 	assert
 
-	// contracts/TownHall.algo.ts:567
+	// contracts/TownHall.algo.ts:578
 	// this.doctorCommitment.value = commitment
 	bytec 37 //  "doctorCommitment"
 	frame_dig -1 // commitment: bytes
 	app_global_put
 
-	// contracts/TownHall.algo.ts:569
+	// contracts/TownHall.algo.ts:580
 	// this.gameState.value = stateDawnStageMafiaReveal
 	bytec 0 //  "gameState"
 	intc 8 // 7
@@ -2290,7 +2348,7 @@ dawnStageMafiaReveal:
 	// Push empty bytes after the frame pointer to reserve space for local variables
 	bytec 2 // 0x
 
-	// contracts/TownHall.algo.ts:573
+	// contracts/TownHall.algo.ts:584
 	// assert(
 	//       this.gameState.value === stateDawnStageMafiaReveal,
 	//       'Invalid method call: Game is not in Dawn Stage Maffia Reveal state.'
@@ -2303,7 +2361,7 @@ dawnStageMafiaReveal:
 	// Invalid method call: Game is not in Dawn Stage Maffia Reveal state.
 	assert
 
-	// contracts/TownHall.algo.ts:578
+	// contracts/TownHall.algo.ts:589
 	// assert(this.txn.sender === this.mafia.value, 'Error state: Non-mafia player called method.')
 	txn Sender
 	bytec 20 //  "mafia"
@@ -2313,7 +2371,7 @@ dawnStageMafiaReveal:
 	// Error state: Non-mafia player called method.
 	assert
 
-	// contracts/TownHall.algo.ts:580
+	// contracts/TownHall.algo.ts:591
 	// assert(victimAim !== globals.zeroAddress, 'Error state: Victim must be a valid address.')
 	frame_dig -1 // victimAim: Address
 	global ZeroAddress
@@ -2322,7 +2380,7 @@ dawnStageMafiaReveal:
 	// Error state: Victim must be a valid address.
 	assert
 
-	// contracts/TownHall.algo.ts:584
+	// contracts/TownHall.algo.ts:595
 	// reveal = sha256(concat(victimAim, blinder))
 	frame_dig -1 // victimAim: Address
 	frame_dig -2 // blinder: bytes32
@@ -2330,7 +2388,7 @@ dawnStageMafiaReveal:
 	sha256
 	frame_bury 0 // reveal: byte[32]
 
-	// contracts/TownHall.algo.ts:586
+	// contracts/TownHall.algo.ts:597
 	// assert(
 	//       rawBytes(reveal) === this.mafiaCommitment.value,
 	//       'Error state: Provided address + blinder does NOT match commitment.'
@@ -2343,123 +2401,123 @@ dawnStageMafiaReveal:
 	// Error state: Provided address + blinder does NOT match commitment.
 	assert
 
-	// *if31_condition
-	// contracts/TownHall.algo.ts:591
+	// *if32_condition
+	// contracts/TownHall.algo.ts:602
 	// victimAim === this.player1AlgoAddr.value
 	frame_dig -1 // victimAim: Address
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	==
-	bz *if31_elseif1_condition
+	bz *if32_elseif1_condition
 
-	// *if31_consequent
-	// contracts/TownHall.algo.ts:592
+	// *if32_consequent
+	// contracts/TownHall.algo.ts:603
 	// this.mafiaVictim.value = this.player1AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if31_end
+	b *if32_end
 
-*if31_elseif1_condition:
-	// contracts/TownHall.algo.ts:593
+*if32_elseif1_condition:
+	// contracts/TownHall.algo.ts:604
 	// victimAim === this.player2AlgoAddr.value
 	frame_dig -1 // victimAim: Address
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	==
-	bz *if31_elseif2_condition
+	bz *if32_elseif2_condition
 
-	// *if31_elseif1_consequent
-	// contracts/TownHall.algo.ts:594
+	// *if32_elseif1_consequent
+	// contracts/TownHall.algo.ts:605
 	// this.mafiaVictim.value = this.player2AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if31_end
+	b *if32_end
 
-*if31_elseif2_condition:
-	// contracts/TownHall.algo.ts:595
+*if32_elseif2_condition:
+	// contracts/TownHall.algo.ts:606
 	// victimAim === this.player3AlgoAddr.value
 	frame_dig -1 // victimAim: Address
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	==
-	bz *if31_elseif3_condition
+	bz *if32_elseif3_condition
 
-	// *if31_elseif2_consequent
-	// contracts/TownHall.algo.ts:596
+	// *if32_elseif2_consequent
+	// contracts/TownHall.algo.ts:607
 	// this.mafiaVictim.value = this.player3AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if31_end
+	b *if32_end
 
-*if31_elseif3_condition:
-	// contracts/TownHall.algo.ts:597
+*if32_elseif3_condition:
+	// contracts/TownHall.algo.ts:608
 	// victimAim === this.player4AlgoAddr.value
 	frame_dig -1 // victimAim: Address
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	==
-	bz *if31_elseif4_condition
+	bz *if32_elseif4_condition
 
-	// *if31_elseif3_consequent
-	// contracts/TownHall.algo.ts:598
+	// *if32_elseif3_consequent
+	// contracts/TownHall.algo.ts:609
 	// this.mafiaVictim.value = this.player4AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if31_end
+	b *if32_end
 
-*if31_elseif4_condition:
-	// contracts/TownHall.algo.ts:599
+*if32_elseif4_condition:
+	// contracts/TownHall.algo.ts:610
 	// victimAim === this.player5AlgoAddr.value
 	frame_dig -1 // victimAim: Address
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	==
-	bz *if31_elseif5_condition
+	bz *if32_elseif5_condition
 
-	// *if31_elseif4_consequent
-	// contracts/TownHall.algo.ts:600
+	// *if32_elseif4_consequent
+	// contracts/TownHall.algo.ts:611
 	// this.mafiaVictim.value = this.player5AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if31_end
+	b *if32_end
 
-*if31_elseif5_condition:
-	// contracts/TownHall.algo.ts:601
+*if32_elseif5_condition:
+	// contracts/TownHall.algo.ts:612
 	// victimAim === this.player6AlgoAddr.value
 	frame_dig -1 // victimAim: Address
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	==
-	bz *if31_else
+	bz *if32_else
 
-	// *if31_elseif5_consequent
-	// contracts/TownHall.algo.ts:602
+	// *if32_elseif5_consequent
+	// contracts/TownHall.algo.ts:613
 	// this.mafiaVictim.value = this.player6AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if31_end
+	b *if32_end
 
-*if31_else:
-	// contracts/TownHall.algo.ts:604
+*if32_else:
+	// contracts/TownHall.algo.ts:615
 	// this.mafiaVictim.value = globals.zeroAddress
 	bytec 3 //  "mafiaVictim"
 	global ZeroAddress
 	app_global_put
 
-*if31_end:
-	// contracts/TownHall.algo.ts:610
+*if32_end:
+	// contracts/TownHall.algo.ts:621
 	// this.gameState.value = stateDawnStageDoctorReveal
 	bytec 0 //  "gameState"
 	intc 11 // 8
@@ -2500,7 +2558,7 @@ dawnStageDoctorReveal:
 	// Push empty bytes after the frame pointer to reserve space for local variables
 	bytec 2 // 0x
 
-	// contracts/TownHall.algo.ts:614
+	// contracts/TownHall.algo.ts:625
 	// assert(
 	//       this.gameState.value === stateDawnStageDoctorReveal,
 	//       'Invalid method call: Game is not in Dawn Stage Doctor Reveal state.'
@@ -2513,7 +2571,7 @@ dawnStageDoctorReveal:
 	// Invalid method call: Game is not in Dawn Stage Doctor Reveal state.
 	assert
 
-	// contracts/TownHall.algo.ts:619
+	// contracts/TownHall.algo.ts:630
 	// assert(this.txn.sender === this.doctor.value, 'Error state: Non-doctor player called method.')
 	txn Sender
 	bytec 11 //  "doctor"
@@ -2523,7 +2581,7 @@ dawnStageDoctorReveal:
 	// Error state: Non-doctor player called method.
 	assert
 
-	// contracts/TownHall.algo.ts:621
+	// contracts/TownHall.algo.ts:632
 	// assert(this.doctorPatient.value === globals.zeroAddress, 'Error state: Doctor has already committed to a patient.')
 	bytec 10 //  "doctorPatient"
 	app_global_get
@@ -2533,7 +2591,7 @@ dawnStageDoctorReveal:
 	// Error state: Doctor has already committed to a patient.
 	assert
 
-	// contracts/TownHall.algo.ts:623
+	// contracts/TownHall.algo.ts:634
 	// assert(patientAim !== globals.zeroAddress, 'Error state: Patient must be a valid address.')
 	frame_dig -1 // patientAim: Address
 	global ZeroAddress
@@ -2542,7 +2600,7 @@ dawnStageDoctorReveal:
 	// Error state: Patient must be a valid address.
 	assert
 
-	// contracts/TownHall.algo.ts:627
+	// contracts/TownHall.algo.ts:638
 	// reveal = sha256(concat(patientAim, blinder))
 	frame_dig -1 // patientAim: Address
 	frame_dig -2 // blinder: bytes32
@@ -2550,7 +2608,7 @@ dawnStageDoctorReveal:
 	sha256
 	frame_bury 0 // reveal: byte[32]
 
-	// contracts/TownHall.algo.ts:629
+	// contracts/TownHall.algo.ts:640
 	// assert(
 	//       rawBytes(reveal) === this.doctorCommitment.value,
 	//       'Error state: Provided address + blinder does NOT match commitment.'
@@ -2563,123 +2621,123 @@ dawnStageDoctorReveal:
 	// Error state: Provided address + blinder does NOT match commitment.
 	assert
 
-	// *if32_condition
-	// contracts/TownHall.algo.ts:634
+	// *if33_condition
+	// contracts/TownHall.algo.ts:645
 	// patientAim === this.player1AlgoAddr.value
 	frame_dig -1 // patientAim: Address
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	==
-	bz *if32_elseif1_condition
+	bz *if33_elseif1_condition
 
-	// *if32_consequent
-	// contracts/TownHall.algo.ts:635
+	// *if33_consequent
+	// contracts/TownHall.algo.ts:646
 	// this.doctorPatient.value = this.player1AlgoAddr.value
 	bytec 10 //  "doctorPatient"
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if32_end
+	b *if33_end
 
-*if32_elseif1_condition:
-	// contracts/TownHall.algo.ts:636
+*if33_elseif1_condition:
+	// contracts/TownHall.algo.ts:647
 	// patientAim === this.player2AlgoAddr.value
 	frame_dig -1 // patientAim: Address
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	==
-	bz *if32_elseif2_condition
+	bz *if33_elseif2_condition
 
-	// *if32_elseif1_consequent
-	// contracts/TownHall.algo.ts:637
+	// *if33_elseif1_consequent
+	// contracts/TownHall.algo.ts:648
 	// this.doctorPatient.value = this.player2AlgoAddr.value
 	bytec 10 //  "doctorPatient"
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if32_end
+	b *if33_end
 
-*if32_elseif2_condition:
-	// contracts/TownHall.algo.ts:638
+*if33_elseif2_condition:
+	// contracts/TownHall.algo.ts:649
 	// patientAim === this.player3AlgoAddr.value
 	frame_dig -1 // patientAim: Address
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	==
-	bz *if32_elseif3_condition
+	bz *if33_elseif3_condition
 
-	// *if32_elseif2_consequent
-	// contracts/TownHall.algo.ts:639
+	// *if33_elseif2_consequent
+	// contracts/TownHall.algo.ts:650
 	// this.doctorPatient.value = this.player3AlgoAddr.value
 	bytec 10 //  "doctorPatient"
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if32_end
+	b *if33_end
 
-*if32_elseif3_condition:
-	// contracts/TownHall.algo.ts:640
+*if33_elseif3_condition:
+	// contracts/TownHall.algo.ts:651
 	// patientAim === this.player4AlgoAddr.value
 	frame_dig -1 // patientAim: Address
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	==
-	bz *if32_elseif4_condition
+	bz *if33_elseif4_condition
 
-	// *if32_elseif3_consequent
-	// contracts/TownHall.algo.ts:641
+	// *if33_elseif3_consequent
+	// contracts/TownHall.algo.ts:652
 	// this.doctorPatient.value = this.player4AlgoAddr.value
 	bytec 10 //  "doctorPatient"
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if32_end
+	b *if33_end
 
-*if32_elseif4_condition:
-	// contracts/TownHall.algo.ts:642
+*if33_elseif4_condition:
+	// contracts/TownHall.algo.ts:653
 	// patientAim === this.player5AlgoAddr.value
 	frame_dig -1 // patientAim: Address
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	==
-	bz *if32_elseif5_condition
+	bz *if33_elseif5_condition
 
-	// *if32_elseif4_consequent
-	// contracts/TownHall.algo.ts:643
+	// *if33_elseif4_consequent
+	// contracts/TownHall.algo.ts:654
 	// this.doctorPatient.value = this.player5AlgoAddr.value
 	bytec 10 //  "doctorPatient"
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if32_end
+	b *if33_end
 
-*if32_elseif5_condition:
-	// contracts/TownHall.algo.ts:644
+*if33_elseif5_condition:
+	// contracts/TownHall.algo.ts:655
 	// patientAim === this.player6AlgoAddr.value
 	frame_dig -1 // patientAim: Address
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	==
-	bz *if32_else
+	bz *if33_else
 
-	// *if32_elseif5_consequent
-	// contracts/TownHall.algo.ts:645
+	// *if33_elseif5_consequent
+	// contracts/TownHall.algo.ts:656
 	// this.doctorPatient.value = this.player6AlgoAddr.value
 	bytec 10 //  "doctorPatient"
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	app_global_put
-	b *if32_end
+	b *if33_end
 
-*if32_else:
-	// contracts/TownHall.algo.ts:647
+*if33_else:
+	// contracts/TownHall.algo.ts:658
 	// this.doctorPatient.value = globals.zeroAddress
 	bytec 10 //  "doctorPatient"
 	global ZeroAddress
 	app_global_put
 
-*if32_end:
-	// contracts/TownHall.algo.ts:653
+*if33_end:
+	// contracts/TownHall.algo.ts:664
 	// this.gameState.value = stateDawnStageDeadOrSaved
 	bytec 0 //  "gameState"
 	intc 12 // 9
@@ -2697,7 +2755,7 @@ dawnStageDoctorReveal:
 dawnStageDeadOrSaved:
 	proto 0 0
 
-	// contracts/TownHall.algo.ts:657
+	// contracts/TownHall.algo.ts:668
 	// assert(
 	//       this.gameState.value === stateDawnStageDeadOrSaved,
 	//       'Invalid method call: Game is not in Dawn Stage DeadOrSaved? state.'
@@ -2710,15 +2768,15 @@ dawnStageDeadOrSaved:
 	// Invalid method call: Game is not in Dawn Stage DeadOrSaved? state.
 	assert
 
-	// *if33_condition
-	// contracts/TownHall.algo.ts:662
+	// *if34_condition
+	// contracts/TownHall.algo.ts:673
 	// this.mafiaVictim.value === globals.zeroAddress || this.mafiaVictim.value === this.doctorPatient.value
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	global ZeroAddress
 	==
 	dup
-	bnz *skip_or6
+	bnz *skip_or11
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	bytec 10 //  "doctorPatient"
@@ -2726,177 +2784,189 @@ dawnStageDeadOrSaved:
 	==
 	||
 
-*skip_or6:
-	bz *if33_end
+*skip_or11:
+	bz *if34_end
 
-	// *if33_consequent
-	// contracts/TownHall.algo.ts:667
+	// *if34_consequent
+	// contracts/TownHall.algo.ts:678
+	// this.mafiaVictim.value = globals.zeroAddress
+	bytec 3 //  "mafiaVictim"
+	global ZeroAddress
+	app_global_put
+
+	// contracts/TownHall.algo.ts:679
+	// this.doctorPatient.value = globals.zeroAddress
+	bytec 10 //  "doctorPatient"
+	global ZeroAddress
+	app_global_put
+
+	// contracts/TownHall.algo.ts:680
 	// this.gameState.value = stateDayStageVote
 	bytec 0 //  "gameState"
 	intc 2 // 2
 	app_global_put
 
-	// contracts/TownHall.algo.ts:668
+	// contracts/TownHall.algo.ts:681
 	// return;
 	retsub
 
-*if33_end:
-	// *if34_condition
-	// contracts/TownHall.algo.ts:673
+*if34_end:
+	// *if35_condition
+	// contracts/TownHall.algo.ts:686
 	// this.mafiaVictim.value === this.player1AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	==
-	bz *if34_elseif1_condition
+	bz *if35_elseif1_condition
 
-	// *if34_consequent
-	// contracts/TownHall.algo.ts:674
+	// *if35_consequent
+	// contracts/TownHall.algo.ts:687
 	// this.justEliminatedPlayer.value = this.player1AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 4 //  "player1AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:675
+	// contracts/TownHall.algo.ts:688
 	// this.player1AlgoAddr.value = globals.zeroAddress
 	bytec 4 //  "player1AlgoAddr"
 	global ZeroAddress
 	app_global_put
-	b *if34_end
+	b *if35_end
 
-*if34_elseif1_condition:
-	// contracts/TownHall.algo.ts:676
+*if35_elseif1_condition:
+	// contracts/TownHall.algo.ts:689
 	// this.mafiaVictim.value === this.player2AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	==
-	bz *if34_elseif2_condition
+	bz *if35_elseif2_condition
 
-	// *if34_elseif1_consequent
-	// contracts/TownHall.algo.ts:677
+	// *if35_elseif1_consequent
+	// contracts/TownHall.algo.ts:690
 	// this.justEliminatedPlayer.value = this.player2AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 5 //  "player2AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:678
+	// contracts/TownHall.algo.ts:691
 	// this.player2AlgoAddr.value = globals.zeroAddress
 	bytec 5 //  "player2AlgoAddr"
 	global ZeroAddress
 	app_global_put
-	b *if34_end
+	b *if35_end
 
-*if34_elseif2_condition:
-	// contracts/TownHall.algo.ts:679
+*if35_elseif2_condition:
+	// contracts/TownHall.algo.ts:692
 	// this.mafiaVictim.value === this.player3AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	==
-	bz *if34_elseif3_condition
+	bz *if35_elseif3_condition
 
-	// *if34_elseif2_consequent
-	// contracts/TownHall.algo.ts:680
+	// *if35_elseif2_consequent
+	// contracts/TownHall.algo.ts:693
 	// this.justEliminatedPlayer.value = this.player3AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 6 //  "player3AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:681
+	// contracts/TownHall.algo.ts:694
 	// this.player3AlgoAddr.value = globals.zeroAddress
 	bytec 6 //  "player3AlgoAddr"
 	global ZeroAddress
 	app_global_put
-	b *if34_end
+	b *if35_end
 
-*if34_elseif3_condition:
-	// contracts/TownHall.algo.ts:682
+*if35_elseif3_condition:
+	// contracts/TownHall.algo.ts:695
 	// this.mafiaVictim.value === this.player4AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	==
-	bz *if34_elseif4_condition
+	bz *if35_elseif4_condition
 
-	// *if34_elseif3_consequent
-	// contracts/TownHall.algo.ts:683
+	// *if35_elseif3_consequent
+	// contracts/TownHall.algo.ts:696
 	// this.justEliminatedPlayer.value = this.player4AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 7 //  "player4AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:684
+	// contracts/TownHall.algo.ts:697
 	// this.player4AlgoAddr.value = globals.zeroAddress
 	bytec 7 //  "player4AlgoAddr"
 	global ZeroAddress
 	app_global_put
-	b *if34_end
+	b *if35_end
 
-*if34_elseif4_condition:
-	// contracts/TownHall.algo.ts:685
+*if35_elseif4_condition:
+	// contracts/TownHall.algo.ts:698
 	// this.mafiaVictim.value === this.player5AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	==
-	bz *if34_elseif5_condition
+	bz *if35_elseif5_condition
 
-	// *if34_elseif4_consequent
-	// contracts/TownHall.algo.ts:686
+	// *if35_elseif4_consequent
+	// contracts/TownHall.algo.ts:699
 	// this.justEliminatedPlayer.value = this.player5AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 8 //  "player5AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:687
+	// contracts/TownHall.algo.ts:700
 	// this.player5AlgoAddr.value = globals.zeroAddress
 	bytec 8 //  "player5AlgoAddr"
 	global ZeroAddress
 	app_global_put
-	b *if34_end
+	b *if35_end
 
-*if34_elseif5_condition:
-	// contracts/TownHall.algo.ts:688
+*if35_elseif5_condition:
+	// contracts/TownHall.algo.ts:701
 	// this.mafiaVictim.value === this.player6AlgoAddr.value
 	bytec 3 //  "mafiaVictim"
 	app_global_get
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	==
-	bz *if34_else
+	bz *if35_else
 
-	// *if34_elseif5_consequent
-	// contracts/TownHall.algo.ts:689
+	// *if35_elseif5_consequent
+	// contracts/TownHall.algo.ts:702
 	// this.justEliminatedPlayer.value = this.player6AlgoAddr.value
 	bytec 1 //  "justEliminatedPlayer"
 	bytec 9 //  "player6AlgoAddr"
 	app_global_get
 	app_global_put
 
-	// contracts/TownHall.algo.ts:690
+	// contracts/TownHall.algo.ts:703
 	// this.player6AlgoAddr.value = globals.zeroAddress
 	bytec 9 //  "player6AlgoAddr"
 	global ZeroAddress
 	app_global_put
-	b *if34_end
+	b *if35_end
 
-*if34_else:
+*if35_else:
 	// Error state: Victim must be a player! Should not have entered this state.
 	err
 
-*if34_end:
-	// contracts/TownHall.algo.ts:695
+*if35_end:
+	// contracts/TownHall.algo.ts:708
 	// this.playersAlive.value -= 1
 	bytec 18 //  "playersAlive"
 	app_global_get
@@ -2906,43 +2976,43 @@ dawnStageDeadOrSaved:
 	swap
 	app_global_put
 
-	// *if35_condition
-	// contracts/TownHall.algo.ts:697
-	// this.playersAlive.value <= 2
-	bytec 18 //  "playersAlive"
-	app_global_get
-	intc 2 // 2
-	<=
-	bz *if35_end
-
-	// *if35_consequent
-	// contracts/TownHall.algo.ts:700
-	// this.gameState.value = stateGameOver
-	bytec 0 //  "gameState"
-	intc 9 // 11
-	app_global_put
-
-	// contracts/TownHall.algo.ts:701
-	// return;
-	retsub
-
-*if35_end:
-	// contracts/TownHall.algo.ts:704
-	// this.gameState.value = stateDawnStageUnmasking
-	bytec 0 //  "gameState"
-	intc 13 // 10
-	app_global_put
-
-	// contracts/TownHall.algo.ts:705
+	// contracts/TownHall.algo.ts:710
 	// this.mafiaVictim.value = globals.zeroAddress
 	bytec 3 //  "mafiaVictim"
 	global ZeroAddress
 	app_global_put
 
-	// contracts/TownHall.algo.ts:706
+	// contracts/TownHall.algo.ts:711
 	// this.doctorPatient.value = globals.zeroAddress
 	bytec 10 //  "doctorPatient"
 	global ZeroAddress
+	app_global_put
+
+	// *if36_condition
+	// contracts/TownHall.algo.ts:713
+	// this.playersAlive.value <= 2
+	bytec 18 //  "playersAlive"
+	app_global_get
+	intc 2 // 2
+	<=
+	bz *if36_end
+
+	// *if36_consequent
+	// contracts/TownHall.algo.ts:716
+	// this.gameState.value = stateGameOver
+	bytec 0 //  "gameState"
+	intc 9 // 11
+	app_global_put
+
+	// contracts/TownHall.algo.ts:717
+	// return;
+	retsub
+
+*if36_end:
+	// contracts/TownHall.algo.ts:720
+	// this.gameState.value = stateDawnStageUnmasking
+	bytec 0 //  "gameState"
+	intc 13 // 10
 	app_global_put
 	retsub
 
@@ -2965,7 +3035,7 @@ dawnStageUnmasking:
 	bytec 2 // 0x
 	dupn 2
 
-	// contracts/TownHall.algo.ts:715
+	// contracts/TownHall.algo.ts:729
 	// assert(
 	//       this.gameState.value === stateDawnStageUnmasking,
 	//       'Invalid method call: Game is not in Dawn Stage Unmasking state.'
@@ -2978,7 +3048,7 @@ dawnStageUnmasking:
 	// Invalid method call: Game is not in Dawn Stage Unmasking state.
 	assert
 
-	// contracts/TownHall.algo.ts:720
+	// contracts/TownHall.algo.ts:734
 	// assert(this.justEliminatedPlayer.value === this.txn.sender, 'Error state: Other player called method.')
 	bytec 1 //  "justEliminatedPlayer"
 	app_global_get
@@ -2988,77 +3058,77 @@ dawnStageUnmasking:
 	// Error state: Other player called method.
 	assert
 
-	// contracts/TownHall.algo.ts:723
+	// contracts/TownHall.algo.ts:737
 	// BLS_PK = ecScalarMul('BLS12_381g1', hex(BLS12381G1_BASEPOINT_BYTES), blsSk)
 	bytec 36 // 0x17f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb08b3f481e3aaa0f1a09e30ed741d8ae4fcf5e095d5d00af600db18cb2c04b3edd03cc744a2888ae40caa232946c5e7e1
 	frame_dig -1 // blsSk: bytes
 	ec_scalar_mul BLS12_381g1
 	frame_bury 0 // BLS_PK: byte[]
 
-	// contracts/TownHall.algo.ts:724
+	// contracts/TownHall.algo.ts:738
 	// hashToPoint = this.hashPointToPoint(BLS_PK)
 	frame_dig 0 // BLS_PK: byte[]
 	callsub hashPointToPoint
 	frame_bury 1 // hashToPoint: byte[]
 
-	// contracts/TownHall.algo.ts:725
+	// contracts/TownHall.algo.ts:739
 	// genKeyImage = ecScalarMul('BLS12_381g1', hashToPoint, blsSk)
 	frame_dig 1 // hashToPoint: byte[]
 	frame_dig -1 // blsSk: bytes
 	ec_scalar_mul BLS12_381g1
 	frame_bury 2 // genKeyImage: byte[]
 
-	// *if36_condition
-	// contracts/TownHall.algo.ts:727
+	// *if37_condition
+	// contracts/TownHall.algo.ts:741
 	// genKeyImage === this.mafiaKeyImage.value
 	frame_dig 2 // genKeyImage: byte[]
 	bytec 31 //  "mafiaKeyImage"
 	app_global_get
 	==
-	bz *if36_end
+	bz *if37_end
 
-	// *if36_consequent
-	// contracts/TownHall.algo.ts:731
+	// *if37_consequent
+	// contracts/TownHall.algo.ts:745
 	// this.gameState.value = stateGameOver
 	bytec 0 //  "gameState"
 	intc 9 // 11
 	app_global_put
 
-	// contracts/TownHall.algo.ts:732
+	// contracts/TownHall.algo.ts:746
 	// this.mafia.value = globals.zeroAddress
 	bytec 20 //  "mafia"
 	global ZeroAddress
 	app_global_put
 
-	// contracts/TownHall.algo.ts:733
+	// contracts/TownHall.algo.ts:747
 	// return;
 	retsub
 
-*if36_end:
-	// *if37_condition
-	// contracts/TownHall.algo.ts:736
+*if37_end:
+	// *if38_condition
+	// contracts/TownHall.algo.ts:750
 	// genKeyImage === this.doctorKeyImage.value
 	frame_dig 2 // genKeyImage: byte[]
 	bytec 30 //  "doctorKeyImage"
 	app_global_get
 	==
-	bz *if37_end
+	bz *if38_end
 
-	// *if37_consequent
-	// contracts/TownHall.algo.ts:738
+	// *if38_consequent
+	// contracts/TownHall.algo.ts:752
 	// this.doctor.value = globals.zeroAddress
 	bytec 11 //  "doctor"
 	global ZeroAddress
 	app_global_put
 
-*if37_end:
-	// contracts/TownHall.algo.ts:742
+*if38_end:
+	// contracts/TownHall.algo.ts:756
 	// this.justEliminatedPlayer.value = globals.zeroAddress
 	bytec 1 //  "justEliminatedPlayer"
 	global ZeroAddress
 	app_global_put
 
-	// contracts/TownHall.algo.ts:744
+	// contracts/TownHall.algo.ts:758
 	// this.gameState.value = stateDayStageVote
 	bytec 0 //  "gameState"
 	intc 2 // 2
@@ -3076,7 +3146,7 @@ dawnStageUnmasking:
 gameOver:
 	proto 0 0
 
-	// contracts/TownHall.algo.ts:748
+	// contracts/TownHall.algo.ts:762
 	// assert(this.gameState.value === stateGameOver, 'Invalid method call: Game is not in Game Over state.')
 	bytec 0 //  "gameState"
 	app_global_get
