@@ -4,9 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AlgoKit React Template</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+      }
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+    </style>
   </head>
   <body>
+    <canvas id="matrix-canvas"></canvas>
     <div id="root"></div>
+
+    <audio id="background-music" autoplay loop>
+      <source src="/src/assets/song-1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+
+      const audio = document.getElementById('background-music');
+      audio.volume = 0.1; // Set volume to 50%
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const columns = Math.floor(canvas.width / 12);
+      const drops = Array(columns).fill(1);
+
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#418EF2';
+        ctx.font = '12px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = String.fromCharCode(0x1360 + Math.random() * 29);// U+1360 to U+137C
+          ctx.fillText(text, i * 12, drops[i] * 12);
+
+          if (drops[i] * 12 > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+
+          drops[i]++;
+        }
+      }
+
+      setInterval(drawMatrix, 50);
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
