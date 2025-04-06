@@ -274,7 +274,7 @@ export class TownHall extends Contract {
     msg: bytes,
     pkAll: bytes,
     keyImage: bytes,
-    sig: bytes,
+    sig: bytes, // Sig and challenges need to be included for the logic sigs to access
     challenges: bytes,
     lsigTxn0: PayTxn,
     lsigTxn1: PayTxn,
@@ -292,7 +292,6 @@ export class TownHall extends Contract {
     // 4. The signature itself
 
     // Regarding 1:
-    // TODO:
     assert(
       !this.hashFilter(rawBytes(sha256(keyImage))).exists,
       'KeyImage already in store. Are you trying to double-dip with your ring signature?'
@@ -300,6 +299,7 @@ export class TownHall extends Contract {
     this.hashFilter(rawBytes(sha256(keyImage))).create(0); // This Key Image can no longer be used
 
     // Regarding 2: The message is a concatenation of the calling address and this contract's address
+    // (Prevents replay attacks.)
     assert(msg === concat(rawBytes(this.txn.sender), rawBytes(this.app.address)));
 
     // Regarding 3: Verify PKs are correct:

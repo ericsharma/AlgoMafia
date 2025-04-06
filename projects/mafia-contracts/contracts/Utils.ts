@@ -58,7 +58,7 @@ export async function prepareLSigRingLink(
 
   const compileResult = await playerClient.algorand.app.compileTeal(lsigRingLinkLSigTeal);
 
-  const lsigRingLinkLSig0 = new algosdk.LogicSigAccount(compileResult.compiledBase64ToBytes, [
+  const lsigRingLinkLSig = new algosdk.LogicSigAccount(compileResult.compiledBase64ToBytes, [
     abiBytes.encode(msg),
     abiBytes.encode(pk),
     abiBytes.encode(algoring.to_pxpy(keyImage)),
@@ -71,12 +71,12 @@ export async function prepareLSigRingLink(
 
   const lSigRingSigPayTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
     suggestedParams: { ...sp, flatFee: true, fee: 0 },
-    from: lsigRingLinkLSig0.address(),
-    to: lsigRingLinkLSig0.address(),
+    from: lsigRingLinkLSig.address(),
+    to: lsigRingLinkLSig.address(),
     amount: 0,
   });
 
-  const lSigRingSigSigner = algosdk.makeLogicSigAccountTransactionSigner(lsigRingLinkLSig0);
+  const lSigRingSigSigner = algosdk.makeLogicSigAccountTransactionSigner(lsigRingLinkLSig);
   return { lSigRingSigPayTxn, lSigRingSigSigner };
 }
 

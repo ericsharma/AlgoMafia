@@ -4,7 +4,6 @@ import { Config, AlgorandClient } from '@algorandfoundation/algokit-utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as algoring from 'algoring-ts';
 import algosdk from 'algosdk';
-import { TextEncoder } from 'util';
 import { createHash, randomBytes } from 'crypto';
 
 import { TownHallClient, TownHallFactory } from '../contracts/clients/TownHallClient';
