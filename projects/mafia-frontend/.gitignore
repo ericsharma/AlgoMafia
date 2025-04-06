@@ -17,7 +17,7 @@
 env/
 
 # misc
-/dist
+#/dist
 .DS_Store
 
 
