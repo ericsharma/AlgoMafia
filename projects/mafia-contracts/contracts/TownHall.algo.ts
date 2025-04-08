@@ -219,6 +219,17 @@ export class TownHall extends Contract {
       'Max players already joined! Error, game should have moved to the next stage already.'
     );
 
+    if (
+      this.player1AlgoAddr.value === this.txn.sender ||
+      this.player2AlgoAddr.value === this.txn.sender ||
+      this.player3AlgoAddr.value === this.txn.sender ||
+      this.player4AlgoAddr.value === this.txn.sender ||
+      this.player5AlgoAddr.value === this.txn.sender ||
+      this.player6AlgoAddr.value === this.txn.sender
+    ) {
+      throw Error('Error state: Player already joined the game!');
+    }
+
     const g = extract3(NIZK_DLOG, 0, BLS12381G1_LENGTH);
     const RingPK = extract3(NIZK_DLOG, BLS12381G1_LENGTH, BLS12381G1_LENGTH); // This is the BLS12_381 Ephemeral PK of the player
     const v = extract3(NIZK_DLOG, BLS12381G1_LENGTH * 2, BLS12381G1_LENGTH);
