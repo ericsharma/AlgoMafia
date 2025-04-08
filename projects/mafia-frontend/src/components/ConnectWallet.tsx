@@ -47,15 +47,6 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
         </div>
 
         <div className="modal-action ">
-          <button
-            data-test-id="close-wallet-modal"
-            className="btn"
-            onClick={() => {
-              closeModal()
-            }}
-          >
-            Close
-          </button>
           {activeAddress && (
             <button
               className="btn btn-warning"
@@ -78,6 +69,15 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
               Logout
             </button>
           )}
+          <button
+            data-test-id="close-wallet-modal"
+            className="btn"
+            onClick={() => {
+              closeModal()
+            }}
+          >
+            Close
+          </button>
         </div>
       </form>
     </dialog>

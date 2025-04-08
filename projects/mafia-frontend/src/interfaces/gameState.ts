@@ -1,4 +1,4 @@
-export const enum GameState {
+export enum GameState {
   JoinGameLobby = 0,
   AssignRole = JoinGameLobby + 1,
   DayStageVote = AssignRole + 1,

@@ -1,5 +1,10 @@
+import { AlgorandClient } from '@algorandfoundation/algokit-utils'
+import { useWallet } from '@txnlab/use-wallet-react'
+import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
+import { TownHallFactory } from '../contracts/TownHall'
 import { GameState } from '../interfaces/gameState'
+import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 
 interface IntroProps {
   setGameState: React.Dispatch<React.SetStateAction<GameState>>
@@ -8,6 +13,20 @@ interface IntroProps {
 
 const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
   const [inputAppId, setInputAppId] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const { transactionSigner, activeAddress } = useWallet()
+
+  const { enqueueSnackbar } = useSnackbar()
+
+  const algodConfig = getAlgodConfigFromViteEnvironment()
+  const indexerConfig = getIndexerConfigFromViteEnvironment()
+  const algorand = AlgorandClient.fromConfig({
+    algodConfig,
+    indexerConfig,
+  })
+
+  algorand.setDefaultSigner(transactionSigner)
 
   const handleProceed = () => {
     if (inputAppId.trim()) {
@@ -16,6 +35,29 @@ const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
     } else {
       alert('Please provide a valid App ID.')
     }
+  }
+
+  const handleCreateNewGame = async () => {
+    console.log('Creating a new game...')
+    setLoading(true)
+
+    const factory = new TownHallFactory({
+      defaultSender: activeAddress ?? undefined,
+      algorand,
+    })
+    const deployResult = await factory.send.create.createApplication().catch((e: Error) => {
+      enqueueSnackbar(`Error deploying the contract: ${e.message}`, { variant: 'error' })
+      setLoading(false)
+      return undefined
+    })
+
+    if (!deployResult) {
+      return
+    }
+
+    const { appClient } = deployResult
+
+    setAppId(appClient.appId)
   }
 
   return (
@@ -28,7 +70,7 @@ const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
         Armed with cryptography and blockchain technology, you’ve stayed ahead of your enemies—until now. Can you unmask the traitor before
         it’s too late?
       </p>
-      <p className="py-2">Enter an App ID to join an existing game or create a new one (coming soon).</p>
+      <p className="py-2">Enter an App ID to join an existing game or create a new one.</p>
       <div className="grid gap-4">
         <input
           type="text"
@@ -40,8 +82,8 @@ const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
         <button className="btn m-2" onClick={handleProceed}>
           Proceed to game
         </button>
-        <button className="btn m-2 btn-disabled" disabled>
-          Create a New Game (Coming Soon)
+        <button className="btn m-2" onClick={handleCreateNewGame}>
+          Create a New Game
         </button>
       </div>
     </div>
