@@ -60,6 +60,18 @@ const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) 
     }, 2800) // Poll every 2.8 seconds
   }
 
+
+  useEffect(() => {
+    // Run fetchPlayers initially when the component is loaded
+    fetchPlayers()
+    startPolling()
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current) // Cleanup interval on component unmount
+      }
+    }
+  }, [])
+
   const handleVote = async (playerNumber: number) => {
     console.log(`Voted for player ${playerNumber}`)
 
@@ -73,17 +85,6 @@ const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) 
 
     fetchPlayers() // Refresh the players list after voting
   }
-
-  useEffect(() => {
-    // Run fetchPlayers initially when the component is loaded
-    fetchPlayers()
-    startPolling()
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current) // Cleanup interval on component unmount
-      }
-    }
-  }, [])
 
   return (
     <div className="text-center">

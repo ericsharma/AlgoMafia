@@ -17,6 +17,12 @@ export class Player {
 
   night_client: TownHallClient
 
+  commitment: Uint8Array | undefined
+
+  blinder: Uint8Array | undefined
+
+  target: string | undefined
+
   constructor(appId: bigint) {
     // Avoid having to pass boxreferences etc every time
     Config.configure({ populateAppCallResources: true })
