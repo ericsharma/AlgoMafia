@@ -19,15 +19,16 @@ import GameOver from './states/GameOver'
 import NightStageDoctorCommit from './states/NightStageDoctorCommit'
 import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 
-interface HomeProps { }
+import { FaPlay, FaPause } from 'react-icons/fa' // Import play/pause icons
 
-const Home: React.FC<HomeProps> = () => {
+const Home: React.FC = () => {
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false)
   const [appId, setAppId] = useState<bigint>(BigInt(0))
   const [playerObject, setPlayerObject] = useState<Player | undefined>(undefined)
   const [gameState, setGameState] = useState<GameState>(GameState.JoinGameLobby)
   const [triggerFetch, setTriggerFetch] = useState<boolean>(false)
-  const { activeAddress, transactionSigner } = useWallet()
+  const [isPlaying, setIsPlaying] = useState<boolean>(false) // State to track audio playback
+  const { activeAddress } = useWallet()
 
   const toggleWalletModal = () => {
     setOpenWalletModal(!openWalletModal)
@@ -54,10 +55,6 @@ const Home: React.FC<HomeProps> = () => {
     fetchGameState()
   }, [playerObject, triggerFetch])
 
-  //TODO: fix the state management and how we are updating the game state
-  // That includes the use of the refresher, as well as the polling done in each component.
-  // Consider a central place of state that extracts ALL state of the contract and makes it availalble.
-  // Move polling timer out as well.
   const triggerGameStateFetch = () => {
     setTriggerFetch((prev) => !prev) // Toggle the state to trigger useEffect
   }
@@ -109,15 +106,31 @@ const Home: React.FC<HomeProps> = () => {
     }
   }
 
+  const toggleAudio = () => {
+    const audio = document.getElementById('background-music') as HTMLAudioElement
+    audio.volume = 0.1
+    if (audio) {
+      if (isPlaying) {
+        audio.pause()
+      } else {
+        audio.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
   return (
     <div className="hero min-h-screen relative">
-      {/* Header */}
+      {/* "NavBar" */}
       <div className="absolute top-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white p-4 flex justify-between items-center">
         <h1 className="text-xl font-bold">Infiltrated</h1>
         <div className="flex items-center gap-4">
           <span className="text-sm">{appId === BigInt(0) ? 'Not joined' : `Game ID: ${appId.toString()}`}</span>
           <button className="btn btn-primary" onClick={() => setOpenWalletModal(true)}>
             {activeAddress}
+          </button>
+          <button className="btn btn-secondary" onClick={toggleAudio}>
+            {isPlaying ? <FaPause /> : <FaPlay />}
           </button>
         </div>
       </div>
@@ -127,7 +140,14 @@ const Home: React.FC<HomeProps> = () => {
         {renderGameState()}
         <ConnectWallet openModal={openWalletModal} closeModal={toggleWalletModal} />
       </div>
+
+      {/* Background Music */}
+      <audio id="background-music" loop>
+        <source src="/src/assets/song-1.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
     </div>
   )
 }
+
 export default Home
