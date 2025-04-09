@@ -2,7 +2,7 @@ import { AlgorandClient } from '@algorandfoundation/algokit-utils'
 import { useWallet } from '@txnlab/use-wallet-react'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
-import { TownHallFactory } from '../contracts/TownHall'
+import { TownHallClient, TownHallFactory } from '../contracts/TownHall'
 import { GameState } from '../interfaces/gameState'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 
@@ -28,10 +28,21 @@ const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
 
   algorand.setDefaultSigner(transactionSigner)
 
-  const handleProceed = () => {
+  const handleProceed = async () => {
     if (inputAppId.trim()) {
-      setAppId(BigInt(inputAppId))
-      setGameState(GameState.JoinGameLobby)
+      try {
+
+        // If app doesn't exist, this will throw an error:
+        await (await algorand.client.getTypedAppClientById(TownHallClient, {
+          appId: BigInt(inputAppId),
+        })).state.global.player1AlgoAddr()
+
+        setAppId(BigInt(inputAppId))
+        setGameState(GameState.JoinGameLobby)
+      } catch (error) {
+        console.error('Error proceeding to game:', error)
+        alert('Failed to proceed. Please ensure the App ID is valid and try again.')
+      }
     } else {
       alert('Please provide a valid App ID.')
     }
@@ -45,6 +56,7 @@ const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
       defaultSender: activeAddress ?? undefined,
       algorand,
     })
+
     const deployResult = await factory.send.create.createApplication().catch((e: Error) => {
       enqueueSnackbar(`Error deploying the contract: ${e.message}`, { variant: 'error' })
       setLoading(false)

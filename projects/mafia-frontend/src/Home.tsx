@@ -8,6 +8,16 @@ import { Player } from './interfaces/player'
 import Intro from './states/Intro'
 import JoinGameLobby from './states/JoinGameLobby'
 import AssignRole from './states/AssignRole'
+import DayStageVote from './states/DayStageVote'
+import DawnStageDeadOrSaved from './states/DawnStageDeadOrSaved'
+import DawnStageDoctorReveal from './states/DawnStageDoctorReveal'
+import DawnStageMafiaReveal from './states/DawnStageMafiaReveal'
+import DawnStageUnmasking from './states/DawnStageUnmasking'
+import DayStageEliminate from './states/DayStageEliminate'
+import DayStageUnmasking from './states/DayStageUnmasking'
+import GameOver from './states/GameOver'
+import NightStageDoctorCommit from './states/NightStageDoctorCommit'
+import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 
 interface HomeProps { }
 
@@ -44,7 +54,10 @@ const Home: React.FC<HomeProps> = () => {
     fetchGameState()
   }, [playerObject, triggerFetch])
 
-  //TODO: reconsider the state management and how we are updating the game state
+  //TODO: fix the state management and how we are updating the game state
+  // That includes the use of the refresher, as well as the polling done in each component.
+  // Consider a central place of state that extracts ALL state of the contract and makes it availalble.
+  // Move polling timer out as well.
   const triggerGameStateFetch = () => {
     setTriggerFetch((prev) => !prev) // Toggle the state to trigger useEffect
   }
@@ -71,26 +84,26 @@ const Home: React.FC<HomeProps> = () => {
         return playerObject && <JoinGameLobby playerObject={playerObject} refresher={triggerGameStateFetch} />
       case GameState.AssignRole:
         return playerObject && <AssignRole playerObject={playerObject} refresher={triggerGameStateFetch} />
-      // case GameState.DayStageVote:
-      //   return <DayStageVote />
-      // case GameState.DayStageEliminate:
-      //   return <DayStageEliminate />
-      // case GameState.DayStageUnmasking:
-      //   return <DayStageUnmasking />
-      // case GameState.NightStageMafiaCommit:
-      //   return <NightStageMafiaCommit />
-      // case GameState.NightStageDoctorCommit:
-      //   return <NightStageDoctorCommit />
-      // case GameState.DawnStageMafiaReveal:
-      //   return <DawnStageMafiaReveal />
-      // case GameState.DawnStageDoctorReveal:
-      //   return <DawnStageDoctorReveal />
-      // case GameState.DawnStageDeadOrSaved:
-      //   return <DawnStageDeadOrSaved />
-      // case GameState.DawnStageUnmasking:
-      //   return <DawnStageUnmasking />
-      // case GameState.GameOver:
-      //   return <GameOver />
+      case GameState.DayStageVote:
+        return playerObject && <DayStageVote playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.DayStageEliminate:
+        return playerObject && <DayStageEliminate playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.DayStageUnmasking:
+        return playerObject && <DayStageUnmasking playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.NightStageMafiaCommit:
+        return playerObject && <NightStageMafiaCommit playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.NightStageDoctorCommit:
+        return playerObject && <NightStageDoctorCommit playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.DawnStageMafiaReveal:
+        return playerObject && <DawnStageMafiaReveal playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.DawnStageDoctorReveal:
+        return playerObject && <DawnStageDoctorReveal playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.DawnStageDeadOrSaved:
+        return playerObject && <DawnStageDeadOrSaved playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.DawnStageUnmasking:
+        return playerObject && <DawnStageUnmasking playerObject={playerObject} refresher={triggerGameStateFetch} />
+      case GameState.GameOver:
+        return playerObject && <GameOver playerObject={playerObject} refresher={triggerGameStateFetch} />
       default:
         return <p>Unknown game state</p>
     }

@@ -4,14 +4,13 @@ import { Player } from '../interfaces/player'
 import { useWallet } from '@txnlab/use-wallet-react'
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
-import { BLS12381G1_LENGTH, RING_SIG_NONCE_LENGTH } from '../utils/constants'
+import { BLS12381G1_LENGTH, RING_SIG_NONCE_LENGTH, ZERO_ADDRESS } from '../utils/constants'
+import { ellipseAddress } from '../utils/ellipseAddress'
 
 interface JoinGameLobbyProps {
   playerObject: Player
   refresher: () => void
 }
-
-const zeroAddress = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ'
 
 const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject, refresher }) => {
   const [players, setPlayers] = useState<string[]>([])
@@ -31,7 +30,7 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject, refresher }
       ]
 
       // Filter out any players that are equal to the zeroAddress
-      const validPlayers = fetchedPlayers.filter((player) => player !== zeroAddress)
+      const validPlayers = fetchedPlayers.filter((player) => player !== ZERO_ADDRESS)
       setPlayers(validPlayers)
 
       if (validPlayers.length === 6) {
@@ -162,7 +161,11 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject, refresher }
         <ul className="list-disc list-inside">
           {players.map((player, index) => (
             <li key={index} className="py-1">
-              {player === playerObject.day_algo_address.addr.toString() ? <strong>{player}</strong> : <span>{player}</span>}
+              {player === playerObject.day_algo_address.addr.toString() ? (
+                <strong>{ellipseAddress(player)}</strong>
+              ) : (
+                <span>{ellipseAddress(player)}</span>
+              )}
             </li>
           ))}
         </ul>
