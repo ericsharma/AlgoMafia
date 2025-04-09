@@ -19,6 +19,7 @@ import GameOver from './states/GameOver'
 import NightStageDoctorCommit from './states/NightStageDoctorCommit'
 import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 
+// Audio
 import { FaPlay, FaPause } from 'react-icons/fa' // Import play/pause icons
 
 const Home: React.FC = () => {
@@ -143,7 +144,7 @@ const Home: React.FC = () => {
 
       {/* Background Music */}
       <audio id="background-music" loop>
-        <source src="/src/assets/song-1.mp3" type="audio/mpeg" />
+        <source src="/song-1.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
