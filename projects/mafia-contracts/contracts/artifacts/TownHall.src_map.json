@@ -9951,607 +9951,606 @@
     "teal": 2222,
     "source": "contracts/TownHall.algo.ts:548",
     "pc": [
-      2816
+      2816,
+      2817
     ]
   },
   {
     "teal": 2223,
-    "source": "contracts/Constants.ts:18",
+    "source": "contracts/TownHall.algo.ts:548",
     "pc": [
-      2817,
-      2818
+      2818,
+      2819
     ]
   },
   {
     "teal": 2224,
     "source": "contracts/TownHall.algo.ts:548",
     "pc": [
-      2819
-    ]
-  },
-  {
-    "teal": 2228,
-    "source": "contracts/TownHall.algo.ts:549",
-    "pc": [
-      2820,
-      2821
+      2820
     ]
   },
   {
     "teal": 2229,
-    "source": "contracts/TownHall.algo.ts:549",
+    "source": "contracts/TownHall.algo.ts:551",
+    "pc": [
+      2821
+    ]
+  },
+  {
+    "teal": 2230,
+    "source": "contracts/TownHall.algo.ts:551",
     "pc": [
       2822,
       2823
     ]
   },
   {
-    "teal": 2230,
-    "source": "contracts/TownHall.algo.ts:549",
+    "teal": 2231,
+    "source": "contracts/TownHall.algo.ts:551",
     "pc": [
       2824
     ]
   },
   {
-    "teal": 2235,
-    "source": "contracts/TownHall.algo.ts:552",
-    "pc": [
-      2825
-    ]
-  },
-  {
     "teal": 2236,
-    "source": "contracts/TownHall.algo.ts:552",
+    "source": "contracts/TownHall.algo.ts:553",
     "pc": [
-      2826,
-      2827
+      2825,
+      2826
     ]
   },
   {
     "teal": 2237,
-    "source": "contracts/TownHall.algo.ts:552",
+    "source": "contracts/TownHall.algo.ts:553",
+    "pc": [
+      2827
+    ]
+  },
+  {
+    "teal": 2238,
+    "source": "contracts/TownHall.algo.ts:553",
     "pc": [
       2828
     ]
   },
   {
-    "teal": 2241,
-    "source": "contracts/TownHall.algo.ts:554",
+    "teal": 2239,
+    "source": "contracts/TownHall.algo.ts:553",
     "pc": [
       2829
     ]
   },
   {
-    "teal": 2242,
-    "source": "contracts/Constants.ts:18",
+    "teal": 2240,
+    "source": "contracts/TownHall.algo.ts:553",
     "pc": [
       2830,
-      2831
-    ]
-  },
-  {
-    "teal": 2243,
-    "source": "contracts/TownHall.algo.ts:554",
-    "pc": [
+      2831,
       2832
     ]
   },
   {
-    "teal": 2244,
-    "source": "contracts/TownHall.algo.ts:525",
+    "teal": 2245,
+    "source": "contracts/TownHall.algo.ts:556",
     "pc": [
       2833
     ]
   },
   {
-    "teal": 2249,
-    "source": "contracts/TownHall.algo.ts:557",
+    "teal": 2246,
+    "source": "contracts/Constants.ts:24",
     "pc": [
       2834,
-      2835,
+      2835
+    ]
+  },
+  {
+    "teal": 2247,
+    "source": "contracts/TownHall.algo.ts:556",
+    "pc": [
       2836
     ]
   },
   {
-    "teal": 2250,
+    "teal": 2251,
     "source": "contracts/TownHall.algo.ts:557",
     "pc": [
-      2837,
-      2838,
-      2839
+      2837
     ]
   },
   {
-    "teal": 2253,
-    "source": "contracts/TownHall.algo.ts:557",
+    "teal": 2256,
+    "source": "contracts/TownHall.algo.ts:560",
     "pc": [
-      2840,
-      2841,
-      2842
+      2838
     ]
   },
   {
-    "teal": 2254,
-    "source": "contracts/TownHall.algo.ts:557",
+    "teal": 2257,
+    "source": "contracts/Constants.ts:18",
     "pc": [
-      2843
+      2839,
+      2840
     ]
   },
   {
-    "teal": 2255,
-    "source": "contracts/TownHall.algo.ts:557",
+    "teal": 2258,
+    "source": "contracts/TownHall.algo.ts:560",
     "pc": [
-      2844
+      2841
     ]
   },
   {
     "teal": 2259,
-    "source": "contracts/TownHall.algo.ts:557",
+    "source": "contracts/TownHall.algo.ts:525",
     "pc": [
-      2845,
-      2846,
-      2847
+      2842
     ]
   },
   {
-    "teal": 2266,
-    "source": "contracts/TownHall.algo.ts:559",
+    "teal": 2264,
+    "source": "contracts/TownHall.algo.ts:563",
     "pc": [
+      2843,
+      2844,
+      2845
+    ]
+  },
+  {
+    "teal": 2265,
+    "source": "contracts/TownHall.algo.ts:563",
+    "pc": [
+      2846,
+      2847,
       2848
     ]
   },
   {
-    "teal": 2267,
-    "source": "contracts/TownHall.algo.ts:559",
-    "pc": [
-      2849
-    ]
-  },
-  {
     "teal": 2268,
-    "source": "contracts/Constants.ts:18",
+    "source": "contracts/TownHall.algo.ts:563",
     "pc": [
+      2849,
       2850,
       2851
     ]
   },
   {
     "teal": 2269,
-    "source": "contracts/TownHall.algo.ts:559",
+    "source": "contracts/TownHall.algo.ts:563",
     "pc": [
       2852
     ]
   },
   {
-    "teal": 2272,
-    "source": "contracts/TownHall.algo.ts:558",
-    "errorMessage": "Invalid method call: Game is not in Night Stage Maffia Commit state.",
+    "teal": 2270,
+    "source": "contracts/TownHall.algo.ts:563",
     "pc": [
       2853
     ]
   },
   {
-    "teal": 2276,
+    "teal": 2274,
     "source": "contracts/TownHall.algo.ts:563",
     "pc": [
       2854,
-      2855
+      2855,
+      2856
     ]
   },
   {
-    "teal": 2277,
-    "source": "contracts/TownHall.algo.ts:563",
+    "teal": 2281,
+    "source": "contracts/TownHall.algo.ts:565",
     "pc": [
-      2856,
       2857
     ]
   },
   {
-    "teal": 2278,
-    "source": "contracts/TownHall.algo.ts:563",
+    "teal": 2282,
+    "source": "contracts/TownHall.algo.ts:565",
     "pc": [
       2858
     ]
   },
   {
-    "teal": 2279,
-    "source": "contracts/TownHall.algo.ts:563",
+    "teal": 2283,
+    "source": "contracts/Constants.ts:18",
     "pc": [
-      2859
-    ]
-  },
-  {
-    "teal": 2282,
-    "source": "contracts/TownHall.algo.ts:563",
-    "errorMessage": "Error state: Non-mafia player called method.",
-    "pc": [
+      2859,
       2860
     ]
   },
   {
-    "teal": 2286,
+    "teal": 2284,
     "source": "contracts/TownHall.algo.ts:565",
     "pc": [
-      2861,
-      2862
+      2861
     ]
   },
   {
     "teal": 2287,
-    "source": "contracts/TownHall.algo.ts:565",
+    "source": "contracts/TownHall.algo.ts:564",
+    "errorMessage": "Invalid method call: Game is not in Night Stage Maffia Commit state.",
+    "pc": [
+      2862
+    ]
+  },
+  {
+    "teal": 2291,
+    "source": "contracts/TownHall.algo.ts:569",
     "pc": [
       2863,
       2864
     ]
   },
   {
-    "teal": 2288,
-    "source": "contracts/TownHall.algo.ts:565",
+    "teal": 2292,
+    "source": "contracts/TownHall.algo.ts:569",
     "pc": [
-      2865
+      2865,
+      2866
     ]
   },
   {
     "teal": 2293,
-    "source": "contracts/TownHall.algo.ts:567",
+    "source": "contracts/TownHall.algo.ts:569",
     "pc": [
-      2866,
       2867
     ]
   },
   {
     "teal": 2294,
-    "source": "contracts/TownHall.algo.ts:567",
+    "source": "contracts/TownHall.algo.ts:569",
     "pc": [
       2868
     ]
   },
   {
-    "teal": 2295,
-    "source": "contracts/TownHall.algo.ts:567",
+    "teal": 2297,
+    "source": "contracts/TownHall.algo.ts:569",
+    "errorMessage": "Error state: Non-mafia player called method.",
     "pc": [
-      2869,
-      2870
+      2869
     ]
   },
   {
-    "teal": 2296,
-    "source": "contracts/TownHall.algo.ts:567",
+    "teal": 2301,
+    "source": "contracts/TownHall.algo.ts:571",
     "pc": [
+      2870,
       2871
     ]
   },
   {
-    "teal": 2297,
-    "source": "contracts/TownHall.algo.ts:567",
+    "teal": 2302,
+    "source": "contracts/TownHall.algo.ts:571",
     "pc": [
       2872,
-      2873,
-      2874
-    ]
-  },
-  {
-    "teal": 2302,
-    "source": "contracts/TownHall.algo.ts:569",
-    "pc": [
-      2875
+      2873
     ]
   },
   {
     "teal": 2303,
-    "source": "contracts/Constants.ts:20",
+    "source": "contracts/TownHall.algo.ts:571",
     "pc": [
-      2876,
+      2874
+    ]
+  },
+  {
+    "teal": 2308,
+    "source": "contracts/TownHall.algo.ts:573",
+    "pc": [
+      2875,
+      2876
+    ]
+  },
+  {
+    "teal": 2309,
+    "source": "contracts/TownHall.algo.ts:573",
+    "pc": [
       2877
     ]
   },
   {
-    "teal": 2304,
-    "source": "contracts/TownHall.algo.ts:569",
-    "pc": [
-      2878
-    ]
-  },
-  {
-    "teal": 2305,
-    "source": "contracts/TownHall.algo.ts:567",
-    "pc": [
-      2879,
-      2880,
-      2881
-    ]
-  },
-  {
     "teal": 2310,
-    "source": "contracts/TownHall.algo.ts:571",
+    "source": "contracts/TownHall.algo.ts:573",
     "pc": [
-      2882
+      2878,
+      2879
     ]
   },
   {
     "teal": 2311,
-    "source": "contracts/Constants.ts:19",
+    "source": "contracts/TownHall.algo.ts:573",
     "pc": [
-      2883
+      2880
     ]
   },
   {
     "teal": 2312,
-    "source": "contracts/TownHall.algo.ts:571",
+    "source": "contracts/TownHall.algo.ts:573",
+    "pc": [
+      2881,
+      2882,
+      2883
+    ]
+  },
+  {
+    "teal": 2317,
+    "source": "contracts/TownHall.algo.ts:575",
     "pc": [
       2884
     ]
   },
   {
-    "teal": 2315,
-    "source": "contracts/TownHall.algo.ts:557",
+    "teal": 2318,
+    "source": "contracts/Constants.ts:20",
     "pc": [
-      2885
+      2885,
+      2886
+    ]
+  },
+  {
+    "teal": 2319,
+    "source": "contracts/TownHall.algo.ts:575",
+    "pc": [
+      2887
     ]
   },
   {
     "teal": 2320,
-    "source": "contracts/TownHall.algo.ts:575",
+    "source": "contracts/TownHall.algo.ts:573",
     "pc": [
-      2886,
-      2887,
-      2888
-    ]
-  },
-  {
-    "teal": 2321,
-    "source": "contracts/TownHall.algo.ts:575",
-    "pc": [
+      2888,
       2889,
-      2890,
-      2891
-    ]
-  },
-  {
-    "teal": 2324,
-    "source": "contracts/TownHall.algo.ts:575",
-    "pc": [
-      2892,
-      2893,
-      2894
+      2890
     ]
   },
   {
     "teal": 2325,
-    "source": "contracts/TownHall.algo.ts:575",
+    "source": "contracts/TownHall.algo.ts:577",
     "pc": [
-      2895
+      2891
     ]
   },
   {
     "teal": 2326,
-    "source": "contracts/TownHall.algo.ts:575",
+    "source": "contracts/Constants.ts:19",
     "pc": [
-      2896
+      2892
+    ]
+  },
+  {
+    "teal": 2327,
+    "source": "contracts/TownHall.algo.ts:577",
+    "pc": [
+      2893
     ]
   },
   {
     "teal": 2330,
-    "source": "contracts/TownHall.algo.ts:575",
+    "source": "contracts/TownHall.algo.ts:563",
     "pc": [
-      2897,
-      2898,
-      2899
+      2894
     ]
   },
   {
-    "teal": 2337,
-    "source": "contracts/TownHall.algo.ts:577",
+    "teal": 2335,
+    "source": "contracts/TownHall.algo.ts:581",
     "pc": [
+      2895,
+      2896,
+      2897
+    ]
+  },
+  {
+    "teal": 2336,
+    "source": "contracts/TownHall.algo.ts:581",
+    "pc": [
+      2898,
+      2899,
       2900
     ]
   },
   {
-    "teal": 2338,
-    "source": "contracts/TownHall.algo.ts:577",
-    "pc": [
-      2901
-    ]
-  },
-  {
     "teal": 2339,
-    "source": "contracts/Constants.ts:19",
+    "source": "contracts/TownHall.algo.ts:581",
     "pc": [
-      2902
-    ]
-  },
-  {
-    "teal": 2340,
-    "source": "contracts/TownHall.algo.ts:577",
-    "pc": [
+      2901,
+      2902,
       2903
     ]
   },
   {
-    "teal": 2343,
-    "source": "contracts/TownHall.algo.ts:576",
-    "errorMessage": "Invalid method call: Game is not in Night Stage Doctor Commit state.",
+    "teal": 2340,
+    "source": "contracts/TownHall.algo.ts:581",
     "pc": [
       2904
     ]
   },
   {
-    "teal": 2347,
+    "teal": 2341,
     "source": "contracts/TownHall.algo.ts:581",
     "pc": [
-      2905,
-      2906
+      2905
     ]
   },
   {
-    "teal": 2348,
+    "teal": 2345,
     "source": "contracts/TownHall.algo.ts:581",
     "pc": [
+      2906,
       2907,
       2908
     ]
   },
   {
-    "teal": 2349,
-    "source": "contracts/TownHall.algo.ts:581",
+    "teal": 2352,
+    "source": "contracts/TownHall.algo.ts:583",
     "pc": [
       2909
     ]
   },
   {
-    "teal": 2350,
-    "source": "contracts/TownHall.algo.ts:581",
+    "teal": 2353,
+    "source": "contracts/TownHall.algo.ts:583",
     "pc": [
       2910
     ]
   },
   {
-    "teal": 2353,
-    "source": "contracts/TownHall.algo.ts:581",
-    "errorMessage": "Error state: Non-doctor player called method.",
+    "teal": 2354,
+    "source": "contracts/Constants.ts:19",
     "pc": [
       2911
     ]
   },
   {
-    "teal": 2360,
+    "teal": 2355,
     "source": "contracts/TownHall.algo.ts:583",
     "pc": [
-      2912,
+      2912
+    ]
+  },
+  {
+    "teal": 2358,
+    "source": "contracts/TownHall.algo.ts:582",
+    "errorMessage": "Invalid method call: Game is not in Night Stage Doctor Commit state.",
+    "pc": [
       2913
     ]
   },
   {
-    "teal": 2361,
-    "source": "contracts/TownHall.algo.ts:583",
-    "pc": [
-      2914
-    ]
-  },
-  {
     "teal": 2362,
-    "source": "contracts/TownHall.algo.ts:583",
+    "source": "contracts/TownHall.algo.ts:587",
     "pc": [
-      2915,
-      2916
+      2914,
+      2915
     ]
   },
   {
     "teal": 2363,
-    "source": "contracts/TownHall.algo.ts:583",
+    "source": "contracts/TownHall.algo.ts:587",
     "pc": [
+      2916,
       2917
     ]
   },
   {
-    "teal": 2366,
-    "source": "contracts/TownHall.algo.ts:582",
-    "errorMessage": "Error state: Doctor is dead, should not have entered this state.",
+    "teal": 2364,
+    "source": "contracts/TownHall.algo.ts:587",
     "pc": [
       2918
     ]
   },
   {
-    "teal": 2370,
+    "teal": 2365,
     "source": "contracts/TownHall.algo.ts:587",
     "pc": [
-      2919,
+      2919
+    ]
+  },
+  {
+    "teal": 2368,
+    "source": "contracts/TownHall.algo.ts:587",
+    "errorMessage": "Error state: Non-doctor player called method.",
+    "pc": [
       2920
     ]
   },
   {
-    "teal": 2371,
-    "source": "contracts/TownHall.algo.ts:587",
+    "teal": 2375,
+    "source": "contracts/TownHall.algo.ts:589",
     "pc": [
       2921,
       2922
     ]
   },
   {
-    "teal": 2372,
-    "source": "contracts/TownHall.algo.ts:587",
+    "teal": 2376,
+    "source": "contracts/TownHall.algo.ts:589",
     "pc": [
       2923
     ]
   },
   {
-    "teal": 2376,
+    "teal": 2377,
     "source": "contracts/TownHall.algo.ts:589",
     "pc": [
-      2924
-    ]
-  },
-  {
-    "teal": 2377,
-    "source": "contracts/Constants.ts:20",
-    "pc": [
-      2925,
-      2926
+      2924,
+      2925
     ]
   },
   {
     "teal": 2378,
     "source": "contracts/TownHall.algo.ts:589",
     "pc": [
+      2926
+    ]
+  },
+  {
+    "teal": 2381,
+    "source": "contracts/TownHall.algo.ts:588",
+    "errorMessage": "Error state: Doctor is dead, should not have entered this state.",
+    "pc": [
       2927
     ]
   },
   {
-    "teal": 2379,
-    "source": "contracts/TownHall.algo.ts:575",
+    "teal": 2385,
+    "source": "contracts/TownHall.algo.ts:593",
     "pc": [
-      2928
+      2928,
+      2929
     ]
   },
   {
-    "teal": 2384,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2386,
+    "source": "contracts/TownHall.algo.ts:593",
     "pc": [
-      2929,
       2930,
       2931
     ]
   },
   {
-    "teal": 2385,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2387,
+    "source": "contracts/TownHall.algo.ts:593",
     "pc": [
       2932
     ]
   },
   {
-    "teal": 2386,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2391,
+    "source": "contracts/TownHall.algo.ts:595",
     "pc": [
       2933
     ]
   },
   {
-    "teal": 2387,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2392,
+    "source": "contracts/Constants.ts:20",
     "pc": [
       2934,
       2935
     ]
   },
   {
-    "teal": 2388,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2393,
+    "source": "contracts/TownHall.algo.ts:595",
     "pc": [
       2936
     ]
   },
   {
-    "teal": 2391,
-    "source": "contracts/TownHall.algo.ts:592",
-    "errorMessage": "argument 0 (blinder) for dawnStageMafiaReveal must be a byte[32]",
+    "teal": 2394,
+    "source": "contracts/TownHall.algo.ts:581",
     "pc": [
       2937
     ]
   },
   {
-    "teal": 2394,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2399,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2938,
       2939,
@@ -10559,45 +10558,45 @@
     ]
   },
   {
-    "teal": 2395,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2400,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2941
     ]
   },
   {
-    "teal": 2396,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2401,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2942
     ]
   },
   {
-    "teal": 2397,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2402,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2943,
       2944
     ]
   },
   {
-    "teal": 2398,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2403,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2945
     ]
   },
   {
-    "teal": 2401,
-    "source": "contracts/TownHall.algo.ts:592",
-    "errorMessage": "argument 1 (victimAim) for dawnStageMafiaReveal must be a address",
+    "teal": 2406,
+    "source": "contracts/TownHall.algo.ts:598",
+    "errorMessage": "argument 0 (blinder) for dawnStageMafiaReveal must be a byte[32]",
     "pc": [
       2946
     ]
   },
   {
-    "teal": 2404,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2409,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2947,
       2948,
@@ -10605,327 +10604,334 @@
     ]
   },
   {
-    "teal": 2405,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2410,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2950
     ]
   },
   {
-    "teal": 2406,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2411,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2951
     ]
   },
   {
-    "teal": 2410,
-    "source": "contracts/TownHall.algo.ts:592",
+    "teal": 2412,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2952,
-      2953,
-      2954
+      2953
     ]
   },
   {
     "teal": 2413,
-    "source": "contracts/TownHall.algo.ts:592",
+    "source": "contracts/TownHall.algo.ts:598",
+    "pc": [
+      2954
+    ]
+  },
+  {
+    "teal": 2416,
+    "source": "contracts/TownHall.algo.ts:598",
+    "errorMessage": "argument 1 (victimAim) for dawnStageMafiaReveal must be a address",
     "pc": [
       2955
     ]
   },
   {
+    "teal": 2419,
+    "source": "contracts/TownHall.algo.ts:598",
+    "pc": [
+      2956,
+      2957,
+      2958
+    ]
+  },
+  {
     "teal": 2420,
-    "source": "contracts/TownHall.algo.ts:594",
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
-      2956
-    ]
-  },
-  {
-    "teal": 2421,
-    "source": "contracts/TownHall.algo.ts:594",
-    "pc": [
-      2957
-    ]
-  },
-  {
-    "teal": 2422,
-    "source": "contracts/Constants.ts:20",
-    "pc": [
-      2958,
       2959
     ]
   },
   {
-    "teal": 2423,
-    "source": "contracts/TownHall.algo.ts:594",
+    "teal": 2421,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
       2960
     ]
   },
   {
-    "teal": 2426,
-    "source": "contracts/TownHall.algo.ts:593",
-    "errorMessage": "Invalid method call: Game is not in Dawn Stage Maffia Reveal state.",
-    "pc": [
-      2961
-    ]
-  },
-  {
-    "teal": 2430,
+    "teal": 2425,
     "source": "contracts/TownHall.algo.ts:598",
     "pc": [
+      2961,
       2962,
       2963
     ]
   },
   {
-    "teal": 2431,
+    "teal": 2428,
     "source": "contracts/TownHall.algo.ts:598",
     "pc": [
-      2964,
+      2964
+    ]
+  },
+  {
+    "teal": 2435,
+    "source": "contracts/TownHall.algo.ts:600",
+    "pc": [
       2965
     ]
   },
   {
-    "teal": 2432,
-    "source": "contracts/TownHall.algo.ts:598",
+    "teal": 2436,
+    "source": "contracts/TownHall.algo.ts:600",
     "pc": [
       2966
     ]
   },
   {
-    "teal": 2433,
-    "source": "contracts/TownHall.algo.ts:598",
+    "teal": 2437,
+    "source": "contracts/Constants.ts:20",
     "pc": [
-      2967
-    ]
-  },
-  {
-    "teal": 2436,
-    "source": "contracts/TownHall.algo.ts:598",
-    "errorMessage": "Error state: Non-mafia player called method.",
-    "pc": [
+      2967,
       2968
     ]
   },
   {
-    "teal": 2440,
+    "teal": 2438,
     "source": "contracts/TownHall.algo.ts:600",
     "pc": [
-      2969,
-      2970
+      2969
     ]
   },
   {
     "teal": 2441,
-    "source": "contracts/TownHall.algo.ts:600",
+    "source": "contracts/TownHall.algo.ts:599",
+    "errorMessage": "Invalid method call: Game is not in Dawn Stage Maffia Reveal state.",
+    "pc": [
+      2970
+    ]
+  },
+  {
+    "teal": 2445,
+    "source": "contracts/TownHall.algo.ts:604",
     "pc": [
       2971,
       2972
     ]
   },
   {
-    "teal": 2442,
-    "source": "contracts/TownHall.algo.ts:600",
+    "teal": 2446,
+    "source": "contracts/TownHall.algo.ts:604",
     "pc": [
-      2973
-    ]
-  },
-  {
-    "teal": 2445,
-    "source": "contracts/TownHall.algo.ts:600",
-    "errorMessage": "Error state: Victim must be a valid address.",
-    "pc": [
+      2973,
       2974
     ]
   },
   {
-    "teal": 2449,
+    "teal": 2447,
     "source": "contracts/TownHall.algo.ts:604",
     "pc": [
-      2975,
-      2976
+      2975
     ]
   },
   {
-    "teal": 2450,
+    "teal": 2448,
     "source": "contracts/TownHall.algo.ts:604",
     "pc": [
-      2977,
-      2978
+      2976
     ]
   },
   {
     "teal": 2451,
     "source": "contracts/TownHall.algo.ts:604",
+    "errorMessage": "Error state: Non-mafia player called method.",
     "pc": [
+      2977
+    ]
+  },
+  {
+    "teal": 2455,
+    "source": "contracts/TownHall.algo.ts:606",
+    "pc": [
+      2978,
       2979
     ]
   },
   {
-    "teal": 2452,
-    "source": "contracts/TownHall.algo.ts:604",
+    "teal": 2456,
+    "source": "contracts/TownHall.algo.ts:606",
     "pc": [
-      2980
+      2980,
+      2981
     ]
   },
   {
-    "teal": 2453,
-    "source": "contracts/TownHall.algo.ts:604",
+    "teal": 2457,
+    "source": "contracts/TownHall.algo.ts:606",
     "pc": [
-      2981,
       2982
     ]
   },
   {
     "teal": 2460,
-    "source": "contracts/TownHall.algo.ts:607",
+    "source": "contracts/TownHall.algo.ts:606",
+    "errorMessage": "Error state: Victim must be a valid address.",
     "pc": [
-      2983,
-      2984
+      2983
     ]
   },
   {
-    "teal": 2461,
-    "source": "contracts/TownHall.algo.ts:607",
+    "teal": 2464,
+    "source": "contracts/TownHall.algo.ts:610",
     "pc": [
-      2985,
-      2986
+      2984,
+      2985
     ]
   },
   {
-    "teal": 2462,
-    "source": "contracts/TownHall.algo.ts:607",
+    "teal": 2465,
+    "source": "contracts/TownHall.algo.ts:610",
     "pc": [
+      2986,
       2987
     ]
   },
   {
-    "teal": 2463,
-    "source": "contracts/TownHall.algo.ts:607",
+    "teal": 2466,
+    "source": "contracts/TownHall.algo.ts:610",
     "pc": [
       2988
     ]
   },
   {
-    "teal": 2466,
-    "source": "contracts/TownHall.algo.ts:606",
-    "errorMessage": "Error state: Provided address + blinder does NOT match commitment.",
+    "teal": 2467,
+    "source": "contracts/TownHall.algo.ts:610",
     "pc": [
       2989
     ]
   },
   {
-    "teal": 2471,
-    "source": "contracts/TownHall.algo.ts:611",
+    "teal": 2468,
+    "source": "contracts/TownHall.algo.ts:610",
     "pc": [
       2990,
       2991
     ]
   },
   {
-    "teal": 2472,
-    "source": "contracts/TownHall.algo.ts:611",
+    "teal": 2475,
+    "source": "contracts/TownHall.algo.ts:613",
     "pc": [
       2992,
       2993
     ]
   },
   {
-    "teal": 2473,
-    "source": "contracts/TownHall.algo.ts:611",
+    "teal": 2476,
+    "source": "contracts/TownHall.algo.ts:613",
     "pc": [
-      2994
-    ]
-  },
-  {
-    "teal": 2474,
-    "source": "contracts/TownHall.algo.ts:611",
-    "pc": [
+      2994,
       2995
     ]
   },
   {
-    "teal": 2475,
-    "source": "contracts/TownHall.algo.ts:611",
+    "teal": 2477,
+    "source": "contracts/TownHall.algo.ts:613",
     "pc": [
-      2996,
-      2997,
-      2998
+      2996
     ]
   },
   {
-    "teal": 2480,
-    "source": "contracts/TownHall.algo.ts:612",
+    "teal": 2478,
+    "source": "contracts/TownHall.algo.ts:613",
     "pc": [
-      2999
+      2997
     ]
   },
   {
     "teal": 2481,
     "source": "contracts/TownHall.algo.ts:612",
+    "errorMessage": "Error state: Provided address + blinder does NOT match commitment.",
     "pc": [
-      3000,
-      3001
+      2998
     ]
   },
   {
-    "teal": 2482,
-    "source": "contracts/TownHall.algo.ts:612",
+    "teal": 2486,
+    "source": "contracts/TownHall.algo.ts:617",
     "pc": [
+      2999,
+      3000
+    ]
+  },
+  {
+    "teal": 2487,
+    "source": "contracts/TownHall.algo.ts:617",
+    "pc": [
+      3001,
       3002
     ]
   },
   {
-    "teal": 2483,
-    "source": "contracts/TownHall.algo.ts:612",
+    "teal": 2488,
+    "source": "contracts/TownHall.algo.ts:617",
     "pc": [
       3003
     ]
   },
   {
-    "teal": 2484,
-    "source": "contracts/TownHall.algo.ts:611",
-    "pc": [
-      3004,
-      3005,
-      3006
-    ]
-  },
-  {
     "teal": 2489,
-    "source": "contracts/TownHall.algo.ts:613",
+    "source": "contracts/TownHall.algo.ts:617",
     "pc": [
-      3007,
-      3008
+      3004
     ]
   },
   {
     "teal": 2490,
-    "source": "contracts/TownHall.algo.ts:613",
+    "source": "contracts/TownHall.algo.ts:617",
+    "pc": [
+      3005,
+      3006,
+      3007
+    ]
+  },
+  {
+    "teal": 2495,
+    "source": "contracts/TownHall.algo.ts:618",
+    "pc": [
+      3008
+    ]
+  },
+  {
+    "teal": 2496,
+    "source": "contracts/TownHall.algo.ts:618",
     "pc": [
       3009,
       3010
     ]
   },
   {
-    "teal": 2491,
-    "source": "contracts/TownHall.algo.ts:613",
+    "teal": 2497,
+    "source": "contracts/TownHall.algo.ts:618",
     "pc": [
       3011
     ]
   },
   {
-    "teal": 2492,
-    "source": "contracts/TownHall.algo.ts:613",
+    "teal": 2498,
+    "source": "contracts/TownHall.algo.ts:618",
     "pc": [
       3012
     ]
   },
   {
-    "teal": 2493,
-    "source": "contracts/TownHall.algo.ts:613",
+    "teal": 2499,
+    "source": "contracts/TownHall.algo.ts:617",
     "pc": [
       3013,
       3014,
@@ -10933,76 +10939,76 @@
     ]
   },
   {
-    "teal": 2498,
-    "source": "contracts/TownHall.algo.ts:614",
+    "teal": 2504,
+    "source": "contracts/TownHall.algo.ts:619",
     "pc": [
-      3016
+      3016,
+      3017
     ]
   },
   {
-    "teal": 2499,
-    "source": "contracts/TownHall.algo.ts:614",
+    "teal": 2505,
+    "source": "contracts/TownHall.algo.ts:619",
     "pc": [
-      3017,
-      3018
-    ]
-  },
-  {
-    "teal": 2500,
-    "source": "contracts/TownHall.algo.ts:614",
-    "pc": [
+      3018,
       3019
     ]
   },
   {
-    "teal": 2501,
-    "source": "contracts/TownHall.algo.ts:614",
+    "teal": 2506,
+    "source": "contracts/TownHall.algo.ts:619",
     "pc": [
       3020
     ]
   },
   {
-    "teal": 2502,
-    "source": "contracts/TownHall.algo.ts:613",
-    "pc": [
-      3021,
-      3022,
-      3023
-    ]
-  },
-  {
     "teal": 2507,
-    "source": "contracts/TownHall.algo.ts:615",
+    "source": "contracts/TownHall.algo.ts:619",
     "pc": [
-      3024,
-      3025
+      3021
     ]
   },
   {
     "teal": 2508,
-    "source": "contracts/TownHall.algo.ts:615",
+    "source": "contracts/TownHall.algo.ts:619",
+    "pc": [
+      3022,
+      3023,
+      3024
+    ]
+  },
+  {
+    "teal": 2513,
+    "source": "contracts/TownHall.algo.ts:620",
+    "pc": [
+      3025
+    ]
+  },
+  {
+    "teal": 2514,
+    "source": "contracts/TownHall.algo.ts:620",
     "pc": [
       3026,
       3027
     ]
   },
   {
-    "teal": 2509,
-    "source": "contracts/TownHall.algo.ts:615",
+    "teal": 2515,
+    "source": "contracts/TownHall.algo.ts:620",
     "pc": [
       3028
     ]
   },
   {
-    "teal": 2510,
-    "source": "contracts/TownHall.algo.ts:615",
+    "teal": 2516,
+    "source": "contracts/TownHall.algo.ts:620",
     "pc": [
       3029
     ]
   },
   {
-    "teal": 2511,
-    "source": "contracts/TownHall.algo.ts:615",
+    "teal": 2517,
+    "source": "contracts/TownHall.algo.ts:619",
     "pc": [
       3030,
       3031,
@@ -11010,76 +11016,76 @@
     ]
   },
   {
-    "teal": 2516,
-    "source": "contracts/TownHall.algo.ts:616",
+    "teal": 2522,
+    "source": "contracts/TownHall.algo.ts:621",
     "pc": [
-      3033
+      3033,
+      3034
     ]
   },
   {
-    "teal": 2517,
-    "source": "contracts/TownHall.algo.ts:616",
+    "teal": 2523,
+    "source": "contracts/TownHall.algo.ts:621",
     "pc": [
-      3034,
-      3035
-    ]
-  },
-  {
-    "teal": 2518,
-    "source": "contracts/TownHall.algo.ts:616",
-    "pc": [
+      3035,
       3036
     ]
   },
   {
-    "teal": 2519,
-    "source": "contracts/TownHall.algo.ts:616",
+    "teal": 2524,
+    "source": "contracts/TownHall.algo.ts:621",
     "pc": [
       3037
     ]
   },
   {
-    "teal": 2520,
-    "source": "contracts/TownHall.algo.ts:615",
-    "pc": [
-      3038,
-      3039,
-      3040
-    ]
-  },
-  {
     "teal": 2525,
-    "source": "contracts/TownHall.algo.ts:617",
+    "source": "contracts/TownHall.algo.ts:621",
     "pc": [
-      3041,
-      3042
+      3038
     ]
   },
   {
     "teal": 2526,
-    "source": "contracts/TownHall.algo.ts:617",
+    "source": "contracts/TownHall.algo.ts:621",
+    "pc": [
+      3039,
+      3040,
+      3041
+    ]
+  },
+  {
+    "teal": 2531,
+    "source": "contracts/TownHall.algo.ts:622",
+    "pc": [
+      3042
+    ]
+  },
+  {
+    "teal": 2532,
+    "source": "contracts/TownHall.algo.ts:622",
     "pc": [
       3043,
       3044
     ]
   },
   {
-    "teal": 2527,
-    "source": "contracts/TownHall.algo.ts:617",
+    "teal": 2533,
+    "source": "contracts/TownHall.algo.ts:622",
     "pc": [
       3045
     ]
   },
   {
-    "teal": 2528,
-    "source": "contracts/TownHall.algo.ts:617",
+    "teal": 2534,
+    "source": "contracts/TownHall.algo.ts:622",
     "pc": [
       3046
     ]
   },
   {
-    "teal": 2529,
-    "source": "contracts/TownHall.algo.ts:617",
+    "teal": 2535,
+    "source": "contracts/TownHall.algo.ts:621",
     "pc": [
       3047,
       3048,
@@ -11087,76 +11093,76 @@
     ]
   },
   {
-    "teal": 2534,
-    "source": "contracts/TownHall.algo.ts:618",
+    "teal": 2540,
+    "source": "contracts/TownHall.algo.ts:623",
     "pc": [
-      3050
+      3050,
+      3051
     ]
   },
   {
-    "teal": 2535,
-    "source": "contracts/TownHall.algo.ts:618",
+    "teal": 2541,
+    "source": "contracts/TownHall.algo.ts:623",
     "pc": [
-      3051,
-      3052
-    ]
-  },
-  {
-    "teal": 2536,
-    "source": "contracts/TownHall.algo.ts:618",
-    "pc": [
+      3052,
       3053
     ]
   },
   {
-    "teal": 2537,
-    "source": "contracts/TownHall.algo.ts:618",
+    "teal": 2542,
+    "source": "contracts/TownHall.algo.ts:623",
     "pc": [
       3054
     ]
   },
   {
-    "teal": 2538,
-    "source": "contracts/TownHall.algo.ts:617",
-    "pc": [
-      3055,
-      3056,
-      3057
-    ]
-  },
-  {
     "teal": 2543,
-    "source": "contracts/TownHall.algo.ts:619",
+    "source": "contracts/TownHall.algo.ts:623",
     "pc": [
-      3058,
-      3059
+      3055
     ]
   },
   {
     "teal": 2544,
-    "source": "contracts/TownHall.algo.ts:619",
+    "source": "contracts/TownHall.algo.ts:623",
+    "pc": [
+      3056,
+      3057,
+      3058
+    ]
+  },
+  {
+    "teal": 2549,
+    "source": "contracts/TownHall.algo.ts:624",
+    "pc": [
+      3059
+    ]
+  },
+  {
+    "teal": 2550,
+    "source": "contracts/TownHall.algo.ts:624",
     "pc": [
       3060,
       3061
     ]
   },
   {
-    "teal": 2545,
-    "source": "contracts/TownHall.algo.ts:619",
+    "teal": 2551,
+    "source": "contracts/TownHall.algo.ts:624",
     "pc": [
       3062
     ]
   },
   {
-    "teal": 2546,
-    "source": "contracts/TownHall.algo.ts:619",
+    "teal": 2552,
+    "source": "contracts/TownHall.algo.ts:624",
     "pc": [
       3063
     ]
   },
   {
-    "teal": 2547,
-    "source": "contracts/TownHall.algo.ts:619",
+    "teal": 2553,
+    "source": "contracts/TownHall.algo.ts:623",
     "pc": [
       3064,
       3065,
@@ -11164,76 +11170,76 @@
     ]
   },
   {
-    "teal": 2552,
-    "source": "contracts/TownHall.algo.ts:620",
+    "teal": 2558,
+    "source": "contracts/TownHall.algo.ts:625",
     "pc": [
-      3067
+      3067,
+      3068
     ]
   },
   {
-    "teal": 2553,
-    "source": "contracts/TownHall.algo.ts:620",
+    "teal": 2559,
+    "source": "contracts/TownHall.algo.ts:625",
     "pc": [
-      3068,
-      3069
-    ]
-  },
-  {
-    "teal": 2554,
-    "source": "contracts/TownHall.algo.ts:620",
-    "pc": [
+      3069,
       3070
     ]
   },
   {
-    "teal": 2555,
-    "source": "contracts/TownHall.algo.ts:620",
+    "teal": 2560,
+    "source": "contracts/TownHall.algo.ts:625",
     "pc": [
       3071
     ]
   },
   {
-    "teal": 2556,
-    "source": "contracts/TownHall.algo.ts:619",
-    "pc": [
-      3072,
-      3073,
-      3074
-    ]
-  },
-  {
     "teal": 2561,
-    "source": "contracts/TownHall.algo.ts:621",
+    "source": "contracts/TownHall.algo.ts:625",
     "pc": [
-      3075,
-      3076
+      3072
     ]
   },
   {
     "teal": 2562,
-    "source": "contracts/TownHall.algo.ts:621",
+    "source": "contracts/TownHall.algo.ts:625",
+    "pc": [
+      3073,
+      3074,
+      3075
+    ]
+  },
+  {
+    "teal": 2567,
+    "source": "contracts/TownHall.algo.ts:626",
+    "pc": [
+      3076
+    ]
+  },
+  {
+    "teal": 2568,
+    "source": "contracts/TownHall.algo.ts:626",
     "pc": [
       3077,
       3078
     ]
   },
   {
-    "teal": 2563,
-    "source": "contracts/TownHall.algo.ts:621",
+    "teal": 2569,
+    "source": "contracts/TownHall.algo.ts:626",
     "pc": [
       3079
     ]
   },
   {
-    "teal": 2564,
-    "source": "contracts/TownHall.algo.ts:621",
+    "teal": 2570,
+    "source": "contracts/TownHall.algo.ts:626",
     "pc": [
       3080
     ]
   },
   {
-    "teal": 2565,
-    "source": "contracts/TownHall.algo.ts:621",
+    "teal": 2571,
+    "source": "contracts/TownHall.algo.ts:625",
     "pc": [
       3081,
       3082,
@@ -11241,1125 +11247,1100 @@
     ]
   },
   {
-    "teal": 2570,
-    "source": "contracts/TownHall.algo.ts:622",
+    "teal": 2576,
+    "source": "contracts/TownHall.algo.ts:627",
     "pc": [
-      3084
+      3084,
+      3085
     ]
   },
   {
-    "teal": 2571,
-    "source": "contracts/TownHall.algo.ts:622",
+    "teal": 2577,
+    "source": "contracts/TownHall.algo.ts:627",
     "pc": [
-      3085,
-      3086
-    ]
-  },
-  {
-    "teal": 2572,
-    "source": "contracts/TownHall.algo.ts:622",
-    "pc": [
+      3086,
       3087
     ]
   },
   {
-    "teal": 2573,
-    "source": "contracts/TownHall.algo.ts:622",
+    "teal": 2578,
+    "source": "contracts/TownHall.algo.ts:627",
     "pc": [
       3088
     ]
   },
   {
-    "teal": 2574,
-    "source": "contracts/TownHall.algo.ts:621",
-    "pc": [
-      3089,
-      3090,
-      3091
-    ]
-  },
-  {
     "teal": 2579,
-    "source": "contracts/TownHall.algo.ts:624",
+    "source": "contracts/TownHall.algo.ts:627",
     "pc": [
-      3092
+      3089
     ]
   },
   {
     "teal": 2580,
-    "source": "contracts/TownHall.algo.ts:624",
+    "source": "contracts/TownHall.algo.ts:627",
     "pc": [
-      3093,
-      3094
+      3090,
+      3091,
+      3092
     ]
   },
   {
-    "teal": 2581,
-    "source": "contracts/TownHall.algo.ts:624",
+    "teal": 2585,
+    "source": "contracts/TownHall.algo.ts:628",
     "pc": [
-      3095
+      3093
     ]
   },
   {
     "teal": 2586,
-    "source": "contracts/TownHall.algo.ts:630",
+    "source": "contracts/TownHall.algo.ts:628",
+    "pc": [
+      3094,
+      3095
+    ]
+  },
+  {
+    "teal": 2587,
+    "source": "contracts/TownHall.algo.ts:628",
     "pc": [
       3096
     ]
   },
   {
-    "teal": 2587,
-    "source": "contracts/Constants.ts:21",
-    "pc": [
-      3097,
-      3098
-    ]
-  },
-  {
     "teal": 2588,
-    "source": "contracts/TownHall.algo.ts:630",
+    "source": "contracts/TownHall.algo.ts:628",
     "pc": [
-      3099
+      3097
     ]
   },
   {
     "teal": 2589,
-    "source": "contracts/TownHall.algo.ts:592",
+    "source": "contracts/TownHall.algo.ts:627",
     "pc": [
+      3098,
+      3099,
       3100
     ]
   },
   {
     "teal": 2594,
-    "source": "contracts/TownHall.algo.ts:633",
+    "source": "contracts/TownHall.algo.ts:630",
     "pc": [
-      3101,
+      3101
+    ]
+  },
+  {
+    "teal": 2595,
+    "source": "contracts/TownHall.algo.ts:630",
+    "pc": [
       3102,
       3103
     ]
   },
   {
-    "teal": 2595,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2596,
+    "source": "contracts/TownHall.algo.ts:630",
     "pc": [
       3104
     ]
   },
   {
-    "teal": 2596,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2602,
+    "source": "contracts/TownHall.algo.ts:636",
     "pc": [
-      3105
+      3105,
+      3106
     ]
   },
   {
-    "teal": 2597,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2603,
+    "source": "contracts/TownHall.algo.ts:636",
     "pc": [
-      3106,
       3107
     ]
   },
   {
-    "teal": 2598,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2604,
+    "source": "contracts/TownHall.algo.ts:636",
     "pc": [
-      3108
-    ]
-  },
-  {
-    "teal": 2601,
-    "source": "contracts/TownHall.algo.ts:633",
-    "errorMessage": "argument 0 (blinder) for dawnStageDoctorReveal must be a byte[32]",
-    "pc": [
+      3108,
       3109
     ]
   },
   {
-    "teal": 2604,
-    "source": "contracts/TownHall.algo.ts:633",
-    "pc": [
-      3110,
-      3111,
-      3112
-    ]
-  },
-  {
     "teal": 2605,
-    "source": "contracts/TownHall.algo.ts:633",
+    "source": "contracts/TownHall.algo.ts:636",
     "pc": [
-      3113
+      3110
     ]
   },
   {
     "teal": 2606,
-    "source": "contracts/TownHall.algo.ts:633",
+    "source": "contracts/TownHall.algo.ts:636",
+    "pc": [
+      3111,
+      3112,
+      3113
+    ]
+  },
+  {
+    "teal": 2611,
+    "source": "contracts/TownHall.algo.ts:638",
     "pc": [
       3114
     ]
   },
   {
-    "teal": 2607,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2612,
+    "source": "contracts/Constants.ts:22",
     "pc": [
       3115,
       3116
     ]
   },
   {
-    "teal": 2608,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2613,
+    "source": "contracts/TownHall.algo.ts:638",
     "pc": [
       3117
     ]
   },
   {
-    "teal": 2611,
-    "source": "contracts/TownHall.algo.ts:633",
-    "errorMessage": "argument 1 (patientAim) for dawnStageDoctorReveal must be a address",
+    "teal": 2614,
+    "source": "contracts/TownHall.algo.ts:636",
     "pc": [
-      3118
+      3118,
+      3119,
+      3120
     ]
   },
   {
-    "teal": 2614,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2619,
+    "source": "contracts/TownHall.algo.ts:641",
     "pc": [
-      3119,
-      3120,
       3121
     ]
   },
   {
-    "teal": 2615,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2620,
+    "source": "contracts/Constants.ts:21",
     "pc": [
-      3122
-    ]
-  },
-  {
-    "teal": 2616,
-    "source": "contracts/TownHall.algo.ts:633",
-    "pc": [
+      3122,
       3123
     ]
   },
   {
-    "teal": 2620,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2621,
+    "source": "contracts/TownHall.algo.ts:641",
     "pc": [
-      3124,
-      3125,
-      3126
+      3124
     ]
   },
   {
-    "teal": 2623,
-    "source": "contracts/TownHall.algo.ts:633",
+    "teal": 2624,
+    "source": "contracts/TownHall.algo.ts:598",
     "pc": [
-      3127
+      3125
     ]
   },
   {
-    "teal": 2630,
-    "source": "contracts/TownHall.algo.ts:635",
+    "teal": 2629,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
+      3126,
+      3127,
       3128
     ]
   },
   {
-    "teal": 2631,
-    "source": "contracts/TownHall.algo.ts:635",
+    "teal": 2630,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3129
     ]
   },
   {
-    "teal": 2632,
-    "source": "contracts/Constants.ts:21",
+    "teal": 2631,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
-      3130,
-      3131
+      3130
     ]
   },
   {
-    "teal": 2633,
-    "source": "contracts/TownHall.algo.ts:635",
+    "teal": 2632,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
+      3131,
       3132
     ]
   },
   {
-    "teal": 2636,
-    "source": "contracts/TownHall.algo.ts:634",
-    "errorMessage": "Invalid method call: Game is not in Dawn Stage Doctor Reveal state.",
+    "teal": 2633,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3133
     ]
   },
   {
-    "teal": 2640,
-    "source": "contracts/TownHall.algo.ts:639",
+    "teal": 2636,
+    "source": "contracts/TownHall.algo.ts:645",
+    "errorMessage": "argument 0 (blinder) for dawnStageDoctorReveal must be a byte[32]",
     "pc": [
-      3134,
-      3135
+      3134
     ]
   },
   {
-    "teal": 2641,
-    "source": "contracts/TownHall.algo.ts:639",
+    "teal": 2639,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
+      3135,
       3136,
       3137
     ]
   },
   {
-    "teal": 2642,
-    "source": "contracts/TownHall.algo.ts:639",
+    "teal": 2640,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3138
     ]
   },
   {
-    "teal": 2643,
-    "source": "contracts/TownHall.algo.ts:639",
+    "teal": 2641,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3139
     ]
   },
   {
-    "teal": 2646,
-    "source": "contracts/TownHall.algo.ts:639",
-    "errorMessage": "Error state: Non-doctor player called method.",
+    "teal": 2642,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
-      3140
+      3140,
+      3141
     ]
   },
   {
-    "teal": 2650,
-    "source": "contracts/TownHall.algo.ts:641",
+    "teal": 2643,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
-      3141,
       3142
     ]
   },
   {
-    "teal": 2651,
-    "source": "contracts/TownHall.algo.ts:641",
+    "teal": 2646,
+    "source": "contracts/TownHall.algo.ts:645",
+    "errorMessage": "argument 1 (patientAim) for dawnStageDoctorReveal must be a address",
     "pc": [
       3143
     ]
   },
   {
-    "teal": 2652,
-    "source": "contracts/TownHall.algo.ts:641",
+    "teal": 2649,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3144,
-      3145
-    ]
-  },
-  {
-    "teal": 2653,
-    "source": "contracts/TownHall.algo.ts:641",
-    "pc": [
+      3145,
       3146
     ]
   },
   {
-    "teal": 2656,
-    "source": "contracts/TownHall.algo.ts:641",
-    "errorMessage": "Error state: Doctor has already committed to a patient.",
+    "teal": 2650,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3147
     ]
   },
   {
-    "teal": 2660,
-    "source": "contracts/TownHall.algo.ts:643",
+    "teal": 2651,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
-      3148,
-      3149
+      3148
     ]
   },
   {
-    "teal": 2661,
-    "source": "contracts/TownHall.algo.ts:643",
+    "teal": 2655,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
+      3149,
       3150,
       3151
     ]
   },
   {
-    "teal": 2662,
-    "source": "contracts/TownHall.algo.ts:643",
+    "teal": 2658,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3152
     ]
   },
   {
     "teal": 2665,
-    "source": "contracts/TownHall.algo.ts:643",
-    "errorMessage": "Error state: Patient must be a valid address.",
+    "source": "contracts/TownHall.algo.ts:647",
     "pc": [
       3153
     ]
   },
   {
-    "teal": 2669,
+    "teal": 2666,
     "source": "contracts/TownHall.algo.ts:647",
     "pc": [
-      3154,
-      3155
+      3154
     ]
   },
   {
-    "teal": 2670,
+    "teal": 2667,
+    "source": "contracts/Constants.ts:21",
+    "pc": [
+      3155,
+      3156
+    ]
+  },
+  {
+    "teal": 2668,
     "source": "contracts/TownHall.algo.ts:647",
     "pc": [
-      3156,
       3157
     ]
   },
   {
     "teal": 2671,
-    "source": "contracts/TownHall.algo.ts:647",
+    "source": "contracts/TownHall.algo.ts:646",
+    "errorMessage": "Invalid method call: Game is not in Dawn Stage Doctor Reveal state.",
     "pc": [
       3158
     ]
   },
   {
-    "teal": 2672,
-    "source": "contracts/TownHall.algo.ts:647",
+    "teal": 2675,
+    "source": "contracts/TownHall.algo.ts:651",
     "pc": [
-      3159
+      3159,
+      3160
     ]
   },
   {
-    "teal": 2673,
-    "source": "contracts/TownHall.algo.ts:647",
+    "teal": 2676,
+    "source": "contracts/TownHall.algo.ts:651",
     "pc": [
-      3160,
-      3161
+      3161,
+      3162
     ]
   },
   {
-    "teal": 2680,
-    "source": "contracts/TownHall.algo.ts:650",
+    "teal": 2677,
+    "source": "contracts/TownHall.algo.ts:651",
     "pc": [
-      3162,
       3163
     ]
   },
   {
-    "teal": 2681,
-    "source": "contracts/TownHall.algo.ts:650",
+    "teal": 2678,
+    "source": "contracts/TownHall.algo.ts:651",
     "pc": [
-      3164,
+      3164
+    ]
+  },
+  {
+    "teal": 2681,
+    "source": "contracts/TownHall.algo.ts:651",
+    "errorMessage": "Error state: Non-doctor player called method.",
+    "pc": [
       3165
     ]
   },
   {
-    "teal": 2682,
-    "source": "contracts/TownHall.algo.ts:650",
+    "teal": 2685,
+    "source": "contracts/TownHall.algo.ts:653",
     "pc": [
-      3166
-    ]
-  },
-  {
-    "teal": 2683,
-    "source": "contracts/TownHall.algo.ts:650",
-    "pc": [
+      3166,
       3167
     ]
   },
   {
     "teal": 2686,
-    "source": "contracts/TownHall.algo.ts:649",
-    "errorMessage": "Error state: Provided address + blinder does NOT match commitment.",
+    "source": "contracts/TownHall.algo.ts:653",
     "pc": [
       3168
     ]
   },
   {
-    "teal": 2691,
-    "source": "contracts/TownHall.algo.ts:654",
+    "teal": 2687,
+    "source": "contracts/TownHall.algo.ts:653",
     "pc": [
       3169,
       3170
     ]
   },
   {
-    "teal": 2692,
-    "source": "contracts/TownHall.algo.ts:654",
+    "teal": 2688,
+    "source": "contracts/TownHall.algo.ts:653",
     "pc": [
-      3171,
+      3171
+    ]
+  },
+  {
+    "teal": 2691,
+    "source": "contracts/TownHall.algo.ts:653",
+    "errorMessage": "Error state: Doctor has already committed to a patient.",
+    "pc": [
       3172
     ]
   },
   {
-    "teal": 2693,
-    "source": "contracts/TownHall.algo.ts:654",
+    "teal": 2695,
+    "source": "contracts/TownHall.algo.ts:655",
     "pc": [
-      3173
-    ]
-  },
-  {
-    "teal": 2694,
-    "source": "contracts/TownHall.algo.ts:654",
-    "pc": [
+      3173,
       3174
     ]
   },
   {
-    "teal": 2695,
-    "source": "contracts/TownHall.algo.ts:654",
+    "teal": 2696,
+    "source": "contracts/TownHall.algo.ts:655",
     "pc": [
       3175,
-      3176,
+      3176
+    ]
+  },
+  {
+    "teal": 2697,
+    "source": "contracts/TownHall.algo.ts:655",
+    "pc": [
       3177
     ]
   },
   {
     "teal": 2700,
     "source": "contracts/TownHall.algo.ts:655",
+    "errorMessage": "Error state: Patient must be a valid address.",
     "pc": [
-      3178,
-      3179
+      3178
     ]
   },
   {
-    "teal": 2701,
-    "source": "contracts/TownHall.algo.ts:655",
+    "teal": 2704,
+    "source": "contracts/TownHall.algo.ts:659",
     "pc": [
-      3180,
-      3181
+      3179,
+      3180
     ]
   },
   {
-    "teal": 2702,
-    "source": "contracts/TownHall.algo.ts:655",
+    "teal": 2705,
+    "source": "contracts/TownHall.algo.ts:659",
     "pc": [
+      3181,
       3182
     ]
   },
   {
-    "teal": 2703,
-    "source": "contracts/TownHall.algo.ts:655",
+    "teal": 2706,
+    "source": "contracts/TownHall.algo.ts:659",
     "pc": [
       3183
     ]
   },
   {
-    "teal": 2704,
-    "source": "contracts/TownHall.algo.ts:654",
+    "teal": 2707,
+    "source": "contracts/TownHall.algo.ts:659",
     "pc": [
-      3184,
+      3184
+    ]
+  },
+  {
+    "teal": 2708,
+    "source": "contracts/TownHall.algo.ts:659",
+    "pc": [
       3185,
       3186
     ]
   },
   {
-    "teal": 2709,
-    "source": "contracts/TownHall.algo.ts:656",
+    "teal": 2715,
+    "source": "contracts/TownHall.algo.ts:662",
     "pc": [
       3187,
       3188
     ]
   },
   {
-    "teal": 2710,
-    "source": "contracts/TownHall.algo.ts:656",
+    "teal": 2716,
+    "source": "contracts/TownHall.algo.ts:662",
     "pc": [
       3189,
       3190
     ]
   },
   {
-    "teal": 2711,
-    "source": "contracts/TownHall.algo.ts:656",
+    "teal": 2717,
+    "source": "contracts/TownHall.algo.ts:662",
     "pc": [
       3191
     ]
   },
   {
-    "teal": 2712,
-    "source": "contracts/TownHall.algo.ts:656",
+    "teal": 2718,
+    "source": "contracts/TownHall.algo.ts:662",
     "pc": [
       3192
     ]
   },
   {
-    "teal": 2713,
-    "source": "contracts/TownHall.algo.ts:656",
+    "teal": 2721,
+    "source": "contracts/TownHall.algo.ts:661",
+    "errorMessage": "Error state: Provided address + blinder does NOT match commitment.",
     "pc": [
-      3193,
+      3193
+    ]
+  },
+  {
+    "teal": 2726,
+    "source": "contracts/TownHall.algo.ts:666",
+    "pc": [
       3194,
       3195
     ]
   },
   {
-    "teal": 2718,
-    "source": "contracts/TownHall.algo.ts:657",
+    "teal": 2727,
+    "source": "contracts/TownHall.algo.ts:666",
     "pc": [
       3196,
       3197
     ]
   },
   {
-    "teal": 2719,
-    "source": "contracts/TownHall.algo.ts:657",
+    "teal": 2728,
+    "source": "contracts/TownHall.algo.ts:666",
     "pc": [
-      3198,
+      3198
+    ]
+  },
+  {
+    "teal": 2729,
+    "source": "contracts/TownHall.algo.ts:666",
+    "pc": [
       3199
     ]
   },
   {
-    "teal": 2720,
-    "source": "contracts/TownHall.algo.ts:657",
+    "teal": 2730,
+    "source": "contracts/TownHall.algo.ts:666",
     "pc": [
-      3200
+      3200,
+      3201,
+      3202
     ]
   },
   {
-    "teal": 2721,
-    "source": "contracts/TownHall.algo.ts:657",
+    "teal": 2735,
+    "source": "contracts/TownHall.algo.ts:667",
     "pc": [
-      3201
-    ]
-  },
-  {
-    "teal": 2722,
-    "source": "contracts/TownHall.algo.ts:656",
-    "pc": [
-      3202,
       3203,
       3204
     ]
   },
   {
-    "teal": 2727,
-    "source": "contracts/TownHall.algo.ts:658",
+    "teal": 2736,
+    "source": "contracts/TownHall.algo.ts:667",
     "pc": [
       3205,
       3206
     ]
   },
   {
-    "teal": 2728,
-    "source": "contracts/TownHall.algo.ts:658",
+    "teal": 2737,
+    "source": "contracts/TownHall.algo.ts:667",
     "pc": [
-      3207,
+      3207
+    ]
+  },
+  {
+    "teal": 2738,
+    "source": "contracts/TownHall.algo.ts:667",
+    "pc": [
       3208
     ]
   },
   {
-    "teal": 2729,
-    "source": "contracts/TownHall.algo.ts:658",
+    "teal": 2739,
+    "source": "contracts/TownHall.algo.ts:666",
     "pc": [
-      3209
+      3209,
+      3210,
+      3211
     ]
   },
   {
-    "teal": 2730,
-    "source": "contracts/TownHall.algo.ts:658",
+    "teal": 2744,
+    "source": "contracts/TownHall.algo.ts:668",
     "pc": [
-      3210
-    ]
-  },
-  {
-    "teal": 2731,
-    "source": "contracts/TownHall.algo.ts:658",
-    "pc": [
-      3211,
       3212,
       3213
     ]
   },
   {
-    "teal": 2736,
-    "source": "contracts/TownHall.algo.ts:659",
+    "teal": 2745,
+    "source": "contracts/TownHall.algo.ts:668",
     "pc": [
       3214,
       3215
     ]
   },
   {
-    "teal": 2737,
-    "source": "contracts/TownHall.algo.ts:659",
+    "teal": 2746,
+    "source": "contracts/TownHall.algo.ts:668",
     "pc": [
-      3216,
+      3216
+    ]
+  },
+  {
+    "teal": 2747,
+    "source": "contracts/TownHall.algo.ts:668",
+    "pc": [
       3217
     ]
   },
   {
-    "teal": 2738,
-    "source": "contracts/TownHall.algo.ts:659",
+    "teal": 2748,
+    "source": "contracts/TownHall.algo.ts:668",
     "pc": [
-      3218
+      3218,
+      3219,
+      3220
     ]
   },
   {
-    "teal": 2739,
-    "source": "contracts/TownHall.algo.ts:659",
+    "teal": 2753,
+    "source": "contracts/TownHall.algo.ts:669",
     "pc": [
-      3219
-    ]
-  },
-  {
-    "teal": 2740,
-    "source": "contracts/TownHall.algo.ts:658",
-    "pc": [
-      3220,
       3221,
       3222
     ]
   },
   {
-    "teal": 2745,
-    "source": "contracts/TownHall.algo.ts:660",
+    "teal": 2754,
+    "source": "contracts/TownHall.algo.ts:669",
     "pc": [
       3223,
       3224
     ]
   },
   {
-    "teal": 2746,
-    "source": "contracts/TownHall.algo.ts:660",
+    "teal": 2755,
+    "source": "contracts/TownHall.algo.ts:669",
     "pc": [
-      3225,
+      3225
+    ]
+  },
+  {
+    "teal": 2756,
+    "source": "contracts/TownHall.algo.ts:669",
+    "pc": [
       3226
     ]
   },
   {
-    "teal": 2747,
-    "source": "contracts/TownHall.algo.ts:660",
+    "teal": 2757,
+    "source": "contracts/TownHall.algo.ts:668",
     "pc": [
-      3227
+      3227,
+      3228,
+      3229
     ]
   },
   {
-    "teal": 2748,
-    "source": "contracts/TownHall.algo.ts:660",
+    "teal": 2762,
+    "source": "contracts/TownHall.algo.ts:670",
     "pc": [
-      3228
-    ]
-  },
-  {
-    "teal": 2749,
-    "source": "contracts/TownHall.algo.ts:660",
-    "pc": [
-      3229,
       3230,
       3231
     ]
   },
   {
-    "teal": 2754,
-    "source": "contracts/TownHall.algo.ts:661",
+    "teal": 2763,
+    "source": "contracts/TownHall.algo.ts:670",
     "pc": [
       3232,
       3233
     ]
   },
   {
-    "teal": 2755,
-    "source": "contracts/TownHall.algo.ts:661",
+    "teal": 2764,
+    "source": "contracts/TownHall.algo.ts:670",
     "pc": [
-      3234,
+      3234
+    ]
+  },
+  {
+    "teal": 2765,
+    "source": "contracts/TownHall.algo.ts:670",
+    "pc": [
       3235
     ]
   },
   {
-    "teal": 2756,
-    "source": "contracts/TownHall.algo.ts:661",
+    "teal": 2766,
+    "source": "contracts/TownHall.algo.ts:670",
     "pc": [
-      3236
+      3236,
+      3237,
+      3238
     ]
   },
   {
-    "teal": 2757,
-    "source": "contracts/TownHall.algo.ts:661",
+    "teal": 2771,
+    "source": "contracts/TownHall.algo.ts:671",
     "pc": [
-      3237
-    ]
-  },
-  {
-    "teal": 2758,
-    "source": "contracts/TownHall.algo.ts:660",
-    "pc": [
-      3238,
       3239,
       3240
     ]
   },
   {
-    "teal": 2763,
-    "source": "contracts/TownHall.algo.ts:662",
+    "teal": 2772,
+    "source": "contracts/TownHall.algo.ts:671",
     "pc": [
       3241,
       3242
     ]
   },
   {
-    "teal": 2764,
-    "source": "contracts/TownHall.algo.ts:662",
+    "teal": 2773,
+    "source": "contracts/TownHall.algo.ts:671",
     "pc": [
-      3243,
+      3243
+    ]
+  },
+  {
+    "teal": 2774,
+    "source": "contracts/TownHall.algo.ts:671",
+    "pc": [
       3244
     ]
   },
   {
-    "teal": 2765,
-    "source": "contracts/TownHall.algo.ts:662",
+    "teal": 2775,
+    "source": "contracts/TownHall.algo.ts:670",
     "pc": [
-      3245
+      3245,
+      3246,
+      3247
     ]
   },
   {
-    "teal": 2766,
-    "source": "contracts/TownHall.algo.ts:662",
+    "teal": 2780,
+    "source": "contracts/TownHall.algo.ts:672",
     "pc": [
-      3246
-    ]
-  },
-  {
-    "teal": 2767,
-    "source": "contracts/TownHall.algo.ts:662",
-    "pc": [
-      3247,
       3248,
       3249
     ]
   },
   {
-    "teal": 2772,
-    "source": "contracts/TownHall.algo.ts:663",
+    "teal": 2781,
+    "source": "contracts/TownHall.algo.ts:672",
     "pc": [
       3250,
       3251
     ]
   },
   {
-    "teal": 2773,
-    "source": "contracts/TownHall.algo.ts:663",
+    "teal": 2782,
+    "source": "contracts/TownHall.algo.ts:672",
     "pc": [
-      3252,
+      3252
+    ]
+  },
+  {
+    "teal": 2783,
+    "source": "contracts/TownHall.algo.ts:672",
+    "pc": [
       3253
     ]
   },
   {
-    "teal": 2774,
-    "source": "contracts/TownHall.algo.ts:663",
+    "teal": 2784,
+    "source": "contracts/TownHall.algo.ts:672",
     "pc": [
-      3254
+      3254,
+      3255,
+      3256
     ]
   },
   {
-    "teal": 2775,
-    "source": "contracts/TownHall.algo.ts:663",
+    "teal": 2789,
+    "source": "contracts/TownHall.algo.ts:673",
     "pc": [
-      3255
-    ]
-  },
-  {
-    "teal": 2776,
-    "source": "contracts/TownHall.algo.ts:662",
-    "pc": [
-      3256,
       3257,
       3258
     ]
   },
   {
-    "teal": 2781,
-    "source": "contracts/TownHall.algo.ts:664",
+    "teal": 2790,
+    "source": "contracts/TownHall.algo.ts:673",
     "pc": [
       3259,
       3260
     ]
   },
   {
-    "teal": 2782,
-    "source": "contracts/TownHall.algo.ts:664",
+    "teal": 2791,
+    "source": "contracts/TownHall.algo.ts:673",
     "pc": [
-      3261,
+      3261
+    ]
+  },
+  {
+    "teal": 2792,
+    "source": "contracts/TownHall.algo.ts:673",
+    "pc": [
       3262
     ]
   },
   {
-    "teal": 2783,
-    "source": "contracts/TownHall.algo.ts:664",
+    "teal": 2793,
+    "source": "contracts/TownHall.algo.ts:672",
     "pc": [
-      3263
+      3263,
+      3264,
+      3265
     ]
   },
   {
-    "teal": 2784,
-    "source": "contracts/TownHall.algo.ts:664",
+    "teal": 2798,
+    "source": "contracts/TownHall.algo.ts:674",
     "pc": [
-      3264
-    ]
-  },
-  {
-    "teal": 2785,
-    "source": "contracts/TownHall.algo.ts:664",
-    "pc": [
-      3265,
       3266,
       3267
     ]
   },
   {
-    "teal": 2790,
-    "source": "contracts/TownHall.algo.ts:665",
+    "teal": 2799,
+    "source": "contracts/TownHall.algo.ts:674",
     "pc": [
       3268,
       3269
     ]
   },
   {
-    "teal": 2791,
-    "source": "contracts/TownHall.algo.ts:665",
+    "teal": 2800,
+    "source": "contracts/TownHall.algo.ts:674",
     "pc": [
-      3270,
+      3270
+    ]
+  },
+  {
+    "teal": 2801,
+    "source": "contracts/TownHall.algo.ts:674",
+    "pc": [
       3271
     ]
   },
   {
-    "teal": 2792,
-    "source": "contracts/TownHall.algo.ts:665",
+    "teal": 2802,
+    "source": "contracts/TownHall.algo.ts:674",
     "pc": [
-      3272
+      3272,
+      3273,
+      3274
     ]
   },
   {
-    "teal": 2793,
-    "source": "contracts/TownHall.algo.ts:665",
+    "teal": 2807,
+    "source": "contracts/TownHall.algo.ts:675",
     "pc": [
-      3273
-    ]
-  },
-  {
-    "teal": 2794,
-    "source": "contracts/TownHall.algo.ts:664",
-    "pc": [
-      3274,
       3275,
       3276
     ]
   },
   {
-    "teal": 2799,
-    "source": "contracts/TownHall.algo.ts:667",
+    "teal": 2808,
+    "source": "contracts/TownHall.algo.ts:675",
     "pc": [
       3277,
       3278
     ]
   },
   {
-    "teal": 2800,
-    "source": "contracts/TownHall.algo.ts:667",
+    "teal": 2809,
+    "source": "contracts/TownHall.algo.ts:675",
     "pc": [
-      3279,
+      3279
+    ]
+  },
+  {
+    "teal": 2810,
+    "source": "contracts/TownHall.algo.ts:675",
+    "pc": [
       3280
     ]
   },
   {
-    "teal": 2801,
-    "source": "contracts/TownHall.algo.ts:667",
+    "teal": 2811,
+    "source": "contracts/TownHall.algo.ts:674",
     "pc": [
-      3281
-    ]
-  },
-  {
-    "teal": 2806,
-    "source": "contracts/TownHall.algo.ts:673",
-    "pc": [
-      3282
-    ]
-  },
-  {
-    "teal": 2807,
-    "source": "contracts/Constants.ts:22",
-    "pc": [
-      3283,
-      3284
-    ]
-  },
-  {
-    "teal": 2808,
-    "source": "contracts/TownHall.algo.ts:673",
-    "pc": [
-      3285
-    ]
-  },
-  {
-    "teal": 2809,
-    "source": "contracts/TownHall.algo.ts:633",
-    "pc": [
-      3286
-    ]
-  },
-  {
-    "teal": 2814,
-    "source": "contracts/TownHall.algo.ts:676",
-    "pc": [
-      3287,
-      3288,
-      3289
-    ]
-  },
-  {
-    "teal": 2815,
-    "source": "contracts/TownHall.algo.ts:676",
-    "pc": [
-      3290
+      3281,
+      3282,
+      3283
     ]
   },
   {
     "teal": 2816,
     "source": "contracts/TownHall.algo.ts:676",
     "pc": [
-      3291
+      3284,
+      3285
+    ]
+  },
+  {
+    "teal": 2817,
+    "source": "contracts/TownHall.algo.ts:676",
+    "pc": [
+      3286,
+      3287
+    ]
+  },
+  {
+    "teal": 2818,
+    "source": "contracts/TownHall.algo.ts:676",
+    "pc": [
+      3288
+    ]
+  },
+  {
+    "teal": 2819,
+    "source": "contracts/TownHall.algo.ts:676",
+    "pc": [
+      3289
     ]
   },
   {
     "teal": 2820,
     "source": "contracts/TownHall.algo.ts:676",
     "pc": [
-      3292,
+      3290,
+      3291,
+      3292
+    ]
+  },
+  {
+    "teal": 2825,
+    "source": "contracts/TownHall.algo.ts:677",
+    "pc": [
       3293,
       3294
     ]
   },
   {
-    "teal": 2827,
-    "source": "contracts/TownHall.algo.ts:678",
+    "teal": 2826,
+    "source": "contracts/TownHall.algo.ts:677",
     "pc": [
-      3295
-    ]
-  },
-  {
-    "teal": 2828,
-    "source": "contracts/TownHall.algo.ts:678",
-    "pc": [
+      3295,
       3296
     ]
   },
   {
-    "teal": 2829,
-    "source": "contracts/Constants.ts:22",
+    "teal": 2827,
+    "source": "contracts/TownHall.algo.ts:677",
     "pc": [
-      3297,
+      3297
+    ]
+  },
+  {
+    "teal": 2828,
+    "source": "contracts/TownHall.algo.ts:677",
+    "pc": [
       3298
     ]
   },
   {
-    "teal": 2830,
-    "source": "contracts/TownHall.algo.ts:678",
+    "teal": 2829,
+    "source": "contracts/TownHall.algo.ts:676",
     "pc": [
-      3299
-    ]
-  },
-  {
-    "teal": 2833,
-    "source": "contracts/TownHall.algo.ts:677",
-    "errorMessage": "Invalid method call: Game is not in Dawn Stage DeadOrSaved? state.",
-    "pc": [
-      3300
-    ]
-  },
-  {
-    "teal": 2838,
-    "source": "contracts/TownHall.algo.ts:682",
-    "pc": [
+      3299,
+      3300,
       3301
     ]
   },
   {
-    "teal": 2839,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2834,
+    "source": "contracts/TownHall.algo.ts:679",
     "pc": [
-      3302
+      3302,
+      3303
     ]
   },
   {
-    "teal": 2840,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2835,
+    "source": "contracts/TownHall.algo.ts:679",
     "pc": [
-      3303,
-      3304
-    ]
-  },
-  {
-    "teal": 2841,
-    "source": "contracts/TownHall.algo.ts:682",
-    "pc": [
+      3304,
       3305
     ]
   },
   {
-    "teal": 2842,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2836,
+    "source": "contracts/TownHall.algo.ts:679",
     "pc": [
       3306
     ]
   },
   {
-    "teal": 2843,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2841,
+    "source": "contracts/TownHall.algo.ts:685",
     "pc": [
-      3307,
+      3307
+    ]
+  },
+  {
+    "teal": 2842,
+    "source": "contracts/Constants.ts:22",
+    "pc": [
       3308,
       3309
     ]
   },
   {
-    "teal": 2844,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2843,
+    "source": "contracts/TownHall.algo.ts:685",
     "pc": [
       3310
     ]
   },
   {
-    "teal": 2845,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2844,
+    "source": "contracts/TownHall.algo.ts:645",
     "pc": [
       3311
     ]
   },
   {
-    "teal": 2846,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2849,
+    "source": "contracts/TownHall.algo.ts:688",
     "pc": [
       3312,
-      3313
-    ]
-  },
-  {
-    "teal": 2847,
-    "source": "contracts/TownHall.algo.ts:682",
-    "pc": [
+      3313,
       3314
     ]
   },
   {
-    "teal": 2848,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2850,
+    "source": "contracts/TownHall.algo.ts:688",
     "pc": [
       3315
     ]
   },
   {
-    "teal": 2849,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2851,
+    "source": "contracts/TownHall.algo.ts:688",
     "pc": [
       3316
     ]
   },
   {
-    "teal": 2852,
-    "source": "contracts/TownHall.algo.ts:682",
+    "teal": 2855,
+    "source": "contracts/TownHall.algo.ts:688",
     "pc": [
       3317,
       3318,
@@ -12367,1502 +12348,1580 @@
     ]
   },
   {
-    "teal": 2857,
-    "source": "contracts/TownHall.algo.ts:687",
+    "teal": 2862,
+    "source": "contracts/TownHall.algo.ts:690",
     "pc": [
       3320
     ]
   },
   {
-    "teal": 2858,
-    "source": "contracts/TownHall.algo.ts:687",
-    "pc": [
-      3321,
-      3322
-    ]
-  },
-  {
-    "teal": 2859,
-    "source": "contracts/TownHall.algo.ts:687",
-    "pc": [
-      3323
-    ]
-  },
-  {
     "teal": 2863,
-    "source": "contracts/TownHall.algo.ts:688",
+    "source": "contracts/TownHall.algo.ts:690",
     "pc": [
-      3324,
-      3325
+      3321
     ]
   },
   {
     "teal": 2864,
-    "source": "contracts/TownHall.algo.ts:688",
+    "source": "contracts/Constants.ts:22",
     "pc": [
-      3326,
-      3327
+      3322,
+      3323
     ]
   },
   {
     "teal": 2865,
-    "source": "contracts/TownHall.algo.ts:688",
+    "source": "contracts/TownHall.algo.ts:690",
     "pc": [
-      3328
+      3324
     ]
   },
   {
-    "teal": 2869,
+    "teal": 2868,
     "source": "contracts/TownHall.algo.ts:689",
+    "errorMessage": "Invalid method call: Game is not in Dawn Stage DeadOrSaved? state.",
     "pc": [
+      3325
+    ]
+  },
+  {
+    "teal": 2873,
+    "source": "contracts/TownHall.algo.ts:694",
+    "pc": [
+      3326
+    ]
+  },
+  {
+    "teal": 2874,
+    "source": "contracts/TownHall.algo.ts:694",
+    "pc": [
+      3327
+    ]
+  },
+  {
+    "teal": 2875,
+    "source": "contracts/TownHall.algo.ts:694",
+    "pc": [
+      3328,
       3329
     ]
   },
   {
-    "teal": 2870,
-    "source": "contracts/Constants.ts:15",
+    "teal": 2876,
+    "source": "contracts/TownHall.algo.ts:694",
     "pc": [
       3330
     ]
   },
   {
-    "teal": 2871,
-    "source": "contracts/TownHall.algo.ts:689",
+    "teal": 2877,
+    "source": "contracts/TownHall.algo.ts:694",
     "pc": [
       3331
     ]
   },
   {
-    "teal": 2875,
-    "source": "contracts/TownHall.algo.ts:690",
+    "teal": 2878,
+    "source": "contracts/TownHall.algo.ts:694",
     "pc": [
-      3332
-    ]
-  },
-  {
-    "teal": 2881,
-    "source": "contracts/TownHall.algo.ts:695",
-    "pc": [
-      3333
-    ]
-  },
-  {
-    "teal": 2882,
-    "source": "contracts/TownHall.algo.ts:695",
-    "pc": [
+      3332,
+      3333,
       3334
     ]
   },
   {
-    "teal": 2883,
-    "source": "contracts/TownHall.algo.ts:695",
+    "teal": 2879,
+    "source": "contracts/TownHall.algo.ts:694",
     "pc": [
-      3335,
+      3335
+    ]
+  },
+  {
+    "teal": 2880,
+    "source": "contracts/TownHall.algo.ts:694",
+    "pc": [
       3336
     ]
   },
   {
-    "teal": 2884,
-    "source": "contracts/TownHall.algo.ts:695",
+    "teal": 2881,
+    "source": "contracts/TownHall.algo.ts:694",
     "pc": [
-      3337
-    ]
-  },
-  {
-    "teal": 2885,
-    "source": "contracts/TownHall.algo.ts:695",
-    "pc": [
+      3337,
       3338
     ]
   },
   {
-    "teal": 2886,
-    "source": "contracts/TownHall.algo.ts:695",
+    "teal": 2882,
+    "source": "contracts/TownHall.algo.ts:694",
     "pc": [
-      3339,
-      3340,
+      3339
+    ]
+  },
+  {
+    "teal": 2883,
+    "source": "contracts/TownHall.algo.ts:694",
+    "pc": [
+      3340
+    ]
+  },
+  {
+    "teal": 2884,
+    "source": "contracts/TownHall.algo.ts:694",
+    "pc": [
       3341
     ]
   },
   {
-    "teal": 2891,
-    "source": "contracts/TownHall.algo.ts:696",
+    "teal": 2887,
+    "source": "contracts/TownHall.algo.ts:694",
     "pc": [
-      3342
-    ]
-  },
-  {
-    "teal": 2892,
-    "source": "contracts/TownHall.algo.ts:696",
-    "pc": [
+      3342,
       3343,
       3344
     ]
   },
   {
-    "teal": 2893,
-    "source": "contracts/TownHall.algo.ts:696",
+    "teal": 2892,
+    "source": "contracts/TownHall.algo.ts:699",
     "pc": [
       3345
     ]
   },
   {
-    "teal": 2894,
-    "source": "contracts/TownHall.algo.ts:696",
+    "teal": 2893,
+    "source": "contracts/TownHall.algo.ts:699",
     "pc": [
-      3346
+      3346,
+      3347
     ]
   },
   {
-    "teal": 2898,
-    "source": "contracts/TownHall.algo.ts:697",
+    "teal": 2894,
+    "source": "contracts/TownHall.algo.ts:699",
     "pc": [
-      3347,
       3348
     ]
   },
   {
-    "teal": 2899,
-    "source": "contracts/TownHall.algo.ts:697",
+    "teal": 2898,
+    "source": "contracts/TownHall.algo.ts:700",
     "pc": [
       3349,
       3350
     ]
   },
   {
-    "teal": 2900,
-    "source": "contracts/TownHall.algo.ts:697",
+    "teal": 2899,
+    "source": "contracts/TownHall.algo.ts:700",
     "pc": [
-      3351
+      3351,
+      3352
     ]
   },
   {
-    "teal": 2901,
-    "source": "contracts/TownHall.algo.ts:695",
+    "teal": 2900,
+    "source": "contracts/TownHall.algo.ts:700",
     "pc": [
-      3352,
-      3353,
+      3353
+    ]
+  },
+  {
+    "teal": 2904,
+    "source": "contracts/TownHall.algo.ts:701",
+    "pc": [
       3354
     ]
   },
   {
-    "teal": 2906,
-    "source": "contracts/TownHall.algo.ts:698",
+    "teal": 2905,
+    "source": "contracts/Constants.ts:15",
     "pc": [
       3355
     ]
   },
   {
-    "teal": 2907,
-    "source": "contracts/TownHall.algo.ts:698",
+    "teal": 2906,
+    "source": "contracts/TownHall.algo.ts:701",
     "pc": [
       3356
     ]
   },
   {
-    "teal": 2908,
-    "source": "contracts/TownHall.algo.ts:698",
+    "teal": 2910,
+    "source": "contracts/TownHall.algo.ts:702",
     "pc": [
-      3357,
+      3357
+    ]
+  },
+  {
+    "teal": 2916,
+    "source": "contracts/TownHall.algo.ts:707",
+    "pc": [
       3358
     ]
   },
   {
-    "teal": 2909,
-    "source": "contracts/TownHall.algo.ts:698",
+    "teal": 2917,
+    "source": "contracts/TownHall.algo.ts:707",
     "pc": [
       3359
     ]
   },
   {
-    "teal": 2910,
-    "source": "contracts/TownHall.algo.ts:698",
+    "teal": 2918,
+    "source": "contracts/TownHall.algo.ts:707",
     "pc": [
-      3360
+      3360,
+      3361
     ]
   },
   {
-    "teal": 2911,
-    "source": "contracts/TownHall.algo.ts:698",
+    "teal": 2919,
+    "source": "contracts/TownHall.algo.ts:707",
     "pc": [
-      3361,
-      3362,
+      3362
+    ]
+  },
+  {
+    "teal": 2920,
+    "source": "contracts/TownHall.algo.ts:707",
+    "pc": [
       3363
     ]
   },
   {
-    "teal": 2916,
-    "source": "contracts/TownHall.algo.ts:699",
+    "teal": 2921,
+    "source": "contracts/TownHall.algo.ts:707",
     "pc": [
-      3364
-    ]
-  },
-  {
-    "teal": 2917,
-    "source": "contracts/TownHall.algo.ts:699",
-    "pc": [
+      3364,
       3365,
       3366
     ]
   },
   {
-    "teal": 2918,
-    "source": "contracts/TownHall.algo.ts:699",
+    "teal": 2926,
+    "source": "contracts/TownHall.algo.ts:708",
     "pc": [
       3367
     ]
   },
   {
-    "teal": 2919,
-    "source": "contracts/TownHall.algo.ts:699",
+    "teal": 2927,
+    "source": "contracts/TownHall.algo.ts:708",
     "pc": [
-      3368
+      3368,
+      3369
     ]
   },
   {
-    "teal": 2923,
-    "source": "contracts/TownHall.algo.ts:700",
+    "teal": 2928,
+    "source": "contracts/TownHall.algo.ts:708",
     "pc": [
-      3369,
       3370
     ]
   },
   {
-    "teal": 2924,
-    "source": "contracts/TownHall.algo.ts:700",
+    "teal": 2929,
+    "source": "contracts/TownHall.algo.ts:708",
     "pc": [
-      3371,
-      3372
-    ]
-  },
-  {
-    "teal": 2925,
-    "source": "contracts/TownHall.algo.ts:700",
-    "pc": [
-      3373
-    ]
-  },
-  {
-    "teal": 2926,
-    "source": "contracts/TownHall.algo.ts:698",
-    "pc": [
-      3374,
-      3375,
-      3376
-    ]
-  },
-  {
-    "teal": 2931,
-    "source": "contracts/TownHall.algo.ts:701",
-    "pc": [
-      3377
-    ]
-  },
-  {
-    "teal": 2932,
-    "source": "contracts/TownHall.algo.ts:701",
-    "pc": [
-      3378
+      3371
     ]
   },
   {
     "teal": 2933,
-    "source": "contracts/TownHall.algo.ts:701",
+    "source": "contracts/TownHall.algo.ts:709",
     "pc": [
-      3379,
-      3380
+      3372,
+      3373
     ]
   },
   {
     "teal": 2934,
-    "source": "contracts/TownHall.algo.ts:701",
+    "source": "contracts/TownHall.algo.ts:709",
+    "pc": [
+      3374,
+      3375
+    ]
+  },
+  {
+    "teal": 2935,
+    "source": "contracts/TownHall.algo.ts:709",
+    "pc": [
+      3376
+    ]
+  },
+  {
+    "teal": 2936,
+    "source": "contracts/TownHall.algo.ts:707",
+    "pc": [
+      3377,
+      3378,
+      3379
+    ]
+  },
+  {
+    "teal": 2941,
+    "source": "contracts/TownHall.algo.ts:710",
+    "pc": [
+      3380
+    ]
+  },
+  {
+    "teal": 2942,
+    "source": "contracts/TownHall.algo.ts:710",
     "pc": [
       3381
     ]
   },
   {
-    "teal": 2935,
-    "source": "contracts/TownHall.algo.ts:701",
+    "teal": 2943,
+    "source": "contracts/TownHall.algo.ts:710",
     "pc": [
-      3382
+      3382,
+      3383
     ]
   },
   {
-    "teal": 2936,
-    "source": "contracts/TownHall.algo.ts:701",
+    "teal": 2944,
+    "source": "contracts/TownHall.algo.ts:710",
     "pc": [
-      3383,
-      3384,
+      3384
+    ]
+  },
+  {
+    "teal": 2945,
+    "source": "contracts/TownHall.algo.ts:710",
+    "pc": [
       3385
     ]
   },
   {
-    "teal": 2941,
-    "source": "contracts/TownHall.algo.ts:702",
+    "teal": 2946,
+    "source": "contracts/TownHall.algo.ts:710",
     "pc": [
-      3386
-    ]
-  },
-  {
-    "teal": 2942,
-    "source": "contracts/TownHall.algo.ts:702",
-    "pc": [
+      3386,
       3387,
       3388
     ]
   },
   {
-    "teal": 2943,
-    "source": "contracts/TownHall.algo.ts:702",
+    "teal": 2951,
+    "source": "contracts/TownHall.algo.ts:711",
     "pc": [
       3389
     ]
   },
   {
-    "teal": 2944,
-    "source": "contracts/TownHall.algo.ts:702",
+    "teal": 2952,
+    "source": "contracts/TownHall.algo.ts:711",
     "pc": [
-      3390
+      3390,
+      3391
     ]
   },
   {
-    "teal": 2948,
-    "source": "contracts/TownHall.algo.ts:703",
+    "teal": 2953,
+    "source": "contracts/TownHall.algo.ts:711",
     "pc": [
-      3391,
       3392
     ]
   },
   {
-    "teal": 2949,
-    "source": "contracts/TownHall.algo.ts:703",
+    "teal": 2954,
+    "source": "contracts/TownHall.algo.ts:711",
     "pc": [
-      3393,
-      3394
-    ]
-  },
-  {
-    "teal": 2950,
-    "source": "contracts/TownHall.algo.ts:703",
-    "pc": [
-      3395
-    ]
-  },
-  {
-    "teal": 2951,
-    "source": "contracts/TownHall.algo.ts:701",
-    "pc": [
-      3396,
-      3397,
-      3398
-    ]
-  },
-  {
-    "teal": 2956,
-    "source": "contracts/TownHall.algo.ts:704",
-    "pc": [
-      3399
-    ]
-  },
-  {
-    "teal": 2957,
-    "source": "contracts/TownHall.algo.ts:704",
-    "pc": [
-      3400
+      3393
     ]
   },
   {
     "teal": 2958,
-    "source": "contracts/TownHall.algo.ts:704",
+    "source": "contracts/TownHall.algo.ts:712",
     "pc": [
-      3401,
-      3402
+      3394,
+      3395
     ]
   },
   {
     "teal": 2959,
-    "source": "contracts/TownHall.algo.ts:704",
+    "source": "contracts/TownHall.algo.ts:712",
+    "pc": [
+      3396,
+      3397
+    ]
+  },
+  {
+    "teal": 2960,
+    "source": "contracts/TownHall.algo.ts:712",
+    "pc": [
+      3398
+    ]
+  },
+  {
+    "teal": 2961,
+    "source": "contracts/TownHall.algo.ts:710",
+    "pc": [
+      3399,
+      3400,
+      3401
+    ]
+  },
+  {
+    "teal": 2966,
+    "source": "contracts/TownHall.algo.ts:713",
+    "pc": [
+      3402
+    ]
+  },
+  {
+    "teal": 2967,
+    "source": "contracts/TownHall.algo.ts:713",
     "pc": [
       3403
     ]
   },
   {
-    "teal": 2960,
-    "source": "contracts/TownHall.algo.ts:704",
+    "teal": 2968,
+    "source": "contracts/TownHall.algo.ts:713",
     "pc": [
-      3404
+      3404,
+      3405
     ]
   },
   {
-    "teal": 2961,
-    "source": "contracts/TownHall.algo.ts:704",
+    "teal": 2969,
+    "source": "contracts/TownHall.algo.ts:713",
     "pc": [
-      3405,
-      3406,
+      3406
+    ]
+  },
+  {
+    "teal": 2970,
+    "source": "contracts/TownHall.algo.ts:713",
+    "pc": [
       3407
     ]
   },
   {
-    "teal": 2966,
-    "source": "contracts/TownHall.algo.ts:705",
+    "teal": 2971,
+    "source": "contracts/TownHall.algo.ts:713",
     "pc": [
-      3408
-    ]
-  },
-  {
-    "teal": 2967,
-    "source": "contracts/TownHall.algo.ts:705",
-    "pc": [
+      3408,
       3409,
       3410
     ]
   },
   {
-    "teal": 2968,
-    "source": "contracts/TownHall.algo.ts:705",
+    "teal": 2976,
+    "source": "contracts/TownHall.algo.ts:714",
     "pc": [
       3411
     ]
   },
   {
-    "teal": 2969,
-    "source": "contracts/TownHall.algo.ts:705",
+    "teal": 2977,
+    "source": "contracts/TownHall.algo.ts:714",
     "pc": [
-      3412
+      3412,
+      3413
     ]
   },
   {
-    "teal": 2973,
-    "source": "contracts/TownHall.algo.ts:706",
+    "teal": 2978,
+    "source": "contracts/TownHall.algo.ts:714",
     "pc": [
-      3413,
       3414
     ]
   },
   {
-    "teal": 2974,
-    "source": "contracts/TownHall.algo.ts:706",
+    "teal": 2979,
+    "source": "contracts/TownHall.algo.ts:714",
     "pc": [
-      3415,
-      3416
-    ]
-  },
-  {
-    "teal": 2975,
-    "source": "contracts/TownHall.algo.ts:706",
-    "pc": [
-      3417
-    ]
-  },
-  {
-    "teal": 2976,
-    "source": "contracts/TownHall.algo.ts:704",
-    "pc": [
-      3418,
-      3419,
-      3420
-    ]
-  },
-  {
-    "teal": 2981,
-    "source": "contracts/TownHall.algo.ts:707",
-    "pc": [
-      3421
-    ]
-  },
-  {
-    "teal": 2982,
-    "source": "contracts/TownHall.algo.ts:707",
-    "pc": [
-      3422
+      3415
     ]
   },
   {
     "teal": 2983,
-    "source": "contracts/TownHall.algo.ts:707",
+    "source": "contracts/TownHall.algo.ts:715",
     "pc": [
-      3423,
-      3424
+      3416,
+      3417
     ]
   },
   {
     "teal": 2984,
-    "source": "contracts/TownHall.algo.ts:707",
+    "source": "contracts/TownHall.algo.ts:715",
+    "pc": [
+      3418,
+      3419
+    ]
+  },
+  {
+    "teal": 2985,
+    "source": "contracts/TownHall.algo.ts:715",
+    "pc": [
+      3420
+    ]
+  },
+  {
+    "teal": 2986,
+    "source": "contracts/TownHall.algo.ts:713",
+    "pc": [
+      3421,
+      3422,
+      3423
+    ]
+  },
+  {
+    "teal": 2991,
+    "source": "contracts/TownHall.algo.ts:716",
+    "pc": [
+      3424
+    ]
+  },
+  {
+    "teal": 2992,
+    "source": "contracts/TownHall.algo.ts:716",
     "pc": [
       3425
     ]
   },
   {
-    "teal": 2985,
-    "source": "contracts/TownHall.algo.ts:707",
+    "teal": 2993,
+    "source": "contracts/TownHall.algo.ts:716",
     "pc": [
-      3426
+      3426,
+      3427
     ]
   },
   {
-    "teal": 2986,
-    "source": "contracts/TownHall.algo.ts:707",
+    "teal": 2994,
+    "source": "contracts/TownHall.algo.ts:716",
     "pc": [
-      3427,
-      3428,
+      3428
+    ]
+  },
+  {
+    "teal": 2995,
+    "source": "contracts/TownHall.algo.ts:716",
+    "pc": [
       3429
     ]
   },
   {
-    "teal": 2991,
-    "source": "contracts/TownHall.algo.ts:708",
+    "teal": 2996,
+    "source": "contracts/TownHall.algo.ts:716",
     "pc": [
-      3430
-    ]
-  },
-  {
-    "teal": 2992,
-    "source": "contracts/TownHall.algo.ts:708",
-    "pc": [
+      3430,
       3431,
       3432
     ]
   },
   {
-    "teal": 2993,
-    "source": "contracts/TownHall.algo.ts:708",
+    "teal": 3001,
+    "source": "contracts/TownHall.algo.ts:717",
     "pc": [
       3433
     ]
   },
   {
-    "teal": 2994,
-    "source": "contracts/TownHall.algo.ts:708",
+    "teal": 3002,
+    "source": "contracts/TownHall.algo.ts:717",
     "pc": [
-      3434
+      3434,
+      3435
     ]
   },
   {
-    "teal": 2998,
-    "source": "contracts/TownHall.algo.ts:709",
+    "teal": 3003,
+    "source": "contracts/TownHall.algo.ts:717",
     "pc": [
-      3435,
       3436
     ]
   },
   {
-    "teal": 2999,
-    "source": "contracts/TownHall.algo.ts:709",
+    "teal": 3004,
+    "source": "contracts/TownHall.algo.ts:717",
     "pc": [
-      3437,
-      3438
-    ]
-  },
-  {
-    "teal": 3000,
-    "source": "contracts/TownHall.algo.ts:709",
-    "pc": [
-      3439
-    ]
-  },
-  {
-    "teal": 3001,
-    "source": "contracts/TownHall.algo.ts:707",
-    "pc": [
-      3440,
-      3441,
-      3442
-    ]
-  },
-  {
-    "teal": 3006,
-    "source": "contracts/TownHall.algo.ts:710",
-    "pc": [
-      3443
-    ]
-  },
-  {
-    "teal": 3007,
-    "source": "contracts/TownHall.algo.ts:710",
-    "pc": [
-      3444
+      3437
     ]
   },
   {
     "teal": 3008,
-    "source": "contracts/TownHall.algo.ts:710",
+    "source": "contracts/TownHall.algo.ts:718",
     "pc": [
-      3445,
-      3446
+      3438,
+      3439
     ]
   },
   {
     "teal": 3009,
-    "source": "contracts/TownHall.algo.ts:710",
+    "source": "contracts/TownHall.algo.ts:718",
+    "pc": [
+      3440,
+      3441
+    ]
+  },
+  {
+    "teal": 3010,
+    "source": "contracts/TownHall.algo.ts:718",
+    "pc": [
+      3442
+    ]
+  },
+  {
+    "teal": 3011,
+    "source": "contracts/TownHall.algo.ts:716",
+    "pc": [
+      3443,
+      3444,
+      3445
+    ]
+  },
+  {
+    "teal": 3016,
+    "source": "contracts/TownHall.algo.ts:719",
+    "pc": [
+      3446
+    ]
+  },
+  {
+    "teal": 3017,
+    "source": "contracts/TownHall.algo.ts:719",
     "pc": [
       3447
     ]
   },
   {
-    "teal": 3010,
-    "source": "contracts/TownHall.algo.ts:710",
+    "teal": 3018,
+    "source": "contracts/TownHall.algo.ts:719",
     "pc": [
-      3448
+      3448,
+      3449
     ]
   },
   {
-    "teal": 3011,
-    "source": "contracts/TownHall.algo.ts:710",
+    "teal": 3019,
+    "source": "contracts/TownHall.algo.ts:719",
     "pc": [
-      3449,
-      3450,
+      3450
+    ]
+  },
+  {
+    "teal": 3020,
+    "source": "contracts/TownHall.algo.ts:719",
+    "pc": [
       3451
     ]
   },
   {
-    "teal": 3016,
-    "source": "contracts/TownHall.algo.ts:711",
+    "teal": 3021,
+    "source": "contracts/TownHall.algo.ts:719",
     "pc": [
-      3452
-    ]
-  },
-  {
-    "teal": 3017,
-    "source": "contracts/TownHall.algo.ts:711",
-    "pc": [
+      3452,
       3453,
       3454
     ]
   },
   {
-    "teal": 3018,
-    "source": "contracts/TownHall.algo.ts:711",
+    "teal": 3026,
+    "source": "contracts/TownHall.algo.ts:720",
     "pc": [
       3455
     ]
   },
   {
-    "teal": 3019,
-    "source": "contracts/TownHall.algo.ts:711",
+    "teal": 3027,
+    "source": "contracts/TownHall.algo.ts:720",
     "pc": [
-      3456
+      3456,
+      3457
     ]
   },
   {
-    "teal": 3023,
-    "source": "contracts/TownHall.algo.ts:712",
+    "teal": 3028,
+    "source": "contracts/TownHall.algo.ts:720",
     "pc": [
-      3457,
       3458
     ]
   },
   {
-    "teal": 3024,
-    "source": "contracts/TownHall.algo.ts:712",
+    "teal": 3029,
+    "source": "contracts/TownHall.algo.ts:720",
     "pc": [
-      3459,
-      3460
+      3459
     ]
   },
   {
-    "teal": 3025,
-    "source": "contracts/TownHall.algo.ts:712",
+    "teal": 3033,
+    "source": "contracts/TownHall.algo.ts:721",
     "pc": [
+      3460,
       3461
     ]
   },
   {
-    "teal": 3026,
-    "source": "contracts/TownHall.algo.ts:710",
+    "teal": 3034,
+    "source": "contracts/TownHall.algo.ts:721",
     "pc": [
       3462,
-      3463,
-      3464
-    ]
-  },
-  {
-    "teal": 3030,
-    "source": "contracts/TownHall.algo.ts:714",
-    "errorMessage": "Error state: Victim must be a player! Should not have entered this state.",
-    "pc": [
-      3465
+      3463
     ]
   },
   {
     "teal": 3035,
-    "source": "contracts/TownHall.algo.ts:717",
+    "source": "contracts/TownHall.algo.ts:721",
     "pc": [
+      3464
+    ]
+  },
+  {
+    "teal": 3036,
+    "source": "contracts/TownHall.algo.ts:719",
+    "pc": [
+      3465,
       3466,
       3467
     ]
   },
   {
-    "teal": 3036,
-    "source": "contracts/TownHall.algo.ts:717",
+    "teal": 3041,
+    "source": "contracts/TownHall.algo.ts:722",
     "pc": [
       3468
     ]
   },
   {
-    "teal": 3037,
-    "source": "contracts/TownHall.algo.ts:717",
+    "teal": 3042,
+    "source": "contracts/TownHall.algo.ts:722",
     "pc": [
       3469
     ]
   },
   {
-    "teal": 3038,
-    "source": "contracts/TownHall.algo.ts:717",
+    "teal": 3043,
+    "source": "contracts/TownHall.algo.ts:722",
     "pc": [
-      3470
+      3470,
+      3471
     ]
   },
   {
-    "teal": 3039,
-    "source": "contracts/TownHall.algo.ts:717",
+    "teal": 3044,
+    "source": "contracts/TownHall.algo.ts:722",
     "pc": [
-      3471,
       3472
     ]
   },
   {
-    "teal": 3040,
-    "source": "contracts/TownHall.algo.ts:717",
+    "teal": 3045,
+    "source": "contracts/TownHall.algo.ts:722",
     "pc": [
       3473
     ]
   },
   {
-    "teal": 3041,
-    "source": "contracts/TownHall.algo.ts:717",
-    "pc": [
-      3474
-    ]
-  },
-  {
-    "teal": 3045,
-    "source": "contracts/TownHall.algo.ts:719",
-    "pc": [
-      3475
-    ]
-  },
-  {
     "teal": 3046,
-    "source": "contracts/TownHall.algo.ts:719",
+    "source": "contracts/TownHall.algo.ts:722",
     "pc": [
-      3476,
-      3477
-    ]
-  },
-  {
-    "teal": 3047,
-    "source": "contracts/TownHall.algo.ts:719",
-    "pc": [
-      3478
+      3474,
+      3475,
+      3476
     ]
   },
   {
     "teal": 3051,
-    "source": "contracts/TownHall.algo.ts:720",
+    "source": "contracts/TownHall.algo.ts:723",
     "pc": [
-      3479,
-      3480
+      3477
     ]
   },
   {
     "teal": 3052,
-    "source": "contracts/TownHall.algo.ts:720",
+    "source": "contracts/TownHall.algo.ts:723",
     "pc": [
-      3481,
-      3482
+      3478,
+      3479
     ]
   },
   {
     "teal": 3053,
-    "source": "contracts/TownHall.algo.ts:720",
+    "source": "contracts/TownHall.algo.ts:723",
     "pc": [
-      3483
+      3480
+    ]
+  },
+  {
+    "teal": 3054,
+    "source": "contracts/TownHall.algo.ts:723",
+    "pc": [
+      3481
     ]
   },
   {
     "teal": 3058,
-    "source": "contracts/TownHall.algo.ts:722",
+    "source": "contracts/TownHall.algo.ts:724",
+    "pc": [
+      3482,
+      3483
+    ]
+  },
+  {
+    "teal": 3059,
+    "source": "contracts/TownHall.algo.ts:724",
     "pc": [
       3484,
       3485
     ]
   },
   {
-    "teal": 3059,
-    "source": "contracts/TownHall.algo.ts:722",
+    "teal": 3060,
+    "source": "contracts/TownHall.algo.ts:724",
     "pc": [
       3486
-    ]
-  },
-  {
-    "teal": 3060,
-    "source": "contracts/TownHall.algo.ts:722",
-    "pc": [
-      3487
     ]
   },
   {
     "teal": 3061,
     "source": "contracts/TownHall.algo.ts:722",
     "pc": [
-      3488
+      3487,
+      3488,
+      3489
     ]
   },
   {
-    "teal": 3062,
-    "source": "contracts/TownHall.algo.ts:722",
+    "teal": 3065,
+    "source": "contracts/TownHall.algo.ts:726",
+    "errorMessage": "Error state: Victim must be a player! Should not have entered this state.",
     "pc": [
-      3489,
-      3490,
-      3491
+      3490
     ]
   },
   {
-    "teal": 3067,
-    "source": "contracts/TownHall.algo.ts:725",
+    "teal": 3070,
+    "source": "contracts/TownHall.algo.ts:729",
     "pc": [
+      3491,
       3492
     ]
   },
   {
-    "teal": 3068,
-    "source": "contracts/Constants.ts:24",
+    "teal": 3071,
+    "source": "contracts/TownHall.algo.ts:729",
     "pc": [
-      3493,
+      3493
+    ]
+  },
+  {
+    "teal": 3072,
+    "source": "contracts/TownHall.algo.ts:729",
+    "pc": [
       3494
     ]
   },
   {
-    "teal": 3069,
-    "source": "contracts/TownHall.algo.ts:725",
+    "teal": 3073,
+    "source": "contracts/TownHall.algo.ts:729",
     "pc": [
       3495
     ]
   },
   {
-    "teal": 3073,
-    "source": "contracts/TownHall.algo.ts:726",
-    "pc": [
-      3496
-    ]
-  },
-  {
-    "teal": 3078,
+    "teal": 3074,
     "source": "contracts/TownHall.algo.ts:729",
     "pc": [
+      3496,
       3497
     ]
   },
   {
-    "teal": 3079,
-    "source": "contracts/Constants.ts:23",
+    "teal": 3075,
+    "source": "contracts/TownHall.algo.ts:729",
     "pc": [
-      3498,
+      3498
+    ]
+  },
+  {
+    "teal": 3076,
+    "source": "contracts/TownHall.algo.ts:729",
+    "pc": [
       3499
     ]
   },
   {
     "teal": 3080,
-    "source": "contracts/TownHall.algo.ts:729",
+    "source": "contracts/TownHall.algo.ts:731",
     "pc": [
       3500
     ]
   },
   {
     "teal": 3081,
-    "source": "contracts/TownHall.algo.ts:676",
+    "source": "contracts/TownHall.algo.ts:731",
     "pc": [
-      3501
+      3501,
+      3502
+    ]
+  },
+  {
+    "teal": 3082,
+    "source": "contracts/TownHall.algo.ts:731",
+    "pc": [
+      3503
     ]
   },
   {
     "teal": 3086,
     "source": "contracts/TownHall.algo.ts:732",
     "pc": [
-      3502,
-      3503,
-      3504
+      3504,
+      3505
     ]
   },
   {
     "teal": 3087,
     "source": "contracts/TownHall.algo.ts:732",
     "pc": [
-      3505,
       3506,
       3507
     ]
   },
   {
-    "teal": 3090,
+    "teal": 3088,
     "source": "contracts/TownHall.algo.ts:732",
     "pc": [
-      3508,
+      3508
+    ]
+  },
+  {
+    "teal": 3093,
+    "source": "contracts/TownHall.algo.ts:734",
+    "pc": [
       3509,
       3510
     ]
   },
   {
-    "teal": 3091,
-    "source": "contracts/TownHall.algo.ts:732",
+    "teal": 3094,
+    "source": "contracts/TownHall.algo.ts:734",
     "pc": [
       3511
     ]
   },
   {
-    "teal": 3092,
-    "source": "contracts/TownHall.algo.ts:732",
+    "teal": 3095,
+    "source": "contracts/TownHall.algo.ts:734",
     "pc": [
       3512
     ]
   },
   {
     "teal": 3096,
-    "source": "contracts/TownHall.algo.ts:732",
+    "source": "contracts/TownHall.algo.ts:734",
     "pc": [
-      3513,
-      3514,
-      3515
+      3513
     ]
   },
   {
-    "teal": 3099,
-    "source": "contracts/TownHall.algo.ts:732",
+    "teal": 3097,
+    "source": "contracts/TownHall.algo.ts:734",
     "pc": [
+      3514,
+      3515,
       3516
     ]
   },
   {
-    "teal": 3100,
-    "source": "contracts/TownHall.algo.ts:732",
+    "teal": 3102,
+    "source": "contracts/TownHall.algo.ts:737",
     "pc": [
-      3517,
-      3518
+      3517
     ]
   },
   {
-    "teal": 3107,
-    "source": "contracts/TownHall.algo.ts:739",
+    "teal": 3103,
+    "source": "contracts/Constants.ts:24",
     "pc": [
+      3518,
       3519
     ]
   },
   {
-    "teal": 3108,
-    "source": "contracts/TownHall.algo.ts:739",
+    "teal": 3104,
+    "source": "contracts/TownHall.algo.ts:737",
     "pc": [
       3520
     ]
   },
   {
-    "teal": 3109,
-    "source": "contracts/Constants.ts:23",
+    "teal": 3108,
+    "source": "contracts/TownHall.algo.ts:738",
     "pc": [
-      3521,
-      3522
-    ]
-  },
-  {
-    "teal": 3110,
-    "source": "contracts/TownHall.algo.ts:739",
-    "pc": [
-      3523
+      3521
     ]
   },
   {
     "teal": 3113,
-    "source": "contracts/TownHall.algo.ts:738",
-    "errorMessage": "Invalid method call: Game is not in Dawn Stage Unmasking state.",
+    "source": "contracts/TownHall.algo.ts:741",
     "pc": [
+      3522
+    ]
+  },
+  {
+    "teal": 3114,
+    "source": "contracts/Constants.ts:23",
+    "pc": [
+      3523,
       3524
     ]
   },
   {
-    "teal": 3117,
-    "source": "contracts/TownHall.algo.ts:743",
+    "teal": 3115,
+    "source": "contracts/TownHall.algo.ts:741",
     "pc": [
       3525
     ]
   },
   {
-    "teal": 3118,
-    "source": "contracts/TownHall.algo.ts:743",
+    "teal": 3116,
+    "source": "contracts/TownHall.algo.ts:688",
     "pc": [
       3526
     ]
   },
   {
-    "teal": 3119,
-    "source": "contracts/TownHall.algo.ts:743",
+    "teal": 3121,
+    "source": "contracts/TownHall.algo.ts:744",
     "pc": [
       3527,
-      3528
-    ]
-  },
-  {
-    "teal": 3120,
-    "source": "contracts/TownHall.algo.ts:743",
-    "pc": [
+      3528,
       3529
     ]
   },
   {
-    "teal": 3123,
-    "source": "contracts/TownHall.algo.ts:743",
-    "errorMessage": "Error state: Other player called method.",
+    "teal": 3122,
+    "source": "contracts/TownHall.algo.ts:744",
     "pc": [
-      3530
-    ]
-  },
-  {
-    "teal": 3127,
-    "source": "contracts/TownHall.algo.ts:746",
-    "pc": [
+      3530,
       3531,
       3532
     ]
   },
   {
-    "teal": 3128,
-    "source": "contracts/TownHall.algo.ts:746",
+    "teal": 3125,
+    "source": "contracts/TownHall.algo.ts:744",
     "pc": [
       3533,
-      3534
+      3534,
+      3535
     ]
   },
   {
-    "teal": 3129,
-    "source": "contracts/TownHall.algo.ts:746",
+    "teal": 3126,
+    "source": "contracts/TownHall.algo.ts:744",
     "pc": [
-      3535,
       3536
     ]
   },
   {
-    "teal": 3130,
-    "source": "contracts/TownHall.algo.ts:746",
+    "teal": 3127,
+    "source": "contracts/TownHall.algo.ts:744",
     "pc": [
-      3537,
-      3538
+      3537
     ]
   },
   {
-    "teal": 3134,
-    "source": "contracts/TownHall.algo.ts:747",
+    "teal": 3131,
+    "source": "contracts/TownHall.algo.ts:744",
     "pc": [
+      3538,
       3539,
       3540
     ]
   },
   {
-    "teal": 3135,
-    "source": "contracts/TownHall.algo.ts:747",
+    "teal": 3134,
+    "source": "contracts/TownHall.algo.ts:744",
     "pc": [
-      3541,
+      3541
+    ]
+  },
+  {
+    "teal": 3135,
+    "source": "contracts/TownHall.algo.ts:744",
+    "pc": [
       3542,
       3543
     ]
   },
   {
-    "teal": 3136,
-    "source": "contracts/TownHall.algo.ts:747",
+    "teal": 3142,
+    "source": "contracts/TownHall.algo.ts:751",
     "pc": [
-      3544,
+      3544
+    ]
+  },
+  {
+    "teal": 3143,
+    "source": "contracts/TownHall.algo.ts:751",
+    "pc": [
       3545
     ]
   },
   {
-    "teal": 3140,
-    "source": "contracts/TownHall.algo.ts:748",
+    "teal": 3144,
+    "source": "contracts/Constants.ts:23",
     "pc": [
       3546,
       3547
     ]
   },
   {
-    "teal": 3141,
-    "source": "contracts/TownHall.algo.ts:748",
+    "teal": 3145,
+    "source": "contracts/TownHall.algo.ts:751",
     "pc": [
-      3548,
+      3548
+    ]
+  },
+  {
+    "teal": 3148,
+    "source": "contracts/TownHall.algo.ts:750",
+    "errorMessage": "Invalid method call: Game is not in Dawn Stage Unmasking state.",
+    "pc": [
       3549
     ]
   },
   {
-    "teal": 3142,
-    "source": "contracts/TownHall.algo.ts:748",
+    "teal": 3152,
+    "source": "contracts/TownHall.algo.ts:755",
     "pc": [
-      3550,
+      3550
+    ]
+  },
+  {
+    "teal": 3153,
+    "source": "contracts/TownHall.algo.ts:755",
+    "pc": [
       3551
     ]
   },
   {
-    "teal": 3143,
-    "source": "contracts/TownHall.algo.ts:748",
+    "teal": 3154,
+    "source": "contracts/TownHall.algo.ts:755",
     "pc": [
       3552,
       3553
     ]
   },
   {
-    "teal": 3148,
-    "source": "contracts/TownHall.algo.ts:750",
+    "teal": 3155,
+    "source": "contracts/TownHall.algo.ts:755",
     "pc": [
-      3554,
+      3554
+    ]
+  },
+  {
+    "teal": 3158,
+    "source": "contracts/TownHall.algo.ts:755",
+    "errorMessage": "Error state: Other player called method.",
+    "pc": [
       3555
     ]
   },
   {
-    "teal": 3149,
-    "source": "contracts/TownHall.algo.ts:750",
+    "teal": 3162,
+    "source": "contracts/TownHall.algo.ts:758",
     "pc": [
       3556,
       3557
     ]
   },
   {
-    "teal": 3150,
-    "source": "contracts/TownHall.algo.ts:750",
+    "teal": 3163,
+    "source": "contracts/TownHall.algo.ts:758",
     "pc": [
-      3558
-    ]
-  },
-  {
-    "teal": 3151,
-    "source": "contracts/TownHall.algo.ts:750",
-    "pc": [
+      3558,
       3559
     ]
   },
   {
-    "teal": 3152,
-    "source": "contracts/TownHall.algo.ts:750",
+    "teal": 3164,
+    "source": "contracts/TownHall.algo.ts:758",
     "pc": [
       3560,
-      3561,
-      3562
+      3561
     ]
   },
   {
-    "teal": 3157,
-    "source": "contracts/TownHall.algo.ts:754",
+    "teal": 3165,
+    "source": "contracts/TownHall.algo.ts:758",
     "pc": [
+      3562,
       3563
     ]
   },
   {
-    "teal": 3158,
-    "source": "contracts/Constants.ts:24",
+    "teal": 3169,
+    "source": "contracts/TownHall.algo.ts:759",
     "pc": [
       3564,
       3565
     ]
   },
   {
-    "teal": 3159,
-    "source": "contracts/TownHall.algo.ts:754",
+    "teal": 3170,
+    "source": "contracts/TownHall.algo.ts:759",
     "pc": [
-      3566
-    ]
-  },
-  {
-    "teal": 3163,
-    "source": "contracts/TownHall.algo.ts:755",
-    "pc": [
+      3566,
       3567,
       3568
     ]
   },
   {
-    "teal": 3164,
-    "source": "contracts/TownHall.algo.ts:755",
+    "teal": 3171,
+    "source": "contracts/TownHall.algo.ts:759",
     "pc": [
       3569,
       3570
     ]
   },
   {
-    "teal": 3165,
-    "source": "contracts/TownHall.algo.ts:755",
+    "teal": 3175,
+    "source": "contracts/TownHall.algo.ts:760",
     "pc": [
-      3571
-    ]
-  },
-  {
-    "teal": 3169,
-    "source": "contracts/TownHall.algo.ts:756",
-    "pc": [
+      3571,
       3572
     ]
   },
   {
-    "teal": 3175,
-    "source": "contracts/TownHall.algo.ts:759",
+    "teal": 3176,
+    "source": "contracts/TownHall.algo.ts:760",
     "pc": [
       3573,
       3574
     ]
   },
   {
-    "teal": 3176,
-    "source": "contracts/TownHall.algo.ts:759",
+    "teal": 3177,
+    "source": "contracts/TownHall.algo.ts:760",
     "pc": [
       3575,
       3576
     ]
   },
   {
-    "teal": 3177,
-    "source": "contracts/TownHall.algo.ts:759",
-    "pc": [
-      3577
-    ]
-  },
-  {
     "teal": 3178,
-    "source": "contracts/TownHall.algo.ts:759",
+    "source": "contracts/TownHall.algo.ts:760",
     "pc": [
+      3577,
       3578
     ]
   },
   {
-    "teal": 3179,
-    "source": "contracts/TownHall.algo.ts:759",
+    "teal": 3183,
+    "source": "contracts/TownHall.algo.ts:762",
     "pc": [
       3579,
-      3580,
-      3581
+      3580
     ]
   },
   {
     "teal": 3184,
-    "source": "contracts/TownHall.algo.ts:761",
+    "source": "contracts/TownHall.algo.ts:762",
     "pc": [
-      3582,
-      3583
+      3581,
+      3582
     ]
   },
   {
     "teal": 3185,
-    "source": "contracts/TownHall.algo.ts:761",
+    "source": "contracts/TownHall.algo.ts:762",
     "pc": [
-      3584,
-      3585
+      3583
     ]
   },
   {
     "teal": 3186,
-    "source": "contracts/TownHall.algo.ts:761",
+    "source": "contracts/TownHall.algo.ts:762",
     "pc": [
-      3586
+      3584
     ]
   },
   {
-    "teal": 3191,
-    "source": "contracts/TownHall.algo.ts:765",
+    "teal": 3187,
+    "source": "contracts/TownHall.algo.ts:762",
     "pc": [
+      3585,
+      3586,
       3587
     ]
   },
   {
     "teal": 3192,
-    "source": "contracts/TownHall.algo.ts:765",
+    "source": "contracts/TownHall.algo.ts:766",
     "pc": [
-      3588,
-      3589
+      3588
     ]
   },
   {
     "teal": 3193,
-    "source": "contracts/TownHall.algo.ts:765",
+    "source": "contracts/Constants.ts:24",
     "pc": [
+      3589,
       3590
     ]
   },
   {
-    "teal": 3197,
-    "source": "contracts/TownHall.algo.ts:767",
+    "teal": 3194,
+    "source": "contracts/TownHall.algo.ts:766",
     "pc": [
       3591
     ]
   },
   {
     "teal": 3198,
-    "source": "contracts/Constants.ts:15",
+    "source": "contracts/TownHall.algo.ts:767",
     "pc": [
-      3592
+      3592,
+      3593
     ]
   },
   {
     "teal": 3199,
     "source": "contracts/TownHall.algo.ts:767",
     "pc": [
-      3593
+      3594,
+      3595
     ]
   },
   {
     "teal": 3200,
-    "source": "contracts/TownHall.algo.ts:732",
+    "source": "contracts/TownHall.algo.ts:767",
     "pc": [
-      3594
+      3596
     ]
   },
   {
-    "teal": 3205,
-    "source": "contracts/TownHall.algo.ts:770",
+    "teal": 3204,
+    "source": "contracts/TownHall.algo.ts:768",
     "pc": [
-      3595,
-      3596,
       3597
     ]
   },
   {
-    "teal": 3206,
-    "source": "contracts/TownHall.algo.ts:770",
+    "teal": 3210,
+    "source": "contracts/TownHall.algo.ts:771",
     "pc": [
-      3598
-    ]
-  },
-  {
-    "teal": 3207,
-    "source": "contracts/TownHall.algo.ts:770",
-    "pc": [
+      3598,
       3599
     ]
   },
   {
     "teal": 3211,
-    "source": "contracts/TownHall.algo.ts:770",
+    "source": "contracts/TownHall.algo.ts:771",
     "pc": [
       3600,
-      3601,
+      3601
+    ]
+  },
+  {
+    "teal": 3212,
+    "source": "contracts/TownHall.algo.ts:771",
+    "pc": [
       3602
     ]
   },
   {
-    "teal": 3215,
+    "teal": 3213,
     "source": "contracts/TownHall.algo.ts:771",
     "pc": [
       3603
     ]
   },
   {
-    "teal": 3216,
+    "teal": 3214,
     "source": "contracts/TownHall.algo.ts:771",
     "pc": [
-      3604
-    ]
-  },
-  {
-    "teal": 3217,
-    "source": "contracts/Constants.ts:24",
-    "pc": [
+      3604,
       3605,
       3606
     ]
   },
   {
-    "teal": 3218,
-    "source": "contracts/TownHall.algo.ts:771",
+    "teal": 3219,
+    "source": "contracts/TownHall.algo.ts:773",
     "pc": [
-      3607
-    ]
-  },
-  {
-    "teal": 3221,
-    "source": "contracts/TownHall.algo.ts:771",
-    "errorMessage": "Invalid method call: Game is not in Game Over state.",
-    "pc": [
+      3607,
       3608
     ]
   },
   {
-    "teal": 3222,
-    "source": "contracts/TownHall.algo.ts:770",
+    "teal": 3220,
+    "source": "contracts/TownHall.algo.ts:773",
     "pc": [
-      3609
+      3609,
+      3610
     ]
   },
   {
-    "teal": 3225,
-    "source": "contracts/TownHall.algo.ts:31",
+    "teal": 3221,
+    "source": "contracts/TownHall.algo.ts:773",
     "pc": [
-      3610,
-      3611,
-      3612,
-      3613,
-      3614,
-      3615
+      3611
     ]
   },
   {
     "teal": 3226,
-    "source": "contracts/TownHall.algo.ts:31",
+    "source": "contracts/TownHall.algo.ts:777",
     "pc": [
-      3616,
-      3617,
-      3618
+      3612
     ]
   },
   {
     "teal": 3227,
-    "source": "contracts/TownHall.algo.ts:31",
+    "source": "contracts/TownHall.algo.ts:777",
     "pc": [
-      3619,
+      3613,
+      3614
+    ]
+  },
+  {
+    "teal": 3228,
+    "source": "contracts/TownHall.algo.ts:777",
+    "pc": [
+      3615
+    ]
+  },
+  {
+    "teal": 3232,
+    "source": "contracts/TownHall.algo.ts:779",
+    "pc": [
+      3616
+    ]
+  },
+  {
+    "teal": 3233,
+    "source": "contracts/Constants.ts:15",
+    "pc": [
+      3617
+    ]
+  },
+  {
+    "teal": 3234,
+    "source": "contracts/TownHall.algo.ts:779",
+    "pc": [
+      3618
+    ]
+  },
+  {
+    "teal": 3235,
+    "source": "contracts/TownHall.algo.ts:744",
+    "pc": [
+      3619
+    ]
+  },
+  {
+    "teal": 3240,
+    "source": "contracts/TownHall.algo.ts:782",
+    "pc": [
       3620,
       3621,
       3622
     ]
   },
   {
-    "teal": 3230,
-    "source": "contracts/TownHall.algo.ts:31",
-    "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+    "teal": 3241,
+    "source": "contracts/TownHall.algo.ts:782",
     "pc": [
       3623
     ]
   },
   {
-    "teal": 3233,
-    "source": "contracts/TownHall.algo.ts:31",
+    "teal": 3242,
+    "source": "contracts/TownHall.algo.ts:782",
     "pc": [
-      3624,
+      3624
+    ]
+  },
+  {
+    "teal": 3246,
+    "source": "contracts/TownHall.algo.ts:782",
+    "pc": [
       3625,
       3626,
-      3627,
-      3628,
+      3627
+    ]
+  },
+  {
+    "teal": 3250,
+    "source": "contracts/TownHall.algo.ts:783",
+    "pc": [
+      3628
+    ]
+  },
+  {
+    "teal": 3251,
+    "source": "contracts/TownHall.algo.ts:783",
+    "pc": [
       3629
     ]
   },
   {
-    "teal": 3234,
-    "source": "contracts/TownHall.algo.ts:31",
+    "teal": 3252,
+    "source": "contracts/Constants.ts:24",
     "pc": [
       3630,
-      3631,
-      3632,
-      3633,
-      3634,
-      3635
+      3631
     ]
   },
   {
-    "teal": 3235,
+    "teal": 3253,
+    "source": "contracts/TownHall.algo.ts:783",
+    "pc": [
+      3632
+    ]
+  },
+  {
+    "teal": 3256,
+    "source": "contracts/TownHall.algo.ts:783",
+    "errorMessage": "Invalid method call: Game is not in Game Over state.",
+    "pc": [
+      3633
+    ]
+  },
+  {
+    "teal": 3257,
+    "source": "contracts/TownHall.algo.ts:782",
+    "pc": [
+      3634
+    ]
+  },
+  {
+    "teal": 3260,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
+      3635,
       3636,
       3637,
       3638,
       3639,
-      3640,
-      3641
+      3640
     ]
   },
   {
-    "teal": 3236,
+    "teal": 3261,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
+      3641,
       3642,
-      3643,
+      3643
+    ]
+  },
+  {
+    "teal": 3262,
+    "source": "contracts/TownHall.algo.ts:31",
+    "pc": [
       3644,
       3645,
       3646,
@@ -13870,187 +13929,218 @@
     ]
   },
   {
-    "teal": 3237,
+    "teal": 3265,
+    "source": "contracts/TownHall.algo.ts:31",
+    "errorMessage": "this contract does not implement the given ABI method for create NoOp",
+    "pc": [
+      3648
+    ]
+  },
+  {
+    "teal": 3268,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3648,
       3649,
       3650,
       3651,
       3652,
-      3653
+      3653,
+      3654
     ]
   },
   {
-    "teal": 3238,
+    "teal": 3269,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3654,
       3655,
       3656,
       3657,
       3658,
-      3659
+      3659,
+      3660
     ]
   },
   {
-    "teal": 3239,
+    "teal": 3270,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3660,
       3661,
       3662,
       3663,
       3664,
-      3665
+      3665,
+      3666
     ]
   },
   {
-    "teal": 3240,
+    "teal": 3271,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3666,
       3667,
       3668,
       3669,
       3670,
-      3671
+      3671,
+      3672
     ]
   },
   {
-    "teal": 3241,
+    "teal": 3272,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3672,
       3673,
       3674,
       3675,
       3676,
-      3677
+      3677,
+      3678
     ]
   },
   {
-    "teal": 3242,
+    "teal": 3273,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3678,
       3679,
       3680,
       3681,
       3682,
-      3683
+      3683,
+      3684
     ]
   },
   {
-    "teal": 3243,
+    "teal": 3274,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3684,
       3685,
       3686,
       3687,
       3688,
-      3689
+      3689,
+      3690
     ]
   },
   {
-    "teal": 3244,
+    "teal": 3275,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3690,
       3691,
       3692,
       3693,
       3694,
-      3695
+      3695,
+      3696
     ]
   },
   {
-    "teal": 3245,
+    "teal": 3276,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3696,
       3697,
       3698,
       3699,
       3700,
-      3701
+      3701,
+      3702
     ]
   },
   {
-    "teal": 3246,
+    "teal": 3277,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3702,
       3703,
       3704,
       3705,
       3706,
-      3707
+      3707,
+      3708
     ]
   },
   {
-    "teal": 3247,
+    "teal": 3278,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3708,
       3709,
       3710,
       3711,
       3712,
-      3713
+      3713,
+      3714
     ]
   },
   {
-    "teal": 3248,
+    "teal": 3279,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3714,
       3715,
       3716,
       3717,
       3718,
-      3719
+      3719,
+      3720
     ]
   },
   {
-    "teal": 3249,
+    "teal": 3280,
     "source": "contracts/TownHall.algo.ts:31",
     "pc": [
-      3720,
       3721,
-      3722
-    ]
-  },
-  {
-    "teal": 3250,
-    "source": "contracts/TownHall.algo.ts:31",
-    "pc": [
+      3722,
       3723,
       3724,
       3725,
-      3726,
+      3726
+    ]
+  },
+  {
+    "teal": 3281,
+    "source": "contracts/TownHall.algo.ts:31",
+    "pc": [
       3727,
       3728,
       3729,
       3730,
       3731,
-      3732,
+      3732
+    ]
+  },
+  {
+    "teal": 3282,
+    "source": "contracts/TownHall.algo.ts:31",
+    "pc": [
       3733,
       3734,
       3735,
       3736,
       3737,
-      3738,
+      3738
+    ]
+  },
+  {
+    "teal": 3283,
+    "source": "contracts/TownHall.algo.ts:31",
+    "pc": [
       3739,
       3740,
       3741,
       3742,
       3743,
-      3744,
+      3744
+    ]
+  },
+  {
+    "teal": 3284,
+    "source": "contracts/TownHall.algo.ts:31",
+    "pc": [
       3745,
       3746,
-      3747,
+      3747
+    ]
+  },
+  {
+    "teal": 3285,
+    "source": "contracts/TownHall.algo.ts:31",
+    "pc": [
       3748,
       3749,
       3750,
@@ -14059,15 +14149,40 @@
       3753,
       3754,
       3755,
-      3756
+      3756,
+      3757,
+      3758,
+      3759,
+      3760,
+      3761,
+      3762,
+      3763,
+      3764,
+      3765,
+      3766,
+      3767,
+      3768,
+      3769,
+      3770,
+      3771,
+      3772,
+      3773,
+      3774,
+      3775,
+      3776,
+      3777,
+      3778,
+      3779,
+      3780,
+      3781
     ]
   },
   {
-    "teal": 3253,
+    "teal": 3288,
     "source": "contracts/TownHall.algo.ts:31",
     "errorMessage": "this contract does not implement the given ABI method for call NoOp",
     "pc": [
-      3757
+      3782
     ]
   }
 ]

@@ -545,11 +545,17 @@ export class TownHall extends Contract {
 
     if (genKeyImage === this.doctorKeyImage.value) {
       // The village eliminated the doctor! Uh oh.
-      this.gameState.value = stateNightStageMafiaCommit;
       this.doctor.value = globals.zeroAddress;
     }
 
     this.justEliminatedPlayer.value = globals.zeroAddress;
+
+    if (this.playersAlive.value <= 2) {
+      // The mafia has won!
+      // This assumes that the mafia is 1 of the remaining plays.
+      this.gameState.value = stateGameOver;
+      return;
+    }
 
     this.gameState.value = stateNightStageMafiaCommit; // Go to next stage
   }
@@ -627,7 +633,13 @@ export class TownHall extends Contract {
     // Reset commitment
     // TODO: this.mafiaCommitment.value = hex('0');
 
-    this.gameState.value = stateDawnStageDoctorReveal;
+    if (this.doctor.value === globals.zeroAddress) {
+      // If doctor is dead, no point in waiting for them to reveal
+      this.gameState.value = stateDawnStageDeadOrSaved;
+    } else {
+      // If doctor is alive, wait for them to reveal
+      this.gameState.value = stateDawnStageDoctorReveal;
+    }
   }
 
   dawnStageDoctorReveal(patientAim: Address, blinder: bytes32): void {
