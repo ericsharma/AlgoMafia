@@ -13,6 +13,7 @@ interface NightStageMafiaCommitProps {
 const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObject, refresher }) => {
   const [iAmMafia, setIAmMafia] = useState<boolean>(false)
   const [potentialVictims, setPotentialVictims] = useState<{ label: string; address: string; number: number }[]>([])
+  const [playerIsDead, setPlayerIsDead] = useState<boolean>(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const fetchPlayers = async () => {
@@ -27,6 +28,13 @@ const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObj
       ]
 
       setIAmMafia(playerObject.night_algo_address.addr.toString() === (await playerObject.night_client.state.global.mafia())!.toString())
+
+      // Get index of the active player
+      const activePlayerIndex = fetchedPlayers.findIndex((player) => player.address === playerObject.day_algo_address.addr.toString())
+      if (activePlayerIndex === -1) {
+        setPlayerIsDead(true)
+      }
+
 
       // Filter out the active player and zero addresses
       const validPlayers = fetchedPlayers.filter(
@@ -98,7 +106,13 @@ const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObj
           <p>Error: No players available to vote for.</p>
         )
       ) : (
-        <p>You are not mafia. Wait for the mafia to commit.</p>
+        <>
+          {playerIsDead ? (
+            <p className="py-4">You are out. You cannot vote.</p>
+          ) : (
+            <p className="py-4">Please wait for the Infiltrator to make their choice..</p>
+          )}
+        </>
       )}
     </div>
   )

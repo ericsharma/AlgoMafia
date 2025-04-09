@@ -96,7 +96,7 @@ const NightStageDoctorCommit: React.FC<NightStageDoctorCommitProps> = ({ playerO
           <p>Error: No players available to vote for.</p>
         )
       ) : (
-        <p>You are not Doctor. Wait for the Doctor to commit.</p>
+        <p>You are not the Double Agent. Wait for the Double Agent to commit.</p>
       )}
     </div>
   )

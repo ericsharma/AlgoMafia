@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Player } from '../interfaces/player'
 import { ellipseAddress } from '../utils/ellipseAddress'
+import { ZERO_ADDRESS } from '../utils/constants'
 
 interface DayStageVoteProps {
   playerObject: Player
@@ -10,6 +11,7 @@ interface DayStageVoteProps {
 const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) => {
   const [players, setPlayers] = useState<{ label: string; address: string; number: number }[]>([])
   const [playerHasVoted, setPlayerHasVoted] = useState<boolean>(false)
+  const [playerIsDead, setPlayerIsDead] = useState<boolean>(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   // TODO: break this kind of stuff out so that the stages can reuse the listing of players
@@ -35,15 +37,16 @@ const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) 
       ]
 
       // Get index of the active player
-      const activePlayerIndex = fetchedPlayers.findIndex(
-        (player) => player.address === playerObject.day_algo_address.addr.toString()
-      )
+      const activePlayerIndex = fetchedPlayers.findIndex((player) => player.address === playerObject.day_algo_address.addr.toString())
+      if (activePlayerIndex === -1) {
+        setPlayerIsDead(true)
+      }
 
       setPlayerHasVoted(Number(playerHasVoted[activePlayerIndex]) !== 0)
 
       // Filter out the active player and zero addresses
       const validPlayers = fetchedPlayers.filter(
-        (player) => player.address !== playerObject.day_algo_address.addr.toString()
+        (player) => player.address !== playerObject.day_algo_address.addr.toString() && player.address !== ZERO_ADDRESS,
       )
       setPlayers(validPlayers)
     } catch (error) {
@@ -59,7 +62,6 @@ const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) 
       refresher()
     }, 2800) // Poll every 2.8 seconds
   }
-
 
   useEffect(() => {
     // Run fetchPlayers initially when the component is loaded
@@ -91,7 +93,13 @@ const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) 
       <h1 className="text-4xl font-bold">Day Stage: Vote</h1>
 
       {playerHasVoted ? (
-        <p className="py-4">You have already voted. Please wait.</p>
+        <>
+          {playerIsDead ? (
+            <p className="py-4"> You are out. You cannot vote.</p>
+          ) : (
+            <p className="py-4">You have already voted. Please wait.</p>
+          )}
+        </>
       ) : (
         <>
           <p className="py-4">Who do you want to vote for?</p>
