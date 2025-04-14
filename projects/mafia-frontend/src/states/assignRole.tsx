@@ -1,17 +1,16 @@
-import * as algoring from 'algoring-ts'
-import React, { useEffect, useState, useRef } from 'react'
-import { Player } from '../interfaces/player'
-import { useWallet } from '@txnlab/use-wallet-react'
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
-import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
-import { BLS12381G1_LENGTH, RING_SIG_CHALL_LENGTH, RING_SIG_NONCE_LENGTH, ZERO_ADDRESS } from '../utils/constants'
+import { useWallet } from '@txnlab/use-wallet-react'
+import * as algoring from 'algoring-ts'
 import algosdk from 'algosdk'
-import { TownHallClient } from '../contracts/TownHall'
 import assert from 'assert'
+import React, { useEffect, useRef, useState } from 'react'
+import { TownHallClient } from '../contracts/TownHall'
+import { Player } from '../interfaces/player'
+import { BLS12381G1_LENGTH, RING_SIG_CHALL_LENGTH, RING_SIG_NONCE_LENGTH, ZERO_ADDRESS } from '../utils/constants'
+import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 
 interface AssignRoleProps {
   playerObject: Player
-  refresher: () => void
 }
 
 async function prepareLSigRingLink(
@@ -156,7 +155,7 @@ async function assignRoleCall(playerObject: Player) {
   console.log('Assign Role Result:', assignRoleResult)
 }
 
-const AssignRole: React.FC<AssignRoleProps> = ({ playerObject, refresher }) => {
+const AssignRole: React.FC<AssignRoleProps> = ({ playerObject }) => {
   const [playerRole, setPlayerRole] = useState('')
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const { activeAddress, transactionSigner } = useWallet()
@@ -185,7 +184,6 @@ const AssignRole: React.FC<AssignRoleProps> = ({ playerObject, refresher }) => {
         grocerAddress !== ZERO_ADDRESS
       ) {
         console.log('All roles have been assigned.')
-        refresher()
       }
 
       if (mafiaAddress && mafiaAddress === playerObject.night_algo_address.addr.toString()) {

@@ -1,16 +1,15 @@
+import algosdk from 'algosdk'
+import { createHash, randomBytes } from 'crypto'
 import { useEffect, useRef, useState } from 'react'
 import { Player } from '../interfaces/player'
-import { createHash, randomBytes } from 'crypto'
-import algosdk from 'algosdk'
-import { ellipseAddress } from '../utils/ellipseAddress'
 import { ZERO_ADDRESS } from '../utils/constants'
+import { ellipseAddress } from '../utils/ellipseAddress'
 
 interface NightStageMafiaCommitProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObject, refresher }) => {
+const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObject }) => {
   const [iAmMafia, setIAmMafia] = useState<boolean>(false)
   const [potentialVictims, setPotentialVictims] = useState<{ label: string; address: string; number: number }[]>([])
   const [playerIsDead, setPlayerIsDead] = useState<boolean>(false)
@@ -35,7 +34,6 @@ const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObj
         setPlayerIsDead(true)
       }
 
-
       // Filter out the active player and zero addresses
       const validPlayers = fetchedPlayers.filter(
         (player) => player.address !== playerObject.day_algo_address.addr.toString() && player.address !== ZERO_ADDRESS,
@@ -50,9 +48,7 @@ const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObj
     if (intervalRef.current) {
       clearInterval(intervalRef.current)
     }
-    intervalRef.current = setInterval(() => {
-      refresher()
-    }, 2800) // Poll every 2.8 seconds
+    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
   }
 
   useEffect(() => {

@@ -1,18 +1,17 @@
-import * as algoring from 'algoring-ts'
-import React, { useEffect, useState, useRef } from 'react'
-import { Player } from '../interfaces/player'
-import { useWallet } from '@txnlab/use-wallet-react'
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
-import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
+import { useWallet } from '@txnlab/use-wallet-react'
+import * as algoring from 'algoring-ts'
+import React, { useEffect, useRef, useState } from 'react'
+import { Player } from '../interfaces/player'
 import { BLS12381G1_LENGTH, RING_SIG_NONCE_LENGTH, ZERO_ADDRESS } from '../utils/constants'
 import { ellipseAddress } from '../utils/ellipseAddress'
+import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 
 interface JoinGameLobbyProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject, refresher }) => {
+const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject }) => {
   const [players, setPlayers] = useState<string[]>([])
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -35,7 +34,6 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject, refresher }
 
       if (validPlayers.length === 6) {
         console.log('All players have joined the game.')
-        refresher()
       }
     } catch (error) {
       console.error('Failed to fetch players:', error)
@@ -150,7 +148,6 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject, refresher }
     await fetchPlayers()
     startPolling() // Restart polling after handleJoinGame
   }
-
 
   return (
     <div className="text-center">

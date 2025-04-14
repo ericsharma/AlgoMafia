@@ -1,16 +1,11 @@
-import algosdk from 'algosdk'
-import { randomBytes, createHash } from 'crypto'
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Player } from '../interfaces/player'
-import { ZERO_ADDRESS } from '../utils/constants'
-import { ellipseAddress } from '../utils/ellipseAddress'
 
 interface DawnStageDoctorRevealProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const DawnStageDoctorReveal: React.FC<DawnStageDoctorRevealProps> = ({ playerObject, refresher }) => {
+const DawnStageDoctorReveal: React.FC<DawnStageDoctorRevealProps> = ({ playerObject }) => {
   const [iAmDoctor, setIAmDoctor] = useState<boolean>(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -26,7 +21,6 @@ const DawnStageDoctorReveal: React.FC<DawnStageDoctorRevealProps> = ({ playerObj
       ]
 
       setIAmDoctor(playerObject.night_algo_address.addr.toString() === (await playerObject.night_client.state.global.doctor())!.toString())
-
     } catch (error) {
       console.error('Failed to fetch players:', error)
     }
@@ -36,9 +30,7 @@ const DawnStageDoctorReveal: React.FC<DawnStageDoctorRevealProps> = ({ playerObj
     if (intervalRef.current) {
       clearInterval(intervalRef.current)
     }
-    intervalRef.current = setInterval(() => {
-      refresher()
-    }, 2800) // Poll every 2.8 seconds
+    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
   }
 
   useEffect(() => {
@@ -56,7 +48,7 @@ const DawnStageDoctorReveal: React.FC<DawnStageDoctorRevealProps> = ({ playerObj
     await playerObject.night_client.send.dawnStageDoctorReveal({
       args: {
         patientAim: playerObject.target!,
-        blinder: playerObject.blinder!
+        blinder: playerObject.blinder!,
       },
     })
   }
