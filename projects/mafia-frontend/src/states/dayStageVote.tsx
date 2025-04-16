@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Player } from '../interfaces/player'
-import { ellipseAddress } from '../utils/ellipseAddress'
 import { ZERO_ADDRESS } from '../utils/constants'
+import { ellipseAddress } from '../utils/ellipseAddress'
 
 interface DayStageVoteProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) => {
+const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject }) => {
   const [players, setPlayers] = useState<{ label: string; address: string; number: number }[]>([])
   const [playerHasVoted, setPlayerHasVoted] = useState<boolean>(false)
   const [playerIsDead, setPlayerIsDead] = useState<boolean>(false)
@@ -54,19 +53,9 @@ const DayStageVote: React.FC<DayStageVoteProps> = ({ playerObject, refresher }) 
     }
   }
 
-  const startPolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    intervalRef.current = setInterval(() => {
-      refresher()
-    }, 2800) // Poll every 2.8 seconds
-  }
-
   useEffect(() => {
     // Run fetchPlayers initially when the component is loaded
     fetchPlayers()
-    startPolling()
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current) // Cleanup interval on component unmount

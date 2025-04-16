@@ -1,16 +1,15 @@
+import algosdk from 'algosdk'
+import { createHash, randomBytes } from 'crypto'
 import { useEffect, useRef, useState } from 'react'
 import { Player } from '../interfaces/player'
-import { createHash, randomBytes } from 'crypto'
-import algosdk from 'algosdk'
-import { ellipseAddress } from '../utils/ellipseAddress'
 import { ZERO_ADDRESS } from '../utils/constants'
+import { ellipseAddress } from '../utils/ellipseAddress'
 
 interface NightStageDoctorCommitProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const NightStageDoctorCommit: React.FC<NightStageDoctorCommitProps> = ({ playerObject, refresher }) => {
+const NightStageDoctorCommit: React.FC<NightStageDoctorCommitProps> = ({ playerObject }) => {
   const [iAmDoctor, setIAmDoctor] = useState<boolean>(false)
   const [potentialPatients, setpotentialPatients] = useState<{ label: string; address: string; number: number }[]>([])
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -40,9 +39,7 @@ const NightStageDoctorCommit: React.FC<NightStageDoctorCommitProps> = ({ playerO
     if (intervalRef.current) {
       clearInterval(intervalRef.current)
     }
-    intervalRef.current = setInterval(() => {
-      refresher()
-    }, 2800) // Poll every 2.8 seconds
+    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
   }
 
   useEffect(() => {

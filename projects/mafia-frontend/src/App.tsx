@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SupportedWallet, WalletId, WalletManager, WalletProvider } from '@txnlab/use-wallet-react'
 import { SnackbarProvider } from 'notistack'
 import Home from './Home'
@@ -26,6 +27,7 @@ if (import.meta.env.VITE_ALGOD_NETWORK === 'localnet') {
   ]
 }
 
+const queryClient = new QueryClient()
 export default function App() {
   const algodConfig = getAlgodConfigFromViteEnvironment()
 
@@ -49,7 +51,9 @@ export default function App() {
   return (
     <SnackbarProvider maxSnack={3}>
       <WalletProvider manager={walletManager}>
-        <Home />
+        <QueryClientProvider client={queryClient}>
+          <Home />
+        </QueryClientProvider>
       </WalletProvider>
     </SnackbarProvider>
   )

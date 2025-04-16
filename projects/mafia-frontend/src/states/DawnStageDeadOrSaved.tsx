@@ -3,19 +3,16 @@ import { Player } from '../interfaces/player'
 
 interface DawnStageDeadOrSaveProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const DawnStageDeadOrSave: React.FC<DawnStageDeadOrSaveProps> = ({ playerObject, refresher }) => {
+const DawnStageDeadOrSave: React.FC<DawnStageDeadOrSaveProps> = ({ playerObject }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const startPolling = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current)
     }
-    intervalRef.current = setInterval(() => {
-      refresher()
-    }, 2800) // Poll every 2.8 seconds
+    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
   }
 
   useEffect(() => {
@@ -27,9 +24,7 @@ const DawnStageDeadOrSave: React.FC<DawnStageDeadOrSaveProps> = ({ playerObject,
     }
   }, [])
 
-
   const handleDeadOrSave = async () => {
-
     const eliminateResults = await playerObject.day_client.send.dawnStageDeadOrSaved()
 
     console.log(eliminateResults)
@@ -40,10 +35,7 @@ const DawnStageDeadOrSave: React.FC<DawnStageDeadOrSaveProps> = ({ playerObject,
 
       <p>.</p>
 
-      <button
-        className="btn btn-primary"
-        onClick={() => handleDeadOrSave()}
-      >
+      <button className="btn btn-primary" onClick={() => handleDeadOrSave()}>
         <p>Someone must press the button to proceed.</p>
       </button>
     </div>

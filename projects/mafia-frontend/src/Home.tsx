@@ -5,29 +5,30 @@ import { GameState } from './interfaces/gameState'
 
 // Import components for each game state
 import { Player } from './interfaces/player'
-import Intro from './states/Intro'
-import JoinGameLobby from './states/JoinGameLobby'
 import AssignRole from './states/AssignRole'
-import DayStageVote from './states/DayStageVote'
 import DawnStageDeadOrSaved from './states/DawnStageDeadOrSaved'
 import DawnStageDoctorReveal from './states/DawnStageDoctorReveal'
 import DawnStageMafiaReveal from './states/DawnStageMafiaReveal'
 import DawnStageUnmasking from './states/DawnStageUnmasking'
 import DayStageEliminate from './states/DayStageEliminate'
 import DayStageUnmasking from './states/DayStageUnmasking'
+import DayStageVote from './states/DayStageVote'
 import GameOver from './states/GameOver'
+import Intro from './states/Intro'
+import JoinGameLobby from './states/JoinGameLobby'
 import NightStageDoctorCommit from './states/NightStageDoctorCommit'
 import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 
+import { useQuery } from '@tanstack/react-query'
+
 // Audio
-import { FaPlay, FaPause } from 'react-icons/fa' // Import play/pause icons
+import { FaPause, FaPlay } from 'react-icons/fa' // Import play/pause icons
 
 const Home: React.FC = () => {
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false)
   const [appId, setAppId] = useState<bigint>(BigInt(0))
   const [playerObject, setPlayerObject] = useState<Player | undefined>(undefined)
   const [gameState, setGameState] = useState<GameState>(GameState.JoinGameLobby)
-  const [triggerFetch, setTriggerFetch] = useState<boolean>(false)
   const [isPlaying, setIsPlaying] = useState<boolean>(false) // State to track audio playback
   const { activeAddress } = useWallet()
 
@@ -43,22 +44,21 @@ const Home: React.FC = () => {
     }
   }, [appId])
 
-  // Once the Player Object is set we have an app we can query for game state
-  useEffect(() => {
-    const fetchGameState = async () => {
-      if (activeAddress && appId !== BigInt(0) && playerObject) {
-        const state = await playerObject.day_client.state.global.gameState()
-        if (state !== undefined) {
-          setGameState(GameState[GameState[Number(state)] as keyof typeof GameState])
-        }
-      }
+  const getGamePlayerState = async () => {
+    if (activeAddress && appId !== BigInt(0) && playerObject) {
+      return await playerObject.day_client.state.global.gameState()
+    } else {
+      throw Error("something wen't wrong")
     }
-    fetchGameState()
-  }, [playerObject, triggerFetch])
-
-  const triggerGameStateFetch = () => {
-    setTriggerFetch((prev) => !prev) // Toggle the state to trigger useEffect
   }
+
+  const playerQuery = useQuery({ queryKey: ['playerState'], queryFn: getGamePlayerState, refetchInterval: 2800 })
+
+  useEffect(() => {
+    if (playerQuery.data !== undefined) {
+      setGameState(GameState[GameState[Number(playerQuery.data)] as keyof typeof GameState])
+    }
+  }, [playerQuery])
 
   const renderGameState = () => {
     if (!activeAddress) {
@@ -79,29 +79,29 @@ const Home: React.FC = () => {
 
     switch (gameState) {
       case GameState.JoinGameLobby:
-        return playerObject && <JoinGameLobby playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <JoinGameLobby playerObject={playerObject} />
       case GameState.AssignRole:
-        return playerObject && <AssignRole playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <AssignRole playerObject={playerObject} />
       case GameState.DayStageVote:
-        return playerObject && <DayStageVote playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <DayStageVote playerObject={playerObject} />
       case GameState.DayStageEliminate:
-        return playerObject && <DayStageEliminate playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <DayStageEliminate playerObject={playerObject} />
       case GameState.DayStageUnmasking:
-        return playerObject && <DayStageUnmasking playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <DayStageUnmasking playerObject={playerObject} />
       case GameState.NightStageMafiaCommit:
-        return playerObject && <NightStageMafiaCommit playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <NightStageMafiaCommit playerObject={playerObject} />
       case GameState.NightStageDoctorCommit:
-        return playerObject && <NightStageDoctorCommit playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <NightStageDoctorCommit playerObject={playerObject} />
       case GameState.DawnStageMafiaReveal:
-        return playerObject && <DawnStageMafiaReveal playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <DawnStageMafiaReveal playerObject={playerObject} />
       case GameState.DawnStageDoctorReveal:
-        return playerObject && <DawnStageDoctorReveal playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <DawnStageDoctorReveal playerObject={playerObject} />
       case GameState.DawnStageDeadOrSaved:
-        return playerObject && <DawnStageDeadOrSaved playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <DawnStageDeadOrSaved playerObject={playerObject} />
       case GameState.DawnStageUnmasking:
-        return playerObject && <DawnStageUnmasking playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <DawnStageUnmasking playerObject={playerObject} />
       case GameState.GameOver:
-        return playerObject && <GameOver playerObject={playerObject} refresher={triggerGameStateFetch} />
+        return playerObject && <GameOver playerObject={playerObject} />
       default:
         return <p>Unknown game state</p>
     }
@@ -123,6 +123,7 @@ const Home: React.FC = () => {
   return (
     <div className="hero min-h-screen relative">
       {/* "NavBar" */}
+
       <div className="absolute top-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white p-4 flex justify-between items-center">
         <h1 className="text-xl font-bold">Infiltrated</h1>
         <div className="flex items-center gap-4">

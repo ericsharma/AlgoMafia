@@ -1,15 +1,13 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Player } from '../interfaces/player'
 
 interface DayStageUnmaskingProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const DayStageUnmasking: React.FC<DayStageUnmaskingProps> = ({ playerObject, refresher }) => {
+const DayStageUnmasking: React.FC<DayStageUnmaskingProps> = ({ playerObject }) => {
   const [iAmEliminated, setIAmEliminated] = useState<boolean>(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
 
   const fetchElimiantedPlayers = async () => {
     const justElimiantedPlayer = await playerObject.day_client.state.global.justEliminatedPlayer()
@@ -17,14 +15,12 @@ const DayStageUnmasking: React.FC<DayStageUnmaskingProps> = ({ playerObject, ref
     if (playerObject.day_algo_address.addr.toString() === justElimiantedPlayer) {
       setIAmEliminated(true)
     }
-
   }
 
   // Fetch the eliminated players from the contract
   useEffect(() => {
     fetchElimiantedPlayers()
   }, [])
-
 
   const handleDayStageUnmasking = async () => {
     await playerObject.day_client
@@ -66,27 +62,16 @@ const DayStageUnmasking: React.FC<DayStageUnmaskingProps> = ({ playerObject, ref
       .dummyOpUp({
         args: { i: 12 },
       })
-      .send();
-  }
-
-  const startPolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    intervalRef.current = setInterval(() => {
-      refresher()
-    }, 2800) // Poll every 2.8 seconds
+      .send()
   }
 
   useEffect(() => {
-    startPolling()
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current) // Cleanup interval on component unmount
       }
     }
   }, [])
-
 
   return (
     <div>
@@ -103,10 +88,8 @@ const DayStageUnmasking: React.FC<DayStageUnmaskingProps> = ({ playerObject, ref
       ) : (
         <p>Waiting for eliminated player to unmask themselves...</p>
       )}
-
     </div>
   )
-
 }
 
 export default DayStageUnmasking

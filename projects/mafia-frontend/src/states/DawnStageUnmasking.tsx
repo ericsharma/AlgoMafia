@@ -1,15 +1,13 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Player } from '../interfaces/player'
 
 interface DawnStageUnmaskingProps {
   playerObject: Player
-  refresher: () => void
 }
 
-const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject, refresher }) => {
+const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject }) => {
   const [iAmEliminated, setIAmEliminated] = useState<boolean>(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
 
   const fetchElimiantedPlayers = async () => {
     const justElimiantedPlayer = await playerObject.day_client.state.global.justEliminatedPlayer()
@@ -17,14 +15,12 @@ const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject, r
     if (playerObject.day_algo_address.addr.toString() === justElimiantedPlayer) {
       setIAmEliminated(true)
     }
-
   }
 
   // Fetch the eliminated players from the contract
   useEffect(() => {
     fetchElimiantedPlayers()
   }, [])
-
 
   const handleDawnStageUnmasking = async () => {
     await playerObject.day_client
@@ -66,16 +62,14 @@ const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject, r
       .dummyOpUp({
         args: { i: 12 },
       })
-      .send();
+      .send()
   }
 
   const startPolling = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current)
     }
-    intervalRef.current = setInterval(() => {
-      refresher()
-    }, 2800) // Poll every 2.8 seconds
+    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
   }
 
   useEffect(() => {
@@ -86,7 +80,6 @@ const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject, r
       }
     }
   }, [])
-
 
   return (
     <div>
@@ -103,10 +96,8 @@ const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject, r
       ) : (
         <p>Waiting for eliminated player to unmask themselves...</p>
       )}
-
     </div>
   )
-
 }
 
 export default DawnStageUnmasking
