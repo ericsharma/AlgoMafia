@@ -45,11 +45,19 @@ const Home: React.FC = () => {
   }, [appId])
 
   const getGamePlayerState = async () => {
-    if (activeAddress && appId !== BigInt(0) && playerObject) {
-      return await playerObject.day_client.state.global.gameState()
-    } else {
-      throw Error("something wen't wrong")
+    if (!activeAddress) {
+      throw Error('Cannot get game state: Player address not connected')
     }
+
+    if (appId === BigInt(0)) {
+      throw Error('Cannot get game state: Invalid application ID')
+    }
+
+    if (!playerObject) {
+      throw Error('Cannot get game state: Player object undefined')
+    }
+
+    return await playerObject.day_client.state.global.gameState()
   }
 
   const playerQuery = useQuery({ queryKey: ['playerState'], queryFn: getGamePlayerState, refetchInterval: 2800 })
