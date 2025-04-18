@@ -1,9 +1,10 @@
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
 import { useWallet } from '@txnlab/use-wallet-react'
 import * as algoring from 'algoring-ts'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
+import usePlayersState from '../hooks/usePlayerState'
 import { Player } from '../interfaces/player'
-import { BLS12381G1_LENGTH, RING_SIG_NONCE_LENGTH, ZERO_ADDRESS } from '../utils/constants'
+import { BLS12381G1_LENGTH, RING_SIG_NONCE_LENGTH } from '../utils/constants'
 import { ellipseAddress } from '../utils/ellipseAddress'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 
@@ -12,54 +13,11 @@ interface JoinGameLobbyProps {
 }
 
 const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject }) => {
-  const [players, setPlayers] = useState<string[]>([])
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
   const { activeAddress, transactionSigner } = useWallet()
 
-  const fetchPlayers = async () => {
-    try {
-      const fetchedPlayers = [
-        (await playerObject.day_client.state.global.player1AlgoAddr())!,
-        (await playerObject.day_client.state.global.player2AlgoAddr())!,
-        (await playerObject.day_client.state.global.player3AlgoAddr())!,
-        (await playerObject.day_client.state.global.player4AlgoAddr())!,
-        (await playerObject.day_client.state.global.player5AlgoAddr())!,
-        (await playerObject.day_client.state.global.player6AlgoAddr())!,
-      ]
+  const { players } = usePlayersState(playerObject)
 
-      // Filter out any players that are equal to the zeroAddress
-      const validPlayers = fetchedPlayers.filter((player) => player !== ZERO_ADDRESS)
-      setPlayers(validPlayers)
-
-      if (validPlayers.length === 6) {
-        console.log('All players have joined the game.')
-      }
-    } catch (error) {
-      console.error('Failed to fetch players:', error)
-    }
-  }
-
-  const startPolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    intervalRef.current = setInterval(() => {
-      fetchPlayers()
-    }, 2800) // Poll every 2.8 seconds
-  }
-
-  useEffect(() => {
-    // Run fetchPlayers initially when the component is loaded
-    fetchPlayers()
-    startPolling()
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current) // Cleanup interval on component unmount
-      }
-    }
-  }, [playerObject])
+  console.log(`players in joinGameLobby:${players}`)
 
   const handleJoinGame = async () => {
     const algodConfig = getAlgodConfigFromViteEnvironment()
@@ -145,8 +103,6 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject }) => {
     console.log('Join Game Result:', joinGameResult)
 
     // Fetch players immediately after joining the game
-    await fetchPlayers()
-    startPolling() // Restart polling after handleJoinGame
   }
 
   return (

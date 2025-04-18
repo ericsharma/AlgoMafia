@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import usePlayersState from '../hooks/usePlayerState'
 import { Player } from '../interfaces/player'
 
 interface DayStageUnmaskingProps {
@@ -6,21 +6,7 @@ interface DayStageUnmaskingProps {
 }
 
 const DayStageUnmasking: React.FC<DayStageUnmaskingProps> = ({ playerObject }) => {
-  const [iAmEliminated, setIAmEliminated] = useState<boolean>(false)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
-  const fetchElimiantedPlayers = async () => {
-    const justElimiantedPlayer = await playerObject.day_client.state.global.justEliminatedPlayer()
-
-    if (playerObject.day_algo_address.addr.toString() === justElimiantedPlayer) {
-      setIAmEliminated(true)
-    }
-  }
-
-  // Fetch the eliminated players from the contract
-  useEffect(() => {
-    fetchElimiantedPlayers()
-  }, [])
+  const { iAmEliminated } = usePlayersState(playerObject)
 
   const handleDayStageUnmasking = async () => {
     await playerObject.day_client
@@ -64,14 +50,6 @@ const DayStageUnmasking: React.FC<DayStageUnmaskingProps> = ({ playerObject }) =
       })
       .send()
   }
-
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current) // Cleanup interval on component unmount
-      }
-    }
-  }, [])
 
   return (
     <div>

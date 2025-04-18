@@ -1,8 +1,7 @@
 import algosdk from 'algosdk'
 import { createHash, randomBytes } from 'crypto'
-import { useEffect, useRef, useState } from 'react'
+import usePlayersState from '../hooks/usePlayerState'
 import { Player } from '../interfaces/player'
-import { ZERO_ADDRESS } from '../utils/constants'
 import { ellipseAddress } from '../utils/ellipseAddress'
 
 interface NightStageDoctorCommitProps {
@@ -10,48 +9,7 @@ interface NightStageDoctorCommitProps {
 }
 
 const NightStageDoctorCommit: React.FC<NightStageDoctorCommitProps> = ({ playerObject }) => {
-  const [iAmDoctor, setIAmDoctor] = useState<boolean>(false)
-  const [potentialPatients, setpotentialPatients] = useState<{ label: string; address: string; number: number }[]>([])
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
-  const fetchPlayers = async () => {
-    try {
-      const fetchedPlayers = [
-        { label: 'Player 1', address: (await playerObject.day_client.state.global.player1AlgoAddr())!.toString(), number: 1 },
-        { label: 'Player 2', address: (await playerObject.day_client.state.global.player2AlgoAddr())!.toString(), number: 2 },
-        { label: 'Player 3', address: (await playerObject.day_client.state.global.player3AlgoAddr())!.toString(), number: 3 },
-        { label: 'Player 4', address: (await playerObject.day_client.state.global.player4AlgoAddr())!.toString(), number: 4 },
-        { label: 'Player 5', address: (await playerObject.day_client.state.global.player5AlgoAddr())!.toString(), number: 5 },
-        { label: 'Player 6', address: (await playerObject.day_client.state.global.player6AlgoAddr())!.toString(), number: 6 },
-      ]
-
-      setIAmDoctor(playerObject.night_algo_address.addr.toString() === (await playerObject.night_client.state.global.doctor())!.toString())
-
-      // Filter out the active player and zero addresses
-      const validPlayers = fetchedPlayers.filter((player) => player.address !== ZERO_ADDRESS)
-      setpotentialPatients(validPlayers)
-    } catch (error) {
-      console.error('Failed to fetch players:', error)
-    }
-  }
-
-  const startPolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
-  }
-
-  useEffect(() => {
-    // Run fetchPlayers initially when the component is loaded
-    fetchPlayers()
-    startPolling()
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current) // Cleanup interval on component unmount
-      }
-    }
-  }, [])
+  const { iAmDoctor, players: potentialPatients } = usePlayersState(playerObject)
 
   const handleDoctorCommit = async (playerAddress: string) => {
     const DoctorCommitBlinder = randomBytes(32)
@@ -78,13 +36,13 @@ const NightStageDoctorCommit: React.FC<NightStageDoctorCommitProps> = ({ playerO
       {iAmDoctor ? (
         potentialPatients.length > 0 ? (
           <ul className="list-disc list-inside">
-            {potentialPatients.map((player) => (
-              <li key={player.number} className="py-2">
+            {potentialPatients.map((player, i) => (
+              <li key={i + 1} className="py-2">
                 <button
                   className="btn btn-primary"
-                  onClick={() => handleDoctorCommit(player.address)} // Pass the correct player number
+                  onClick={() => handleDoctorCommit(player)} // Pass the correct player number
                 >
-                  {player.label}: {ellipseAddress(player.address)}
+                  {`Player: ${i + 1}`}: {ellipseAddress(player)}
                 </button>
               </li>
             ))}

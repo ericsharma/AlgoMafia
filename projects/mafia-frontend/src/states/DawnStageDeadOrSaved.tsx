@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { Player } from '../interfaces/player'
 
 interface DawnStageDeadOrSaveProps {
@@ -6,24 +6,6 @@ interface DawnStageDeadOrSaveProps {
 }
 
 const DawnStageDeadOrSave: React.FC<DawnStageDeadOrSaveProps> = ({ playerObject }) => {
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
-  const startPolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
-  }
-
-  useEffect(() => {
-    startPolling()
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current) // Cleanup interval on component unmount
-      }
-    }
-  }, [])
-
   const handleDeadOrSave = async () => {
     const eliminateResults = await playerObject.day_client.send.dawnStageDeadOrSaved()
 

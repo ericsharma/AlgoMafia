@@ -1,26 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
 import { Player } from '../interfaces/player'
+
+import usePlayersState from '../hooks/usePlayerState'
 
 interface DawnStageUnmaskingProps {
   playerObject: Player
 }
 
 const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject }) => {
-  const [iAmEliminated, setIAmEliminated] = useState<boolean>(false)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
-  const fetchElimiantedPlayers = async () => {
-    const justElimiantedPlayer = await playerObject.day_client.state.global.justEliminatedPlayer()
-
-    if (playerObject.day_algo_address.addr.toString() === justElimiantedPlayer) {
-      setIAmEliminated(true)
-    }
-  }
-
-  // Fetch the eliminated players from the contract
-  useEffect(() => {
-    fetchElimiantedPlayers()
-  }, [])
+  const { iAmEliminated } = usePlayersState(playerObject)
 
   const handleDawnStageUnmasking = async () => {
     await playerObject.day_client
@@ -64,22 +51,6 @@ const DawnStageUnmasking: React.FC<DawnStageUnmaskingProps> = ({ playerObject })
       })
       .send()
   }
-
-  const startPolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    intervalRef.current = setInterval(() => {}, 2800) // Poll every 2.8 seconds
-  }
-
-  useEffect(() => {
-    startPolling()
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current) // Cleanup interval on component unmount
-      }
-    }
-  }, [])
 
   return (
     <div>
