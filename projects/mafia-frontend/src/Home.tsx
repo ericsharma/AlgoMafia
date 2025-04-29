@@ -35,15 +35,35 @@ const Home: React.FC = () => {
   const toggleWalletModal = () => {
     setOpenWalletModal(!openWalletModal)
   }
-
-  // Set Player Object for a specific appId
   useEffect(() => {
     if (activeAddress && appId !== BigInt(0)) {
-      const player = new Player(appId)
-      setPlayerObject(player)
-    }
-  }, [appId])
+      try {
+        // Try to load from localStorage first
+        const storedPlayer = localStorage.getItem(`${activeAddress}-${appId}`)
 
+        if (storedPlayer) {
+          // Parse and convert back to Player object
+          const playerData = JSON.parse(storedPlayer)
+          const loadedPlayer = Player.fromJSON(playerData, appId)
+          setPlayerObject(loadedPlayer)
+          console.log(`Player loaded from localStorage appId: ${appId} activeAddress: ${activeAddress}`)
+        } else {
+          // No stored player, create a new one
+          const player = new Player(appId)
+          setPlayerObject(player)
+
+          // Save to localStorage
+          localStorage.setItem(`${activeAddress}-${appId}`, JSON.stringify(player.toJSON()))
+          console.log(`New player created and saved to localStorage appId: ${appId} activeAddress: ${activeAddress}`)
+        }
+      } catch (error) {
+        console.error('Error managing player state:', error)
+        // Create new player as fallback
+        const player = new Player(appId)
+        setPlayerObject(player)
+      }
+    }
+  }, [appId, activeAddress])
   const getGamePlayerState = async () => {
     if (!activeAddress) {
       throw Error('Cannot get game state: Player address not connected')
