@@ -20,9 +20,64 @@ import NightStageDoctorCommit from './states/NightStageDoctorCommit'
 import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 
 import { useQuery } from '@tanstack/react-query'
+import { Address } from 'algosdk'
 import Navbar from './components/NavBar'
+// Import IDB
+import { DBSchema, openDB } from 'idb'
 
-// Audio
+// Database setup
+const DB_NAME = 'mafiaGameDB'
+const STORE_NAME = 'playerStore'
+const DB_VERSION = 1
+
+export interface Acct {
+  addr: Address
+  keyData: ArrayBuffer
+}
+
+export interface IDBPlayer {
+  day_algo_address: Acct
+
+  night_algo_address: Acct
+  commitment: Uint8Array | undefined
+
+  blinder: Uint8Array | undefined
+  bls_private_key: Uint8Array
+  salt: Uint8Array
+  iv: Uint8Array
+
+  bls_public_key: Uint8Array
+
+  target: string | undefined
+}
+
+interface WalletDB extends DBSchema {
+  playerStore: {
+    key: string
+    value: IDBPlayer
+  }
+}
+
+const initDB = async () => {
+  return openDB<WalletDB>(DB_NAME, DB_VERSION, {
+    upgrade(db) {
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME)
+      }
+    },
+  })
+}
+
+const savePlayerData = async (playerId: string, playerData: IDBPlayer) => {
+  const db = await initDB()
+  await db.put(STORE_NAME, playerData, playerId)
+}
+
+const getPlayerData = async (playerId: string) => {
+  const db = await initDB()
+  const result = await db.get(STORE_NAME, playerId)
+  return result ? result : null
+}
 
 const Home: React.FC = () => {
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false)
@@ -35,35 +90,62 @@ const Home: React.FC = () => {
   const toggleWalletModal = () => {
     setOpenWalletModal(!openWalletModal)
   }
-  useEffect(() => {
-    if (activeAddress && appId !== BigInt(0)) {
-      try {
-        // Try to load from localStorage first
-        const storedPlayer = localStorage.getItem(`${activeAddress}-${appId}`)
 
-        if (storedPlayer) {
-          // Parse and convert back to Player object
-          const playerData = JSON.parse(storedPlayer)
-          const loadedPlayer = Player.fromJSON(playerData, appId)
-          setPlayerObject(loadedPlayer)
-          console.log(`Player loaded from localStorage appId: ${appId} activeAddress: ${activeAddress}`)
-        } else {
-          // No stored player, create a new one
+  useEffect(() => {
+    const initializePlayer = async () => {
+      if (activeAddress && appId !== BigInt(0)) {
+        const storageKey = `${activeAddress}-${appId}`
+
+        try {
+          // Try to get player data from IndexedDB
+          const storedPlayerData = await getPlayerData(storageKey)
+          if (storedPlayerData) {
+            try {
+              const playerData = storedPlayerData
+              const loadedPlayer = await Player.fromIDB(playerData, appId)
+              setPlayerObject(loadedPlayer)
+
+              console.log('Found stored player data', storedPlayerData)
+              return
+            } catch (error) {
+              console.error('Error restoring player state:', error)
+            }
+          } else {
+            console.log('dont hit this else clause or ELSE!!!')
+            const player = new Player(appId)
+
+            setPlayerObject(player)
+          }
+        } catch (error) {
+          console.error('Error initializing player from IndexedDB:', error)
+          // Still create a player in case of error
           const player = new Player(appId)
           setPlayerObject(player)
-
-          // Save to localStorage
-          localStorage.setItem(`${activeAddress}-${appId}`, JSON.stringify(player.toJSON()))
-          console.log(`New player created and saved to localStorage appId: ${appId} activeAddress: ${activeAddress}`)
         }
-      } catch (error) {
-        console.error('Error managing player state:', error)
-        // Create new player as fallback
-        const player = new Player(appId)
-        setPlayerObject(player)
       }
     }
-  }, [appId, activeAddress])
+
+    initializePlayer()
+  }, [activeAddress, appId])
+
+  useEffect(() => {
+    const savePlayer = async () => {
+      if (activeAddress && appId !== BigInt(0) && playerObject) {
+        const storageKey = `${activeAddress}-${appId}`
+
+        try {
+          const playerData = await playerObject.toIDB()
+
+          await savePlayerData(storageKey, playerData)
+        } catch (error) {
+          console.error('Error saving player state to IndexedDB:', error)
+        }
+      }
+    }
+
+    savePlayer()
+  }, [activeAddress, appId, playerObject])
+
   const getGamePlayerState = async () => {
     if (!activeAddress) {
       throw Error('Cannot get game state: Player address not connected')

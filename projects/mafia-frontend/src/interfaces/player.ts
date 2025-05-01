@@ -3,6 +3,7 @@ import { TransactionSignerAccount } from '@algorandfoundation/algokit-utils/type
 import * as algoring from 'algoring-ts'
 import algosdk from 'algosdk'
 import { TownHallClient } from '../contracts/TownHall'
+import { IDBPlayer } from '../Home'
 
 const algorand = AlgorandClient.defaultLocalNet() // only using the client to import mnemonic so network is irrelevant
 export class Player {
@@ -48,52 +49,74 @@ export class Player {
         defaultSigner: this.night_algo_address.signer,
       }) // Client set with their signers, so we can have the player can sign
   }
-  toJSON() {
+
+  public async toIDB(): Promise<IDBPlayer> {
+    const salt = crypto.getRandomValues(new Uint8Array(12))
+    const iv = crypto.getRandomValues(new Uint8Array(12))
+    const token = await deriveTokenFromPassSalt('test', salt)
+    const dayKeyData = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, token, this.day_algo_address.account.sk)
+    const nightKeyData = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, token, this.night_algo_address.account.sk)
+
     return {
-      day_algo_address: algosdk.secretKeyToMnemonic(this.day_algo_address.account.sk),
-      night_algo_address: algosdk.secretKeyToMnemonic(this.night_algo_address.account.sk),
-      bls_private_key: Array.from(this.bls_private_key),
-      bls_public_key: Array.from(this.bls_public_key),
-      commitment: this.commitment ? Array.from(this.commitment) : undefined,
-      blinder: this.blinder ? Array.from(this.blinder) : undefined,
+      day_algo_address: {
+        addr: this.day_algo_address.addr,
+        keyData: dayKeyData,
+      },
+      night_algo_address: {
+        addr: this.night_algo_address.addr,
+        keyData: nightKeyData,
+      },
+      commitment: this.commitment,
+      blinder: this.blinder,
+      bls_private_key: this.bls_private_key,
+      bls_public_key: this.bls_public_key,
       target: this.target,
+      salt,
+      iv,
     }
   }
 
-  // Static method to recreate Player from stored JSON
-  static fromJSON(
-    json: {
-      day_algo_address: string //mnemonic
-      night_algo_address: string //mnemonic
-      bls_private_key: number[]
-      bls_public_key: number[]
-      commitment?: number[]
-      blinder?: number[]
-      target?: string
-    },
-    appId: bigint,
-  ): Player {
+  static async fromIDB(idbPlayer: IDBPlayer, appId: bigint): Promise<Player> {
+    const token = await deriveTokenFromPassSalt('test', idbPlayer.salt)
+
+    const decryptedDayKey = Buffer.from(
+      await crypto.subtle.decrypt({ name: 'AES-GCM', iv: idbPlayer.iv }, token, idbPlayer.day_algo_address.keyData),
+    )
+
+    const decryptedNightKey = Buffer.from(
+      await crypto.subtle.decrypt({ name: 'AES-GCM', iv: idbPlayer.iv }, token, idbPlayer.night_algo_address.keyData),
+    )
+
     const player = new Player(appId)
+    player.day_algo_address = algorand.account.fromMnemonic(algosdk.mnemonicFromSeed(decryptedDayKey.subarray(0, 32)))
+    player.night_algo_address = algorand.account.fromMnemonic(algosdk.mnemonicFromSeed(decryptedNightKey.subarray(0, 32)))
+    player.bls_private_key = idbPlayer.bls_private_key
+    player.bls_public_key = idbPlayer.bls_public_key
+    player.target
 
-    // Recreate the day_algo_address
-    player.day_algo_address = algorand.account.fromMnemonic(json.day_algo_address)
-
-    // Recreate the night_algo_address
-    player.night_algo_address = algorand.account.fromMnemonic(json.night_algo_address)
-
-    // Recreate BLS keys
-    player.bls_private_key = new Uint8Array(json.bls_private_key)
-    player.bls_public_key = new Uint8Array(json.bls_public_key)
-
-    // Recreate optional fields
-    if (json.commitment) {
-      player.commitment = new Uint8Array(json.commitment)
+    if (idbPlayer.commitment) {
+      player.commitment = idbPlayer.commitment
     }
-    if (json.blinder) {
-      player.blinder = new Uint8Array(json.blinder)
+    if (idbPlayer.blinder) {
+      player.commitment = idbPlayer.blinder
     }
-    player.target = json.target
+
+    if (idbPlayer.target) {
+      player.target = idbPlayer.target
+    }
 
     return player
   }
+}
+
+// This function and most of the encryption process was made possible by https://github.com/Algorand-Developer-Retreat/embedded-wallet-demo
+async function deriveTokenFromPassSalt(pass: string, salt: Uint8Array) {
+  const keyMaterial = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey'])
+  return await crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    true,
+    ['encrypt', 'decrypt'],
+  )
 }
