@@ -32,7 +32,7 @@ const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObj
         commitment: mafiaCommitHash,
       },
     })
-    // after succesfully commiting to nighClient we update the playerObject in IDB to save the latest blinder, target, and commitment
+    // after succesfully commiting to nightClient we update the playerObject in IDB to save the latest blinder, target, and commitment
     const storageKey = createStorageKey(activeAddress!, playerObject.night_client.appId)
     const idbPlayer = await playerObject.toIDB()
     await savePlayerData(storageKey, idbPlayer)
