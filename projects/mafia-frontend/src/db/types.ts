@@ -26,6 +26,6 @@ export type StorageKey = string
 export interface WalletDB extends DBSchema {
   playerStore: {
     key: StorageKey
-    value: IDBPlayer
+    value: IDBPlayer[]
   }
 }
