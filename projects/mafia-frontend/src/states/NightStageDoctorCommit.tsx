@@ -2,7 +2,7 @@ import { useWallet } from '@txnlab/use-wallet-react'
 import algosdk from 'algosdk'
 import { createHash, randomBytes } from 'crypto'
 import PlayerPickPanel from '../components/PlayerPickPanel'
-import { createStorageKey, savePlayerData } from '../db/playerStore'
+import { createStorageKey, saveNightStageCommit } from '../db/playerStore'
 import usePlayersState from '../hooks/usePlayerState'
 import { Player } from '../interfaces/player'
 
@@ -35,7 +35,8 @@ const NightStageDoctorCommit: React.FC<NightStageDoctorCommitProps> = ({ playerO
     // after succesfully updating the nightClient we update the playerObject in IDB to save the latest blinder, target, and commitment
     const storageKey = createStorageKey(activeAddress!, playerObject.night_client.appId)
     const idbPlayer = await playerObject.toIDB()
-    await savePlayerData(storageKey, idbPlayer)
+    const doctorAddr = await playerObject.night_client.state.global.doctor()
+    await saveNightStageCommit(storageKey, idbPlayer, doctorAddr!)
   }
 
   return (
