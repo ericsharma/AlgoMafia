@@ -2,7 +2,7 @@ import { useWallet } from '@txnlab/use-wallet-react'
 import algosdk from 'algosdk'
 import { createHash, randomBytes } from 'crypto'
 import PlayerPickPanel from '../components/PlayerPickPanel'
-import { createStorageKey, savePlayerData } from '../db/playerStore'
+import { createStorageKey, saveNightStageCommit } from '../db/playerStore'
 import usePlayersState from '../hooks/usePlayerState'
 import { Player } from '../interfaces/player'
 
@@ -35,7 +35,8 @@ const NightStageMafiaCommit: React.FC<NightStageMafiaCommitProps> = ({ playerObj
     // after succesfully commiting to nightClient we update the playerObject in IDB to save the latest blinder, target, and commitment
     const storageKey = createStorageKey(activeAddress!, playerObject.night_client.appId)
     const idbPlayer = await playerObject.toIDB()
-    await savePlayerData(storageKey, idbPlayer)
+    const mafiaAddr = await playerObject.night_client.state.global.mafia()
+    await saveNightStageCommit(storageKey, idbPlayer, mafiaAddr!)
   }
 
   return (
