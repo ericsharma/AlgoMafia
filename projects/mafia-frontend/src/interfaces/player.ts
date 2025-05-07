@@ -3,7 +3,7 @@ import { TransactionSignerAccount } from '@algorandfoundation/algokit-utils/type
 import * as algoring from 'algoring-ts'
 import algosdk from 'algosdk'
 import { TownHallClient } from '../contracts/TownHall'
-import { IDBPlayer } from '../Home'
+import { IDBPlayer } from '../db/types'
 
 const algorand = AlgorandClient.defaultLocalNet() // only using the client to import mnemonic so network is irrelevant
 export class Player {
@@ -98,12 +98,27 @@ export class Player {
       player.commitment = idbPlayer.commitment
     }
     if (idbPlayer.blinder) {
-      player.commitment = idbPlayer.blinder
+      player.blinder = idbPlayer.blinder
     }
 
     if (idbPlayer.target) {
       player.target = idbPlayer.target
     }
+    // set the default signer to use the information loaded from IDB
+    player.day_client = AlgorandClient.defaultLocalNet()
+      .setDefaultSigner(player.day_algo_address.signer)
+      .client.getTypedAppClientById(TownHallClient, {
+        appId,
+        defaultSender: player.day_algo_address.addr,
+        defaultSigner: player.day_algo_address.signer,
+      })
+    player.night_client = AlgorandClient.defaultLocalNet()
+      .setDefaultSigner(player.night_algo_address.signer)
+      .client.getTypedAppClientById(TownHallClient, {
+        appId,
+        defaultSender: player.night_algo_address.addr,
+        defaultSigner: player.night_algo_address.signer,
+      })
 
     return player
   }
