@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import algosdk from 'algosdk'
 import { openDB } from 'idb'
 import { IDBPlayer, StorageKey, WalletDB } from './types'

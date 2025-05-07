@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useWallet } from '@txnlab/use-wallet-react'
 import React, { useEffect, useState } from 'react'
 import ConnectWallet from './components/ConnectWallet'
