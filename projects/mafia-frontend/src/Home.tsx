@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useWallet } from '@txnlab/use-wallet-react'
 import React, { useEffect, useState } from 'react'
 import ConnectWallet from './components/ConnectWallet'
@@ -22,7 +23,11 @@ import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 import { useQuery } from '@tanstack/react-query'
 import Navbar from './components/NavBar'
 
-import { createStorageKey, getPlayerData, savePlayerData } from './db/playerStore'
+import { createStorageKey, getPlayersData, savePlayerData } from './db/playerStore'
+
+// Import the PlayerSelectionModal component
+import IDBPlayerSelectionModal from './components/IDBPlayerSelectionModal'
+import { IDBPlayer } from './db/types'
 
 const Home: React.FC = () => {
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false)
@@ -31,6 +36,10 @@ const Home: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>(GameState.JoinGameLobby)
   const [isPlaying, setIsPlaying] = useState<boolean>(false) // State to track audio playback
   const { activeAddress } = useWallet()
+
+  // Add state for player selection
+  const [showPlayerSelection, setShowPlayerSelection] = useState<boolean>(false)
+  const [storedPlayers, setStoredPlayers] = useState<IDBPlayer[]>([])
 
   const toggleWalletModal = () => {
     setOpenWalletModal(!openWalletModal)
@@ -44,32 +53,49 @@ const Home: React.FC = () => {
 
         try {
           // Try to get player data from IndexedDB
-          const storedPlayerData = await getPlayerData(storageKey)
-          if (storedPlayerData) {
-            try {
-              const loadedPlayer = await Player.fromIDB(storedPlayerData, appId)
-              setPlayerObject(loadedPlayer)
-              console.log('Found stored player data', storedPlayerData)
-              return
-            } catch (error) {
-              console.error('Error restoring player state:', error)
-            }
+          const storedPlayersData = await getPlayersData(storageKey)
+          if (storedPlayersData && storedPlayersData.length > 0) {
+            // Store players data and show selection modal
+            setStoredPlayers(storedPlayersData)
+            setShowPlayerSelection(true)
           } else {
-            console.log('No stored player data found, creating new player')
-            const player = new Player(appId)
-            setPlayerObject(player)
+            createNewPlayer()
           }
         } catch (error) {
           console.error('Error initializing player from IndexedDB:', error)
           // Still create a player in case of error
-          const player = new Player(appId)
-          setPlayerObject(player)
+          createNewPlayer()
         }
       }
     }
 
     initializePlayer()
   }, [activeAddress, appId])
+
+  // Helper function to create a new player
+  const createNewPlayer = () => {
+    const player = new Player(appId)
+    setPlayerObject(player)
+  }
+
+  // Handler for player selection
+  const handleSelectPlayer = async (playerData: IDBPlayer) => {
+    try {
+      const loadedPlayer = await Player.fromIDB(playerData, appId)
+      setPlayerObject(loadedPlayer)
+      setShowPlayerSelection(false)
+    } catch (error) {
+      console.error('Error loading selected player:', error)
+      // Fallback to creating a new player if load fails
+      createNewPlayer()
+    }
+  }
+
+  // Handler for creating a new player
+  const handleCreateNewPlayer = () => {
+    createNewPlayer()
+    setShowPlayerSelection(false)
+  }
 
   // Save Player Object to IndexedDB when it changes
   useEffect(() => {
@@ -114,6 +140,11 @@ const Home: React.FC = () => {
   }, [playerQuery])
 
   const renderGameState = () => {
+    // First check if we should show the player selection modal
+    if (showPlayerSelection) {
+      return null // Don't render game state if player selection is active
+    }
+
     if (!activeAddress) {
       return (
         <div className="text-center">
@@ -187,6 +218,23 @@ const Home: React.FC = () => {
       <div className="hero-content text-center rounded-lg p-6 max-w-md bg-white bg-opacity-90 mx-auto relative z-10">
         {renderGameState()}
         <ConnectWallet openModal={openWalletModal} closeModal={toggleWalletModal} />
+
+        {/* Render the IDBPlayerSelectionModal if showPlayerSelection is true */}
+        {showPlayerSelection && (
+          <IDBPlayerSelectionModal
+            players={storedPlayers}
+            onSelectPlayer={handleSelectPlayer}
+            onCreateNewPlayer={handleCreateNewPlayer}
+            onClose={() => {
+              // Default to first player if available when modal is closed
+              if (storedPlayers.length > 0) {
+                handleSelectPlayer(storedPlayers[0])
+              } else {
+                createNewPlayer()
+              }
+            }}
+          />
+        )}
       </div>
 
       <audio id="background-music" loop>
