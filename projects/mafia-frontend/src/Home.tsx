@@ -22,7 +22,11 @@ import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 import { useQuery } from '@tanstack/react-query'
 import Navbar from './components/NavBar'
 
-// Audio
+import { createStorageKey, getPlayersData, savePlayerData } from './db/playerStore'
+
+// Import the PlayerSelectionModal component
+import IDBPlayerSelectionModal from './components/IDBPlayerSelectionModal'
+import { IDBPlayer } from './db/types'
 
 const Home: React.FC = () => {
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false)
@@ -32,17 +36,83 @@ const Home: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false) // State to track audio playback
   const { activeAddress } = useWallet()
 
+  // Add state for player selection
+  const [showPlayerSelection, setShowPlayerSelection] = useState<boolean>(false)
+  const [storedPlayers, setStoredPlayers] = useState<IDBPlayer[]>([])
+
   const toggleWalletModal = () => {
     setOpenWalletModal(!openWalletModal)
   }
 
-  // Set Player Object for a specific appId
+  // Initialize/restore Player Object from IndexedDB
   useEffect(() => {
-    if (activeAddress && appId !== BigInt(0)) {
-      const player = new Player(appId)
-      setPlayerObject(player)
+    const initializePlayer = async () => {
+      if (activeAddress && appId !== BigInt(0)) {
+        const storageKey = createStorageKey(activeAddress, appId)
+
+        try {
+          // Try to get player data from IndexedDB
+          const storedPlayersData = await getPlayersData(storageKey)
+          if (storedPlayersData && storedPlayersData.length > 0) {
+            // Store players data and show selection modal
+            setStoredPlayers(storedPlayersData)
+            setShowPlayerSelection(true)
+          } else {
+            createNewPlayer()
+          }
+        } catch (error) {
+          console.error('Error initializing player from IndexedDB:', error)
+          // Still create a player in case of error
+          createNewPlayer()
+        }
+      }
     }
-  }, [appId])
+
+    initializePlayer()
+  }, [activeAddress, appId])
+
+  // Helper function to create a new player
+  const createNewPlayer = () => {
+    const player = new Player(appId)
+    setPlayerObject(player)
+  }
+
+  // Handler for player selection
+  const handleSelectPlayer = async (playerData: IDBPlayer) => {
+    try {
+      const loadedPlayer = await Player.fromIDB(playerData, appId)
+      setPlayerObject(loadedPlayer)
+      setShowPlayerSelection(false)
+    } catch (error) {
+      console.error('Error loading selected player:', error)
+      // Fallback to creating a new player if load fails
+      createNewPlayer()
+    }
+  }
+
+  // Handler for creating a new player
+  const handleCreateNewPlayer = () => {
+    createNewPlayer()
+    setShowPlayerSelection(false)
+  }
+
+  // Save Player Object to IndexedDB when it changes
+  useEffect(() => {
+    const savePlayer = async () => {
+      if (activeAddress && appId !== BigInt(0) && playerObject) {
+        const storageKey = createStorageKey(activeAddress, appId)
+
+        try {
+          const playerData = await playerObject.toIDB()
+          await savePlayerData(storageKey, playerData)
+        } catch (error) {
+          console.error('Error saving player state to IndexedDB:', error)
+        }
+      }
+    }
+
+    savePlayer()
+  }, [activeAddress, appId, playerObject])
 
   const getGamePlayerState = async () => {
     if (!activeAddress) {
@@ -69,6 +139,11 @@ const Home: React.FC = () => {
   }, [playerQuery])
 
   const renderGameState = () => {
+    // First check if we should show the player selection modal
+    if (showPlayerSelection) {
+      return null // Don't render game state if player selection is active
+    }
+
     if (!activeAddress) {
       return (
         <div className="text-center">
@@ -142,6 +217,23 @@ const Home: React.FC = () => {
       <div className="hero-content text-center rounded-lg p-6 max-w-md bg-white bg-opacity-90 mx-auto relative z-10">
         {renderGameState()}
         <ConnectWallet openModal={openWalletModal} closeModal={toggleWalletModal} />
+
+        {/* Render the IDBPlayerSelectionModal if showPlayerSelection is true */}
+        {showPlayerSelection && (
+          <IDBPlayerSelectionModal
+            players={storedPlayers}
+            onSelectPlayer={handleSelectPlayer}
+            onCreateNewPlayer={handleCreateNewPlayer}
+            onClose={() => {
+              // Default to first player if available when modal is closed
+              if (storedPlayers.length > 0) {
+                handleSelectPlayer(storedPlayers[0])
+              } else {
+                createNewPlayer()
+              }
+            }}
+          />
+        )}
       </div>
 
       <audio id="background-music" loop>

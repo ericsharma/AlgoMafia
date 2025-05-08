@@ -9,7 +9,6 @@ const DawnStageDeadOrSave: React.FC<DawnStageDeadOrSaveProps> = ({ playerObject 
   const handleDeadOrSave = async () => {
     const eliminateResults = await playerObject.day_client.send.dawnStageDeadOrSaved()
 
-    // eslint-disable-next-line no-console
     console.log(eliminateResults)
   }
   return (
