@@ -4,6 +4,7 @@ import algosdk from 'algosdk';
 import { readFileSync } from 'fs';
 import * as algoring from 'algoring-ts';
 import { TownHallClient } from './clients/TownHallClient';
+import { LSIG_FUND_AMOUNT, SLASH_DEPOSIT_AMOUNT } from './Constants';
 
 export class Player {
   day_algo_address: TransactionSignerAccount & { account: algosdk.Account };
@@ -78,6 +79,33 @@ export async function prepareLSigRingLink(
 
   const lSigRingSigSigner = algosdk.makeLogicSigAccountTransactionSigner(lsigRingLinkLSig);
   return { lSigRingSigPayTxn, lSigRingSigSigner };
+}
+
+export async function getFunderLSig(playerClient: TownHallClient) {
+  let funderLSigTEAL = readFileSync(`./contracts/artifacts/FunderLSig.lsig.teal`).toString('utf-8');
+
+  funderLSigTEAL = funderLSigTEAL.replace('TMPL_APP_ID', playerClient.appId.toString());
+  const compileResult = await playerClient.algorand.app.compileTeal(funderLSigTEAL);
+
+  const funderLSig = new algosdk.LogicSigAccount(compileResult.compiledBase64ToBytes, []);
+
+  return funderLSig;
+}
+
+export async function prepareFunderLSig(playerClient: TownHallClient, nightAddress: string) {
+  const funderLSig = await getFunderLSig(playerClient);
+
+  const sp = await AlgorandClient.defaultLocalNet().getSuggestedParams();
+
+  const funderLSigPayTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+    suggestedParams: { ...sp, flatFee: true, fee: 0 },
+    from: funderLSig.address(),
+    to: nightAddress,
+    amount: LSIG_FUND_AMOUNT,
+  });
+
+  const funderLSigSigner = algosdk.makeLogicSigAccountTransactionSigner(funderLSig);
+  return { funderLSigPayTxn, funderLSigSigner };
 }
 
 export async function unMaskDayStage(client: TownHallClient, blsSK: Uint8Array) {
@@ -166,7 +194,15 @@ export async function unMaskDawnStage(client: TownHallClient, blsSK: Uint8Array)
     .send();
 }
 
-export async function joinGameLobby(client: TownHallClient, blsSK: Uint8Array) {
+export async function joinGameLobby(client: TownHallClient, dayAddress: string, blsSK: Uint8Array) {
+  // Fund the application as part of the joinGameLobby call.
+  const depositPayment = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+    from: dayAddress,
+    to: client.appAddress,
+    amount: LSIG_FUND_AMOUNT + SLASH_DEPOSIT_AMOUNT,
+    suggestedParams: await AlgorandClient.defaultLocalNet().getSuggestedParams(),
+  });
+
   const proof = algoring.NIZK_DLOG_generate_proof(blsSK);
 
   // Concatenate the proof into a single byte array
@@ -181,8 +217,10 @@ export async function joinGameLobby(client: TownHallClient, blsSK: Uint8Array) {
     .newGroup()
     .joinGameLobby({
       args: {
+        depositTxn: depositPayment,
         nizkDlog: NIZK_DLOG,
       },
+      extraFee: (1000).microAlgos(),
     })
     .dummyOpUp({
       args: { i: 1 },
@@ -221,6 +259,8 @@ export async function assignRole(
   keyImage: Uint8Array,
   signatureConcat: Uint8Array,
   intermediateValues: Uint8Array,
+  funderLSigTxn: algosdk.Transaction,
+  funderLSigTxnSigner: algosdk.TransactionSigner,
   pts: algosdk.Transaction[],
   signers: algosdk.TransactionSigner[],
   length: number
@@ -234,32 +274,36 @@ export async function assignRole(
         keyImage: algoring.to_pxpy(keyImage),
         sig: signatureConcat,
         challenges: intermediateValues,
-        lsigTxn0: {
+        funderLSigTxn: {
+          txn: funderLSigTxn,
+          signer: funderLSigTxnSigner,
+        },
+        ringLSigTxn0: {
           txn: pts[0],
           signer: signers[0],
         },
-        lsigTxn1: {
+        ringLSigTxn1: {
           txn: pts[1],
           signer: signers[1],
         },
-        lsigTxn2: {
+        ringLSigTxn2: {
           txn: pts[2],
           signer: signers[2],
         },
-        lsigTxn3: {
+        ringLSigTxn3: {
           txn: pts[3],
           signer: signers[3],
         },
-        lsigTxn4: {
+        ringLSigTxn4: {
           txn: pts[4],
           signer: signers[4],
         },
-        lsigTxn5: {
+        ringLSigTxn5: {
           txn: pts[5],
           signer: signers[5],
         },
       },
-      extraFee: (1000 * length).microAlgos(),
+      extraFee: (1000 * (length + 1)).microAlgos(),
     })
     .send();
 }
