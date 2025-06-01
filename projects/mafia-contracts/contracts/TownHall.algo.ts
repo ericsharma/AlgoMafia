@@ -30,6 +30,7 @@ import { RingLinkLSig5 } from './RingLinkLSig5.algo';
 // Would ideally be an ENUM but they are not supported at this point
 
 export class TownHall extends Contract {
+  creatorAddress = GlobalStateKey<Address>();
   // Players:
 
   player1AlgoAddr = GlobalStateKey<Address>();
@@ -121,6 +122,8 @@ export class TownHall extends Contract {
   gameState = GlobalStateKey<uint64>();
 
   createApplication(): void {
+    this.creatorAddress.value = this.txn.sender;
+
     this.lsigFunderAddress.value = globals.zeroAddress;
 
     this.player1AlgoAddr.value = globals.zeroAddress;
@@ -219,6 +222,11 @@ export class TownHall extends Contract {
     assert(
       this.gameState.value === stateSetLSIGFunderAddress,
       'Invalid method call: Contract is not in Set LSig Funder Address state.'
+    );
+
+    assert(
+      this.txn.sender === this.creatorAddress.value,
+      'Error state: Only the creator can set the LSig Funder Address!'
     );
 
     assert(this.lsigFunderAddress.value === globals.zeroAddress, 'Error state: LSig Funder Address already set!');
