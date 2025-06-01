@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
-import { algorandFixture } from '@algorandfoundation/algokit-utils/testing';
+import { algorandFixture, getTestAccount } from '@algorandfoundation/algokit-utils/testing';
 import { Config, AlgorandClient } from '@algorandfoundation/algokit-utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as algoring from 'algoring-ts';
@@ -39,7 +39,6 @@ import {
   prepareFunderLSig,
   getFunderLSig,
 } from '../contracts/Utils';
-import AlgodClient from 'algosdk/dist/types/client/v2/algod/algod';
 
 const fixture = algorandFixture();
 Config.configure({ populateAppCallResources: true });
@@ -151,10 +150,10 @@ describe('TownHall', () => {
     /// <----------- ENTERED SetLSIGFunderAddress Stage ----------->
 
     // Set the LSIG funder address
-    const funderLSig = await getFunderLSig(players[0].day_client);
+    const funderLSig = await getFunderLSig(appClient);
     const funderLSigAddress = funderLSig.address();
 
-    players[0].day_client.send.setLsigFunderAddress({
+    await appClient.send.setLsigFunderAddress({
       args: { funderLSigAddress },
     });
 
