@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import { describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
-import { algorandFixture, getTestAccount } from '@algorandfoundation/algokit-utils/testing';
-import { Config, AlgorandClient } from '@algorandfoundation/algokit-utils';
+import { algorandFixture } from '@algorandfoundation/algokit-utils/testing';
+import { Config } from '@algorandfoundation/algokit-utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as algoring from 'algoring-ts';
 import algosdk from 'algosdk';
@@ -10,10 +10,8 @@ import { createHash, randomBytes } from 'crypto';
 import { TownHallClient, TownHallFactory } from '../contracts/clients/TownHallClient';
 import {
   BLS12381G1_LENGTH,
-  LSIG_FUND_AMOUNT,
   RING_SIG_CHALL_LENGTH,
   RING_SIG_NONCE_LENGTH,
-  SLASH_DEPOSIT_AMOUNT,
   stateSetLSIGFunderAddress,
   stateAssignRole,
   stateDawnStageDeadOrSaved,
