@@ -4,8 +4,9 @@ import {
   BLS12381_FIELD_MODULUS_HEX,
   BLS12381G1_BASEPOINT_BYTES,
   BLS12381G1_LENGTH,
-  RING_SIG_CHALL_LENGTH,
-  RING_SIG_NONCE_LENGTH,
+  LSIG_FUND_AMOUNT,
+  SLASH_DEPOSIT_AMOUNT,
+  stateSetLSIGFunderAddress,
   stateAssignRole,
   stateDawnStageDeadOrSaved,
   stateDawnStageDoctorReveal,
@@ -61,6 +62,7 @@ export class TownHall extends Contract {
   grocer = GlobalStateKey<Address>();
 
   // Ring Signature State:
+  lsigFunderAddress = GlobalStateKey<Address>(); // The address of the FunderLSig, which is used to fund the night algo address
 
   // PK BOXES
   // We want to store the ephemeral PKs in a way that allows for easy access for when they are included in a ring signature.
@@ -119,6 +121,8 @@ export class TownHall extends Contract {
   gameState = GlobalStateKey<uint64>();
 
   createApplication(): void {
+    this.lsigFunderAddress.value = globals.zeroAddress;
+
     this.player1AlgoAddr.value = globals.zeroAddress;
     this.player2AlgoAddr.value = globals.zeroAddress;
     this.player3AlgoAddr.value = globals.zeroAddress;
@@ -211,7 +215,23 @@ export class TownHall extends Contract {
     return this.gameState.value;
   }
 
-  joinGameLobby(NIZK_DLOG: bytes): void {
+  setLSIGFunderAddress(funderLSigAddress: Address): void {
+    assert(
+      this.gameState.value === stateSetLSIGFunderAddress,
+      'Invalid method call: Contract is not in Set LSig Funder Address state.'
+    );
+
+    assert(this.lsigFunderAddress.value === globals.zeroAddress, 'Error state: LSig Funder Address already set!');
+
+    assert(funderLSigAddress !== globals.zeroAddress, 'Error state: LSig Funder Address cannot be the zero address.');
+
+    // Set the LSig Funder Address
+    this.lsigFunderAddress.value = funderLSigAddress;
+
+    this.gameState.value = stateJoinGameLobby; // Go to next stage
+  }
+
+  joinGameLobby(depositTxn: PayTxn, NIZK_DLOG: bytes): void {
     assert(this.gameState.value === stateJoinGameLobby, 'Invalid method call: Game is not in Join Game Lobby state.');
 
     assert(
@@ -229,6 +249,10 @@ export class TownHall extends Contract {
     ) {
       throw Error('Error state: Player already joined the game!');
     }
+
+    // Check that the caller is depositing the slash amount + the LSig fund amount
+    // The LSig fund amount is the amount that will be used to fund the night algo address
+    assert(depositTxn.amount >= LSIG_FUND_AMOUNT + SLASH_DEPOSIT_AMOUNT, 'Invalid FunderLSig amount!');
 
     const g = extract3(NIZK_DLOG, 0, BLS12381G1_LENGTH);
     const RingPK = extract3(NIZK_DLOG, BLS12381G1_LENGTH, BLS12381G1_LENGTH); // This is the BLS12_381 Ephemeral PK of the player
@@ -251,6 +275,14 @@ export class TownHall extends Contract {
 
     this.quickAccessPKBoxes(0).replace(this.playersJoined.value * BLS12381G1_LENGTH, RingPK);
     this.playersJoined.value += 1;
+
+    assert(this.lsigFunderAddress.value !== globals.zeroAddress, 'Error state: LSig Funder Address not set!');
+
+    // Fund the LSIG
+    sendPayment({
+      amount: LSIG_FUND_AMOUNT,
+      receiver: this.lsigFunderAddress.value,
+    });
 
     if (this.player1AlgoAddr.value === globals.zeroAddress) {
       this.player1AlgoAddr.value = this.txn.sender;
@@ -287,12 +319,13 @@ export class TownHall extends Contract {
     keyImage: bytes,
     sig: bytes, // Sig and challenges need to be included for the logic sigs to access
     challenges: bytes,
-    lsigTxn0: PayTxn,
-    lsigTxn1: PayTxn,
-    lsigTxn2: PayTxn,
-    lsigTxn3: PayTxn,
-    lsigTxn4: PayTxn,
-    lsigTxn5: PayTxn
+    funderLSigTxn: PayTxn,
+    ringLSigTxn0: PayTxn,
+    ringLSigTxn1: PayTxn,
+    ringLSigTxn2: PayTxn,
+    ringLSigTxn3: PayTxn,
+    ringLSigTxn4: PayTxn,
+    ringLSigTxn5: PayTxn
   ): void {
     assert(this.gameState.value === stateAssignRole, 'Invalid method call: Game is not in Assign Role state.');
 
@@ -321,12 +354,19 @@ export class TownHall extends Contract {
 
     // Regarding 4: Verify Correct RingSig Links Calculation
 
-    verifyTxn(lsigTxn0, { sender: Address.fromBytes(RingLinkLSig0.address()) });
-    verifyTxn(lsigTxn1, { sender: Address.fromBytes(RingLinkLSig1.address()) });
-    verifyTxn(lsigTxn2, { sender: Address.fromBytes(RingLinkLSig2.address()) });
-    verifyTxn(lsigTxn3, { sender: Address.fromBytes(RingLinkLSig3.address()) });
-    verifyTxn(lsigTxn4, { sender: Address.fromBytes(RingLinkLSig4.address()) });
-    verifyTxn(lsigTxn5, { sender: Address.fromBytes(RingLinkLSig5.address()) });
+    verifyTxn(ringLSigTxn0, { sender: Address.fromBytes(RingLinkLSig0.address()) });
+    verifyTxn(ringLSigTxn1, { sender: Address.fromBytes(RingLinkLSig1.address()) });
+    verifyTxn(ringLSigTxn2, { sender: Address.fromBytes(RingLinkLSig2.address()) });
+    verifyTxn(ringLSigTxn3, { sender: Address.fromBytes(RingLinkLSig3.address()) });
+    verifyTxn(ringLSigTxn4, { sender: Address.fromBytes(RingLinkLSig4.address()) });
+    verifyTxn(ringLSigTxn5, { sender: Address.fromBytes(RingLinkLSig5.address()) });
+
+    // Verify that the nightAlgoAddress is being funded with the LSIG
+    verifyTxn(funderLSigTxn, {
+      sender: Address.fromBytes(this.lsigFunderAddress.value),
+      receiver: this.txn.sender,
+      amount: LSIG_FUND_AMOUNT,
+    });
 
     // TODO: introduce some type of randomness here, so that it is more difficult for someone
     // to be able to influence which role they will get. Currently it is just whichever player

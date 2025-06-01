@@ -10,7 +10,11 @@ export const RING_SIG_LINKS_AMNT = 6;
 
 export const ZERO_ADDRESS = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ';
 
-export const stateJoinGameLobby = 0;
+export const LSIG_FUND_AMOUNT = 150_000; // Enough for account MBR + ~50 transactions
+export const SLASH_DEPOSIT_AMOUNT = 1000_000; // 1 Algo
+
+export const stateSetLSIGFunderAddress = 0;
+export const stateJoinGameLobby = stateSetLSIGFunderAddress + 1;
 export const stateAssignRole = stateJoinGameLobby + 1;
 export const stateDayStageVote = stateAssignRole + 1;
 export const stateDayStageEliminate = stateDayStageVote + 1;
