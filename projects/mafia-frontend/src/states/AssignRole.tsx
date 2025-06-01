@@ -1,13 +1,12 @@
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
-import { useWallet } from '@txnlab/use-wallet-react'
 import * as algoring from 'algoring-ts'
 import algosdk from 'algosdk'
 import assert from 'assert'
 import React, { useEffect, useRef, useState } from 'react'
 import { TownHallClient } from '../contracts/TownHall'
 import { Player } from '../interfaces/player'
-import { BLS12381G1_LENGTH, RING_SIG_CHALL_LENGTH, RING_SIG_NONCE_LENGTH, ZERO_ADDRESS } from '../utils/constants'
-import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
+import { BLS12381G1_LENGTH, LSIG_FUND_AMOUNT, RING_SIG_CHALL_LENGTH, RING_SIG_NONCE_LENGTH, ZERO_ADDRESS } from '../utils/constants'
+import { getFunderLSig } from '../utils/Utils'
 
 interface AssignRoleProps {
   playerObject: Player
@@ -56,6 +55,22 @@ async function prepareLSigRingLink(
   return { lSigRingSigPayTxn, lSigRingSigSigner }
 }
 
+async function prepareFunderLSig(playerClient: TownHallClient, nightAddress: string) {
+  const funderLSig = await getFunderLSig(playerClient)
+
+  const sp = await AlgorandClient.defaultLocalNet().getSuggestedParams()
+
+  const funderLSigPayTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+    suggestedParams: { ...sp, flatFee: true, fee: 0 },
+    sender: funderLSig.address(),
+    receiver: nightAddress,
+    amount: LSIG_FUND_AMOUNT,
+  })
+
+  const funderLSigSigner = algosdk.makeLogicSigAccountTransactionSigner(funderLSig)
+  return { funderLSigPayTxn, funderLSigSigner }
+}
+
 async function assignRoleCall(playerObject: Player) {
   const ring = await playerObject.night_client.state.box.quickAccessPkBoxes.value(0)
   if (!ring) {
@@ -76,15 +91,15 @@ async function assignRoleCall(playerObject: Player) {
     algosdk.decodeAddress(playerObject.night_client.appClient.appAddress.toString()).publicKey,
   ])
 
-  // TODO-ALGORING: Remove genKeyImage's PK input, it should be directly generated from SK.
+  // ALGORING-TS TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
   const keyImage = algoring.genKeyImage(playerObject.bls_private_key, playerObject.bls_public_key)
 
-  // TODO-ALGORING: Remove KeyImage return since it is superfluous OR KeyImage input
+  // ALGORING-TS TODO: Remove KeyImage return since it is superfluous OR KeyImage input
   const { signature } = algoring.generate_ring_signature(msg, playerObject.bls_private_key, ringOfPKs, keyImage)
 
   assert(algoring.verify_ring_signature(msg, signature, ringOfPKs, keyImage), 'Produced invalid ring signature.')
 
-  // TODO-ALGORING: remove msg return
+  // ALGORING-TS TODO: remove msg return
   const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(msg, signature, ringOfPKs, keyImage)
 
   // BEGIN LSIG
@@ -111,6 +126,11 @@ async function assignRoleCall(playerObject: Player) {
     signers.push(lSigRingSigSigner)
   }
 
+  const { funderLSigPayTxn, funderLSigSigner } = await prepareFunderLSig(
+    playerObject.night_client,
+    playerObject.night_algo_address.addr.toString(),
+  )
+
   const assignRoleResult = await playerObject.night_client
     .newGroup()
     .assignRole({
@@ -120,32 +140,36 @@ async function assignRoleCall(playerObject: Player) {
         keyImage: algoring.to_pxpy(keyImage),
         sig: signatureConcat,
         challenges: intermediateValues,
-        lsigTxn0: {
+        funderLSigTxn: {
+          txn: funderLSigPayTxn,
+          signer: funderLSigSigner,
+        },
+        ringLSigTxn0: {
           txn: pts[0],
           signer: signers[0],
         },
-        lsigTxn1: {
+        ringLSigTxn1: {
           txn: pts[1],
           signer: signers[1],
         },
-        lsigTxn2: {
+        ringLSigTxn2: {
           txn: pts[2],
           signer: signers[2],
         },
-        lsigTxn3: {
+        ringLSigTxn3: {
           txn: pts[3],
           signer: signers[3],
         },
-        lsigTxn4: {
+        ringLSigTxn4: {
           txn: pts[4],
           signer: signers[4],
         },
-        lsigTxn5: {
+        ringLSigTxn5: {
           txn: pts[5],
           signer: signers[5],
         },
       },
-      extraFee: (1000 * length).microAlgos(),
+      extraFee: (1000 * (length + 1)).microAlgos(),
     })
     .send()
 
@@ -155,7 +179,6 @@ async function assignRoleCall(playerObject: Player) {
 const AssignRole: React.FC<AssignRoleProps> = ({ playerObject }) => {
   const [playerRole, setPlayerRole] = useState('')
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
-  const { activeAddress, transactionSigner } = useWallet()
 
   const fetchRoles = async () => {
     try {
@@ -223,30 +246,6 @@ const AssignRole: React.FC<AssignRoleProps> = ({ playerObject }) => {
   }, [playerObject])
 
   const handleRequestRole = async () => {
-    const algodConfig = getAlgodConfigFromViteEnvironment()
-    const indexerConfig = getIndexerConfigFromViteEnvironment()
-    const algorand = AlgorandClient.fromConfig({
-      algodConfig,
-      indexerConfig,
-    })
-
-    algorand.setDefaultSigner(transactionSigner)
-
-    // IMPORTANT!
-    // TODO: MASSIVE TODO HERE
-    // We need to make sure that the night player is funded by an LSIG!
-    // Currently we leak the day address <-> night address mapping!!!
-
-    // Fund the night_algo_player address with 2 Algo
-    const fundNightPlayerAlgoResults = await algorand.send.payment({
-      sender: activeAddress!,
-      signer: transactionSigner,
-      receiver: playerObject.night_algo_address.addr,
-      amount: (2).algos(),
-    })
-
-    console.log('Funding Night Player Results:', fundNightPlayerAlgoResults)
-
     await assignRoleCall(playerObject)
   }
 

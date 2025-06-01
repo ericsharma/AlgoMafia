@@ -31,7 +31,6 @@ export class Player {
 
     this.bls_private_key = algoring.generate_fe()
     this.bls_public_key = algoring.generate_ge(this.bls_private_key)
-    //TODO: replace day_algo_address with what Use-Wallet gives you
     this.day_algo_address = AlgorandClient.defaultLocalNet().account.random()
     this.night_algo_address = AlgorandClient.defaultLocalNet().account.random()
     this.day_client = AlgorandClient.defaultLocalNet()
