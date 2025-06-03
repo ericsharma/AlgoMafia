@@ -5,8 +5,9 @@ import React from 'react'
 import PlayerPickPanel from '../components/PlayerPickPanel'
 import usePlayersState from '../hooks/usePlayerState'
 import { Player } from '../interfaces/player'
-import { BLS12381G1_LENGTH, RING_SIG_NONCE_LENGTH } from '../utils/constants'
+import { BLS12381G1_LENGTH, LSIG_FUND_AMOUNT, RING_SIG_NONCE_LENGTH, SLASH_DEPOSIT_AMOUNT } from '../utils/constants'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
+import algosdk from 'algosdk'
 
 interface JoinGameLobbyProps {
   playerObject: Player
@@ -36,16 +37,6 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject }) => {
       return
     }
 
-    // Fund the contract so we can simulate state from it
-    const fundTownHallContractResults = await algorand.send.payment({
-      sender: activeAddress!,
-      signer: transactionSigner,
-      receiver: playerObject.day_client.appClient.appAddress,
-      amount: (144100).microAlgos(),
-    })
-
-    console.log('Funding Contract Results:', fundTownHallContractResults)
-
     // Fund the day_algo_player address with 2 Algo
     const fundDayPlayerAlgoResults = await algorand.send.payment({
       sender: activeAddress!,
@@ -55,6 +46,14 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject }) => {
     })
 
     console.log('Funding Day Player Results:', fundDayPlayerAlgoResults)
+
+    // Fund the application as part of the joinGameLobby call.
+    const depositPayment = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+      sender: playerObject.day_algo_address.addr,
+      receiver: playerObject.day_client.appAddress,
+      amount: LSIG_FUND_AMOUNT + SLASH_DEPOSIT_AMOUNT,
+      suggestedParams: await AlgorandClient.defaultLocalNet().getSuggestedParams(),
+    })
 
     const proof = algoring.NIZK_DLOG_generate_proof(playerObject.bls_private_key)
 
@@ -69,7 +68,9 @@ const JoinGameLobby: React.FC<JoinGameLobbyProps> = ({ playerObject }) => {
       .joinGameLobby({
         args: {
           nizkDlog: NIZK_DLOG,
+          depositTxn: depositPayment,
         },
+        extraFee: (1000).microAlgos(),
       })
       .dummyOpUp({
         args: { i: 1 },

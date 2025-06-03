@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { TownHallClient, TownHallFactory } from '../contracts/TownHall'
 import { GameState } from '../interfaces/gameState'
 import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
+import { getFunderLSig } from '../utils/Utils'
 
 interface IntroProps {
   setGameState: React.Dispatch<React.SetStateAction<GameState>>
@@ -30,18 +31,26 @@ const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
   const handleProceed = async () => {
     if (inputAppId.trim()) {
       try {
+        const gameInstance = await algorand.client.getTypedAppClientById(TownHallClient, {
+          appId: BigInt(inputAppId),
+        })
+
         // If app doesn't exist, this will throw an error:
-        await (
-          await algorand.client.getTypedAppClientById(TownHallClient, {
-            appId: BigInt(inputAppId),
-          })
-        ).state.global.player1AlgoAddr()
+        gameInstance.state.global.player1AlgoAddr()
+
+        // Double-check that the funderLSig is correct
+        const computedFunderLSigAddress = (await getFunderLSig(gameInstance)).address().toString()
+        const theSetFunderLSigAddress = await gameInstance.state.global.lsigFunderAddress()
+
+        if (computedFunderLSigAddress !== theSetFunderLSigAddress) {
+          throw new Error('Funder LSig address mismatch! Possibly malicious game.')
+        }
 
         setAppId(BigInt(inputAppId))
         setGameState(GameState.JoinGameLobby)
       } catch (error) {
         console.error('Error proceeding to game:', error)
-        alert('Failed to proceed. Please ensure the App ID is valid and try again.')
+        alert('Failed to proceed. Please ensure the App ID is a valid game and try again.')
       }
     } else {
       alert('Please provide a valid App ID.')
@@ -66,6 +75,23 @@ const Intro: React.FC<IntroProps> = ({ setGameState, setAppId }) => {
     }
 
     const { appClient } = deployResult
+
+    // Set LSIG Funder Address
+    // In this regard, the Intro.tsx component is both creation and GameState SetLSIGFunderAddress
+    const funderLSigAddress = (await getFunderLSig(appClient)).address().toString()
+
+    console.log('funderLSigAddress:', funderLSigAddress)
+
+    const setResults = await appClient.send.setLsigFunderAddress({
+      args: { funderLSigAddress },
+    })
+
+    console.log('set results:', setResults)
+
+    if (!setResults) {
+      enqueueSnackbar('Failed to set LSIG Funder Address. Please try again.', { variant: 'error' })
+      return
+    }
 
     setAppId(appClient.appId)
   }

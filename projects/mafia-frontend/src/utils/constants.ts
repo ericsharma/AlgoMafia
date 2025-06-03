@@ -10,7 +10,8 @@ export const RING_SIG_LINKS_AMNT = 6
 
 export const ZERO_ADDRESS = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ'
 
-export const stateJoinGameLobby = 0
+export const stateSetLSIGFunderAddress = 0
+export const stateJoinGameLobby = stateSetLSIGFunderAddress + 1
 export const stateAssignRole = stateJoinGameLobby + 1
 export const stateDayStageVote = stateAssignRole + 1
 export const stateDayStageEliminate = stateDayStageVote + 1
@@ -22,6 +23,9 @@ export const stateDawnStageDoctorReveal = stateDawnStageMafiaReveal + 1
 export const stateDawnStageDeadOrSaved = stateDawnStageDoctorReveal + 1
 export const stateDawnStageUnmasking = stateDawnStageDeadOrSaved + 1
 export const stateGameOver = stateDawnStageUnmasking + 1
+
+export const LSIG_FUND_AMOUNT = 150_000
+export const SLASH_DEPOSIT_AMOUNT = 1_000_000
 
 export const jdenticonConfig = {
   backColor: '#000000',

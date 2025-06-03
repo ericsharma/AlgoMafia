@@ -67,8 +67,24 @@
       }
     },
     {
+      "name": "setLSIGFunderAddress",
+      "args": [
+        {
+          "name": "funderLSigAddress",
+          "type": "address"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
       "name": "joinGameLobby",
       "args": [
+        {
+          "name": "depositTxn",
+          "type": "pay"
+        },
         {
           "name": "NIZK_DLOG",
           "type": "byte[]"
@@ -102,27 +118,31 @@
           "type": "byte[]"
         },
         {
-          "name": "lsigTxn0",
+          "name": "funderLSigTxn",
           "type": "pay"
         },
         {
-          "name": "lsigTxn1",
+          "name": "ringLSigTxn0",
           "type": "pay"
         },
         {
-          "name": "lsigTxn2",
+          "name": "ringLSigTxn1",
           "type": "pay"
         },
         {
-          "name": "lsigTxn3",
+          "name": "ringLSigTxn2",
           "type": "pay"
         },
         {
-          "name": "lsigTxn4",
+          "name": "ringLSigTxn3",
           "type": "pay"
         },
         {
-          "name": "lsigTxn5",
+          "name": "ringLSigTxn4",
+          "type": "pay"
+        },
+        {
+          "name": "ringLSigTxn5",
           "type": "pay"
         }
       ],

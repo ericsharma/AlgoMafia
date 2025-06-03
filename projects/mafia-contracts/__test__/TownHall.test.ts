@@ -1,6 +1,7 @@
+/* eslint-disable no-await-in-loop */
 import { describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
 import { algorandFixture } from '@algorandfoundation/algokit-utils/testing';
-import { Config, AlgorandClient } from '@algorandfoundation/algokit-utils';
+import { Config } from '@algorandfoundation/algokit-utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as algoring from 'algoring-ts';
 import algosdk from 'algosdk';
@@ -11,6 +12,7 @@ import {
   BLS12381G1_LENGTH,
   RING_SIG_CHALL_LENGTH,
   RING_SIG_NONCE_LENGTH,
+  stateSetLSIGFunderAddress,
   stateAssignRole,
   stateDawnStageDeadOrSaved,
   stateDawnStageDoctorReveal,
@@ -32,6 +34,8 @@ import {
   unMaskDayStage,
   unMaskDawnStage,
   assignRole,
+  prepareFunderLSig,
+  getFunderLSig,
 } from '../contracts/Utils';
 
 const fixture = algorandFixture();
@@ -63,9 +67,6 @@ describe('TownHall', () => {
     players = Array.from({ length: 6 }, () => new Player(appClient.appId));
     players.forEach(async (player) => {
       algorand.account.ensureFundedFromEnvironment(player.day_algo_address.account.addr, fundAmount);
-
-      // TODO: Have the night address through an LSIG funded by the contract!
-      algorand.account.ensureFundedFromEnvironment(player.night_algo_address.account.addr, fundAmount);
     });
   });
 
@@ -143,22 +144,23 @@ describe('TownHall', () => {
   });
 
   test('entire_play', async () => {
-    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateJoinGameLobby);
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateSetLSIGFunderAddress);
+    /// <----------- ENTERED SetLSIGFunderAddress Stage ----------->
 
-    // TODO: have users fund the contract as part of their deposit!
-    await AlgorandClient.defaultLocalNet().account.ensureFundedFromEnvironment(appClient.appAddress, fundAmount);
-    // E.g., like so (but include signer):
-    // const mbrPayment = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
-    //   from: player.day_algo_address.addr,
-    //   to: appClient.appAddress,
-    //   amount: ....,
-    //   suggestedParams: await AlgorandClient.defaultLocalNet().getSuggestedParams(),
-    // });
+    // Set the LSIG funder address
+    const funderLSig = await getFunderLSig(appClient);
+    const funderLSigAddress = funderLSig.address();
+
+    await appClient.send.setLsigFunderAddress({
+      args: { funderLSigAddress },
+    });
+
+    expect(Number((await appClient.send.getGameState()).return)).toEqual(stateJoinGameLobby);
+    /// <----------- ENTERED JoinGameLobby Stage ----------->
 
     // eslint-disable-next-line no-restricted-syntax
     for (const player of players) {
-      // eslint-disable-next-line no-await-in-loop
-      await joinGameLobby(player.day_client, player.bls_private_key);
+      await joinGameLobby(player.day_client, player.day_algo_address.addr, player.bls_private_key);
     }
 
     expect(await appClient.state.global.player1AlgoAddr()).toBe(players[0].day_algo_address.addr);
@@ -194,15 +196,15 @@ describe('TownHall', () => {
         algosdk.decodeAddress(player.night_client.appClient.appAddress).publicKey,
       ]);
 
-      // TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
+      // ALGORING-TS TODO: Remove genKeyImage's PK input, it should be directly generated from SK.
       const keyImage = algoring.genKeyImage(player.bls_private_key, player.bls_public_key);
 
-      // TODO: Remove KeyImage return since it is superfluous OR KeyImage input
+      // ALGORING-TS TODO: Remove KeyImage return since it is superfluous OR KeyImage input
       const { signature } = algoring.generate_ring_signature(msg, player.bls_private_key, ringOfPKs, keyImage);
 
       expect(algoring.verify_ring_signature(msg, signature, ringOfPKs, keyImage)).toBe(true);
 
-      // TODO: remove msg return
+      // ALGORING-TS TODO: remove msg return
       const { signatureConcat, intermediateValues } = algoring.construct_avm_ring_signature(
         msg,
         signature,
@@ -219,7 +221,6 @@ describe('TownHall', () => {
 
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i < length; i++) {
-        // eslint-disable-next-line no-await-in-loop
         const { lSigRingSigPayTxn, lSigRingSigSigner } = await prepareLSigRingLink(
           i,
           player.night_client,
@@ -236,7 +237,12 @@ describe('TownHall', () => {
         signers.push(lSigRingSigSigner);
       }
 
-      // eslint-disable-next-line no-await-in-loop
+      // Prepare the funder LSIG transaction, to funder Night Address
+      const { funderLSigPayTxn, funderLSigSigner } = await prepareFunderLSig(
+        player.night_client,
+        player.night_algo_address.addr
+      );
+
       await assignRole(
         player.night_client,
         msg,
@@ -244,6 +250,8 @@ describe('TownHall', () => {
         keyImage,
         signatureConcat,
         intermediateValues,
+        funderLSigPayTxn,
+        funderLSigSigner,
         pts,
         signers,
         length
@@ -260,7 +268,6 @@ describe('TownHall', () => {
     expect(await appClient.state.global.grocer()).toBe(players[5].night_algo_address.addr);
 
     expect(Number((await appClient.send.getGameState()).return)).toEqual(stateDayStageVote); // Advanced to the DayStageVote stage
-
     /// <----------- ENTERED DayStageVote ----------->
 
     // Everyone but player 3 votes for player 3

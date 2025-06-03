@@ -1,5 +1,6 @@
 export enum GameState {
-  JoinGameLobby = 0,
+  SetLSIGFunderAddress = 0,
+  JoinGameLobby = SetLSIGFunderAddress + 1,
   AssignRole = JoinGameLobby + 1,
   DayStageVote = AssignRole + 1,
   DayStageEliminate = DayStageVote + 1,
