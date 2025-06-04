@@ -476,6 +476,16 @@ describe('TownHall', () => {
     expect(await appClient.state.global.mafiaVictim()).toEqual(ZERO_ADDRESS);
     expect(await appClient.state.global.doctorPatient()).toEqual(ZERO_ADDRESS);
     expect(Number((await appClient.send.getGameState()).return)).toEqual(stateGameOver); // Advanced to Game Over
+
+    await players[0].day_client
+      .newGroup()
+      .gameOver({ args: {}, extraFee: (7_000).microAlgos() })
+      .dummyOpUp({
+        args: { i: 1 },
+      })
+      .send();
+
+    await players[0].day_client.send.delete.deleteApplication({ args: {} });
   });
 });
 
