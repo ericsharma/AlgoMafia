@@ -1,4 +1,5 @@
 import { Contract } from '@algorandfoundation/tealscript';
+import { send } from 'process';
 import {
   BLS12381_CURVE_ORDER_HEX,
   BLS12381_FIELD_MODULUS_HEX,
@@ -57,11 +58,19 @@ export class TownHall extends Contract {
 
   farmer = GlobalStateKey<Address>();
 
+  farmerKeyImage = GlobalStateKey<bytes>();
+
   butcher = GlobalStateKey<Address>();
+
+  butcherKeyImage = GlobalStateKey<bytes>();
 
   innkeep = GlobalStateKey<Address>();
 
+  innkeepKeyImage = GlobalStateKey<bytes>();
+
   grocer = GlobalStateKey<Address>();
+
+  grocerKeyImage = GlobalStateKey<bytes>();
 
   // Ring Signature State:
   lsigFunderAddress = GlobalStateKey<Address>(); // The address of the FunderLSig, which is used to fund the night algo address
@@ -394,18 +403,22 @@ export class TownHall extends Contract {
     }
     if (this.farmer.value === globals.zeroAddress) {
       this.farmer.value = this.txn.sender;
+      this.farmerKeyImage.value = keyImage;
       return;
     }
     if (this.butcher.value === globals.zeroAddress) {
       this.butcher.value = this.txn.sender;
+      this.butcherKeyImage.value = keyImage;
       return;
     }
     if (this.innkeep.value === globals.zeroAddress) {
       this.innkeep.value = this.txn.sender;
+      this.innkeepKeyImage.value = keyImage;
       return;
     }
     if (this.grocer.value === globals.zeroAddress) {
       this.grocer.value = this.txn.sender;
+      this.grocerKeyImage.value = keyImage;
       this.gameState.value = stateDayStageVote; // Go to day
       return;
     }
@@ -755,22 +768,22 @@ export class TownHall extends Contract {
 
     if (this.mafiaVictim.value === this.player1AlgoAddr.value.address) {
       this.justEliminatedPlayer.value = this.player1AlgoAddr.value.address;
-      this.player1AlgoAddr.value.address = globals.zeroAddress;
+      this.player1AlgoAddr.value.eliminated = 1;
     } else if (this.mafiaVictim.value === this.player2AlgoAddr.value.address) {
       this.justEliminatedPlayer.value = this.player2AlgoAddr.value.address;
-      this.player2AlgoAddr.value.address = globals.zeroAddress;
+      this.player2AlgoAddr.value.eliminated = 1;
     } else if (this.mafiaVictim.value === this.player3AlgoAddr.value.address) {
       this.justEliminatedPlayer.value = this.player3AlgoAddr.value.address;
-      this.player3AlgoAddr.value.address = globals.zeroAddress;
+      this.player3AlgoAddr.value.eliminated = 1;
     } else if (this.mafiaVictim.value === this.player4AlgoAddr.value.address) {
       this.justEliminatedPlayer.value = this.player4AlgoAddr.value.address;
-      this.player4AlgoAddr.value.address = globals.zeroAddress;
+      this.player4AlgoAddr.value.eliminated = 1;
     } else if (this.mafiaVictim.value === this.player5AlgoAddr.value.address) {
       this.justEliminatedPlayer.value = this.player5AlgoAddr.value.address;
-      this.player5AlgoAddr.value.address = globals.zeroAddress;
+      this.player5AlgoAddr.value.eliminated = 1;
     } else if (this.mafiaVictim.value === this.player6AlgoAddr.value.address) {
       this.justEliminatedPlayer.value = this.player6AlgoAddr.value.address;
-      this.player6AlgoAddr.value.address = globals.zeroAddress;
+      this.player6AlgoAddr.value.eliminated = 1;
     } else {
       throw Error('Error state: Victim must be a player! Should not have entered this state.');
     }
@@ -828,10 +841,50 @@ export class TownHall extends Contract {
     this.gameState.value = stateDayStageVote;
   }
 
+  // @allow.call('DeleteApplication')
   gameOver(): void {
     assert(this.gameState.value === stateGameOver, 'Invalid method call: Game is not in Game Over state.');
-    // TODO: return deposits to all players
-    // TODO: clear out any boxxes
-    // TODO: delete contract
+    this.quickAccessPKBoxes(0).delete(); // Delete the PK Box
+    this.hashFilter(rawBytes(sha256(this.mafiaKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.doctorKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.farmerKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.butcherKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.innkeepKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.grocerKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+
+    sendPayment({
+      amount: SLASH_DEPOSIT_AMOUNT,
+      receiver: this.player1AlgoAddr.value.address,
+    });
+
+    sendPayment({
+      amount: SLASH_DEPOSIT_AMOUNT,
+      receiver: this.player2AlgoAddr.value.address,
+    });
+    sendPayment({
+      amount: SLASH_DEPOSIT_AMOUNT,
+      receiver: this.player3AlgoAddr.value.address,
+    });
+
+    sendPayment({
+      amount: SLASH_DEPOSIT_AMOUNT,
+      receiver: this.player4AlgoAddr.value.address,
+    });
+
+    sendPayment({
+      amount: SLASH_DEPOSIT_AMOUNT,
+      receiver: this.player5AlgoAddr.value.address,
+    });
+
+    sendPayment({
+      amount: SLASH_DEPOSIT_AMOUNT,
+      receiver: this.player6AlgoAddr.value.address,
+    });
+
+    sendPayment({ closeRemainderTo: this.creatorAddress.value });
+  }
+
+  deleteApplication(): void {
+    assert(this.gameState.value === stateGameOver, 'Invalid method call: Game is not in Game Over state.');
   }
 }
