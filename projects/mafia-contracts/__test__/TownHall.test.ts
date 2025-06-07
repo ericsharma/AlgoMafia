@@ -479,13 +479,13 @@ describe('TownHall', () => {
 
     await players[0].day_client
       .newGroup()
-      .gameOver({ args: {}, extraFee: (7_000).microAlgos() })
+      .gameOver({ args: {} })
       .dummyOpUp({
         args: { i: 1 },
       })
       .send();
 
-    await players[0].day_client.send.delete.deleteApplication({ args: {} });
+    await players[0].day_client.send.delete.deleteApplication({ args: {}, extraFee: (1_000).microAlgos() });
   });
 });
 
