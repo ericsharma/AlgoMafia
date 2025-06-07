@@ -1,5 +1,4 @@
 import { Contract } from '@algorandfoundation/tealscript';
-import { send } from 'process';
 import {
   BLS12381_CURVE_ORDER_HEX,
   BLS12381_FIELD_MODULUS_HEX,
@@ -852,39 +851,46 @@ export class TownHall extends Contract {
     this.hashFilter(rawBytes(sha256(this.innkeepKeyImage.value))).delete(); // Delete the Key Image from the hash filter
     this.hashFilter(rawBytes(sha256(this.grocerKeyImage.value))).delete(); // Delete the Key Image from the hash filter
 
+    const returnAmount = SLASH_DEPOSIT_AMOUNT - globals.minTxnFee; // Return the slash deposit amount minus the minimum transaction fee
+
     sendPayment({
-      amount: SLASH_DEPOSIT_AMOUNT,
+      amount: returnAmount,
       receiver: this.player1AlgoAddr.value.address,
+      fee: globals.minTxnFee,
     });
 
     sendPayment({
-      amount: SLASH_DEPOSIT_AMOUNT,
+      amount: returnAmount,
       receiver: this.player2AlgoAddr.value.address,
+      fee: globals.minTxnFee,
     });
     sendPayment({
-      amount: SLASH_DEPOSIT_AMOUNT,
+      amount: returnAmount,
       receiver: this.player3AlgoAddr.value.address,
+      fee: globals.minTxnFee,
     });
 
     sendPayment({
-      amount: SLASH_DEPOSIT_AMOUNT,
+      amount: returnAmount,
       receiver: this.player4AlgoAddr.value.address,
+      fee: globals.minTxnFee,
     });
 
     sendPayment({
-      amount: SLASH_DEPOSIT_AMOUNT,
+      amount: returnAmount,
       receiver: this.player5AlgoAddr.value.address,
+      fee: globals.minTxnFee,
     });
 
     sendPayment({
-      amount: SLASH_DEPOSIT_AMOUNT,
+      amount: returnAmount,
       receiver: this.player6AlgoAddr.value.address,
+      fee: globals.minTxnFee,
     });
-
-    sendPayment({ closeRemainderTo: this.creatorAddress.value });
   }
 
   deleteApplication(): void {
     assert(this.gameState.value === stateGameOver, 'Invalid method call: Game is not in Game Over state.');
+    sendPayment({ closeRemainderTo: this.creatorAddress.value });
   }
 }
