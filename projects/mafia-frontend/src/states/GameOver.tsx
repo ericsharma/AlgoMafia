@@ -8,7 +8,6 @@ interface GameOverProps {
   playerObject: Player
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
   const algodConfig = getAlgodConfigFromViteEnvironment()
   const [deleteApplication, setDeleteApplication] = useState(false)
