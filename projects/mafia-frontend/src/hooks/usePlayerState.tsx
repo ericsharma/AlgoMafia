@@ -23,9 +23,11 @@ const usePlayersState = (playerObject: Player) => {
         playerObject.day_client.state.global.player5AlgoAddr()!,
         playerObject.day_client.state.global.player6AlgoAddr()!,
       ]
-      const fetchedPlayers = (await Promise.all(playerPromises)).filter((res) => typeof res === 'string')
+      const fetchedPlayers = (await Promise.all(playerPromises)).filter((p): p is [string, bigint] => p !== undefined)
+
+      console.log({ fetchedPlayers })
       // Filter out any players that are equal to the zeroAddress
-      const validPlayers = fetchedPlayers.filter((player) => player !== ZERO_ADDRESS)
+      const validPlayers = fetchedPlayers.filter((playerRecord) => playerRecord[0] !== ZERO_ADDRESS).map((playerRecord) => playerRecord[0])
 
       return {
         validPlayers,
@@ -78,7 +80,7 @@ const usePlayersState = (playerObject: Player) => {
       setPlayers(playersQuery.data.validPlayers)
 
       const myDayAddress = playerObject.day_algo_address.addr.toString()
-      const activePlayerIndex = playersQuery.data.allPlayers.findIndex((player) => player === myDayAddress)
+      const activePlayerIndex = playersQuery.data.allPlayers.findIndex((player) => player[0] === myDayAddress)
 
       setPlayerIsDead(activePlayerIndex === -1)
 
@@ -93,7 +95,7 @@ const usePlayersState = (playerObject: Player) => {
   useEffect(() => {
     if (votingQuery.data && playersQuery.data) {
       const myDayAddress = playerObject.day_algo_address.addr.toString()
-      const activePlayerIndex = playersQuery.data.allPlayers.findIndex((player) => player === myDayAddress)
+      const activePlayerIndex = playersQuery.data.allPlayers.findIndex((player) => player[0] === myDayAddress)
 
       if (activePlayerIndex !== -1 && votingQuery.data[activePlayerIndex]) {
         setPlayerHasVoted(Number(votingQuery.data[activePlayerIndex]) !== 0)
