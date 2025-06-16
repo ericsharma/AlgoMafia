@@ -30,11 +30,21 @@ const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
   }
 
   const deleteApp = async () => {
-    await playerObject.day_client.send.delete.deleteApplication({
-      args: {},
-      signer: playerObject.day_algo_address.signer,
-      extraFee: (1_000).microAlgos(),
-    })
+    try {
+      await playerObject.day_client.send.delete.deleteApplication({
+        args: {},
+        signer: playerObject.day_algo_address.signer,
+        extraFee: (1_000).microAlgos(),
+      })
+      window.location.href = '/'
+    } catch (e) {
+      if (e instanceof Error && e.message.split(':')[2].trim().startsWith('only ClearState')) {
+        // error occurs when trying to delete an already deleted application
+        window.location.href = '/'
+      } else {
+        console.log(e)
+      }
+    }
   }
 
   useEffect(() => {
