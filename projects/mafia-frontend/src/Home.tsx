@@ -136,6 +136,14 @@ const Home: React.FC = () => {
     if (playerQuery.data !== undefined) {
       setGameState(GameState[GameState[Number(playerQuery.data)] as keyof typeof GameState])
     }
+    if (
+      gameState === GameState.GameOver &&
+      playerQuery.error &&
+      (playerQuery.error.message === 'Cannot get game state: Invalid application ID' ||
+        playerQuery.error.message === 'Network request error. Received status 404 (Not Found): application does not exist')
+    ) {
+      window.location.href = '/'
+    }
   }, [playerQuery])
 
   const renderGameState = () => {
