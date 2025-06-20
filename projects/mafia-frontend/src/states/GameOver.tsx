@@ -13,6 +13,7 @@ const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
 
   const { activeAddress } = useWallet()
   const { data: nightAlgoBalance } = useBalanceQuery(playerObject.night_algo_address.addr)
+
   const { data: appAlgoBalance } = useBalanceQuery(playerObject.day_client.appAddress)
   const algorand = useAlgorand()
 
@@ -44,23 +45,30 @@ const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
       }
     }
   }
-
   useEffect(() => {
-    if (nightAlgoBalance! > 0) {
-      algorand.send.payment({
-        sender: playerObject.night_algo_address.addr,
-        amount: (0).algo(),
-        receiver: activeAddress!,
-        closeRemainderTo: activeAddress!,
-        signer: playerObject.night_algo_address.signer,
-      })
+    const handleBalanceCleanup = async () => {
+      if (nightAlgoBalance! > 0) {
+        try {
+          await algorand.send.payment({
+            sender: playerObject.night_algo_address.addr,
+            amount: (0).algo(),
+            receiver: activeAddress!,
+            closeRemainderTo: activeAddress!,
+            signer: playerObject.night_algo_address.signer,
+          })
+          console.log('Night algo balance successfully returned to active address')
+        } catch (error) {
+          console.error('Failed to return night algo balance:', error)
+        }
+      }
+
+      if (appAlgoBalance === 0) {
+        setDeleteApplication(true)
+      }
     }
 
-    if (appAlgoBalance === 0) {
-      setDeleteApplication(true)
-    }
+    handleBalanceCleanup()
   }, [nightAlgoBalance, appAlgoBalance])
-
   return (
     <div className="rounded-lg p-6 mb-8">
       <h1 className="text-xl font-bold mb-4">The game is over!</h1>
