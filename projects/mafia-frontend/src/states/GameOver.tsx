@@ -1,4 +1,5 @@
 import { AlgorandClient } from '@algorandfoundation/algokit-utils'
+import { useWallet } from '@txnlab/use-wallet-react'
 import { useBalanceQuery } from '../hooks/useBalanceQuery'
 import { getAlgodConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
 
@@ -12,7 +13,7 @@ interface GameOverProps {
 const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
   const [deleteApplication, setDeleteApplication] = useState(false)
   const algodConfig = getAlgodConfigFromViteEnvironment()
-
+  const { activeAddress } = useWallet()
   const { data: nightAlgoBalance } = useBalanceQuery(playerObject.night_algo_address.addr)
   const { data: appAlgoBalance } = useBalanceQuery(playerObject.day_client.appAddress)
 
@@ -52,8 +53,8 @@ const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
       algorand.send.payment({
         sender: playerObject.night_algo_address.addr,
         amount: (0).algo(),
-        receiver: playerObject.day_algo_address.addr,
-        closeRemainderTo: playerObject.day_algo_address.addr,
+        receiver: activeAddress!,
+        closeRemainderTo: activeAddress!,
         signer: playerObject.night_algo_address.signer,
       })
     }
