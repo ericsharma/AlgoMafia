@@ -35,6 +35,14 @@ const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
         signer: playerObject.day_algo_address.signer,
         extraFee: (1_000).microAlgos(),
       })
+
+      await algorand.send.payment({
+        sender: playerObject.day_algo_address.addr,
+        amount: (0).algo(),
+        receiver: activeAddress!,
+        closeRemainderTo: activeAddress!,
+        signer: playerObject.day_algo_address.signer,
+      })
       window.location.href = '/'
     } catch (e) {
       if (e instanceof Error && e.message.split(':')[2].trim().startsWith('only ClearState')) {
