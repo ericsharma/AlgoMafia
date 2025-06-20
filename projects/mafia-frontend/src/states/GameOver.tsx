@@ -1,9 +1,7 @@
-import { AlgorandClient } from '@algorandfoundation/algokit-utils'
 import { useWallet } from '@txnlab/use-wallet-react'
-import { useBalanceQuery } from '../hooks/useBalanceQuery'
-import { getAlgodConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
-
 import { useEffect, useState } from 'react'
+import { useAlgorand } from '../hooks/useAlgorand'
+import { useBalanceQuery } from '../hooks/useBalanceQuery'
 import { Player } from '../interfaces/player'
 
 interface GameOverProps {
@@ -12,12 +10,11 @@ interface GameOverProps {
 
 const GameOver: React.FC<GameOverProps> = ({ playerObject }) => {
   const [deleteApplication, setDeleteApplication] = useState(false)
-  const algodConfig = getAlgodConfigFromViteEnvironment()
+
   const { activeAddress } = useWallet()
   const { data: nightAlgoBalance } = useBalanceQuery(playerObject.night_algo_address.addr)
   const { data: appAlgoBalance } = useBalanceQuery(playerObject.day_client.appAddress)
-
-  const algorand = AlgorandClient.fromConfig({ algodConfig })
+  const algorand = useAlgorand()
 
   const endGame = async () => {
     await playerObject.day_client
