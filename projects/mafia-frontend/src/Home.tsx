@@ -21,8 +21,8 @@ import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 
 import { useQuery } from '@tanstack/react-query'
 import Navbar from './components/NavBar'
-
 import { createStorageKey, getPlayersData, savePlayerData } from './db/playerStore'
+import { useAlgorand } from './hooks/useAlgorand'
 
 // Import the PlayerSelectionModal component
 import IDBPlayerSelectionModal from './components/IDBPlayerSelectionModal'
@@ -35,6 +35,7 @@ const Home: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>(GameState.JoinGameLobby)
   const [isPlaying, setIsPlaying] = useState<boolean>(false) // State to track audio playback
   const { activeAddress } = useWallet()
+  const algorand = useAlgorand()
 
   // Add state for player selection
   const [showPlayerSelection, setShowPlayerSelection] = useState<boolean>(false)
@@ -133,9 +134,55 @@ const Home: React.FC = () => {
   const playerQuery = useQuery({ queryKey: ['playerState'], queryFn: getGamePlayerState, refetchInterval: 2800 })
 
   useEffect(() => {
-    if (playerQuery.data !== undefined) {
-      setGameState(GameState[GameState[Number(playerQuery.data)] as keyof typeof GameState])
+    const handleGameStateAndCleanup = async () => {
+      if (playerQuery.data !== undefined) {
+        setGameState(GameState[GameState[Number(playerQuery.data)] as keyof typeof GameState])
+      }
+
+      if (
+        gameState !== GameState.JoinGameLobby && // If game state isn't joint lobby then an active game must be played.
+        playerQuery.error &&
+        (playerQuery.error.message === 'Cannot get game state: Invalid application ID' ||
+          playerQuery.error.message === 'Network request error. Received status 404 (Not Found): application does not exist')
+      ) {
+        const nightAlgoBalance = (await algorand.client.algod.accountInformation(playerObject!.night_algo_address.addr).do()).amount
+        const dayAlgoBalance = (await algorand.client.algod.accountInformation(playerObject!.day_algo_address.addr).do()).amount
+
+        if (nightAlgoBalance! > 0) {
+          try {
+            await algorand.send.payment({
+              sender: playerObject!.night_algo_address.addr,
+              amount: (0).algo(),
+              receiver: activeAddress!,
+              closeRemainderTo: activeAddress!,
+              signer: playerObject!.night_algo_address.signer,
+            })
+            console.log('Payment successful - night algo funds returned to active address')
+          } catch (error) {
+            console.error('Failed to return funds:', error)
+          }
+        }
+
+        if (dayAlgoBalance! > 0) {
+          try {
+            await algorand.send.payment({
+              sender: playerObject!.day_algo_address.addr,
+              amount: (0).algo(),
+              receiver: activeAddress!,
+              closeRemainderTo: activeAddress!,
+              signer: playerObject!.day_algo_address.signer,
+            })
+            console.log('Payment successful - day algo funds returned to active address')
+          } catch (error) {
+            console.error('Failed to return funds:', error)
+          }
+        }
+
+        window.location.href = '/'
+      }
     }
+
+    handleGameStateAndCleanup()
   }, [playerQuery])
 
   const renderGameState = () => {
