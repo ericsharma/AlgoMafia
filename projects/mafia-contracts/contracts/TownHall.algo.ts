@@ -867,16 +867,9 @@ export class TownHall extends Contract {
   // @allow.call('DeleteApplication')
   gameOver(): void {
     assert(this.gameState.value === stateGameOver, 'Invalid method call: Game is not in Game Over state.');
-    this.quickAccessPKBoxes(0).delete(); // Delete the PK Box
-    this.hashFilter(rawBytes(sha256(this.mafiaKeyImage.value))).delete(); // Delete the Key Image from the hash filter
-    this.hashFilter(rawBytes(sha256(this.doctorKeyImage.value))).delete(); // Delete the Key Image from the hash filter
-    this.hashFilter(rawBytes(sha256(this.farmerKeyImage.value))).delete(); // Delete the Key Image from the hash filter
-    this.hashFilter(rawBytes(sha256(this.butcherKeyImage.value))).delete(); // Delete the Key Image from the hash filter
-    this.hashFilter(rawBytes(sha256(this.innkeepKeyImage.value))).delete(); // Delete the Key Image from the hash filter
-    this.hashFilter(rawBytes(sha256(this.grocerKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.deleteBoxStorage();
 
     const returnAmount = SLASH_DEPOSIT_AMOUNT - globals.minTxnFee; // Return the slash deposit amount minus the minimum transaction fee
-
     sendPayment({
       amount: returnAmount,
       receiver: this.player1AlgoAddr.value.address,
@@ -913,8 +906,82 @@ export class TownHall extends Contract {
     });
   }
 
+  /*
+This timeout is triggered when players fail to assign themselves roles after joining the lobby and depositing their stake.
+A malicious player can exploit this stage by refusing to select a role, effectively griefing the game.
+When a timeout occurs during role assignment, this method identifies all players who have successfully assigned themselves roles and refunds their deposits to their night addresses.
+The frontend can then transfer these funds from the night addresses back to the users' active wallet addresses.
+*/
+  handleAssignRolesTimeout(): void {
+    assert(
+      this.gameState.value === stateAssignRoleTimeout,
+      'Invalid method call: Game is not in Assign Role Timeout state'
+    );
+
+    const honestPlayers = this.getHonestRoles();
+    this.quickAccessPKBoxes(0).delete(); // Delete the PK Box
+
+    const returnAmount = wideRatio([SLASH_DEPOSIT_AMOUNT, 6], [honestPlayers.length]) - globals.minTxnFee;
+    for (let i = 0; i < honestPlayers.length; i += 1) {
+      if (globals.opcodeBudget < 400) {
+        increaseOpcodeBudget();
+      }
+      sendPayment({
+        amount: returnAmount,
+        receiver: honestPlayers[i],
+        fee: globals.minTxnFee,
+      });
+    }
+  }
+
+  triggerTimeoutState(): void {
+    assert(globals.round > this.lastCommitedRound.value + ROUNDS_TO_TIMEOUT);
+    if (this.getHonestRoles().length < 6) this.gameState.value = stateAssignRoleTimeout;
+    // This should be expanded out to check for more timeout scenarious
+  }
+
+  private getHonestRoles(): Address[] {
+    const honestPlayers: Address[] = [];
+
+    if (this.mafia.value !== globals.zeroAddress) {
+      honestPlayers.push(this.mafia.value);
+      this.hashFilter(rawBytes(sha256(this.mafiaKeyImage.value))).delete();
+    }
+    if (this.doctor.value !== globals.zeroAddress) {
+      honestPlayers.push(this.doctor.value);
+      this.hashFilter(rawBytes(sha256(this.doctorKeyImage.value))).delete();
+    }
+    if (this.butcher.value !== globals.zeroAddress) {
+      honestPlayers.push(this.butcher.value);
+      this.hashFilter(rawBytes(sha256(this.butcherKeyImage.value))).delete();
+    }
+    if (this.innkeep.value !== globals.zeroAddress) {
+      honestPlayers.push(this.innkeep.value);
+      this.hashFilter(rawBytes(sha256(this.innkeepKeyImage.value))).delete();
+    }
+    if (this.farmer.value !== globals.zeroAddress) {
+      honestPlayers.push(this.farmer.value);
+      this.hashFilter(rawBytes(sha256(this.farmerKeyImage.value))).delete();
+    }
+    if (this.grocer.value !== globals.zeroAddress) {
+      honestPlayers.push(this.grocer.value);
+      this.hashFilter(rawBytes(sha256(this.grocerKeyImage.value))).delete();
+    }
+    return honestPlayers;
+  }
+
+  private deleteBoxStorage(): void {
+    this.quickAccessPKBoxes(0).delete(); // Delete the PK Box
+    this.hashFilter(rawBytes(sha256(this.mafiaKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.doctorKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.farmerKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.butcherKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.innkeepKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+    this.hashFilter(rawBytes(sha256(this.grocerKeyImage.value))).delete(); // Delete the Key Image from the hash filter
+  }
+
   deleteApplication(): void {
-    assert(this.gameState.value === stateGameOver, 'Invalid method call: Game is not in Game Over state.');
+    assert(this.gameState.value >= stateGameOver, 'Invalid method call: Game is not in Game Over state.');
     sendPayment({ closeRemainderTo: this.creatorAddress.value });
   }
 }
