@@ -6,6 +6,7 @@ import {
   BLS12381G1_LENGTH,
   LSIG_FUND_AMOUNT,
   SLASH_DEPOSIT_AMOUNT,
+  ROUNDS_TO_TIMEOUT,
   stateSetLSIGFunderAddress,
   stateAssignRole,
   stateDawnStageDeadOrSaved,
@@ -19,6 +20,7 @@ import {
   stateJoinGameLobby,
   stateNightStageDoctorCommit,
   stateNightStageMafiaCommit,
+  stateAssignRoleTimeout,
 } from './Constants';
 import { RingLinkLSig0 } from './RingLinkLSig0.algo';
 import { RingLinkLSig1 } from './RingLinkLSig1.algo';
@@ -130,6 +132,8 @@ export class TownHall extends Contract {
 
   gameState = GlobalStateKey<uint64>();
 
+  lastCommitedRound = GlobalStateKey<uint64>();
+
   createApplication(): void {
     this.creatorAddress.value = this.txn.sender;
 
@@ -173,6 +177,7 @@ export class TownHall extends Contract {
     this.doctorPatient.value = globals.zeroAddress;
 
     this.gameState.value = 0;
+    this.lastCommitedRound.value = 0;
   }
 
   /** Dummy Op Up
@@ -294,6 +299,10 @@ export class TownHall extends Contract {
     this.playersJoined.value += 1;
 
     assert(this.lsigFunderAddress.value !== globals.zeroAddress, 'Error state: LSig Funder Address not set!');
+    assert(
+      this.lastCommitedRound.value === 0,
+      'Last commited round should not be set until all players have joined the game'
+    );
 
     // Fund the LSIG
     sendPayment({
@@ -324,6 +333,7 @@ export class TownHall extends Contract {
     if (this.player6AlgoAddr.value.address === globals.zeroAddress) {
       this.player6AlgoAddr.value.address = this.txn.sender;
       this.gameState.value = stateAssignRole; // Go to next stage.
+      this.lastCommitedRound.value = globals.round;
       return;
     }
 
@@ -385,43 +395,52 @@ export class TownHall extends Contract {
       amount: LSIG_FUND_AMOUNT,
     });
 
-    // TODO: introduce some type of randomness here, so that it is more difficult for someone
-    // to be able to influence which role they will get. Currently it is just whichever player
-    // was able to get their transaction in first, and if they happen to be the block proposer
-    // they will be able to control the order of transactions.
-
+    if (globals.round > this.lastCommitedRound.value + ROUNDS_TO_TIMEOUT) {
+      this.gameState.value = stateAssignRoleTimeout;
+      return;
+    }
     if (this.mafia.value === globals.zeroAddress) {
+      // TODO: introduce some type of randomness here, so that it is more difficult for someone
+      // to be able to influence which role they will get. Currently it is just whichever player
+      // was able to get their transaction in first, and if they happen to be the block proposer
+      // they will be able to control the order of transactions.
+
       this.mafia.value = this.txn.sender;
       this.mafiaKeyImage.value = keyImage;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
     if (this.doctor.value === globals.zeroAddress) {
       this.doctor.value = this.txn.sender;
       this.doctorKeyImage.value = keyImage;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
     if (this.farmer.value === globals.zeroAddress) {
       this.farmer.value = this.txn.sender;
       this.farmerKeyImage.value = keyImage;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
     if (this.butcher.value === globals.zeroAddress) {
       this.butcher.value = this.txn.sender;
       this.butcherKeyImage.value = keyImage;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
     if (this.innkeep.value === globals.zeroAddress) {
       this.innkeep.value = this.txn.sender;
       this.innkeepKeyImage.value = keyImage;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
     if (this.grocer.value === globals.zeroAddress) {
       this.grocer.value = this.txn.sender;
       this.grocerKeyImage.value = keyImage;
       this.gameState.value = stateDayStageVote; // Go to day
+      this.lastCommitedRound.value = globals.round;
       return;
     }
-
     throw Error('Invalid state! Error, game should have moved to the next stage already.');
   }
 
@@ -601,6 +620,7 @@ export class TownHall extends Contract {
       // The townsfolk have won!
       this.mafia.value = globals.zeroAddress;
       this.gameState.value = stateGameOver;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
 
@@ -615,10 +635,12 @@ export class TownHall extends Contract {
       // The mafia has won!
       // This assumes that the mafia is 1 of the remaining plays.
       this.gameState.value = stateGameOver;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
 
     this.gameState.value = stateNightStageMafiaCommit; // Go to next stage
+    this.lastCommitedRound.value = globals.round;
   }
 
   nightStageMafiaCommit(commitment: bytes): void {
@@ -826,6 +848,7 @@ export class TownHall extends Contract {
       // The townsfolk have won!
       this.gameState.value = stateGameOver;
       this.mafia.value = globals.zeroAddress;
+      this.lastCommitedRound.value = globals.round;
       return;
     }
 
@@ -838,6 +861,7 @@ export class TownHall extends Contract {
     this.justEliminatedPlayer.value = globals.zeroAddress;
 
     this.gameState.value = stateDayStageVote;
+    this.lastCommitedRound.value = globals.round;
   }
 
   // @allow.call('DeleteApplication')
