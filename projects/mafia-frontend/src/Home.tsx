@@ -6,6 +6,7 @@ import { GameState } from './interfaces/gameState'
 // Import components for each game state
 import { Player } from './interfaces/player'
 import AssignRole from './states/AssignRole'
+import AssignRoleTimeout from './states/AssignRoleTimeout'
 import DawnStageDeadOrSaved from './states/DawnStageDeadOrSaved'
 import DawnStageDoctorReveal from './states/DawnStageDoctorReveal'
 import DawnStageMafiaReveal from './states/DawnStageMafiaReveal'
@@ -20,9 +21,11 @@ import NightStageDoctorCommit from './states/NightStageDoctorCommit'
 import NightStageMafiaCommit from './states/NightStageMafiaCommit'
 
 import { useQuery } from '@tanstack/react-query'
+import LastCommittedRoundWrapper from './components/LastCommittedRoundWrapper'
 import Navbar from './components/NavBar'
 import { createStorageKey, getPlayersData, savePlayerData } from './db/playerStore'
 import { useAlgorand } from './hooks/useAlgorand'
+import { useCurrentRoundQuery } from './hooks/useCurrentRoundQuery'
 
 // Import the PlayerSelectionModal component
 import IDBPlayerSelectionModal from './components/IDBPlayerSelectionModal'
@@ -34,12 +37,14 @@ const Home: React.FC = () => {
   const [playerObject, setPlayerObject] = useState<Player | undefined>(undefined)
   const [gameState, setGameState] = useState<GameState>(GameState.JoinGameLobby)
   const [isPlaying, setIsPlaying] = useState<boolean>(false) // State to track audio playback
-  const { activeAddress } = useWallet()
+  const { activeAddress, transactionSigner } = useWallet()
   const algorand = useAlgorand()
+  const { data: currentRound } = useCurrentRoundQuery()
 
   // Add state for player selection
   const [showPlayerSelection, setShowPlayerSelection] = useState<boolean>(false)
   const [storedPlayers, setStoredPlayers] = useState<IDBPlayer[]>([])
+  const [lastCommittedRound, setLastCommittedRound] = useState(0)
 
   const toggleWalletModal = () => {
     setOpenWalletModal(!openWalletModal)
@@ -207,34 +212,48 @@ const Home: React.FC = () => {
       return <Intro setGameState={setGameState} setAppId={setAppId} />
     }
 
-    switch (gameState) {
-      case GameState.JoinGameLobby:
-        return playerObject && <JoinGameLobby playerObject={playerObject} />
-      case GameState.AssignRole:
-        return playerObject && <AssignRole playerObject={playerObject} />
-      case GameState.DayStageVote:
-        return playerObject && <DayStageVote playerObject={playerObject} />
-      case GameState.DayStageEliminate:
-        return playerObject && <DayStageEliminate playerObject={playerObject} />
-      case GameState.DayStageUnmasking:
-        return playerObject && <DayStageUnmasking playerObject={playerObject} />
-      case GameState.NightStageMafiaCommit:
-        return playerObject && <NightStageMafiaCommit playerObject={playerObject} />
-      case GameState.NightStageDoctorCommit:
-        return playerObject && <NightStageDoctorCommit playerObject={playerObject} />
-      case GameState.DawnStageMafiaReveal:
-        return playerObject && <DawnStageMafiaReveal playerObject={playerObject} />
-      case GameState.DawnStageDoctorReveal:
-        return playerObject && <DawnStageDoctorReveal playerObject={playerObject} />
-      case GameState.DawnStageDeadOrSaved:
-        return playerObject && <DawnStageDeadOrSaved playerObject={playerObject} />
-      case GameState.DawnStageUnmasking:
-        return playerObject && <DawnStageUnmasking playerObject={playerObject} />
-      case GameState.GameOver:
-        return playerObject && <GameOver playerObject={playerObject} />
-      default:
-        return <p>Unknown game state</p>
-    }
+    return (
+      <LastCommittedRoundWrapper
+        appId={Number(appId)}
+        currentRound={currentRound ?? 0}
+        setLastCommittedRound={setLastCommittedRound}
+        gameState={gameState}
+        playerObject={playerObject}
+      >
+        {(() => {
+          switch (gameState) {
+            case GameState.JoinGameLobby:
+              return playerObject && <JoinGameLobby playerObject={playerObject} />
+            case GameState.AssignRole:
+              return playerObject && <AssignRole playerObject={playerObject} />
+            case GameState.DayStageVote:
+              return playerObject && <DayStageVote playerObject={playerObject} />
+            case GameState.DayStageEliminate:
+              return playerObject && <DayStageEliminate playerObject={playerObject} />
+            case GameState.DayStageUnmasking:
+              return playerObject && <DayStageUnmasking playerObject={playerObject} />
+            case GameState.NightStageMafiaCommit:
+              return playerObject && <NightStageMafiaCommit playerObject={playerObject} />
+            case GameState.NightStageDoctorCommit:
+              return playerObject && <NightStageDoctorCommit playerObject={playerObject} />
+            case GameState.DawnStageMafiaReveal:
+              return playerObject && <DawnStageMafiaReveal playerObject={playerObject} />
+            case GameState.DawnStageDoctorReveal:
+              return playerObject && <DawnStageDoctorReveal playerObject={playerObject} />
+            case GameState.DawnStageDeadOrSaved:
+              return playerObject && <DawnStageDeadOrSaved playerObject={playerObject} />
+            case GameState.DawnStageUnmasking:
+              return playerObject && <DawnStageUnmasking playerObject={playerObject} />
+            case GameState.GameOver:
+              return playerObject && <GameOver playerObject={playerObject} />
+            case GameState.AssignRoleTimeout:
+              return playerObject && <AssignRoleTimeout playerObject={playerObject} />
+            default:
+              return <p>Unknown game state</p>
+          }
+        })()}
+      </LastCommittedRoundWrapper>
+    )
   }
 
   const toggleAudio = () => {
@@ -255,10 +274,13 @@ const Home: React.FC = () => {
       <Navbar
         appId={appId}
         activeAddress={activeAddress ?? undefined}
+        transactionSigner={activeAddress ? transactionSigner : undefined}
         isPlaying={isPlaying}
         toggleAudio={toggleAudio}
         openWalletModal={toggleWalletModal}
         currentPlayerAddress={playerObject?.day_algo_address.addr.toString() ?? undefined}
+        currentRound={currentRound}
+        lastCommittedRound={lastCommittedRound}
       />
 
       <div className="hero-content text-center rounded-lg p-6 max-w-md bg-white bg-opacity-90 mx-auto relative z-10">
