@@ -115,7 +115,7 @@ const Home: React.FC = () => {
     savePlayer()
   }, [activeAddress, appId, playerObject])
 
-  const getGamePlayerState = async () => {
+  const getGamePlayState = async () => {
     if (!activeAddress) {
       throw Error('Cannot get game state: Player address not connected')
     }
@@ -131,19 +131,19 @@ const Home: React.FC = () => {
     return await playerObject.day_client.state.global.gameState()
   }
 
-  const playerQuery = useQuery({ queryKey: ['playerState'], queryFn: getGamePlayerState, refetchInterval: 2800 })
+  const gamePlayStateQuery = useQuery({ queryKey: ['playerState'], queryFn: getGamePlayState, refetchInterval: 2800 })
 
   useEffect(() => {
     const handleGameStateAndCleanup = async () => {
-      if (playerQuery.data !== undefined) {
-        setGameState(GameState[GameState[Number(playerQuery.data)] as keyof typeof GameState])
+      if (gamePlayStateQuery.data !== undefined) {
+        setGameState(GameState[GameState[Number(gamePlayStateQuery.data)] as keyof typeof GameState])
       }
 
       if (
         gameState !== GameState.JoinGameLobby && // If game state isn't joint lobby then an active game must be played.
-        playerQuery.error &&
-        (playerQuery.error.message === 'Cannot get game state: Invalid application ID' ||
-          playerQuery.error.message === 'Network request error. Received status 404 (Not Found): application does not exist')
+        gamePlayStateQuery.error &&
+        (gamePlayStateQuery.error.message === 'Cannot get game state: Invalid application ID' ||
+          gamePlayStateQuery.error.message === 'Network request error. Received status 404 (Not Found): application does not exist')
       ) {
         const nightAlgoBalance = (await algorand.client.algod.accountInformation(playerObject!.night_algo_address.addr).do()).amount
         const dayAlgoBalance = (await algorand.client.algod.accountInformation(playerObject!.day_algo_address.addr).do()).amount
@@ -183,7 +183,7 @@ const Home: React.FC = () => {
     }
 
     handleGameStateAndCleanup()
-  }, [playerQuery])
+  }, [gamePlayStateQuery])
 
   const renderGameState = () => {
     // First check if we should show the player selection modal
