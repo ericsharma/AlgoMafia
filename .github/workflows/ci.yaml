@@ -38,7 +38,7 @@ jobs:
         run: algokit project run lint
 
       - name: Run unit tests
-        run: algokit project run test
+        run: algokit project run test --project-name 'mafia-frontend'
 
       - name: Build
         run: algokit project run build
