@@ -41,7 +41,7 @@ jobs:
         run: algokit project run test --project-name 'mafia-frontend'
 
       - name: Build
-        run: algokit project run build
+        run: algokit project run build --project-name 'mafia-frontend'
 
       - name: Check for uncommitted changes after build
         run: |
