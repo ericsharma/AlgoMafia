@@ -42,3 +42,7 @@ jobs:
 
       - name: Build
         run: algokit project run build
+
+      - name: Check for uncommitted changes after build
+        run: |
+          git diff --exit-code
